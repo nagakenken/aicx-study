@@ -588,9 +588,11 @@ function answer(qid, ci, correct) {
 
   if (ci === correct) {
     if (next) next.classList.add('show');
+    localStorage.removeItem('qfail_' + qid);
   } else {
     expl.classList.add('hint');
     if (retry) retry.classList.add('show');
+    localStorage.setItem('qfail_' + qid, '1');
   }
 }
 
