@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Ch.02 | 業務の基礎</title>
+  <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px; line-height: 1.7; color: #1a1a1a;
+  background: #f0f2f5; padding: 12px;
+  max-width: 600px; margin: 0 auto;
+}
+
+/* ── ヘッダー ───────────────────────────── */
+.page-header {
+  color: white; border-radius: 12px; padding: 16px 18px; margin-bottom: 12px;
+}
+.breadcrumb { font-size: 12px; opacity: .75; margin-bottom: 4px; }
+.page-title  { font-size: 20px; font-weight: 700; letter-spacing: -.3px; }
+.header-meta { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px;
+  border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge-ch   { background: rgba(255,255,255,.22); color: white; }
+.badge-exam { background: #ff9500; color: white; }
+
+/* ── カード ─────────────────────────────── */
+.card {
+  background: white; border-radius: 12px; padding: 18px;
+  margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.card-title {
+  font-size: 14px; font-weight: 700; color: #1e3a5f;
+  margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
+}
+.card-title::before {
+  content: ''; display: inline-block; width: 3px; height: 16px;
+  background: currentColor; border-radius: 2px; opacity: .6;
+}
+
+/* ── 試験ポイント ────────────────────────── */
+.exam-point {
+  background: #fff8e6; border-left: 3px solid #ff9500;
+  border-radius: 0 8px 8px 0; padding: 10px 12px;
+  font-size: 14px; line-height: 1.75;
+}
+.exam-label { font-weight: 700; color: #c67200; font-size: 12px; margin-bottom: 5px; }
+
+/* ── 概要カード: トピック概要セクション ─── */
+.ov-divider { border-top: 1px solid #e8e8e8; margin: 14px 0 10px; }
+.ov-section { margin-bottom: 12px; }
+.ov-section-title {
+  font-size: 13px; font-weight: 700;
+  border-left: 3px solid #2d6a9f;
+  padding: 4px 8px 4px 10px; border-radius: 0 4px 4px 0;
+  margin-bottom: 5px;
+}
+.ov-section-body {
+  font-size: 13px; line-height: 1.65; color: #555;
+  padding-left: 13px;
+}
+.ov-body-p { font-size: 13px; line-height: 1.65; color: #333; margin-bottom: 6px; }
+
+/* ── 学習ステータス ──────────────────────── */
+.status-card {
+  background: white; border-radius: 12px; padding: 14px 18px;
+  margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.status-label { font-size: 14px; font-weight: 600; color: #555; flex-shrink: 0; }
+.status-btns  { display: flex; gap: 8px; }
+.status-btn {
+  padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  cursor: pointer; border: 2px solid transparent; transition: all .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-done  { background: #e6f4ea; color: #1a7340; border-color: #34a853; }
+.btn-later { background: #e8f0fe; color: #1a4bae; border-color: #4285f4; }
+.btn-done.active  { background: #34a853; color: white; }
+.btn-later.active { background: #4285f4; color: white; }
+
+/* ── 深掘りノート（アコーディオン） ────────── */
+.deepdive-wrap { margin-bottom: 12px; }
+.deepdive-btn {
+  width: 100%; background: white; border: 1px solid #d0d7de;
+  border-radius: 10px; padding: 13px 16px;
+  font-size: 14px; font-weight: 600; color: #1e3a5f;
+  text-align: left; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  -webkit-tap-highlight-color: transparent;
+}
+.deepdive-btn .dd-arrow-icon { font-size: 12px; transition: transform .25s; color: #2d6a9f; }
+.deepdive-btn.open .dd-arrow-icon { transform: rotate(90deg); }
+.deepdive-content {
+  display: none; background: white;
+  border: 1px solid #d0d7de; border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 16px 18px;
+}
+.deepdive-content.open { display: block; }
+
+/* ── 深掘りノート内 コンテンツスタイル ──────── */
+.dd-h3 {
+  font-size: 13px; font-weight: 700;
+  border-left: 3px solid #2d6a9f;
+  background: #e8f0fe;
+  padding: 6px 10px; border-radius: 0 6px 6px 0;
+  margin: 16px 0 8px; line-height: 1.5;
+}
+.dd-h3:first-child { margin-top: 0; }
+.dd-p {
+  font-size: 14px; line-height: 1.8; color: #333;
+  margin-bottom: 8px;
+}
+.dd-bullet {
+  font-size: 14px; line-height: 1.7; color: #333;
+  margin-bottom: 6px;
+  display: flex; align-items: flex-start; gap: 6px;
+}
+.dd-arrow { font-size: 12px; flex-shrink: 0; margin-top: 4px; }
+
+/* ── コールアウトボックス (POINT) ──────────── */
+.callout-box {
+  border-left: 3px solid #2d6a9f;
+  border-radius: 0 8px 8px 0;
+  padding: 10px 12px;
+  font-size: 14px; line-height: 1.75;
+  margin: 10px 0; font-weight: 500;
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.callout-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+
+/* ── 業務シナリオ ────────────────────────── */
+.scenario-section {
+  border-left: 3px solid #4285f4;
+  border-radius: 0 8px 8px 0;
+  background: #f0f4ff;
+  padding: 12px 14px; margin-top: 14px;
+}
+.scenario-label { font-size: 12px; font-weight: 700; color: #1a4bae; margin-bottom: 6px; }
+
+/* ── 記憶の鍵 ────────────────────────────── */
+.memory-key {
+  color: white; border-radius: 10px;
+  padding: 14px 16px; margin-top: 16px; text-align: center;
+}
+.memory-key-label { font-size: 11px; opacity: .75; margin-bottom: 6px; letter-spacing: .5px; }
+.memory-key-text  { font-size: 14px; font-weight: 700; line-height: 1.6; }
+
+/* ── 理解度チェック ─────────────────────── */
+.quiz-hdr {
+  font-size: 15px; font-weight: 700; color: #1e3a5f;
+  margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
+}
+.quiz-block {
+  background: white; border-radius: 12px; padding: 18px;
+  margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.quiz-num      { font-size: 12px; font-weight: 700; color: #2d6a9f; margin-bottom: 8px; }
+.quiz-question { font-size: 15px; font-weight: 600; line-height: 1.6; margin-bottom: 14px; }
+.choices { display: flex; flex-direction: column; gap: 8px; }
+.choice-btn {
+  background: #f5f5f7; border: 2px solid transparent; border-radius: 10px;
+  padding: 11px 14px; font-size: 14px; text-align: left;
+  cursor: pointer; line-height: 1.5; color: #1a1a1a;
+  transition: background .15s, border-color .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.choice-btn:active  { background: #e8f0fe; }
+.choice-btn.correct { background: #e6f4ea; border-color: #34a853; color: #1a7340; font-weight: 600; }
+.choice-btn.wrong   { background: #fce8e6; border-color: #ea4335; color: #b31412; }
+.choice-btn.dimmed  { opacity: .4; pointer-events: none; }
+.explanation {
+  display: none; background: #e6f4ea; border-radius: 8px;
+  padding: 12px 14px; margin-top: 12px; font-size: 14px; line-height: 1.6;
+  border-left: 3px solid #34a853;
+}
+.explanation.show { display: block; }
+.ans-label { font-weight: 700; color: #1a7340; font-size: 13px; margin-bottom: 5px; }
+.explanation.hint { background: #fff8e6; border-left-color: #ff9500; }
+.explanation.hint .ans-label { color: #c67200; }
+.action-btns { display: flex; gap: 8px; margin-top: 10px; }
+.retry-btn, .next-btn {
+  padding: 9px 18px; border-radius: 8px; border: none;
+  font-size: 14px; font-weight: 600; cursor: pointer; display: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.retry-btn.show, .next-btn.show { display: inline-block; }
+.retry-btn { background: #f0f0f0; color: #333; }
+.next-btn  { background: #34a853; color: white; }
+.score-banner {
+  display: none; background: linear-gradient(135deg, #34a853, #1a7340);
+  color: white; border-radius: 10px; padding: 16px; text-align: center; margin-top: 10px;
+}
+.score-banner.show { display: block; }
+.score-main { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+
+/* ── ナビ ────────────────────────────────── */
+.nav-footer { display: flex; gap: 10px; margin-top: 16px; padding-bottom: 24px; }
+.nav-btn {
+  flex: 1; padding: 12px; border-radius: 10px; border: 2px solid #2d6a9f;
+  background: white; color: #2d6a9f; font-size: 14px; font-weight: 600;
+  cursor: pointer; text-align: center; text-decoration: none;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-btn.primary { background: #2d6a9f; color: white; }
+
+/* ── 索引 ────────────────────────────────── */
+.index-header {
+  background: linear-gradient(135deg, #1e3a5f, #2d6a9f); color: white;
+  border-radius: 12px; padding: 20px; margin-bottom: 16px; text-align: center;
+}
+.index-header h1 { font-size: 22px; margin-bottom: 6px; }
+.index-header p  { font-size: 13px; opacity: .8; }
+.chapter-card { background: white; border-radius: 12px; margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
+.chapter-card-header { padding: 14px 18px; font-weight: 700; font-size: 15px;
+  color: white; display: flex; align-items: center; gap: 8px; }
+.section-link { display: flex; align-items: center; gap: 10px; padding: 11px 18px;
+  border-bottom: 1px solid #f0f0f0; text-decoration: none; color: #1a1a1a; font-size: 14px; }
+.section-link:last-child { border-bottom: none; }
+.section-link:active { background: #f5f5f7; }
+.sec-num { font-weight: 700; font-size: 12px; min-width: 28px; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; flex-shrink: 0; margin-left: auto; }
+.status-dot.done  { background: #34a853; }
+.status-dot.later { background: #4285f4; }
+
+/* ── OVサブタイトル ─────────────────────── */
+.ov-subtitle {
+  font-size:13px; font-weight:700; margin:14px 0 8px;
+  padding-bottom:4px; border-bottom:1.5px solid #f0ebff;
+  color:#4a3070;
+}
+
+/* ── ポイントリスト ──────────────────────── */
+.point-list { list-style:none; padding:0; margin:10px 0; display:flex; flex-direction:column; gap:5px; }
+.point-list li {
+  font-size:13px; line-height:1.65; color:#333;
+  padding-left:16px; position:relative;
+}
+.point-list li::before {
+  content:'▸'; position:absolute; left:0;
+  color:#6b4fa8; font-size:11px; top:3px;
+}
+.point-list li strong { color:#4a3070; }
+
+/* ── 3層ピラミッド ──────────────────────── */
+.layer-diagram { display:flex; flex-direction:column; gap:6px; margin:10px 0; }
+.layer-item {
+  border-radius:10px; overflow:hidden;
+  box-shadow:0 1px 3px rgba(0,0,0,.08);
+}
+.layer-label {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:9px 14px; font-weight:700; font-size:13px;
+}
+.layer-name { font-size:14px; }
+.layer-tag  { font-size:11px; opacity:.8; font-weight:600;
+  background:rgba(255,255,255,.3); border-radius:4px; padding:1px 6px; }
+.layer-body {
+  padding:9px 14px; font-size:13px; line-height:1.65; color:#333;
+  background:#f9fafb; border-top:1px solid rgba(0,0,0,.06);
+}
+.layer-body strong { color:#4a3070; }
+.layer-arrow { text-align:center; font-size:18px; color:#bbb; line-height:1.2; }
+
+/* ── フロー図 ────────────────────────────── */
+.flow-diagram {
+  display:flex; align-items:center; gap:5px; margin:10px 0;
+  flex-wrap:wrap; justify-content:center;
+}
+.flow-box {
+  background:#f5f5f7; border:1.5px solid #d0d7de; border-radius:8px;
+  padding:8px 10px; font-size:12px; text-align:center; line-height:1.4; min-width:58px;
+}
+.flow-box.flow-hi { font-weight:700; border-width:2px; }
+.flow-arrow { font-size:16px; color:#aaa; flex-shrink:0; }
+
+/* ── ECRSラダー ─────────────────────────── */
+.ecrs-list { display:flex; flex-direction:column; gap:6px; margin:10px 0; }
+.ecrs-item {
+  display:flex; align-items:flex-start; gap:10px;
+  border-radius:10px; padding:10px 14px;
+  box-shadow:0 1px 3px rgba(0,0,0,.08);
+}
+.ecrs-badge {
+  width:28px; height:28px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:800; flex-shrink:0; color:white;
+}
+.ecrs-body { flex:1; }
+.ecrs-title { font-size:13px; font-weight:700; margin-bottom:2px; }
+.ecrs-desc  { font-size:12px; color:#555; line-height:1.45; }
+.ecrs-ex    { font-size:11.5px; color:#6b4fa8; margin-top:3px; font-style:italic; }
+
+/* ── 警告ボックス ────────────────────────── */
+.warn-box {
+  border-radius:10px; background:#fff3cd; border-left:4px solid #e6a800;
+  padding:12px 14px; margin:10px 0;
+}
+.warn-title { font-weight:700; color:#7a5500; margin-bottom:5px; font-size:13px; }
+.warn-body  { font-size:12.5px; color:#5a4000; line-height:1.6; }
+
+/* ── 4手法カード ────────────────────────── */
+.method-cards { display:flex; flex-direction:column; gap:8px; margin:10px 0; }
+.method-card {
+  border-radius:10px; border-left:4px solid;
+  padding:10px 14px; background:#f9fafb;
+}
+.method-head {
+  display:flex; align-items:center; gap:8px; margin-bottom:5px;
+}
+.method-num {
+  width:22px; height:22px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:10px; font-weight:700; flex-shrink:0; color:white;
+}
+.method-title { font-size:13px; font-weight:700; }
+.method-grain { font-size:11px; color:#888; margin-left:auto; }
+.method-body  { font-size:12px; line-height:1.55; color:#333; }
+.method-body strong { color:#4a3070; }
+
+/* ── 用途比較テーブル ───────────────────── */
+.cmp-table { width:100%; border-collapse:collapse; margin:10px 0; font-size:12.5px; }
+.cmp-table th {
+  padding:7px 10px; color:white; font-size:12px; font-weight:700; text-align:center;
+  background:#4a3070;
+}
+.cmp-table td { padding:7px 10px; border-bottom:1px solid #eee; vertical-align:top; line-height:1.55; }
+.cmp-table tr:nth-child(even) td { background:#f9f9f9; }
+.cmp-table td:first-child { font-weight:600; color:#666; font-size:12px; width:5em; }
+
+/* ── フローティングナビ ───────────────── */
+.float-home {
+  position: fixed; bottom: 22px; right: 14px;
+  background: rgba(26,26,26,.88);
+  color: white !important;
+  padding: 9px 15px; border-radius: 22px;
+  font-size: 13px; font-weight: 700;
+  text-decoration: none !important; letter-spacing: .3px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.30);
+  z-index: 500; backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  -webkit-tap-highlight-color: transparent;
+  display: flex; align-items: center; gap: 4px;
+  border: 1px solid rgba(255,255,255,.15);
+  transition: opacity .15s;
+}
+.float-home:active { opacity: .7; }
+
+/* ── 章先頭セクション一覧バー ────────── */
+.chapter-toc {
+  position: sticky; top: 0; z-index: 400;
+  background: var(--ch-dark);
+  padding: 0 12px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  border-bottom: 2px solid var(--ch-accent);
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+  scrollbar-width: none;
+}
+.chapter-toc::-webkit-scrollbar { display: none; }
+.chapter-toc-inner {
+  display: inline-flex; align-items: center; gap: 0;
+  height: 44px;
+}
+.toc-home {
+  color: rgba(255,255,255,.8); text-decoration: none;
+  font-size: 12px; font-weight: 700;
+  padding: 0 14px 0 4px;
+  border-right: 1px solid rgba(255,255,255,.2);
+  margin-right: 10px;
+  display: flex; align-items: center; gap: 4px;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+  height: 100%;
+}
+.toc-home:active { opacity: .7; }
+.toc-link {
+  color: rgba(255,255,255,.7); text-decoration: none;
+  font-size: 12px; font-weight: 600;
+  padding: 0 10px;
+  display: inline-flex; align-items: center; gap: 4px;
+  height: 100%;
+  border-right: 1px solid rgba(255,255,255,.12);
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+.toc-link:last-child { border-right: none; }
+.toc-link:active { background: rgba(255,255,255,.12); }
+.toc-link.toc-current { color: white; }
+.toc-snum { font-size: 10px; opacity: .7; }
+
+</style>
+</head>
+<body>
+
+<section id="ch02_s01" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#4a3070,#6b4fa8);">
+  <div class="breadcrumb">Chapter 02 ｜ 業務の基礎</div>
+  <div class="page-title">Section 01 ｜ 業務の構造的理解</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.02-S01</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#4a3070;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIエージェント導入の出発点として、現状業務を正しく把握することの重要性を
+学びます。試験では、As-Is分析とTo-Be分析の定義、役割、順序の違いが問われます。特に、まず
+As-Isで現状を整理し、そのうえでTo-Beを設計し、両者の差分を分析するという流れを理解してお
+くことが重要です。あわせて、As-Is分析の段階で改善案を混ぜてしまうという典型的な失敗にも注
+意が必要です。</div>
+
+<div class="ov-divider"></div>
+<div class="ov-subtitle">業務の3層構造</div>
+<div class="layer-diagram">
+  <div class="layer-item">
+    <div class="layer-label" style="background:#f0ebff;color:#4a3070;">
+      <span class="layer-name">仕事（Work）</span>
+      <span class="layer-tag">最大粒度</span>
+    </div>
+    <div class="layer-body">組織が果たすべき<strong>ミッション・目的</strong>の単位。例：「顧客満足度を向上させる」「新規顧客を獲得する」。AIエージェントが最終的に貢献する価値の軸</div>
+  </div>
+  <div class="layer-arrow">↓</div>
+  <div class="layer-item">
+    <div class="layer-label" style="background:#e8e0ff;color:#4a3070;">
+      <span class="layer-name">業務（Process）</span>
+      <span class="layer-tag">中粒度</span>
+    </div>
+    <div class="layer-body"><strong>Input → Process → Output</strong> で構造化できる反復的な活動のまとまり。例：「受注処理」「採用スクリーニング」。AIエージェントが担う単位</div>
+  </div>
+  <div class="layer-arrow">↓</div>
+  <div class="layer-item">
+    <div class="layer-label" style="background:#d4c8f8;color:#4a3070;">
+      <span class="layer-name">作業（Task）</span>
+      <span class="layer-tag">最小粒度</span>
+    </div>
+    <div class="layer-body">業務を構成する<strong>個別の手順・操作</strong>。例：「メール開封」「フォームへの入力」「確認ボタンのクリック」。RPAや個別ツールが担う単位</div>
+  </div>
+</div>
+
+<div class="ov-subtitle">IPO（Input / Process / Output）モデル</div>
+<div class="flow-diagram">
+  <div class="flow-box flow-hi" style="background:#f0ebff;border-color:#6b4fa8;">Input<br><span style="font-size:10px;font-weight:400;">トリガー・入力データ</span></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-box flow-hi" style="background:#e8e0ff;border-color:#9b7ed4;">Process<br><span style="font-size:10px;font-weight:400;">変換・判断・加工</span></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-box flow-hi" style="background:#d4c8f8;border-color:#4a3070;">Output<br><span style="font-size:10px;font-weight:400;">成果物・後続へ</span></div>
+</div>
+<ul class="point-list">
+  <li><strong>境界の明確化</strong>が重要：Inputは何か？Outputは誰が使うか？が曖昧なまま自動化すると「ゴミin・ゴミout」になる</li>
+  <li><strong>As-Is分析</strong>：現状業務をIPOで構造化し、ボトルネックを可視化する出発点。プロセスウォークスルー（実際に手順を追う）と5W1Hヒアリングで情報収集</li>
+</ul>
+
+<div class="memory-key" style="background:linear-gradient(135deg,#4a3070,#6b4fa8);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">仕事＝ミッション、業務＝AIが担うIPO単位、作業＝ツールが担う最小操作。3層で分けて設計せよ</div></div>
+
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch02_s01">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch02_s01','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch02_s01','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#6b4fa8;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">なぜ「現状把握」がAIエージェント導⼊の最初の仕事なのか</h3>
+<p class="dd-p">「AIエージェントで業務を自動化したい」という相談を受けたとき、多くの推進者は、まず「どのAIツールを使うか」を考えがちです。しかし、適切な出発点は、現在の業務がどのような流れで成り立ち、どこで人が何をしているかを整理することです。現状を正確に把握しないまま理想像だけを描くと、現場の実態に合わない設計になりやすくなります。</p>
+<p class="dd-p">その結果、利用されない仕組みができたり、本来は不要な工程まで自動化対象に含めてしまったりするおそれがあります。したがって、AIエージェント導入は、ツール選定から始まるのではなく、業務構造の理解から始まると考える必要があります。では、そもそも「業務」とは何でしょうか。</p>
+<p class="dd-p">この問いを整理することが、AIエージェント導⼊設計の精度を左右します。</p>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">「業務」を構造的に理解する仕事‧業務‧作業の違い</h3>
+<p class="dd-p">⽇常の会話では混⽤されがちですが、「仕事」「業務」「作業」は本来、異なる階層を指す⾔葉です。</p>
+<p class="dd-p">仕事 とは、組織や個人が果たすべき目的や役割の全体です。 たとえば、「顧客の課題を解決する」「売上を伸ばす」</p>
+<p class="dd-p">「安全なサービスを提供する」といった、意味や目的の水準がこれに当たります。</p>
+<p class="dd-p">業務 とは、その仕事を実現するために、組織が繰り返し行う一連の流れです。 たとえば、「受注処理」「経費精算」</p>
+<p class="dd-p">「問い合わせ対応」のように、一定の手順や担当者、ルールを持つまとまりがこれに当たります。</p>
+<p class="dd-p">作業 とは、業務を構成する具体的な行為です。 たとえば、「Excelに数値を入力する」「領収書を確認する」「問い合わせ内容を分類する」といった、個別の実行単位がこれに当たります。</p>
+<div class="callout-box" style="border-left-color:#6b4fa8;background:#f0ebff;"><span class="callout-icon">💡</span>この区別が重要なのは、AIエージェント導入では、最初に業務全体の流れを理解し、その中からAIエージェントに任せる作業を特定する必要があるためです。つまり、AIエージェントが直接置き換える対象は作業であっても、作業だけを単独で見ても、前後の流れや業務上の意味が分からなければ、適切な設計はできません。したがって、「どの作業をAIエージェントに任せるか」を判断する前提として、「その作業がどの業務の中にあり、どの役割を果たしているか」を把握する必要があります。</div>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">業務をIPOで整理し、その中の作業を特定する</h3>
+<p class="dd-p">業務全体の流れを整理する際に有効なのが、IPO（Input・Process・Output） の考え方です。あらゆる業務は、入力、処理、出力の三つの要素で捉えることができます。</p>
+<p class="dd-p">Input（入力） は、業務のきっかけとなる情報や素材です。たとえば、「顧客からの問い合わせ」「提出された領収書」</p>
+<p class="dd-p">「発注データ」などが該当します。</p>
+<p class="dd-p">Process（処理） は、入力された情報をもとに、確認、判断、変換、登録などを行う部分です。ここに、実際の作業が含まれます。</p>
+<p class="dd-p">Output（出力） は、処理の結果として生み出される成果物や、次の工程へ渡される情報です。たとえば、「回答メール」「承認済みの申請」「会計システムに登録されたデータ」などが該当します。</p>
+<div class="callout-box" style="border-left-color:#6b4fa8;background:#f0ebff;"><span class="callout-icon">💡</span>ここで重要なのは、IPOは業務全体を把握するための見方であり、AIエージェント導入の対象として最終的に特定するのは、その中に含まれる作業だという点です。つまり、業務をIPOで整理する目的は、「AIエージェントがこの業務全体を置き換えるか」を考えることではなく、どの入力を受け、どの処理の中に、AIエージェントが担える作業があるかを見つけることにあります。</div>
+<p class="dd-p">たとえば、経費精算業務では、Inputは「領収書」、Processは「内容の確認、費目分類、金額入力、承認依頼」、Outputは「会計システムへ渡す登録データ」です。</p>
+<p class="dd-p">このとき、AIエージェント導入の検討対象になるのは、Processに含まれる個々の作業です。たとえば、領収書の内容を読み取る、費目を分類する、入力候補を作る、といった作業はAIエージェントに任せられる可能性があります。一方、最終承認のように責任判断を伴う部分は、人が担う設計が適切な場合があります。</p>
+<div class="callout-box" style="border-left-color:#6b4fa8;background:#f0ebff;"><span class="callout-icon">💡</span>また、IPOの視点は、どこで品質が落ちているかを見つけるうえでも有効です。たとえば、Inputの時点で画像が不鮮明であれば、その後のAI処理の精度は上がりにくくなります。この場合、問題はAIの性能だけでなく、入力情報の質にもあります。したがって、AIエージェント導入では、業務をIPOで整理して全体の流れを理解し、そのうえでProcessの中にある作業を特定し、どこにAIエージェントを適用するかを判断するという順序で考えることが重要です。</div>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">As-Is分析業務の「今の姿」を事実だけで記録する</h3>
+<p class="dd-p">As-Is分析とは、業務の「現在の姿」をIPOの構造に沿って正確に記録する分析手法です。「今、誰が、何を、どのように、どんな順序で行っているか」をありのままに可視化します。</p>
+<div class="callout-box" style="border-left-color:#6b4fa8;background:#f0ebff;"><span class="callout-icon">💡</span>ここで注意すべきなのが、現状分析の中に改善案を混ぜてしまうことです。たとえば、「経理担当がExcelに手入力している」という現状記述に対して、同時に「AIエージェントで自動化すべき」と書いてしまうと、事実の把握と改善の議論が混在します。その結果、現在の業務が実際にはどのように行われているのかを正確に捉えにくくなります。したがって、As-Isを整理する段階では、評価や改善案を加えず、まずは事実をそのまま記録することが重要です。</div>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">【As-Is分析の具体的な⼿法】</h3>
+<p class="dd-p">プロセスウォークスルー（現場観察）</p>
+<div class="callout-box" style="border-left-color:#6b4fa8;background:#f0ebff;"><span class="callout-icon">💡</span>担当者の作業を実際に横で観察し、画面共有や動画で記録します。ヒアリングだけに頼らないことが重要です。長年同じ業務を担ってきた担当者は、慣れすぎて自分でも意識していない手順があります。「言葉で説明できない暗黙の作業」こそが、ウォークスルーでしか拾えない最も価値ある情報です。</div>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">WHヒアリングシート</h3>
+<p class="dd-p">担当者へのヒアリングを構造化するために、以下の問いを軸に情報を収集します。</p>
+<p class="dd-p">Who（誰が）：この作業の担当者は誰か。属⼈化していないか。</p>
+<p class="dd-p">What（何を）：どんな情報‧素材を扱っているか。</p>
+<p class="dd-p">When（いつ）：どのタイミングで発⽣するか。頻度はどのくらいか。</p>
+<p class="dd-p">Where（どこで）：どのシステム‧ツール‧場所で⾏われているか。</p>
+<p class="dd-p">Why（なぜ）：この作業はなぜ存在するのか。誰のための何のための⼯程か。</p>
+<p class="dd-p">How（どのように）：具体的な⼿順はどうなっているか。</p>
+<div class="callout-box" style="border-left-color:#6b4fa8;background:#f0ebff;"><span class="callout-icon">💡</span>特に「Why」の問いは重要です。「なぜこの手順があるのか」</div>
+<div class="scenario-section" style="border-left-color:#6b4fa8;"><div class="scenario-label" style="color:#4a3070;">📋 業務シナリオ</div><p class="dd-p">ヘルプデスクAIの基本設計が固まったため、次に、導入に向けた業務分析を行います。ここで行うのは、現状業務を事実ベースで整理し、そのうえでAIエージェント導入後のあるべき業務フローを設計し、最後に両者の差分を明らかにすることです。この順序で整理することで、どこに課題があり、何を変える必要があるのかを具体的に示しやすくなります。</p>
+<p class="dd-p">##CALLOUT##最初に、ヘルプデスク業務の現状を、改善案を加えずに事実だけで整理します。 ここで重要なのは、「こうすべき」といった評価を入れず、現在どのような手順で業務が行われているかをそのまま記録することです。</p>
+<p class="dd-p">⼯程：FAQに該当する場合は、担当者が回答を⼿⼊⼒してメールで返信する（平均分）</p>
+<p class="dd-p">⼯程：FAQに該当しない場合は、担当者が個別に調査し、回答を作成して返信する（平均分）</p>
+<p class="dd-p">この段階の⽬的は、改善案を考えることではなく、現状の業務⼿順と⼯数の実態を把握することにあります。</p></div>
+  </div>
+</div>
+
+<!-- ④ 理解度チェック -->
+<div class="card" style="padding:18px 18px 10px;border-top:3px solid #6b4fa8;">
+  <div class="quiz-hdr" style="color:#4a3070;">📝 ④ 理解度チェック（公式問題）</div>
+  
+  <div class="quiz-block" id="qch02_s01_1" style="display:block;">
+    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-question">As-Is分析の精度を高めるアプローチとして、最も効果的なものはどれで すか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch02_s01_1',0,1)">A　経営層にヒアリングし、業務の全体方針を聞き取る</button>
+      <button class="choice-btn" onclick="answer('ch02_s01_1',1,1)">B　担当者の実際の作業を画面共有や動画で記録し、記録をもとに業務フローを書き起こす</button>
+      <button class="choice-btn" onclick="answer('ch02_s01_1',2,1)">C　業務マニュアルの記載内容をそのままAs-Isとして採用する</button>
+      <button class="choice-btn" onclick="answer('ch02_s01_1',3,1)">D　担当者に「理想の業務フロー」を聞き、それをAs-Isとして記録する</button>
+    </div>
+    <div class="explanation" id="ech02_s01_1">
+      <div class="ans-label">✅ 正解：B</div>
+      担当者へのヒアリングだけでは「慣れすぎて意識していない手順」が抜け落ちることがありま す。実際の作業を画面共有や動画で記録し、それをもとにフローを書き起こすことで、本人も気づいてい なかった手順が可視化されます。Cは業務マニュアルと実際の運用が乖離しているケースが多く、マニュ アル＝As-Isとは限りません。Dは「理想のフロー」を聞いてしまうと、As-IsではなくTo-Beの混入にな ります。 nagaken盩盨盪盫@gmail.com賢二 AIエージェント・ストラテジスト資格 Chapter2 業務の基礎
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch02_s01_1" onclick="retryQ('ch02_s01_1')">↩ もう一度</button>
+      <button class="next-btn" id="nch02_s01_1" onclick="showNext('ch02_s01_2')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch02_s01_2" style="display:none;">
+    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-question">あなたはAIエージェント導入プロジェクトの担当者です。現場の経理チ ームにヒアリングを行い、以下の4つのAs-Is記録を作成しました。As-Is 分析として不適切な記述が1つあります。どれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch02_s01_2',0,2)">A　経理担当者3名が、毎月約200件の請求書を紙で受領し、1件あたり平均8分かけて会計システムに手入力し ている</button>
+      <button class="choice-btn" onclick="answer('ch02_s01_2',1,2)">B　入力ミスが月に約10件発生しており、月末の突合作業で発覚するため修正に追加で5時間かかっている</button>
+      <button class="choice-btn" onclick="answer('ch02_s01_2',2,2)">C　請求書のフォーマットが取引先ごとに異なるため、AIエージェントによる画像認識で読み取りを自動化すれ ば入力工数を80%削減できる</button>
+      <button class="choice-btn" onclick="answer('ch02_s01_2',3,2)">D　紙の請求書は経理部門の棚に保管されており、過去分の検索には平均15分かかっている</button>
+    </div>
+    <div class="explanation" id="ech02_s01_2">
+      <div class="ans-label">✅ 正解：C</div>
+      A・B・Dは現状の事実を記述しています。Cは「AIエージェントで自動化すれば80%削減でき る」という改善提案と効果予測が含まれています。As-Isとして記録すべきは「請求書のフォーマットが 取引先ごとに異なり、担当者が目視でフォーマットを確認しながら入力している」という事実までです。 nagaken盩盨盪盫@gmail.com賢二
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch02_s01_2" onclick="retryQ('ch02_s01_2')">↩ もう一度</button>
+      <button class="next-btn" id="nch02_s01_2" onclick="showScore('ch02_s01',2)">結果を見る →</button>
+    </div>
+  </div>
+
+  <div class="score-banner" id="sc_ch02_s01">
+    <div class="score-main"></div>
+    <div style="font-size:14px;opacity:.85;">理解度チェック完了 ✅</div>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#6b4fa8;color:#6b4fa8;" href="ch01.html#ch01_s08">&larr; 生成AIの発展トレンド</a><a class="nav-btn primary" href="ch02.html#ch02_s02" style="background:#6b4fa8;border-color:#6b4fa8;">BPR（業務改革）の基礎 &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch02_s02" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#4a3070,#6b4fa8);">
+  <div class="breadcrumb">Chapter 02 ｜ 業務の基礎</div>
+  <div class="page-title">Section 02 ｜ BPR（業務改革）の基礎</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.02-S02</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#4a3070;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、自動化の前に業務プロセスを見直すことの重要性を理解し、BPRの基本手法であ
+るECRSを用いて改善案を検討できるようになることを目的とします。試験では、ECRSの4つの観
+点の意味と順序、自動化の前に見直しが必要な理由、非効率な業務をそのまま自動化することの問
+題点、As-Is分析との関係が問われます。</div>
+
+<div class="ov-divider"></div>
+<div class="ov-subtitle">BPRとは：改善ではなく「再設計」</div>
+<ul class="point-list">
+  <li><strong>BPR（Business Process Re-engineering）</strong>：既存プロセスを継続的に改善するのではなく、白紙から<strong>根本的に再設計</strong>する考え方</li>
+  <li>既存の手順・組織・ルールをいったん「ゼロリセット」し「本来の目的に最適な業務とは何か」を問い直す</li>
+  <li>AIエージェント導入は技術投資ではなくBPR実践の機会。まずプロセスを正しく設計してから自動化する</li>
+</ul>
+
+<div class="ov-subtitle">ECRS原則 — 優先順位つきの改善フレームワーク</div>
+<div class="ecrs-list">
+  <div class="ecrs-item" style="background:#f3efff;">
+    <div class="ecrs-badge" style="background:#4a3070;">E</div>
+    <div class="ecrs-body">
+      <div class="ecrs-title">Eliminate（排除）★最優先</div>
+      <div class="ecrs-desc">その業務・作業は<strong>本当に必要か？</strong>なくせるなら最大の効果。</div>
+      <div class="ecrs-ex">例：承認フローを廃止 / 重複入力の除去</div>
+    </div>
+  </div>
+  <div class="ecrs-item" style="background:#e8e0ff;">
+    <div class="ecrs-badge" style="background:#6b4fa8;">C</div>
+    <div class="ecrs-body">
+      <div class="ecrs-title">Combine（結合）</div>
+      <div class="ecrs-desc">複数の手順・担当者・作業を<strong>まとめて効率化</strong>できないか。</div>
+      <div class="ecrs-ex">例：入力と確認を1ステップに統合</div>
+    </div>
+  </div>
+  <div class="ecrs-item" style="background:#f0ebff;">
+    <div class="ecrs-badge" style="background:#9b7ed4;">R</div>
+    <div class="ecrs-body">
+      <div class="ecrs-title">Rearrange（順序変更）</div>
+      <div class="ecrs-desc">処理の<strong>順番を変える</strong>ことで待ち時間・手戻りを削減できないか。</div>
+      <div class="ecrs-ex">例：確認を後回しにせず前工程で実施</div>
+    </div>
+  </div>
+  <div class="ecrs-item" style="background:#f5f2ff;">
+    <div class="ecrs-badge" style="background:#b09ed8;">S</div>
+    <div class="ecrs-body">
+      <div class="ecrs-title">Simplify（簡素化）</div>
+      <div class="ecrs-desc">残った作業を<strong>単純化・標準化</strong>して自動化のしやすさを高める。</div>
+      <div class="ecrs-ex">例：入力フォームの選択肢化 / ルールの文書化</div>
+    </div>
+  </div>
+</div>
+
+<div class="warn-box">
+  <div class="warn-title">⚠ 「汚いプロセスを自動化」という罠</div>
+  <div class="warn-body">非効率・複雑・矛盾を含む現行プロセスをそのままAI化すると、問題を高速化するだけ。BPRでプロセスを整理してからAIエージェントを乗せることが鉄則</div>
+</div>
+
+<div class="memory-key" style="background:linear-gradient(135deg,#4a3070,#6b4fa8);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">BPR＝白紙から再設計。ECRS順（排除→結合→順序→簡素化）。汚いプロセスの自動化は禁忌</div></div>
+
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch02_s02">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch02_s02','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch02_s02','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#6b4fa8;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">BPRの本質プロセスを「改善」するのではなく「再設計」する</h3>
+<p class="dd-p">BPR（Business Process Reengineering：ビジネスプロセス・リエンジニアリング）とは、既存の業務プロセスを漸進的に改善するのではなく、根本から問い直して再設計する手法です。</p>
+<p class="dd-p">1990年代にマイケル・ハマーとジェームズ・チャンピーが提唱し、「なぜその業務が存在するのか」という問いを起点に、組織の業務構造を白紙から設計し直すことを主張しました。</p>
+<p class="dd-p">当時の文脈では、コンピュータの普及によって「手作業をそのままデジタル化する」組織が続出したことへの批判がBPRの出発点にありました。テクノロジーが変わっても、その上で動くプロセスが旧来のままであれば、本質的な変革は起きない──この洞察は、AIエージェントが台頭する現代においても、驚くほどそのまま当てはまります。</p>
+<p class="dd-p">BPRが「改善（Improvement）」ではなく「再設計（Reengineering）」という言葉を使う理由は、発想の出発点が根本的に異なるからです。改善は「今あるものをより良くする」ことを前提にします。再設計は「今あるものが本当に必要かどうか」を問うことから始めます。この違いは小さいようで、到達できる変革の深さを大きく左右します。</p>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">「汚いプロセスの⾃動化」という罠</h3>
+<p class="dd-p">AIエージェント導入プロジェクトで最もよくある失敗が、「汚いプロセスの自動化（Automating a Dirty Process）」です。これはBPRの文脈で古くから指摘されてきた失敗パターンであり、AIエージェントの登場によってより深刻な問題として再浮上しています。</p>
+<p class="dd-p">たとえば、経費精算業務に次のようなフローがあるとします。</p>
+<p class="dd-p">「領収書を紙で提出→3名の上長に順番に回覧→全員の押印を確認→経理が手入力→会計システムに転記」</p>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">このフローの⼊⼒作業をそのままAIエージェントで⾃動化すると、</h3>
+<p class="dd-p">「領収書を紙で提出→3名への自動回覧→自動押印確認→AI入力→自動転記」</p>
+<p class="dd-p">になります。一見、効率化されたように見えます。しかし本質的な問いは何も立てられていません。そもそも3名の回覧が必要なのか。紙の領収書でなければならないのか。3名が順番に確認する設計は、組織のリスク管理として合理的なのか。これらを問わないまま自動化することは、非効率な業務フローを高速で回す装置を作ることに過ぎません。</p>
+<p class="dd-p">ハマーはこれを「既存のプロセスを自動化することは、既存の問題を自動化することだ」と表現しました。AIエージェントが高性能であればあるほど、この罠の影響は大きくなります。速く、正確に、非効率を繰り返す仕組みが出来上がるからです。</p>
+<div class="callout-box" style="border-left-color:#6b4fa8;background:#f0ebff;"><span class="callout-icon">💡</span>したがって、AIエージェント導入では、まずAs-Is分析で現状業務を把握し、次にBPRで業務プロセスを見直し、最後にTo-Beを設計します。この順序を守ることが、現場に合わない設計や、非効率な業務をそのまま自動化してしまうことを防ぐうえで重要です。</div>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">ECRSの原則効果の⼤きい順に問う</h3>
+<p class="dd-p">BPRを実務で進めるための具体的なフレームワークがECRSです。Eliminate（排除）・Combine（結合）・Rearrange（順序変更）・Simplify（簡素化）の頭文字を取ったもので、この順序で検討することに本質的な意味があります。効果の大きい改善から着手することで、「本来不要な業務を丁寧に効率化してしまう」という無駄を防ぎます。</p>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">Eliminate（排除）「この業務は存在すべきか」を問う</h3>
+<p class="dd-p">最初に、かつ最も厳しく問うべき問いです。「そもそもこの業務・工程は必要か」を問い、不要であれば丸ごとなくします。排除できれば自動化の必要すらなくなるため、効果は最も大きく、コストはゼロです。</p>
+<div class="callout-box" style="border-left-color:#6b4fa8;background:#f0ebff;"><span class="callout-icon">💡</span>重要なのは「なぜこの工程が存在するのか」を担当者が答えられない場合、それは廃止の有力候補だということです。「昔からそうなっているから」「誰かが必要だと言っていたから」という理由しか出てこない工程は、かつて意味を持っていたが現在は形骸化した手順である可能性が高いです。</div>
+<p class="dd-p">たとえば、経費精算について、「少額の交通費にまで領収書の原本提出を求めている」なら、一定金額以下は申告のみで処理するように変更し、提出工程そのものを排除できます。</p>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">Combine（結合）「分かれている理由はあるか」を問う</h3>
+<p class="dd-p">排除できないと判断した工程に対して次に問うのが、「複数の工程を一つにまとめられないか」です。業務が部署をまたいで分割されている場合、その分割は情報の引き渡しコストと待ち時間を生みます。分割の理由が「組織の縦割り構造」</p>
+<p class="dd-p">や「システムの制約」であれば、統合の余地があります。</p>
+<p class="dd-p">たとえば、「申請書の記入」と「上長への提出」を別工程で行っているなら、申請フォームの送信と同時に上長に自動通知される仕組みに統合することで、工程間の待ち時間を丸ごと削除できます。</p>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">Rearrange（順序変更）「この順序に根拠はあるか」を問う</h3>
+<p class="dd-p">排除も統合もできない工程については、順序の見直しを検討します。工程の順序が固定されている理由が「慣習」や「前工程が整ってからでないと次に進めないという思い込み」がある場合、順序を変えるだけで手戻りや待ち時間を大幅に削減できることがあります。</p>
+<p class="dd-p">たとえば、「全項目を入力してから上長に承認依頼する」フローを「まず概要を共有して方向性の承認を先に得て、詳細入力は後から行う」に変えることで、差し戻しによる手戻りが減ります。承認の粒度と入力の粒度を分離する発想です。</p>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">Simplify（簡素化）「これ以上削ぎ落とせないか」を問う</h3>
+<p class="dd-p">排除・統合・順序変更を経てもなお残る工程に対して、最後に「もっとシンプルにできないか」を問います。フォームのSectionを減らす、選択肢を設ける、テンプレートを用意するなど、工程を残しながら摩擦を下げる手法です。</p>
+<p class="dd-p">たとえば、「報告書に10項目を自由記述で入力する」工程を「必須3項目のみ入力し、残りはテンプレートから選択」に変えることで、入力の負荷を下げながら情報の品質を一定に保てます。</p>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">BPRの限界と現実的な運⽤</h3>
+<p class="dd-p">BPRは強力な手法である一方、失敗事例も多く存在します。1990年代の初期BPRブームでは、「根本から再設計する」</p>
+<p class="dd-p">という原則が「大規模な人員削減」と結びついたケースが多発し、現場の抵抗と組織の混乱を招きました。BPRへの批判の多くはこの文脈から来ています。</p>
+<p class="dd-p">現代のBPRは、「白紙から全部作り直す」という過激な解釈ではなく、「プロセスの存在意義を問い続ける姿勢」と</p>
+<div class="scenario-section" style="border-left-color:#6b4fa8;"><div class="scenario-label" style="color:#4a3070;">📋 業務シナリオ</div><p class="dd-p">Section9のAs-Is分析でヘルプデスク業務の現状が可視化されました。To-Beを設計する前に、ECRSでプロセスを最適化します。</p>
+<p class="dd-p">As-Is分析の結果、「FAQ回答へのチームリーダー承認」工程が暗黙的に存在していることが判明しました。FAQ該当の定型回答に毎回承認を求めるのは過剰です。この承認工程を排除し、FAQ回答は担当者の判断で直接送信する運用に変更します。「月末の手作業による月次レポート作成」も同様です。</p>
+<p class="dd-p">チケットシステムの⾃動集計で置き換えれば、⼿作業の集計⼯程そのものが不要になります。</p>
+<p class="dd-p">「カテゴリ分類」と「FAQ検索」が別々のステップとして行われています。担当者がまずカテゴリを判断し、その後そのカテゴリのFAQフォルダを開いて検索するという2ステップです。AIエージェントであれば、問い合わせテキストの分析で分類と同時に該当FAQを特定できるため、「分類と同時にFAQ検索」に統合します。</p>
+<p class="dd-p">現状は「回答送信→対応ログ記録」の順序ですが、「チケット起票→回答作成→回答送信」の順序に変更します。問い合わせ受信と同時にチケットを起票し、そのチケット番号を回答メールに含めることで、社員側も「自分の問い合わせがどうなっているか」を追跡できるようになります。</p>
+<p class="dd-p">非FAQ案件の担当者対応において、「調査メモを自由記述で書く」工程を「テンプレートに沿って入力」に簡素化します。自由記述では情報の粒度がバラバラになりますが、テンプレート化により一定の品質を確保できます。</p>
+<p class="dd-p">##CALLOUT##このECRSの4つの観点によって、As-Isで整理した7工程を見直し、業務プロセスを最適化します。そのうえで、最適化後のプロセスに対してTo-Beを設計します。重要なのは、非効率な業務をそのままAI化するのではなく、まず業務プロセスを整えてからAIエージェントを適用することです。この順序を守ることが、「汚いプロセスの自動化（Automating a Dirty Process）」を避けながら、AIエージェント導入を成果につなげるうえで重要です。</p></div>
+  </div>
+</div>
+
+<!-- ④ 理解度チェック -->
+<div class="card" style="padding:18px 18px 10px;border-top:3px solid #6b4fa8;">
+  <div class="quiz-hdr" style="color:#4a3070;">📝 ④ 理解度チェック（公式問題）</div>
+  
+  <div class="quiz-block" id="qch02_s02_1" style="display:block;">
+    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-question">ECRSの4ステップを経費精算業務に適用します。以下の改善案はそれぞ れどのステップに該当しますか。正しい組み合わせはどれですか。 X：少額の交通費について、領収書の原本提出を廃止し申告のみに変更する Y：経費申請の記入と上長への提出を、フォ ーム送信と自動通知に統合する Z：報告書の自由記述10項目を、必須3項目＋テンプレート選択に変更する</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch02_s02_1',0,1)">A　X=Simplify, Y=Combine, Z=Eliminate</button>
+      <button class="choice-btn" onclick="answer('ch02_s02_1',1,1)">B　X=Eliminate, Y=Combine, Z=Simplify</button>
+      <button class="choice-btn" onclick="answer('ch02_s02_1',2,1)">C　X=Eliminate, Y=Rearrange, Z=Combine</button>
+      <button class="choice-btn" onclick="answer('ch02_s02_1',3,1)">D　X=Combine, Y=Eliminate, Z=Simplify</button>
+    </div>
+    <div class="explanation" id="ech02_s02_1">
+      <div class="ans-label">✅ 正解：B</div>
+      Xは「領収書の原本提出」という工程を丸ごとなくしており、Eliminateです。Yは「記入」と 「提出」の2ステップを1ステップに統合しており、Combineです。Zは自由記述をテンプレート選択に変 えて入力工程をシンプルにしており、Simplifyです。 nagaken盩盨盪盫@gmail.com賢二 AIエージェント・ストラテジスト資格 Chapter2 業務の基礎
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch02_s02_1" onclick="retryQ('ch02_s02_1')">↩ もう一度</button>
+      <button class="next-btn" id="nch02_s02_1" onclick="showNext('ch02_s02_2')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch02_s02_2" style="display:none;">
+    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-question">あなたはAIエージェント導入プロジェクトの担当者です。As-Is分析の結 果、以下の業務フローが判明しました。ECRSの観点で最初に検討すべき 改善はどれですか。 現状フロー：顧客からの注文メール受信→営業担当が内容確認→営業部長が承認→経理担当が受注システムに入力→倉 庫担当にメールで出荷指示→倉庫担当が出荷後にExcelに記録</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch02_s02_2',0,1)">A　倉庫担当のExcel記録をテンプレート化して入力項目を減らす</button>
+      <button class="choice-btn" onclick="answer('ch02_s02_2',1,1)">B　定型的な注文について営業部長の承認工程が本当に必要かを検討する</button>
+      <button class="choice-btn" onclick="answer('ch02_s02_2',2,1)">C　受注システムへの入力と倉庫への出荷指示を1ステップにまとめる</button>
+      <button class="choice-btn" onclick="answer('ch02_s02_2',3,1)">D　経理担当の入力と営業部長の承認の順序を入れ替える</button>
+    </div>
+    <div class="explanation" id="ech02_s02_2">
+      <div class="ans-label">✅ 正解：B</div>
+      ECRSではまずEliminateから検討します。定型的な注文にまで毎回営業部長の承認を求めてい るなら、この工程は排除できる可能性があります。排除できれば自動化の必要すらなくなり、最も大きな 効果が得られます。AはSimplify、CはCombine、DはRearrangeであり、いずれも有効な改善ですが、 まず「そもそもこの工程は必要か？」を問うEliminateから検討するのが正しい順序です。 =======コラム 「汚いプロセス」⾃動化の前に張るべき、AI推進者のための「予防線」======= AIエージェント導入の理想は、ECRSでプロセスから無駄を徹底的に排除し、最適化された業務に対して導入することで す。 しかし、日本の多くの企業においては、「抜本的なプロセス見直し（ECRS）はちょっと難しい」という現実の壁が存在 します。標準化された業務の改善に対する抵抗が強く、AIエージェント・ストラテジストだけの努力では乗り越えられな いことが多々あります。 nagaken盩盨盪盫@gmail.com賢二 AIエージェント・ストラテジスト資格 Chapter2 業務の基礎 困難だからこそ必要な「理想と現実の合意形成」 とはいえ、業務改善に触れないまま、AIエージェント導入を進めると、非効率なフローをそのまま自動化する「汚いプロ セスの自動化」という罠に直結します。 たとえば、経費精算業務でそもそも不要な3名の上長承認が残っているにも関わらず、AIエージェントを導入しても、非 効率を高速に回すだけの装置となり、本質的な成果は得られません。 AIエージェント・ストラテジストは、この罠を避けるため、プロジェクト開始前に、対象部署や意思決定層と以下の点を 合意しておくことが不可欠です。 理想像の共有：「本来はECRSでこの⼯程は排除すべき」という理想のTo-Beを共有すること。 期待難易度の上昇の明言: ECRSをスキップする場合、「成果獲得までの時間がかかり、期待難易度が上昇する」という トレードオフを明確に伝えること。 「失敗の責任追及」を防ぎ、次の⼀⼿へ繋げるコミュニケーション POINT このような事前合意は、AIエージェント・ストラテジストやAIエージェント推進担当者にとって、責 任分界を明確にするうえで重要です。プロジェクトが期待どおりに進まなかった場合でも、「業務 の内容が十分に整理されていなかった」「業務の標準化が不十分だった」といった点について、事 前に確認していた事実に基づいて説明しやすくなります。これにより、問題の原因を個人の責任に単 純化するのではなく、業務プロセスや導入前提の課題として整理しやすくなります。その結果、議 論を責任追及で終わらせるのではなく、業務の見直しやECRSによるプロセス最適化といった次の改 善活動へつなげやすくなります。 nagaken盩盨盪盫@gmail.com賢二
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch02_s02_2" onclick="retryQ('ch02_s02_2')">↩ もう一度</button>
+      <button class="next-btn" id="nch02_s02_2" onclick="showScore('ch02_s02',2)">結果を見る →</button>
+    </div>
+  </div>
+
+  <div class="score-banner" id="sc_ch02_s02">
+    <div class="score-main"></div>
+    <div style="font-size:14px;opacity:.85;">理解度チェック完了 ✅</div>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#6b4fa8;color:#6b4fa8;" href="ch02.html#ch02_s01">&larr; 業務の構造的理解</a><a class="nav-btn primary" href="ch02.html#ch02_s03" style="background:#6b4fa8;border-color:#6b4fa8;">業務可視化の手法 &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch02_s03" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#4a3070,#6b4fa8);">
+  <div class="breadcrumb">Chapter 02 ｜ 業務の基礎</div>
+  <div class="page-title">Section 03 ｜ 業務可視化の手法</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.02-S03</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#4a3070;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、業務をAIエージェントに委ねられる水準まで分解し、可視化するための4つの手法
+を学びます。試験では、それぞれの手法が何を明らかにするためのものか、また、どの場面でどの
+手法を選ぶべきかを判断する力が問われます。なお、4つの手法は粒度の粗いものから細かいもの
+へ順に整理されており、IPOが最も粗く、業務フロー図が最も詳細な手法に当たります。</div>
+
+<div class="ov-divider"></div>
+<div class="ov-subtitle">4手法の粒度マップ（粗→細）</div>
+<div class="method-cards">
+  <div class="method-card" style="border-color:#4a3070;">
+    <div class="method-head">
+      <div class="method-num" style="background:#4a3070;">1</div>
+      <div class="method-title">IPOモデル</div>
+      <div class="method-grain">粒度：最粗</div>
+    </div>
+    <div class="method-body"><strong>Input→Process→Output</strong> の3ボックスで業務を一言把握。AIエージェントの担当範囲の外枠を決める出発点。「何を受け取って何を返すか」を定義</div>
+  </div>
+  <div class="method-card" style="border-color:#6b4fa8;">
+    <div class="method-head">
+      <div class="method-num" style="background:#6b4fa8;">2</div>
+      <div class="method-title">SIPOC分析</div>
+      <div class="method-grain">粒度：粗</div>
+    </div>
+    <div class="method-body">IPOを拡張し <strong>Supplier（入力提供者） → Input → Process → Output → Customer（出力受取者）</strong> の5要素で整理。関係者の漏れを防ぐ。誰がデータを渡し誰が使うかを明確化</div>
+  </div>
+  <div class="method-card" style="border-color:#9b7ed4;">
+    <div class="method-head">
+      <div class="method-num" style="background:#9b7ed4;">3</div>
+      <div class="method-title">HTA（階層的タスク分析）</div>
+      <div class="method-grain">粒度：中〜細</div>
+    </div>
+    <div class="method-body">業務を<strong>目標→サブ目標→タスク→サブタスク</strong>と階層的に分解。暗黙知として処理されている「なぜその順番か」を可視化。AIエージェントに渡す作業の粒度を揃えるのに有効</div>
+  </div>
+  <div class="method-card" style="border-color:#9b7ed4;">
+    <div class="method-head">
+      <div class="method-num" style="background:#9b7ed4;">4</div>
+      <div class="method-title">業務フロー図（スイムレーン）</div>
+      <div class="method-grain">粒度：最細</div>
+    </div>
+    <div class="method-body">担当者（人間・AI・システム）を<strong>横レーン</strong>に分けて処理の流れを矢印で可視化。条件分岐・待ち時間・ボトルネックが一目で分かる。AIエージェントの設計書として最も詳細な成果物</div>
+  </div>
+</div>
+
+<div class="ov-subtitle">使い分けのポイント</div>
+<table class="cmp-table">
+  <tr><th>手法</th><th>目的</th></tr>
+  <tr><td>IPO</td><td>業務範囲の確定・スコープ合意</td></tr>
+  <tr><td>SIPOC</td><td>関係者・データの洗い出し</td></tr>
+  <tr><td>HTA</td><td>暗黙知の言語化・タスク粒度の整理</td></tr>
+  <tr><td>フロー図</td><td>設計・開発チームへの引き渡し仕様書</td></tr>
+</table>
+
+<div class="memory-key" style="background:linear-gradient(135deg,#4a3070,#6b4fa8);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">IPO→SIPOC→HTA→フロー図。粒度は粗→細。DiscoveryはIPO/SIPOCで把握し、DefinitionでHTAとフロー図に詳細化</div></div>
+
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch02_s03">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch02_s03','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch02_s03','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#6b4fa8;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">なぜ業務を「⾒える形」にする必要があるのか</h3>
+<p class="dd-p">「この業務をAIエージェントに任せたい」と思ったとき、最初の壁になるのが「その業務の中身を正確に説明できるか」</p>
+<p class="dd-p">という問題です。</p>
+<p class="dd-p">長年担ってきた業務ほど、担当者の頭の中にしか存在しない手順や判断基準があります。「なんとなくこうしている」</p>
+<p class="dd-p">「経験でわかる」という状態のままでは、AIエージェントはもちろん、新しく入ってきた人間にも引き継げません。これを暗黙知の罠と呼びます。熟練者が無意識に行っている判断や手順は、本人でさえ言語化できていないことが多く、ヒアリングだけでは表面しか拾えません。</p>
+<p class="dd-p">だから最初にやることは、頭の中にある業務を「見える形」に外部化することです。これを業務の可視化と呼びます。可視化は単なる記録ではなく、AIエージェントに引き継がせる情報の設計図を作る行為です。何を、どの粒度で可視化するかによって、AIエージェントの設計精度が根本から変わります。</p>
+<div class="callout-box" style="border-left-color:#6b4fa8;background:#f0ebff;"><span class="callout-icon">💡</span>可視化には目的と粒度に応じた四つの手法があります。粒度が粗い順に、IPOモデル・SIPOC分析・HTA・業務フロー図です。粗い手法から始めて必要に応じて詳細な手法に進むのが基本ですが、シンプルな業務であればIPOだけで十分な場合もあります。4つを必ず全部使う必要はなく、「今何を明らかにしたいか」によって使い分けることが重要です。</div>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">IPOモデル業務の輪郭を最初に描く</h3>
+<p class="dd-p">Section9で解説した通り、IPOはInput（入力）・Process（処理）・Output（出力）の3要素で業務を表現する手法です。詳細な手順の前に、まず「何が入って何が出るか」という業務の輪郭を掴むために使います。</p>
+<p class="dd-p">受注処理であれば、「Input＝発注書と在庫データ、Process＝発注内容の確認と在庫引当、Output＝受注確認書と出荷指示」と書くだけです。シンプルすぎると感じるかもしれませんが、このシンプルさに意味があります。</p>
+<p class="dd-p">AIエージェントの設計において「AIエージェントに何を渡して、何を返してもらうか」を決める際、最初にIPOで整理することで、不要な詳細に迷い込まず、業務の本質的な構造が見えます。</p>
+<p class="dd-p">ただしIPOには限界があります。「このInputは誰が用意するのか」「このOutputは誰が受け取るのか」という関係者の情報が見えません。業務が複数の部署やシステムをまたぐ場合、IPOだけでは後から「そんな関係者もいたのか」という見落としが生じます。その限界を補うのが次のSIPOCです。</p>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">SIPOC分析関係者の全体像を把握し、要件漏れを防ぐ</h3>
+<p class="dd-p">SIPOCはIPOの前後に、業務を依頼してくる主体（Supplier）と成果物を受け取る主体（Customer）を加えた5要素で業務を整理する手法です。Supplier・Input・Process・Output・Customerの頭文字を取っています。</p>
+<p class="dd-p">なぜこれが重要かというと、業務に関わる全ての関係者を把握しないと、AIエージェント導入後に「そんな機能も必要だったのか」という追加要件が後から噴出するからです。特にOutputの受け取り手（Customer）は見落とされやすいです。</p>
+<p class="dd-p">受注処理のOutputを受け取る人を洗い出すと、「回答を受ける顧客」「出荷する倉庫」だけではなく、「売上データを参照する経営企画部門」も含まれることがあります。この経営企画部門はIPOだけでは気づけないCustomerです。これを見落とすと「売上ダッシュボードへの自動連携も必要だった」という要件が本番直前に浮上し、設計の大幅な手戻りが発生します。</p>
+<p class="dd-p">SIPOCは、AIエージェント導入の要件定義フェーズで「誰のための、何のための自動化か」を関係者全員で確認するための地図として機能します。図として一枚にまとめることで、部署をまたいだ認識のズレを早期に発見できます。</p>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">HTAAIエージェントと⼈間の役割分担を設計する</h3>
+<p class="dd-p">HTA（Hierarchical Task Analysis：階層的タスク分析）は、業務をAIエージェントが処理できる最小の作業単位まで階層的に分解していく手法です。分解しきった最小単位の作業をアトミック・タスクと呼びます。</p>
+<p class="dd-p">HTAの本質的な目的は、「どの作業をAIエージェントに任せ、どの作業を人間が担うか」を作業レベルで明確にすることです。「AIエージェントで自動化する」という意思決定は業務単位では粗すぎます。同じ業務の中でも、AIエージェントに適した作業と人間が担うべき作業が混在しているからです。</p>
+<p class="dd-p">分解したそれぞれのアトミック‧タスクに対して、以下の分類で担当を判断します。</p>
+<p class="dd-bullet"><span class="dd-arrow" style="color:#6b4fa8;">▸</span>AIエージェントが処理するルールが明確で繰り返し発生する作業。「発注書から品目と数量を読み取る」「定型メールを分類する」など。</p>
+<p class="dd-bullet"><span class="dd-arrow" style="color:#6b4fa8;">▸</span>定型処理（RPA・ス</p>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">クリプト）で自動化す</h3>
+<p class="dd-p">る判断を伴わない純粋な機械的操作。「メールから添付PDFを取得する」「データをシステムに転記する」など。</p>
+<p class="dd-bullet"><span class="dd-arrow" style="color:#6b4fa8;">▸</span>⼈間が担う例外判断・倫理的判断・高度な文脈理解が必要な作業。「大口注文の受注可否を判断する」「クレームの感情的背景を読み取って対応する」など。</p>
+<p class="dd-p">受注処理をHTAで分解すると「メールから添付PDFを取得する→定型処理」「発注書から品目と数量を読み取る→AI処理」「大口注文の受注可否を判断する→人間」のように、作業ごとの担当が具体的に設計できます。</p>
+<p class="dd-p">HTAは、前のセクションで学んだHuman-in-the-Loopの設計と直接つながります。どのアトミック・タスクで人間がチェックポイントを持つかを特定することが、責任の構造を透明化することになります。</p>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">業務フロー図チームの認識を枚の図に統合する</h3>
+<p class="dd-p">業務フロー図は、4つの手法の中で最も詳細な可視化です。担当者や部署を横軸に並べ、それぞれが何をしているかを矢印でつないで図示します。この形式をスイムレーン図とも呼びます。</p>
+<p class="dd-p">IPO・SIPOC・HTAと分析を進めると、「誰が」「何を」「どの順番でやるか」がかなり明確になっています。業務フロー図はそれらの分析結果を1枚の図に統合したものであり、可視化プロセスの集大成に位置づけられます。</p>
+<div class="callout-box" style="border-left-color:#6b4fa8;background:#f0ebff;"><span class="callout-icon">💡</span>業務フロー図の最大の価値は、チームでの認識統合にあります。文章や表では見えにくい「工程の抜け」「担当の重複」「引き渡しの曖昧さ」が、図にした瞬間に視覚的に明らかになります。「ここの担当が誰にも割り当てられていない」「この工程、順番が逆では」という議論が、図を見せるだけで即座に始まります。</div>
+<p class="dd-p">また業務フロー図は、AIエージェント導入後のTo-Beを関係者に説明するコミュニケーションツールとしても機能しま</p>
+<h3 class="dd-h3" style="border-left-color:#6b4fa8;background:#f0ebff;">す。As-IsとTo-Beの業務</h3>
+<div class="scenario-section" style="border-left-color:#6b4fa8;"><div class="scenario-label" style="color:#4a3070;">📋 業務シナリオ</div><p class="dd-p">##CALLOUT##・入力は「社員からの問い合わせテキスト」「社員のOS環境情報」「FAQデータ」</p>
+<p class="dd-p">##CALLOUT##・処理は「問い合わせ分類・FAQ判定・回答生成・エスカレーション判定」</p>
+<p class="dd-p">##CALLOUT##・出力は「回答テキスト」「チケットデータ」「月次レポート」です。</p>
+<p class="dd-p">この⾏でAIエージェントに何を渡して何を返してもらうかの⾻格が決まります。</p>
+<p class="dd-p">入力を提供する人は「問い合わせをする社員」と「FAQを管理するIT部門」です。出力を受け取る人を洗い出すと、「回答を受ける社員」「対応状況を確認するIT部門の管理者」だけでなく「月次レポートを見る経営層」も含まれることがわかります。</p>
+<p class="dd-p">経営層向けには「AIエージェント対応率」「コスト削減実績」を含むダッシュボードが必要になるため、この時点で設計に含めることができます。</p>
+<p class="dd-p">問い合わせ対応業務をアトミック‧タスクまで分解し、担当を割り当てます。</p>
+<p class="dd-p">「問い合わせのカテゴリを判定する」はAI処理、「回答をメールテンプレートに挿入して送信する」は定型処理、「クレーム案件の対応方針を決める」は人間が担います。</p></div>
+  </div>
+</div>
+
+<!-- ④ 理解度チェック -->
+<div class="card" style="padding:18px 18px 10px;border-top:3px solid #6b4fa8;">
+  <div class="quiz-hdr" style="color:#4a3070;">📝 ④ 理解度チェック（公式問題）</div>
+  
+  <div class="quiz-block" id="qch02_s03_1" style="display:block;">
+    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-question">受注処理システムの導入前に、チームはIPO分析を行いましたが、SIPOC 分析は行いませんでした。導入後に「経営企画部門が売上データをリア ルタイムで確認したい」という追加要望が発生しました。SIPOC分析を 行っていれば、この問題を防げた理由として最も適切なものはどれです か。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch02_s03_1',0,1)">A　処理の手順をより細かく定義できたから</button>
+      <button class="choice-btn" onclick="answer('ch02_s03_1',1,1)">B　出力を受け取る関係者を網羅的に洗い出せたから</button>
+      <button class="choice-btn" onclick="answer('ch02_s03_1',2,1)">C　入力データの品質を事前に確認できたから</button>
+      <button class="choice-btn" onclick="answer('ch02_s03_1',3,1)">D　AIエージェントと人間の役割分担を明確にできたから</button>
+    </div>
+    <div class="explanation" id="ech02_s03_1">
+      <div class="ans-label">✅ 正解：B</div>
+      SIPOCのCustomer（出力受取者）を洗い出す作業を行っていれば、経営企画部門が売上データを必要としていることを 事前に把握できました。AとDはHTAが担う役割です。Cは入力データの品質管理であり、SIPOCの目的とは異なります。 nagaken盩盨盪盫@gmail.com賢二 AIエージェント・ストラテジスト資格 Chapter2 業務の基礎
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch02_s03_1" onclick="retryQ('ch02_s03_1')">↩ もう一度</button>
+      <button class="next-btn" id="nch02_s03_1" onclick="showNext('ch02_s03_2')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch02_s03_2" style="display:none;">
+    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-question">HTAで分解したアトミック・タスクの担当として、最も適切な組み合わ せはどれですか。 X：メールから添付の発注書PDFを取得する Y：取引先ごとに異なるフォーマットで書かれた発注書の内容を読み取り、 品目・数量・納期を抽出する Z：大口注文の受注可否を最終判断する</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch02_s03_2',0,1)">A　X＝AI処理、Y＝定型処理、Z＝人間</button>
+      <button class="choice-btn" onclick="answer('ch02_s03_2',1,1)">B　X＝定型処理、Y＝AI処理、Z＝人間</button>
+      <button class="choice-btn" onclick="answer('ch02_s03_2',2,1)">C　X＝AI処理、Y＝AI処理、Z＝AI処理</button>
+      <button class="choice-btn" onclick="answer('ch02_s03_2',3,1)">D　X＝定型処理、Y＝定型処理、Z＝人間</button>
+    </div>
+    <div class="explanation" id="ech02_s03_2">
+      <div class="ans-label">✅ 正解：B</div>
+      メールから添付ファイルを取得するのはルール通りに動く定型の操作です。発注書の内容を読み取って情報を抽出するの は、取引先ごとにフォーマットが異なるためAI処理が必要です。大口注文の受注可否は責任を伴う経営判断なので人間が 担います。 コラム：業務フロー図作成の「現実」とAIの進化 業務フロー図（スイムレーン図）は、「誰が、何を、どの順番でやるか」というチーム全体の認識をすり合わせる上で、 最も強力な可視化ツールです。 その一方で、図の要素が複雑になるほど、箱や矢印の配置、レイアウトの修正、議論のたびの更新など、作図と維持管 理に大きな手間がかかるという現実的な課題があります。 ただ、この業務フローを作るためにも、生成AIが活躍します。業務手順や関係者をテキストで与えるだけで、AIが業務の 流れを分析し、業務フロー図を自動生成してくれます。これにより、担当者は複雑な作図作業から解放され、業務の設計 や認識合わせに集中できます。 nagaken盩盨盪盫@gmail.com賢二 AIエージェント・ストラテジスト資格 Chapter2 業務の基礎 事例画像（経費精算の業務フロー図） Google Workspaceに標準で付属された作図ツール（Draw.io）があります。 以下は、「Draw.ioで経費精算に関する業務 フロー図を作って」と指示して作成した図です。 コラム：他⼈の業務を聞き出すための問い AIエージェント導入を推進する立場では、自分自身の業務ではなく、他者が行っている業務を可視化しなければならない 場面が多くあります。しかし、これは必ずしも容易ではありません。 その理由の一つは、業務に慣れている担当者ほど、日常的に行っている手順を明示的に意識していない場合があるためで す。長年同じ業務を担当していると、判断の基準や手順の一部が経験として身についており、自分では当然のこととして 処理しているため、言葉で説明しにくくなります。 その結果、業務内容を尋ねても、「普段どおりに処理している」「感覚的に判断している」といった答えにとどまり、 必要な情報を十分に引き出せないことがあります。 POINT したがって、「どのような業務を行っていますか」といった抽象的な問いだけでは、実際の手順や 判断基準を十分に把握できない場合があります。そのため、業務を可視化する際には、複数の観点 から具体的に掘り下げて確認することが重要です。以下では、そのための5つの切り口を示します。 仕事の「起点」を聞く 何がきっかけでその仕事が始まるかを聞きます。業務の起点を特定すると、IPOの「Input」が明確になります。「なん となく毎朝やっている」という業務も、必ず何かがトリガーになっています。 「実際に何をするか」を聞く 手順を聞くときは「どんな業務ですか？」ではなく「実際に画面や手を動かす順番」を聞きます。可能であれば実際に やってみてもらうのが最も効果的で、言葉では出てこなかった手順が自然に出てきます。 「イレギュラー」を聞く 業務の説明は「うまくいくケース」だけになりがちです。AIエージェントが詰まるのはほぼ必ずイレギュラーなケースな ので、丁寧に聞きます。「自分で判断している」と出てきたものが、HTAで「人間が担うべき判断処理」の候補になりま す。 nagaken盩盨盪盫@gmail.com賢二 AIエージェント・ストラテジスト資格 Chapter2 業務の基礎 「終わり」を聞く 業務の完了条件を聞きます。ここも意外と曖昧になりやすいポイントです。「終わったあとに何を渡すか」がIPOの 「Output」と、SIPOCの「Outoput」・「Customer」に対応します。 「関係者」を聞く 自分以外に誰が関わっているかを聞きます。特に「休んだときに誰がやるか」は効果的な問いで、引き継ぎの存在が出て くると、自分では気づいていなかった関係者やルールが浮かび上がることがあります。 聞くときの⼼がけ 問いと同じくらい大事なのが「聞き方の姿勢」です。業務を可視化する目的が「業務の問題点を指摘すること」だと相 手に受け取られると、正直に話してもらえなくなります。「あなたの仕事を正しく理解したい」「うまくAIエージェント をサポートに使えるようにしたい」という姿勢で臨むことが、正確な情報を引き出す前提になります。 nagaken盩盨盪盫@gmail.com賢二 AIエージェント・ストラテジスト資格 Chapter3 AIデータリテラシーとマネジメント CHAPTER — AIデータリテラシーと マネジメント CONTENTS 00 イントロ 01 ナレッジマネジメントの基礎 02 データの種類と特性 03 RAGの仕組み 04 AIガバナンスと法務 05 AIエージェントが読みやすいデータを作る 06 AIプロジェクトの進め方 07 AIプロジェクトの成功の定義：3層フレームワーク nagaken盩盨盪盫@gmail.com賢二 AIエージェント・ストラテジスト資格 Chapter3 AIデータリテラシーとマネジメント CHAPTER 3 イントロ 「業務は整理できた。次は、AIエージェントに渡すデータをどう準備すればいいのか？」 この問いに答えるために、AIエージェントが読みやすい形にデータを整備し、ガバナンスを設計し、PoCで成功を定義し ながらプロジェクトを前に進められる状態を作ることが第3章のゴールです。 業務分析が終わったあと、推進者が直面するのは「出力品質」と「組織の壁」です。同じLLMでも、与えるデータの質に よって結果はまったく違います。 社内文書をそのまま読ませても期待した答えが返ってこない、現場で使い始めたら個人情報の混入が発覚した、PoCで動 いたものが本番では崩れる――こうした問題の多くは、モデルの性能ではなく、データ整備とプロジェクト設計の側に 原因があります。技術ではなく「土台」の問題です。 第3章では、組織の知識がどう流通するかを示すナレッジマネジメントから始まり、データの種類と特性、AIエージェン トの精度を支えるRAGの仕組み、ガバナンスと法務との連携までを扱います。 そのうえで、AIエージェントが読みやすい形にデータを整える具体的な作法、PoCを軸にしたAIプロジェクトの進め方、 そして成功を「精度・定着・効果」の3層で定義するフレームワークを学びます。読み終えたとき、「何を整備すれば、 何が動き出すのか」を判断できる状態を目指します。 この章で使うシナリオ：社内ITヘルプデスクAI ― 続き 第2章で業務の可視化が完了したヘルプデスクAIを、ここでは「データ整備」と「プロジェクト運営」の観点から進めて いきます。 ベテラン担当者の頭の中にある暗黙知を形式知に変換してナレッジベースを作り、RAGの仕組みでAIエージェントが参照 できる状態にします。その過程で「AIエージェントが読みやすいデータとは何か」を学び、整備の習慣を身につけます。 並行して、AIポリシーの策定と法務・セキュリティ部門との連携を通じてガバナンスの枠組みを設計し、PoCを「成功の 3層」で定義しながら本番運用へ橋渡しします。「業務を見る → データを整える → プロジェクトを回す」。この順序の 理由を、ヘルプデスクAIのプロセスを通じて体感してください。 nagaken盩盨盪盫@gmail.com賢二
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch02_s03_2" onclick="retryQ('ch02_s03_2')">↩ もう一度</button>
+      <button class="next-btn" id="nch02_s03_2" onclick="showScore('ch02_s03',2)">結果を見る →</button>
+    </div>
+  </div>
+
+  <div class="score-banner" id="sc_ch02_s03">
+    <div class="score-main"></div>
+    <div style="font-size:14px;opacity:.85;">理解度チェック完了 ✅</div>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#6b4fa8;color:#6b4fa8;" href="ch02.html#ch02_s02">&larr; BPR（業務改革）の基礎</a><a class="nav-btn primary" href="ch03.html#ch03_s01" style="background:#6b4fa8;border-color:#6b4fa8;">ナレッジマネジメントの基礎 &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<script>
+function saveStatus(k, v) { localStorage.setItem(k, v); }
+function loadStatus(k) { return localStorage.getItem(k); }
+
+function setStatus(sid, val, btn) {
+  saveStatus('s_' + sid, val);
+  btn.closest('.status-btns').querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function toggleDeepDive(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+var QS = {};
+
+function answer(qid, ci, correct) {
+  if (QS[qid] && QS[qid].done) return;
+  QS[qid] = { done: true, ok: ci === correct };
+
+  var btns = document.querySelectorAll('#q' + qid + ' .choice-btn');
+  btns.forEach(function(b, i) {
+    if (i === ci)      b.classList.add(i === correct ? 'correct' : 'wrong');
+    else if (i !== correct) b.classList.add('dimmed');
+  });
+
+  var expl  = document.getElementById('e' + qid);
+  var retry = document.getElementById('r' + qid);
+  var next  = document.getElementById('n' + qid);
+  expl.classList.add('show');
+
+  if (ci === correct) {
+    if (next) next.classList.add('show');
+  } else {
+    expl.classList.add('hint');
+    if (retry) retry.classList.add('show');
+  }
+}
+
+function retryQ(qid) {
+  QS[qid] = null;
+  document.querySelectorAll('#q' + qid + ' .choice-btn').forEach(b => {
+    b.classList.remove('correct','wrong','dimmed');
+  });
+  var expl = document.getElementById('e' + qid);
+  expl.classList.remove('show','hint');
+  document.getElementById('r' + qid).classList.remove('show');
+}
+
+function showNext(nqid) {
+  var el = document.getElementById('q' + nqid);
+  if (el) { el.style.display = 'block'; el.scrollIntoView({behavior:'smooth', block:'start'}); }
+}
+
+function showScore(sid, total) {
+  var ok = 0;
+  for (var i = 1; i <= total; i++) {
+    var st = QS[sid + '_' + i];
+    if (st && st.ok) ok++;
+  }
+  var banner = document.getElementById('sc_' + sid);
+  if (banner) {
+    banner.querySelector('.score-main').textContent = ok + ' / ' + total + ' 問 正解';
+    banner.classList.add('show');
+    banner.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+window.addEventListener('load', function() {
+  document.querySelectorAll('.status-btns[data-sid]').forEach(function(wrap) {
+    var v = loadStatus('s_' + wrap.dataset.sid);
+    if (v) {
+      var b = wrap.querySelector('[data-val="' + v + '"]');
+      if (b) b.classList.add('active');
+    }
+  });
+});
+</script>
+<a href="index.html" class="float-home">📚 目次</a>
+</body>
+</html>
