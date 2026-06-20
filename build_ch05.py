@@ -482,6 +482,8 @@ def main():
     out_path = os.path.join(OUT_DIR, 'ch05.html')
     with open(out_path, 'w', encoding='utf-8') as f:
         f.write(html)
+    import subprocess, sys as _sys
+    subprocess.run([_sys.executable, 'patch_nav.py'])
     print(f'Written: ch05.html ({len(html):,} chars, {len(ch05_secs)} sections)')
 
 

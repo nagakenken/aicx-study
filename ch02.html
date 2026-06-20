@@ -331,6 +331,69 @@ body {
 .cmp-table td { padding:7px 10px; border-bottom:1px solid #eee; vertical-align:top; line-height:1.55; }
 .cmp-table tr:nth-child(even) td { background:#f9f9f9; }
 .cmp-table td:first-child { font-weight:600; color:#666; font-size:12px; width:5em; }
+
+/* ── フローティングナビ ───────────────── */
+.float-home {
+  position: fixed; bottom: 22px; right: 14px;
+  background: rgba(26,26,26,.88);
+  color: white !important;
+  padding: 9px 15px; border-radius: 22px;
+  font-size: 13px; font-weight: 700;
+  text-decoration: none !important; letter-spacing: .3px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.30);
+  z-index: 500; backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  -webkit-tap-highlight-color: transparent;
+  display: flex; align-items: center; gap: 4px;
+  border: 1px solid rgba(255,255,255,.15);
+  transition: opacity .15s;
+}
+.float-home:active { opacity: .7; }
+
+/* ── 章先頭セクション一覧バー ────────── */
+.chapter-toc {
+  position: sticky; top: 0; z-index: 400;
+  background: var(--ch-dark);
+  padding: 0 12px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  border-bottom: 2px solid var(--ch-accent);
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+  scrollbar-width: none;
+}
+.chapter-toc::-webkit-scrollbar { display: none; }
+.chapter-toc-inner {
+  display: inline-flex; align-items: center; gap: 0;
+  height: 44px;
+}
+.toc-home {
+  color: rgba(255,255,255,.8); text-decoration: none;
+  font-size: 12px; font-weight: 700;
+  padding: 0 14px 0 4px;
+  border-right: 1px solid rgba(255,255,255,.2);
+  margin-right: 10px;
+  display: flex; align-items: center; gap: 4px;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+  height: 100%;
+}
+.toc-home:active { opacity: .7; }
+.toc-link {
+  color: rgba(255,255,255,.7); text-decoration: none;
+  font-size: 12px; font-weight: 600;
+  padding: 0 10px;
+  display: inline-flex; align-items: center; gap: 4px;
+  height: 100%;
+  border-right: 1px solid rgba(255,255,255,.12);
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+.toc-link:last-child { border-right: none; }
+.toc-link:active { background: rgba(255,255,255,.12); }
+.toc-link.toc-current { color: white; }
+.toc-snum { font-size: 10px; opacity: .7; }
+
 </style>
 </head>
 <body>
@@ -870,5 +933,6 @@ window.addEventListener('load', function() {
   });
 });
 </script>
+<a href="index.html" class="float-home">📚 目次</a>
 </body>
 </html>
