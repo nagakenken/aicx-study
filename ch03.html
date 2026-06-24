@@ -404,7 +404,7 @@ body {
 
 <div class="card">
   <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
-  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、組織の中で</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、組織の中で知識がどのように存在し、どのように共有・発展していくかを理解することを目的とします。試験では、暗黙知と形式知の違いに加え、SECIモデルの4つのフェーズについて、具体的な事例に照らして正しく判別できることが求められます。</div>
 
 <div class="ov-divider"></div>
 <div class="ov-subtitle">暗黙知と形式知の変換サイクル</div>
@@ -462,8 +462,7 @@ body {
     <span class="dd-arrow-icon" style="color:#2a8a7a;">▶</span>
   </button>
   <div class="deepdive-content">
-    <p class="dd-p">がどのように存在し、どのように共有・発展していくかを理解することを目的とします。試験では、暗黙知と形式知の違いに加え、SECIモデルの4つのフェーズについて、具体的な事例に照らして正しく判別できることが求められます。</p>
-<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">知識とは何か組織の競争⼒の正体</h3>
+    <h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">知識とは何か組織の競争⼒の正体</h3>
 <div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>企業の競争力はどこにあるのでしょうか。設備、資金、人材など、様々な答えがあります。しかしAIエージェントが多くの処理を代替できるようになった時代において、最も持続的な競争優位の源泉として注目されているのが「組織の知識」です。</div>
 <p class="dd-p">知識は、情報とは異なります。情報は「事実の記述」であり、誰でも同じように参照できます。知識は「判断の根拠」であり、情報をどのように活用するかに、組織力の差が生まれます。たとえば、「顧客Aの購買データがある」というのは情報です。一方で、「顧客Aは決算前に大型発注する傾向があるため、11月に提案を行うべきだ」という判断は知識に当たります。</p>
 <p class="dd-p">AIエージェントは、情報を整理したり検索したりするだけでも一定の役割を果たします。さらに価値が高まるのは、組織が蓄積してきた知識、すなわち過去の経験や判断基準を参照しながら、実務上の判断を支援できる場合です。</p>
@@ -697,7 +696,7 @@ body {
 
 <div class="card">
   <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
-  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIエージェントに社内固有の</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIエージェントに社内固有の知識を教える標準技術「RAG」の基本メカニズムと構成要素を理解します。試験では、RAGの2フェーズの流れ、チャンク分割の設計判断、意味の近さで検索する仕組みの理解が問われます。Section12のナレッジマネジメントとSection13のデータ分類の知識がここで合流します。</div>
 
 <div class="ov-divider"></div>
 <div class="ov-subtitle">RAGの2フェーズ</div>
@@ -776,8 +775,7 @@ body {
     <span class="dd-arrow-icon" style="color:#2a8a7a;">▶</span>
   </button>
   <div class="deepdive-content">
-    <p class="dd-p">を教える標準技術「RAG」の基本メカニズムと構成要素を理解します。試験では、RAGの2フェーズの流れ、チャンク分割の設計判断、意味の近さで検索する仕組みの理解が問われます。Section12のナレッジマネジメントとSection13のデータ分類の知識がここで合流します。</p>
-<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">なぜRAGが必要なのか</h3>
+    <h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">なぜRAGが必要なのか</h3>
 <p class="dd-p">LLMは事前学習によって膨大な知識を持っています。しかしその知識は、インターネット上に公開された一般的な情報を中心としたものです。自社の業務マニュアル、社内規程、製品仕様、過去の対応履歴といったような組織固有の情報はLLMの学習データには含まれておらず、仕組みを設けなければAIエージェントはそれらを参照できません。</p>
 <p class="dd-p">この問題を解決するのがRAG（Retrieval-Augmented Generation：検索拡張生成）です。RAGとは、「LLMが知らない情報を、必要なときに検索して与える」仕組みです。社内のナレッジベースをリアルタイムで検索し、その結果をLLMのプロンプトに組み込んで回答を生成することで、汎用モデルが自社固有の文脈で機能するようになります。</p>
 <div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>前のセクションで述べた通り、ナレッジベースに蓄積された組織の知識は他社には複製できない競争優位の源泉です。RAGはその知識をAIエージェントが活用するための技術的な橋渡しであり、ナレッジマネジメントとRAGは表裏一体の関係にあります。</div>
@@ -1402,7 +1400,65 @@ AIプロジェクトの成功は、以下の層で構成されます。</div>
     <span class="dd-arrow-icon" style="color:#2a8a7a;">▶</span>
   </button>
   <div class="deepdive-content">
-    <p style="color:#999;text-align:center;">（テキストなし）</p>
+    <h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">なぜ「成功の定義」はこれほど難しいのか</h3>
+<p class="dd-p">AIプロジェクトの現場で最も頻繁に起きるトラブルのひとつが、プロジェクト終了後に「これは成功だったのか、失敗だったのか」について関係者の意見が割れることです。</p>
+<p class="dd-p">その原因は明らかで、関係者それぞれが異なる成功を頭に描いているからです。</p>
+<p class="dd-p">AIエンジニアは「正答率が85％を超えた」と評価し、現場担当者は「使いにくく、実務では活用しにくい」と感じ、経営層は「コスト削減効果がどの程度あるのか」を重視します。いずれも正当な観点ですが、評価している対象が異なるため、そのままでは議論がかみ合いません。</p>
+<p class="dd-p">この混乱を防ぐ唯⼀の⽅法は、PoCが始まる前に、つの層すべてで成功の定義を合意しておくことです。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">層の成功定義フレームワーク</h3>
+<p class="dd-p">AIプロジェクトの成功は、以下の層で構成されます。</p>
+<p class="dd-p">┌ ┐│ 第層：効果層 ビジネスに効果が出ているか？ │ ← まずここを定義する├ ┤</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">│ 第層：定着層 現場の⼈が使っているか？ │ ← 効果から逆算して定義</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">├ ┤</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">│ 第層：精度層 AIが正しく答えられるか？ │ ← 定着から逆算して定義</h3>
+<p class="dd-p">└ ┘この層には、理解しておくべき重要な⼆重構造があります。</p>
+<p class="dd-p">定義する順序はトップダウンです。「どんな業務効果を出したいか」が決まって初めて、「そのために定着率はどこまで必要か」「そのために精度はどこまで必要か」が逆算できます。効果層が決まっていない状態で精度の目標値を設定しても、それは根拠のない数字です。</p>
+<p class="dd-p">達成される順序はボトムアップです。精度が出なければ使われず、使われなければ効果が出ない。上の層は下の層の上に成立します。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">【定義の順序】トップダウン 【達成の順序】ボトムアップ</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">効果層 ← まず定義 精度層 → 達成</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">↓ ↓定着層 ← 逆算 定着層 → 達成</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">↓ ↓精度層 ← 逆算 効果層 → 達成</h3>
+<p class="dd-p">この二重構造を理解していないプロジェクトは、精度層だけを定義して「正答率80%達成＝成功」と判断し、後から「使われていない」「効果が出ていない」という問題に直面します。</p>
+<p class="dd-p">第層：効果層 ⸺「ビジネスに効果が出ているか」</p>
+<p class="dd-p">最初にここを定義する。これがプロジェクト全体のゴールです。</p>
+<p class="dd-p">効果層は、AIエージェントの導入が実際に業務やビジネスを改善したかを測ります。経営層が最も関心を持つ層であり、本運用フェーズへの投資判断の根拠になります。そしてここから逆算することで、定着層・精度層の目標値に根拠が生まれます。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">代表的な測定指標</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">ベースライン測定の重要性</h3>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>効果層で最も起こりやすいミスの一つは、導入前のベースライン、すなわち改善前の基準となる数値を測定していないことです。ベースラインがなければ、導入後に業務がどの程度改善したのかを客観的に示すことができません。したがって、PoCを開始する前には、現状の業務状況を数値で記録しておく必要があります。</div>
+<p class="dd-p">主な測定項目としては、対象業務の平均処理時間、一定期間あたりの対応件数、担当者数やコスト、品質に関する現状指標（クレーム件数、エラー率など）が挙げられます。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">逆算の使い⽅</h3>
+<p class="dd-p">効果層の目標が決まったら、それを達成するために定着層はどこまで必要かを問います。「問い合わせ対応時間を30%削減したい」のであれば、「AIエージェントの回答を担当者が採用する割合が60%以上でなければ時間削減にならない」という形で定着層の目標値が逆算できます。</p>
+<p class="dd-p">第層：定着層 ⸺「現場の⼈が使っているか」</p>
+<p class="dd-p">定着層は、AIエージェントが現場に受け入れられているかを測ります。技術的に完成したシステムが使われない理由のほとんどは、この層の問題に起因します。効果層のゴールを達成するための「中間条件」として定義します。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">代表的な測定指標</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">PoCと本運⽤で測定⽅法を変える</h3>
+<p class="dd-p">定着層には、実務上の重要な注意点があります。PoC期間中（数週間〜数ヶ月）に定量的な定着指標を測定しても、解釈が難しいという現実です。</p>
+<p class="dd-p">利用率が50%だったとき、それは「UIが使いにくいから」なのか「まだ慣れていないだけ」なのかが判別できません。</p>
+<p class="dd-p">短期間のデータでは、定量指標の数値が意味を持ちにくいのです。</p>
+<p class="dd-p">そこでPoC期間中は、定性的な代理指標で定着の⾒通しを評価します。</p>
+<p class="dd-p">PoCでは「この人たちは本番でも使ってくれそうか」という見通しを定性的に掴み、定量的な検証は本運用フェーズで行うという割り切りが現実的です。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">「使いたくない」理由の分類</h3>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>定性評価で「使いたくない」という反応が出たとき、その理由を特定することが次のアクションを決める鍵です。理由は大きく4種類に分類できます。</div>
+<p class="dd-p">精度への不信感：「回答が間違っていることがあるから信頼できない」→ 第層（精度層）の問題にフィードバック</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">UXの問題：「画⾯が使いにくい」「回答が⻑すぎる」→ インターフェース改善</h3>
+<p class="dd-p">業務フローへの不適合：「このタイミングでAIエージェントに聞く余裕がない」→ 業務設計の⾒直し⼼理的抵抗：「AIに頼ると⾃分のスキルが落ちる気がする」→ 変⾰管理（Change Management）の問題理由を特定せずに「もっと精度を上げれば使われる」と判断するのは、原因を誤診した対処です。</p>
+<p class="dd-p">第層：精度層 ⸺「AIエージェントが正しく答えられるか」</p>
+<p class="dd-p">精度層は、AIエージェントが技術的に課題を解けているかを測ります。最も定義しやすい層ですが、「これだけ定義して満足してしまうこと」が最大の罠です。精度層は定着層・効果層から逆算して設定するものであり、それ単体で目標値を決めるべきものではありません。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">代表的な測定指標</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">⽬標値は逆算で決める</h3>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>AIエージェントの目標値を設定する際に、「とりあえず正答率80%以上を目指す」といった形で、根拠なく数値を置くことは適切ではありません。目標値は、現状の実力、現場で受け入れられる水準、業務上許容できるリスクを踏まえて逆算する必要があります。</div>
+<p class="dd-p">主な観点は、次のつです。</p>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>・現在、人間がどの程度の精度で対応できているか これは、導入前の基準値として把握しておくべき数値です。</div>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>・どの程度の精度であれば、現場担当者が実務で使えると判断するか これは、定着の可否に関わる観点です。</div>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>・どの程度の精度であれば、本番運用時のリスクが許容範囲に収まるか これは、業務の重要性や誤判断時の影響を踏まえて決める必要があります。</div>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>たとえば、ヘルプデスク業務において、ベテラン担当者の正答率が95%である場合、AIにも直ちに同水準を求めることは現実的ではありません。そのため、「頻度の高い問い合わせ上位10種類については正答率90%以上を目標とし、それ以外は担当者へ引き継ぐ」といった形で、対象範囲と目標水準をあわせて設計することが現実的です。このような数値は、効果面だけでなく、現場で使われるかどうか、誤回答のリスクをどこまで許容できるかといった観点から逆算して決める必要があります。</div>
+<p class="dd-p"></p>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>また、同じ「精度」を評価する場合でも、業務によって重視すべき観点は異なります。たとえば、品質検査AIエージェントでは、不良品を見逃さないことが重要であるため、見逃しの少なさを重視する必要があります。一方、スパムフィルタでは、正常なメールを誤って除外しないことが重要であるため、誤検知の少なさを重視する必要があります。したがって、精度の目標値は、単に高ければよいというものではなく、現状の水準、現場での受容性、業務上のリスク特性を踏まえて設定することが重要です。</div>
+<div class="scenario-section" style="border-left-color:#2a8a7a;"><div class="scenario-label" style="color:#1a5e52;">📋 業務シナリオ</div><p class="dd-p">3層の定義を業務分析・現場視察のステップで関係者全員と合意するためのツールです。このシートをPoC開始前に埋めることが、後の混乱を防ぐ最も効果的な手段です。</p>
+<p class="dd-p">■ 解くべき課題 （例：VPN接続トラブルに対するヘルプデスク担当者の負担を削減する）</p>
+<p class="dd-p">【STEP】第層：効果層（最初に定義する）</p>
+<p class="dd-p">【STEP】第層：定着層（効果層から逆算して定義する）</p>
+<p class="dd-p">【STEP】第層：精度層（定着層から逆算して定義する）</p></div>
   </div>
 </div>
 
