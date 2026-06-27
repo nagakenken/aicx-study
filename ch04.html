@@ -463,7 +463,7 @@ body {
 <p class="dd-p">いきなり全自動を目指すプロジェクトは、構築に時間がかかりすぎて成果が出る前に社内の期待値が下がり、途中で頓挫します。AIエージェントに限らず、あらゆる変革において「大きく始めて失敗する」より「小さく始めて改善し続ける」ほうが、最終的に到達できる地点は高い。これはソフトウェア開発の世界でアジャイル開発が普及した理由と本質的には同じです。</p>
 <p class="dd-p">段階的導入が有効な理由はもう1つあります。AIエージェントの導入は、技術の問題であると同時に組織の信頼の問題でもあるからです。現場がAIエージェントを信頼していない段階でいきなり全自動化を進めれば、一度の失敗が「やはりAIエージェントは使えない」という印象を組織に植えつけます。</p>
 <p class="dd-p">小さく始めて早期に価値を実感し、信頼を積み上げてから範囲を広げる。この段階的アプローチが、AIエージェント導入を組織に根づかせる最も現実的な道筋です。</p>
-<div class="scenario-section" style="border-left-color:#c45a0a;"><div class="scenario-label" style="color:#8a3e06;">📋 業務シナリオ</div><p class="dd-p">ここからは、章頭で紹介した提案書AIのケースを使って、まず適切な自動化レベルを見極めます。 営業部門では、30名の営業担当者が月間平均8件の提案書を作成し、1件あたり6時間を要しています。CRMの顧客情報、過去の受注提案書、製品カタログ、競合分析レポートを参照して提案書ドラフトを自動生成するAIエージェントを導入する計画です。</p>
+<div class="scenario-section" style="border-left-color:#c45a0a;"><div class="scenario-label" style="color:#8a3e06;">📋 業務シナリオ</div><p class="dd-p">ここからは、章頭で紹介した提案書AIのケースを使って、まず適切な自動化レベルを見極めます。営業部門では、30名の営業担当者が月間平均8件の提案書を作成し、1件あたり6時間を要しています。CRMの顧客情報、過去の受注提案書、製品カタログ、競合分析レポートを参照して提案書ドラフトを自動生成するAIエージェントを導入する計画です。</p>
 <p class="dd-p">①で学んだ⾃動化レベルの概念を使って判断していきます。</p>
 <p class="dd-p">Lv.1は手動利用の段階です。営業担当者がChatGPTを開き、「○○業界の△△社向けに、当社の□□製品の提案書を作って」と都度入力します。仕組み化されておらず、プロンプトの書き方が人によってバラバラなため、出力品質も不安定です。</p>
 <p class="dd-p">##CALLOUT##Lv.2はテンプレート活用の段階です。システムプロンプトとナレッジベースを設定したカスタムチャットボットを構築します。営業担当者が顧客名や案件概要を入力すれば、一定のフォーマットで提案書ドラフトが出力されます。ただしSalesforceとの連携はなく、顧客情報は手動でコピペする必要があります。</p>
@@ -480,7 +480,7 @@ body {
   
   <div class="quiz-block" id="qch04_s01_1" style="display:block;">
     <div class="quiz-num">問 1 ／ 2</div>
-    <div class="quiz-question">Salesforceで案件ステージが「提案準備」に変更されると、自動的に顧 客情報取得、過去提案書検索、ドラフト生成、担当者通知が実行される 仕組みを構築しました。各ステップの順序とロジックはDX推進リーダー が事前に設計しています。一方、別のAIエージェントはSalesforceの商 談進捗を自ら監視し、提案タイミングの判断、構成の計画、作成、送付 までを自律的に遂行します。前者と後者の自動化レベルの組み合わせと して正しいものはどれですか。</div>
+    <div class="quiz-question">Salesforceで案件ステージが「提案準備」に変更されると、自動的に顧客情報取得、過去提案書検索、ドラフト生成、担当者通知が実行される仕組みを構築しました。各ステップの順序とロジックはDX推進リーダーが事前に設計しています。一方、別のAIエージェントはSalesforceの商談進捗を自ら監視し、提案タイミングの判断、構成の計画、作成、送付までを自律的に遂行します。前者と後者の自動化レベルの組み合わせとして正しいものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s01_1',0,2)">A　前者＝Lv.2、後者＝Lv.3</button>
       <button class="choice-btn" onclick="answer('ch04_s01_1',1,2)">B　前者＝Lv.3、後者＝Lv.3</button>
@@ -489,7 +489,7 @@ body {
     </div>
     <div class="explanation" id="ech04_s01_1">
       <div class="ans-label">✅ 正解：C</div>
-      前者はトリガーから各ステップが事前設計されたフローで連鎖しており、Lv.3です。後者はAI エージェントが自ら「何を、どの順序で、どのように行うか」を計画して実行しており、Lv.4です。判別 の決め手は「フローの構造自体をAIエージェントが作ったか」です。
+      前者はトリガーから各ステップが事前設計されたフローで連鎖しており、Lv.3です。後者はAI エージェントが自ら「何を、どの順序で、どのように行うか」を計画して実行しており、Lv.4です。判別の決め手は「フローの構造自体をAIエージェントが作ったか」です。
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch04_s01_1" onclick="retryQ('ch04_s01_1')">↩ もう一度</button>
@@ -499,16 +499,16 @@ body {
 
   <div class="quiz-block" id="qch04_s01_2" style="display:none;">
     <div class="quiz-num">問 2 ／ 2</div>
-    <div class="quiz-question">提案書AIの導入にあたり、「まずカスタムチャットボットで5名の営業担 当者に先行利用してもらい、提案書の品質と時間短縮効果を検証してか らSalesforce連携の構築に進む」というアプローチを採用しました。こ のアプローチに関する記述として最も適切なものはどれですか。</div>
+    <div class="quiz-question">提案書AIの導入にあたり、「まずカスタムチャットボットで5名の営業担当者に先行利用してもらい、提案書の品質と時間短縮効果を検証してからSalesforce連携の構築に進む」というアプローチを採用しました。このアプローチに関する記述として最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s01_2',0,1)">A　いきなりLv.3から始めたほうが効率的であり、Lv.2での検証は時間の無駄である</button>
-      <button class="choice-btn" onclick="answer('ch04_s01_2',1,1)">B　MVPアプローチにより「この業務はAIエージェントで自動化する価値があるか」を低コストで検証し、デー タに基づいてLv.3への投資判断を行える</button>
+      <button class="choice-btn" onclick="answer('ch04_s01_2',1,1)">B　MVPアプローチにより「この業務はAIエージェントで自動化する価値があるか」を低コストで検証し、データに基づいてLv.3への投資判断を行える</button>
       <button class="choice-btn" onclick="answer('ch04_s01_2',2,1)">C　MVPは品質の低い試作品を出すことであり、本番環境では使えない</button>
       <button class="choice-btn" onclick="answer('ch04_s01_2',3,1)">D　Lv.2での検証が成功したら、Lv.3を飛ばしてLv.4に進むべきである</button>
     </div>
     <div class="explanation" id="ech04_s01_2">
       <div class="ans-label">✅ 正解：B</div>
-      MVPアプローチは「最小限だが実際に価値を提供できる製品」で素早く検証し、段階的に進化 させる考え方です。Lv.2のカスタムチャットボットは2週間程度で構築でき、1ヶ月の検証で定量的なデー タが得られれば、Lv.3への投資判断に説得力が生まれます。
+      MVPアプローチは「最小限だが実際に価値を提供できる製品」で素早く検証し、段階的に進化させる考え方です。Lv.2のカスタムチャットボットは2週間程度で構築でき、1ヶ月の検証で定量的なデータが得られれば、Lv.3への投資判断に説得力が生まれます。
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch04_s01_2" onclick="retryQ('ch04_s01_2')">↩ もう一度</button>
@@ -655,7 +655,7 @@ body {
 
   <div class="quiz-block" id="qch04_s02_2" style="display:none;">
     <div class="quiz-num">問 2 ／ 3</div>
-    <div class="quiz-question">提案書生成ワークフローの中で、Salesforceから顧客の業界情報と案件 規模を取得する処理と、取得したデータから提案書に記載すべき課題ポ イントを抽出する処理があります。前者と後者はそれぞれどのアクショ ン種別に該当しますか。</div>
+    <div class="quiz-question">提案書生成ワークフローの中で、Salesforceから顧客の業界情報と案件規模を取得する処理と、取得したデータから提案書に記載すべき課題ポイントを抽出する処理があります。前者と後者はそれぞれどのアクション種別に該当しますか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s02_2',0,1)">A　前者＝データ抽出、後者＝コンテンツ生成</button>
       <button class="choice-btn" onclick="answer('ch04_s02_2',1,1)">B　前者＝APIコール、後者＝データ抽出</button>
@@ -664,7 +664,7 @@ body {
     </div>
     <div class="explanation" id="ech04_s02_2">
       <div class="ans-label">✅ 正解：B</div>
-      SalesforceのAPIを呼び出して顧客情報を取得する処理はAPIコールです。取得済みのデータか ら必要な情報を取り出す処理はデータ抽出です。「外部サービスの窓口を介して取得する行為」がAPIコ ール、「手元にあるデータから情報を取り出す行為」がデータ抽出と区別できます。
+      SalesforceのAPIを呼び出して顧客情報を取得する処理はAPIコールです。取得済みのデータから必要な情報を取り出す処理はデータ抽出です。「外部サービスの窓口を介して取得する行為」がAPIコール、「手元にあるデータから情報を取り出す行為」がデータ抽出と区別できます。
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch04_s02_2" onclick="retryQ('ch04_s02_2')">↩ もう一度</button>
@@ -674,7 +674,7 @@ body {
 
   <div class="quiz-block" id="qch04_s02_3" style="display:none;">
     <div class="quiz-num">問 3 ／ 3</div>
-    <div class="quiz-question">以下の3つのワークフローに最も適切なトリガー種別の組み合わせはどれ ですか。 (1) 毎週金曜17時に、週間の提案書作成状況をレポートする (2) 営業担当者が急ぎの提案書作成を依頼するためにフォー ムを送信する (3) 顧客管理システムに新規顧客が登録されたことを検知して、ウェルカムメールの下書きを生成する</div>
+    <div class="quiz-question">以下の3つのワークフローに最も適切なトリガー種別の組み合わせはどれですか。 (1) 毎週金曜17時に、週間の提案書作成状況をレポートする (2) 営業担当者が急ぎの提案書作成を依頼するためにフォームを送信する (3) 顧客管理システムに新規顧客が登録されたことを検知して、ウェルカムメールの下書きを生成する</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s02_3',0,2)">A　(1)スケジュール、(2)フォーム送信、(3)Webhook</button>
       <button class="choice-btn" onclick="answer('ch04_s02_3',1,2)">B　(1)イベント、(2)フォーム送信、(3)イベント</button>
@@ -683,7 +683,7 @@ body {
     </div>
     <div class="explanation" id="ech04_s02_3">
       <div class="ans-label">✅ 正解：C</div>
-      (1)は「毎週金曜17時」という時刻が固定されているため、スケジュールトリガーです。(2)は 営業担当者が意図的にフォームを入力・送信する行為がきっかけのため、フォーム送信トリガーです。 (3)は顧客管理システム内の「新規顧客が登録された」という状態変化を検知するため、イベントトリガ ーです。
+      (1)は「毎週金曜17時」という時刻が固定されているため、スケジュールトリガーです。(2)は営業担当者が意図的にフォームを入力・送信する行為がきっかけのため、フォーム送信トリガーです。 (3)は顧客管理システム内の「新規顧客が登録された」という状態変化を検知するため、イベントトリガーです。
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch04_s02_3" onclick="retryQ('ch04_s02_3')">↩ もう一度</button>
@@ -797,7 +797,7 @@ body {
   
   <div class="quiz-block" id="qch04_s03_1" style="display:block;">
     <div class="quiz-num">問 1 ／ 2</div>
-    <div class="quiz-question">提案書生成ワークフローで、Salesforce APIコールが失敗した場合の処 理として最も効果的なものはどれですか。</div>
+    <div class="quiz-question">提案書生成ワークフローで、Salesforce APIコールが失敗した場合の処理として最も効果的なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s03_1',0,2)">A　ワークフロー全体を停止し、次回のトリガーまで待機する</button>
       <button class="choice-btn" onclick="answer('ch04_s03_1',1,2)">B　エラーを無視して、顧客情報なしでドラフト生成を続行する</button>
@@ -806,7 +806,7 @@ body {
     </div>
     <div class="explanation" id="ech04_s03_1">
       <div class="ans-label">✅ 正解：C</div>
-      エラーハンドリングはIf/Elseの応用であり、「正常系」と「異常系」で分岐させます。Aのよ うにワークフロー全体を停止すると営業担当者は提案書が生成されないまま放置されます。Bは顧客情報 なしではドラフトの品質が著しく低下します。Dは問題がSalesforceとの接続にあるため、LLMの切り替 えでは解決しません。Cのように異常時には人に戻すパスを用意しておくことが実運用の基本です。
+      エラーハンドリングはIf/Elseの応用であり、「正常系」と「異常系」で分岐させます。Aのようにワークフロー全体を停止すると営業担当者は提案書が生成されないまま放置されます。Bは顧客情報なしではドラフトの品質が著しく低下します。Dは問題がSalesforceとの接続にあるため、LLMの切り替えでは解決しません。Cのように異常時には人に戻すパスを用意しておくことが実運用の基本です。
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch04_s03_1" onclick="retryQ('ch04_s03_1')">↩ もう一度</button>
@@ -816,7 +816,7 @@ body {
 
   <div class="quiz-block" id="qch04_s03_2" style="display:none;">
     <div class="quiz-num">問 2 ／ 2</div>
-    <div class="quiz-question">あなたは提案書AIのワークフローに条件分岐を追加する設計を検討して います。以下のうち、条件分岐の設計として最も適切な考え方はどれで すか。</div>
+    <div class="quiz-question">あなたは提案書AIのワークフローに条件分岐を追加する設計を検討しています。以下のうち、条件分岐の設計として最も適切な考え方はどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s03_2',0,2)">A　提案の成否に影響するすべての変数で分岐を設計し、可能な限り細かく処理を分けるべきである</button>
       <button class="choice-btn" onclick="answer('ch04_s03_2',1,2)">B　条件分岐は複雑になるため一切使わず、すべての案件を同じテンプレートで処理すべきである</button>
@@ -825,7 +825,7 @@ body {
     </div>
     <div class="explanation" id="ech04_s03_2">
       <div class="ans-label">✅ 正解：C</div>
-      条件分岐の設計では「どの変数で、どの粒度で分岐させるか」の判断が重要です。Aのように すべてを細かく分岐させるとメンテナンスが大変になり、新しいパターンが加わるたびに設計変更が必要 になります。Bのように一切分岐しないと、業界の異なる顧客に同じ構成の提案書が届いてしまいます。 提案の成否に最も影響する変数に絞って設計するのが、品質と保守性のバランスが取れた実務的なアプ ローチです。
+      条件分岐の設計では「どの変数で、どの粒度で分岐させるか」の判断が重要です。Aのようにすべてを細かく分岐させるとメンテナンスが大変になり、新しいパターンが加わるたびに設計変更が必要になります。Bのように一切分岐しないと、業界の異なる顧客に同じ構成の提案書が届いてしまいます。提案の成否に最も影響する変数に絞って設計するのが、品質と保守性のバランスが取れた実務的なアプローチです。
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch04_s03_2" onclick="retryQ('ch04_s03_2')">↩ もう一度</button>
@@ -961,16 +961,16 @@ body {
   
   <div class="quiz-block" id="qch04_s04_1" style="display:block;">
     <div class="quiz-num">問 1 ／ 3</div>
-    <div class="quiz-question">コンテキストエンジニアリングとプロンプトエンジニアリングの関係と して、最も適切な説明はどれですか。</div>
+    <div class="quiz-question">コンテキストエンジニアリングとプロンプトエンジニアリングの関係として、最も適切な説明はどれですか。</div>
     <div class="choices">
-      <button class="choice-btn" onclick="answer('ch04_s04_1',0,1)">A　プロンプトエンジニアリングとコンテキストエンジニアリングはまったく別の技術であり、互いに関係しな い</button>
-      <button class="choice-btn" onclick="answer('ch04_s04_1',1,1)">B　プロンプトエンジニアリングはLLMへの指示文の最適化に焦点を当て、コンテキストエンジニアリングは指 示文を含むLLMに渡す情報全体を設計する上位概念である</button>
+      <button class="choice-btn" onclick="answer('ch04_s04_1',0,1)">A　プロンプトエンジニアリングとコンテキストエンジニアリングはまったく別の技術であり、互いに関係しない</button>
+      <button class="choice-btn" onclick="answer('ch04_s04_1',1,1)">B　プロンプトエンジニアリングはLLMへの指示文の最適化に焦点を当て、コンテキストエンジニアリングは指示文を含むLLMに渡す情報全体を設計する上位概念である</button>
       <button class="choice-btn" onclick="answer('ch04_s04_1',2,1)">C　コンテキストエンジニアリングはプロンプトエンジニアリングの一部である</button>
       <button class="choice-btn" onclick="answer('ch04_s04_1',3,1)">D　プロンプトエンジニアリングのほうがコンテキストエンジニアリングより高度な技術である</button>
     </div>
     <div class="explanation" id="ech04_s04_1">
       <div class="ans-label">✅ 正解：B</div>
-      プロンプトエンジニアリングはLLMへの指示の書き方を工夫する技術であり、コンテキストエンジニアリングの一部で す。コンテキストエンジニアリングは指示文だけでなく、RAGで取得した外部知識、過去の会話の記憶、ツールの情報な ど、LLMに渡す情報全体の設計を対象とします。
+      プロンプトエンジニアリングはLLMへの指示の書き方を工夫する技術であり、コンテキストエンジニアリングの一部です。コンテキストエンジニアリングは指示文だけでなく、RAGで取得した外部知識、過去の会話の記憶、ツールの情報など、LLMに渡す情報全体の設計を対象とします。
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch04_s04_1" onclick="retryQ('ch04_s04_1')">↩ もう一度</button>
@@ -980,16 +980,16 @@ body {
 
   <div class="quiz-block" id="qch04_s04_2" style="display:none;">
     <div class="quiz-num">問 2 ／ 3</div>
-    <div class="quiz-question">提案書AIの出力品質に以下の問題が発生しています。最も適切な改善ア プローチはどれですか。 問題：提案書のトーンがカジュアルすぎて、ビジネス⽂書として顧客に送れない</div>
+    <div class="quiz-question">提案書AIの出力品質に以下の問題が発生しています。最も適切な改善アプローチはどれですか。問題：提案書のトーンがカジュアルすぎて、ビジネス⽂書として顧客に送れない</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s04_2',0,2)">A　LLMをより高性能なモデルに切り替える</button>
       <button class="choice-btn" onclick="answer('ch04_s04_2',1,2)">B　RAGのナレッジベースに新しい文書を追加する</button>
-      <button class="choice-btn" onclick="answer('ch04_s04_2',2,2)">C　システムプロンプトのトーン指定を「です・ます調で、主語を明示し、根拠を数値で示す」のように具体化 する</button>
+      <button class="choice-btn" onclick="answer('ch04_s04_2',2,2)">C　システムプロンプトのトーン指定を「です・ます調で、主語を明示し、根拠を数値で示す」のように具体化する</button>
       <button class="choice-btn" onclick="answer('ch04_s04_2',3,2)">D　過去の商談履歴を記憶に追加する</button>
     </div>
     <div class="explanation" id="ech04_s04_2">
       <div class="ans-label">✅ 正解：C</div>
-      出力のトーンの問題は、システムプロンプトの設定が不十分であることが原因です。「信頼感のあるビジネス文書」だけ では曖昧なので、より具体的な文体指定に改善します。Aのモデル変更はコンテキストの問題を解決しません。BやDはト ーンではなく参照する情報の問題に対する改善手段です。 コンテキストエンジニアリングの基本姿勢は「モデルを変える前に、渡している情報を⾒直す」ことです。
+      出力のトーンの問題は、システムプロンプトの設定が不十分であることが原因です。「信頼感のあるビジネス文書」だけでは曖昧なので、より具体的な文体指定に改善します。Aのモデル変更はコンテキストの問題を解決しません。BやDはトーンではなく参照する情報の問題に対する改善手段です。コンテキストエンジニアリングの基本姿勢は「モデルを変える前に、渡している情報を⾒直す」ことです。
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch04_s04_2" onclick="retryQ('ch04_s04_2')">↩ もう一度</button>
@@ -999,16 +999,16 @@ body {
 
   <div class="quiz-block" id="qch04_s04_3" style="display:none;">
     <div class="quiz-num">問 3 ／ 3</div>
-    <div class="quiz-question">AIエージェントの出力品質が期待を下回るとき、原因の切り分けとして 最も適切な順序はどれですか。</div>
+    <div class="quiz-question">AIエージェントの出力品質が期待を下回るとき、原因の切り分けとして最も適切な順序はどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s04_3',0,1)">A　モデルの性能を確認する → コンテキストを見直す → データ品質を確認する</button>
-      <button class="choice-btn" onclick="answer('ch04_s04_3',1,1)">B　コンテキストに必要な情報が含まれているかを確認する → 不要な情報がノイズになっていないかを確認す る → 情報のフォーマットや指示の粒度を確認する → それでも解決しない場合にモデルの変更を検討する</button>
+      <button class="choice-btn" onclick="answer('ch04_s04_3',1,1)">B　コンテキストに必要な情報が含まれているかを確認する → 不要な情報がノイズになっていないかを確認する → 情報のフォーマットや指示の粒度を確認する → それでも解決しない場合にモデルの変更を検討する</button>
       <button class="choice-btn" onclick="answer('ch04_s04_3',2,1)">C　データ品質を確認する → モデルの性能を確認する → コンテキストを見直す</button>
       <button class="choice-btn" onclick="answer('ch04_s04_3',3,1)">D　まずモデルを最新版にアップグレードし、改善しなければコンテキストを見直す</button>
     </div>
     <div class="explanation" id="ech04_s04_3">
       <div class="ans-label">✅ 正解：B</div>
-      コンテキストエンジニアリングの基本姿勢は「モデルを変える前に、渡している情報を見直す」ことです。出力品質の問 題は多くの場合、情報の欠落、ノイズの混入、伝え方の粒度の問題に帰着します。これらを順に確認し、それでも解決し ない場合に初めてモデルの変更を検討するのが効率的な切り分け手順です。 AやDのようにモデル変更を先に検討するアプローチは、問題の原因を特定しないまま対策を講じることになり、コスト がかかる割に効果が得られないリスクがあります。
+      コンテキストエンジニアリングの基本姿勢は「モデルを変える前に、渡している情報を見直す」ことです。出力品質の問題は多くの場合、情報の欠落、ノイズの混入、伝え方の粒度の問題に帰着します。これらを順に確認し、それでも解決しない場合に初めてモデルの変更を検討するのが効率的な切り分け手順です。 AやDのようにモデル変更を先に検討するアプローチは、問題の原因を特定しないまま対策を講じることになり、コストがかかる割に効果が得られないリスクがあります。
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch04_s04_3" onclick="retryQ('ch04_s04_3')">↩ もう一度</button>
