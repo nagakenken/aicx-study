@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>精読ビューア</title>
+  <style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px; line-height: 1.7; color: #1a1a1a;
+    background: #f0f2f5; padding: 12px;
+    max-width: 600px; margin: 0 auto;
+  }
+  .page-header {
+    background: linear-gradient(135deg, #1e3a5f, #2d6a9f);
+    color: white; border-radius: 12px; padding: 16px 18px; margin-bottom: 12px;
+  }
+  .back-link {
+    font-size: 12px; opacity: .75; margin-bottom: 8px; display: inline-block;
+    color: white; text-decoration: none;
+  }
+  .back-link:active { opacity: 1; }
+  .page-title { font-size: 20px; font-weight: 700; }
+  .page-sub { font-size: 13px; opacity: .8; margin-top: 4px; }
+
+  .auth-card {
+    background: white; border-radius: 12px; padding: 28px 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 12px; text-align: center;
+  }
+  .auth-icon { font-size: 36px; margin-bottom: 12px; }
+  .auth-title { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 6px; }
+  .auth-desc { font-size: 13px; color: #666; margin-bottom: 20px; }
+  .auth-input {
+    width: 100%; padding: 12px 16px; border: 2px solid #e0e0e0;
+    border-radius: 8px; font-size: 16px; outline: none; transition: border-color .2s;
+  }
+  .auth-input:focus { border-color: #2d6a9f; }
+  .auth-btn {
+    width: 100%; margin-top: 10px; padding: 13px;
+    background: #2d6a9f; color: white; border: none;
+    border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .auth-btn:active { background: #1e3a5f; }
+  .auth-error { color: #d32f2f; font-size: 13px; margin-top: 10px; display: none; }
+
+  .chapter-card {
+    background: white; border-radius: 12px; margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden;
+  }
+  .chapter-card-header {
+    padding: 14px 18px; font-weight: 700; font-size: 15px;
+    color: white; display: flex; align-items: center; gap: 8px;
+  }
+  .chapter-link {
+    display: flex; align-items: center; gap: 10px; padding: 14px 18px;
+    text-decoration: none; color: #1a1a1a; font-size: 14px;
+    border-top: 1px solid #f0f0f0;
+  }
+  .chapter-link:active { background: #f5f5f7; }
+  .ch-num { font-weight: 700; font-size: 12px; min-width: 32px; }
+  .ch-arrow { margin-left: auto; color: #bbb; }
+  .footer-note { text-align: center; padding: 16px 0 8px; font-size: 12px; color: #999; }
+  .logout-btn {
+    display: block; margin: 0 auto 24px; background: none; border: none;
+    color: #bbb; font-size: 12px; cursor: pointer; padding: 4px 12px;
+  }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <a class="back-link" href="../index.html">← 問題集に戻る</a>
+  <div class="page-title">📖 精読ビューア</div>
+  <div class="page-sub">AIエージェント・ストラテジスト 公式テキスト</div>
+</div>
+
+<div class="auth-card" id="auth-panel">
+  <div class="auth-icon">🔒</div>
+  <div class="auth-title">パスワードを入力してください</div>
+  <div class="auth-desc">このコンテンツはパスワードで保護されています</div>
+  <input type="password" class="auth-input" id="pw-input" placeholder="パスワード" autocomplete="current-password" />
+  <button class="auth-btn" onclick="doLogin()">ログイン</button>
+  <div class="auth-error" id="auth-error">パスワードが正しくありません</div>
+</div>
+
+<div id="content-panel" style="display:none;">
+
+  <div class="chapter-card">
+    <div class="chapter-card-header" style="background:linear-gradient(135deg,#1e3a5f,#2d6a9f);">
+      Ch.01　生成AIとAIエージェントの基礎
+    </div>
+    <a class="chapter-link" href="ch1.html">
+      <span class="ch-num" style="color:#2d6a9f;">Ch1</span>
+      <span>生成AIとAIエージェントの基礎</span>
+      <span class="ch-arrow">›</span>
+    </a>
+  </div>
+
+  <div class="chapter-card">
+    <div class="chapter-card-header" style="background:linear-gradient(135deg,#1a5c38,#2d8a57);">
+      Ch.02　業務の基礎
+    </div>
+    <a class="chapter-link" href="ch2.html">
+      <span class="ch-num" style="color:#2d8a57;">Ch2</span>
+      <span>業務の基礎</span>
+      <span class="ch-arrow">›</span>
+    </a>
+  </div>
+
+  <div class="chapter-card">
+    <div class="chapter-card-header" style="background:linear-gradient(135deg,#5c2d1a,#9a5a2d);">
+      Ch.03　AIデータリテラシーとマネジメント
+    </div>
+    <a class="chapter-link" href="ch3.html">
+      <span class="ch-num" style="color:#9a5a2d;">Ch3</span>
+      <span>AIデータリテラシーとマネジメント</span>
+      <span class="ch-arrow">›</span>
+    </a>
+  </div>
+
+  <div class="chapter-card">
+    <div class="chapter-card-header" style="background:linear-gradient(135deg,#4a1e6e,#7b3fc4);">
+      Ch.04　自動化レベルとワークフロー設計
+    </div>
+    <a class="chapter-link" href="ch4.html">
+      <span class="ch-num" style="color:#7b3fc4;">Ch4</span>
+      <span>自動化レベルとワークフロー設計</span>
+      <span class="ch-arrow">›</span>
+    </a>
+  </div>
+
+  <div class="chapter-card">
+    <div class="chapter-card-header" style="background:linear-gradient(135deg,#1e4d5c,#2d8a9f);">
+      Ch.05　人と組織から考えるAI時代の組織設計
+    </div>
+    <a class="chapter-link" href="ch5.html">
+      <span class="ch-num" style="color:#2d8a9f;">Ch5</span>
+      <span>人と組織から考えるAI時代の組織設計</span>
+      <span class="ch-arrow">›</span>
+    </a>
+  </div>
+
+  <div class="chapter-card">
+    <div class="chapter-card-header" style="background:linear-gradient(135deg,#2a6e1a,#4aae3a);">
+      Ch.06　AIエージェントを実装するDモデル
+    </div>
+    <a class="chapter-link" href="ch6.html">
+      <span class="ch-num" style="color:#4aae3a;">Ch6</span>
+      <span>AIエージェントを実装するDモデル</span>
+      <span class="ch-arrow">›</span>
+    </a>
+  </div>
+
+  <div class="footer-note">章名をタップして精読を開始</div>
+  <button class="logout-btn" onclick="doLogout()">ログアウト</button>
+</div>
+
+<script>
+var HASH = 'a18f055ef6aed551b3885777f6582a7b11d281f4ef52542feb8b6e77a4eaca47';
+var EXPIRE = 30 * 24 * 60 * 60 * 1000;
+
+async function sha256(str) {
+  var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+}
+
+function checkAuth() {
+  try {
+    var a = JSON.parse(localStorage.getItem('reader_auth') || 'null');
+    return a && a.h === HASH && a.e > Date.now();
+  } catch(e) { return false; }
+}
+
+function showContent() {
+  document.getElementById('auth-panel').style.display = 'none';
+  document.getElementById('content-panel').style.display = 'block';
+}
+
+async function doLogin() {
+  var pw = document.getElementById('pw-input').value;
+  var h = await sha256(pw);
+  if (h === HASH) {
+    localStorage.setItem('reader_auth', JSON.stringify({h: HASH, e: Date.now() + EXPIRE}));
+    showContent();
+  } else {
+    document.getElementById('auth-error').style.display = 'block';
+  }
+}
+
+function doLogout() {
+  localStorage.removeItem('reader_auth');
+  location.reload();
+}
+
+document.getElementById('pw-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doLogin();
+});
+
+if (checkAuth()) showContent();
+</script>
+</body>
+</html>
