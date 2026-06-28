@@ -196,6 +196,17 @@ body {
 }
 .score-banner.show { display: block; }
 .score-main { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.retake-btn-main {
+  display: block; width: 100%; background: #fce8e6; color: #b31412;
+  border: 2px solid #ea4335; border-radius: 8px; padding: 10px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  margin-bottom: 12px; -webkit-tap-highlight-color: transparent;
+}
+.retake-banner {
+  background: #fff3e0; border: 2px solid #ff9500; border-radius: 8px;
+  padding: 10px 14px; margin-bottom: 12px;
+  font-size: 14px; font-weight: 700; color: #c67200; text-align: center;
+}
 
 /* ── ナビ ────────────────────────────────── */
 .nav-footer { display: flex; gap: 10px; margin-top: 16px; padding-bottom: 24px; }
@@ -226,158 +237,6 @@ body {
 .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; flex-shrink: 0; margin-left: auto; }
 .status-dot.done  { background: #34a853; }
 .status-dot.later { background: #4285f4; }
-
-/* ── OVサブタイトル ─────────────────────── */
-.ov-subtitle {
-  font-size:13px; font-weight:700; margin:14px 0 8px;
-  padding-bottom:4px; border-bottom:1.5px solid #e0f4e6;
-  color:#1a4a26;
-}
-
-/* ── ポイントリスト ──────────────────────── */
-.point-list { list-style:none; padding:0; margin:10px 0; display:flex; flex-direction:column; gap:5px; }
-.point-list li {
-  font-size:13px; line-height:1.65; color:#333;
-  padding-left:16px; position:relative;
-}
-.point-list li::before {
-  content:'▸'; position:absolute; left:0;
-  color:#2a6e3a; font-size:11px; top:3px;
-}
-.point-list li strong { color:#1a4a26; }
-
-/* ── 5Dモデルステップ ───────────────────── */
-.five-d { display:flex; gap:4px; margin:10px 0; flex-wrap:nowrap; overflow-x:auto; }
-.five-d-step {
-  flex:1; min-width:50px; border-radius:8px; padding:8px 6px; text-align:center;
-  box-shadow:0 1px 3px rgba(0,0,0,.1);
-  display:flex; flex-direction:column; align-items:center; gap:4px;
-}
-.five-d-num { font-size:10px; font-weight:700; opacity:.7; }
-.five-d-d   { font-size:16px; font-weight:800; }
-.five-d-name { font-size:10px; font-weight:600; line-height:1.3; }
-.five-d-step.active { outline:2px solid #1a4a26; outline-offset:2px; }
-
-/* ── マトリクス 2×2 ─────────────────────── */
-.matrix-2x2 {
-  display:grid; grid-template-columns:auto 1fr 1fr; margin:10px 0;
-  border:1px solid #e0e0e0; border-radius:10px; overflow:hidden; font-size:12px;
-}
-.m-blank { background:#f5f5f7; }
-.m-col-head { padding:7px 10px; background:#1a4a26; color:white; font-weight:700; text-align:center; }
-.m-row-head { padding:8px 10px; background:#e0f4e6; font-weight:700; color:#1a4a26; writing-mode:horizontal-tb; font-size:11px; text-align:center; }
-.m-cell { padding:9px 11px; border-left:1px solid #eee; border-top:1px solid #eee; line-height:1.5; }
-.m-cell.hi { background:#e8f5eb; font-weight:600; }
-
-/* ── 要件定義書4要素 ────────────────────── */
-.req-cards { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0; }
-.req-card { border-radius:10px; border-left:4px solid; padding:10px 13px; }
-.req-head { font-size:12.5px; font-weight:700; margin-bottom:4px; }
-.req-body { font-size:12px; color:#333; line-height:1.5; }
-.req-ex   { font-size:11px; color:#777; margin-top:4px; font-style:italic; }
-
-/* ── プロンプト技法カード ─────────────────── */
-.prompt-cards { display:flex; flex-direction:column; gap:8px; margin:10px 0; }
-.prompt-card { border-radius:10px; border-left:5px solid; padding:10px 14px; background:#f9fafb; }
-.prompt-head { display:flex; align-items:center; gap:8px; margin-bottom:5px; }
-.prompt-name { font-size:13px; font-weight:700; }
-.prompt-body { font-size:12px; color:#333; line-height:1.55; }
-.prompt-note { font-size:11.5px; color:#2a6e3a; margin-top:4px; font-weight:600; }
-
-/* ── 3用語比較 ──────────────────────────── */
-.term-cmp { display:flex; flex-direction:column; gap:6px; margin:10px 0; }
-.term-row { border-radius:9px; padding:9px 13px; display:flex; gap:10px; align-items:flex-start; }
-.term-badge { font-size:10px; font-weight:700; border-radius:5px; padding:2px 7px; flex-shrink:0; color:white; margin-top:2px; }
-.term-content { font-size:12px; color:#333; line-height:1.5; }
-.term-content strong { color:#1a4a26; }
-
-/* ── 展開ステップ ───────────────────────── */
-.deploy-steps { display:flex; flex-direction:column; gap:6px; margin:10px 0; }
-.deploy-step { border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.08); }
-.deploy-step-head { padding:9px 14px; font-weight:700; font-size:13px; display:flex; justify-content:space-between; align-items:center; }
-.deploy-step-tag  { font-size:10.5px; opacity:.8; background:rgba(255,255,255,.3); border-radius:4px; padding:1px 7px; }
-.deploy-step-body { padding:9px 14px; font-size:12.5px; line-height:1.6; color:#333; background:#f9fafb; border-top:1px solid rgba(0,0,0,.06); }
-.deploy-arrow { text-align:center; font-size:18px; color:#bbb; line-height:1.2; }
-
-/* ── AI-SECIモデル ──────────────────────── */
-.ai-seci { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0; }
-.ai-seci-cell { border-radius:10px; padding:11px 13px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
-.ai-seci-head { font-size:12.5px; font-weight:700; margin-bottom:4px; color:#1a4a26; }
-.ai-seci-arrow { font-size:10px; opacity:.6; }
-.ai-seci-body { font-size:12px; color:#333; line-height:1.5; }
-
-/* ── 比較テーブル ───────────────────────── */
-.cmp-table { width:100%; border-collapse:collapse; margin:10px 0; font-size:12.5px; }
-.cmp-table th {
-  padding:7px 10px; color:white; font-size:12px; font-weight:700; text-align:center;
-  background:#1a4a26;
-}
-.cmp-table td { padding:7px 10px; border-bottom:1px solid #eee; vertical-align:top; line-height:1.55; }
-.cmp-table tr:nth-child(even) td { background:#f0f9f2; }
-.cmp-table td:first-child { font-weight:600; color:#555; font-size:12px; }
-
-/* ── フローティングナビ ───────────────── */
-.float-home {
-  position: fixed; bottom: 22px; right: 14px;
-  background: rgba(26,26,26,.88);
-  color: white !important;
-  padding: 9px 15px; border-radius: 22px;
-  font-size: 13px; font-weight: 700;
-  text-decoration: none !important; letter-spacing: .3px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.30);
-  z-index: 500; backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  -webkit-tap-highlight-color: transparent;
-  display: flex; align-items: center; gap: 4px;
-  border: 1px solid rgba(255,255,255,.15);
-  transition: opacity .15s;
-}
-.float-home:active { opacity: .7; }
-
-/* ── 章先頭セクション一覧バー ────────── */
-.chapter-toc {
-  position: sticky; top: 0; z-index: 400;
-  background: var(--ch-dark);
-  padding: 0 12px;
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  border-bottom: 2px solid var(--ch-accent);
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
-  scrollbar-width: none;
-}
-.chapter-toc::-webkit-scrollbar { display: none; }
-.chapter-toc-inner {
-  display: inline-flex; align-items: center; gap: 0;
-  height: 44px;
-}
-.toc-home {
-  color: rgba(255,255,255,.8); text-decoration: none;
-  font-size: 12px; font-weight: 700;
-  padding: 0 14px 0 4px;
-  border-right: 1px solid rgba(255,255,255,.2);
-  margin-right: 10px;
-  display: flex; align-items: center; gap: 4px;
-  flex-shrink: 0;
-  -webkit-tap-highlight-color: transparent;
-  height: 100%;
-}
-.toc-home:active { opacity: .7; }
-.toc-link {
-  color: rgba(255,255,255,.7); text-decoration: none;
-  font-size: 12px; font-weight: 600;
-  padding: 0 10px;
-  display: inline-flex; align-items: center; gap: 4px;
-  height: 100%;
-  border-right: 1px solid rgba(255,255,255,.12);
-  -webkit-tap-highlight-color: transparent;
-  flex-shrink: 0;
-}
-.toc-link:last-child { border-right: none; }
-.toc-link:active { background: rgba(255,255,255,.12); }
-.toc-link.toc-current { color: white; }
-.toc-snum { font-size: 10px; opacity: .7; }
-
 </style>
 </head>
 <body>
@@ -393,45 +252,21 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#1a4a26;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionは、5Dモデルの最初のステップに当たります。ここでは、組織内のどの業務をAIエージ
 ェント導入の対象とすべきかを見極め、優先順位を定める方法を学びます。試験では、ボトルネッ
 ク分析、AI適合性診断、優先順位マトリクスという三つの手法について、それぞれの目的と使い分
 けを理解していることが求められます。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">5Dモデル全体像</div>
-<div class="five-d"><div class="five-d-step active" style="background:#1a4a26;color:white;"><div class="five-d-num">Step1</div><div class="five-d-d">D</div><div class="five-d-name">発見</div></div><div class="five-d-step" style="background:rgba(42,110,58,.35);color:#555;"><div class="five-d-num">Step2</div><div class="five-d-d">D</div><div class="five-d-name">定義</div></div><div class="five-d-step" style="background:rgba(58,142,74,.35);color:#555;"><div class="five-d-num">Step3</div><div class="five-d-d">D</div><div class="five-d-name">設計</div></div><div class="five-d-step" style="background:rgba(74,174,90,.35);color:#555;"><div class="five-d-num">Step4</div><div class="five-d-d">D</div><div class="five-d-name">開発検証</div></div><div class="five-d-step" style="background:rgba(90,190,106,.35);color:#555;"><div class="five-d-num">Step5</div><div class="five-d-d">D</div><div class="five-d-name">展開定着</div></div></div>
-
-<div class="ov-subtitle">Discovery：「何を自動化するか」を決める3ステップ</div>
-<ul class="point-list">
-  <li><strong>① ボトルネック特定</strong>：処理が遅い・ミスが多い・特定担当者に依存・反復的で付加価値が低い業務を洗い出す。Ch02の業務分析手法（SIPOC・HTA）を活用</li>
-  <li><strong>② AI適合性診断</strong>：ボトルネックがあってもAI化すべきかは別の問題。2段階フィルタリングが核心</li>
-  <li><strong>③ 優先順位マトリクス</strong>：複数候補がある場合「期待効果の大きさ」×「実現のしやすさ」の2軸で整理</li>
-</ul>
-
-<div class="ov-subtitle">AI適合性診断：高い vs 低い</div>
-<div class="matrix-2x2">
-  <div class="m-blank" style="background:#e0f4e6;padding:7px;font-size:10.5px;font-weight:700;color:#1a4a26;"></div>
-  <div class="m-col-head">AI適合性 高</div>
-  <div class="m-col-head" style="background:#888;">AI適合性 低</div>
-  <div class="m-row-head">条件</div>
-  <div class="m-cell hi">非構造化データ処理を含む<br>文脈に応じた判断が必要<br>ある程度のミスが許容できる or HITLで補完</div>
-  <div class="m-cell">100%正確性が法的に要求<br>対人共感が本質的<br>機密データの外部送信不可<br>物理的操作が伴う</div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">5Dモデルの全体像</div><div class="ov-section-body">AIエージェント導入プロジェクトは5つのステップで構成されます。Discovery、Definition、Design、Development &amp;PoC、Deployment &amp; Scaleです。頭文…</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">ボトルネックの特定から始める</div><div class="ov-section-body">ボトルネックとは、プロセス全体の生産性を制約している最も弱い箇所のことです。Discoveryの出発点は、このボトルネックの特定にあります。「処理に時間がかかりすぎている」「ミスが頻発している」「特定…</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">AIエージェントに向いているかを⾒極める</div><div class="ov-section-body">ボトルネックを特定しただけでは、AI化すべきかは判断できません。次に必要なのは、その業務がAIエージェントによる解決に適しているかどうかの診断です。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">限られたリソースで最大の成果を出すには、「効果が大きく実現が容易」な業務から着手するのが合理的です。</div></div>
 </div>
 
-<div class="ov-subtitle">優先順位マトリクス</div>
-<table class="cmp-table">
-  <tr><th></th><th>実現しやすい</th><th>実現が難しい</th></tr>
-  <tr><td>効果大</td><td style="background:#e8f5eb;font-weight:700;">★最優先（初期導入の筆頭候補）</td><td>中長期検討対象</td></tr>
-  <tr><td>効果小</td><td>余裕があれば対応</td><td>後回しまたは非対象</td></tr>
-</table>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">Discovery＝ボトルネック特定→AI適合性診断（2段階フィルタ）→優先順位マトリクス。「ボトルネックだからAI化」は誤り</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch06_s01">
@@ -440,13 +275,14 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
     <span class="dd-arrow-icon" style="color:#2a6e3a;">▶</span>
   </button>
   <div class="deepdive-content">
-    <h3 class="dd-h3" style="border-left-color:#2a6e3a;background:#e0f4e6;">Dモデルの全体像</h3>
+    <h3 class="dd-h3" style="border-left-color:#2a6e3a;background:#e0f4e6;">5Dモデルの全体像</h3>
 <p class="dd-p">AIエージェント導入プロジェクトは5つのステップで構成されます。Discovery、Definition、Design、Development &amp;PoC、Deployment &amp; Scaleです。頭文字がすべてDであることから「5Dモデル」と呼びます。</p>
 <p class="dd-p">本Sectionで扱うDiscoveryはその第1ステップにあたり、「何を自動化するか」を決める段階です。設計図を書くわけでも、プロトタイプを作るわけでもありません。組織の中で最もインパクトが大きく、かつAIエージェントに向いている業務を見つけ出すことだけに集中します。</p>
 <h3 class="dd-h3" style="border-left-color:#2a6e3a;background:#e0f4e6;">ボトルネックの特定から始める</h3>
@@ -465,11 +301,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #2a6e3a;">
   <div class="quiz-hdr" style="color:#1a4a26;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch06_s01" onclick="startRetake('ch06_s01')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch06_s01" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch06_s01_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-num">問 1 ／ 3</div>
     <div class="quiz-question">Discoveryで複数のAI化候補が見つかりました。優先順位を判断するための最も適切なアプローチはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch06_s01_1',0,1)">A　最も技術的に難しい業務から着手し、技術力を証明する</button>
@@ -488,7 +327,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch06_s01_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-num">問 2 ／ 3</div>
     <div class="quiz-question">採用スクリーニングAIの導入で、エンジニア職を最初の対象として選定しました。この判断の根拠として最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch06_s01_2',0,1)">A　エンジニア職は応募数が少なく、テストが容易だから</button>
@@ -502,7 +341,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch06_s01_2" onclick="retryQ('ch06_s01_2')">↩ もう一度</button>
-      <button class="next-btn" id="nch06_s01_2" onclick="showScore('ch06_s01',2)">結果を見る →</button>
+      <button class="next-btn" id="nch06_s01_2" onclick="showNext('ch06_s01_3')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch06_s01_3" style="display:none;">
+    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-question">採用スクリーニングAIの導入で、エンジニア職を最初の対象として選定しました。この判断の根拠として最も適切なものはどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch06_s01_3',0,1)">A　エンジニア職は応募数が少なく、テストが容易だから</button>
+      <button class="choice-btn" onclick="answer('ch06_s01_3',1,1)">B　スキル要件が技術的に明確でAIエージェントの評価精度が出やすく、応募数が多いため効果も大きいから</button>
+      <button class="choice-btn" onclick="answer('ch06_s01_3',2,1)">C　エンジニア職の採用担当者がAIエージェントに最も詳しいから</button>
+      <button class="choice-btn" onclick="answer('ch06_s01_3',3,1)">D　エンジニア職の選考基準が最も曖昧で、AIエージェントの柔軟性が活かせるから</button>
+    </div>
+    <div class="explanation" id="ech06_s01_3">
+      <div class="ans-label">✅ 正解：B</div>
+      クイックウィンの選定基準は「短期間で成果が出る」「成果が定量化できる」「低リスクで実施できる」です。エンジニア職はスキル要件が明確でAI精度が出やすく、応募数が多いため工数削減効果も大きい。営業職や管理職のような定性的評価が中心の職種より、最初のMVPとして適しています。 358 Chapter6 AIエージェントを実装する5Dモデル CHAPTER 6 定義‧構造化学習のポイント本Sectionでは、Discoveryで選定したユースケースを、AIエージェントの設計・開発に渡せる具体的な形へ落とし込むステップを扱います。試験では、業務フローチャート、要件定義書、ペルソナ定義、合格基準という四つの成果物について、それぞれの役割と記載内容が問われます。 1 知識業務フローチャートによる暗黙知の可視化 Definitionの最初の作業は、対象業務をフローチャートとして詳細に可視化することです。Discoveryでは「この業務に問題がある」と発見しましたが、Definitionでは「その業務が具体的にどのような手順で行われているか」を書き出します。暗黙知のまま進めると「AIエージェントに任せる範囲」と「人間が担う範囲」の切り分けが曖昧になり、後続のDesign 以降で手戻りが発生します。ここでSection11のHTAやIPOモデルの手法が本格的に活用されます。要件定義書の作成 POINT 「要件定義書」と聞くと、ITエンジニアが作成する技術的で複雑な文書を想像するかもしれません。しかし、AIエージェント・ストラテジストに求められるのは、最初から完全な要件定義書を一人で作成することではありません。重要なのは、何を実現したいのか、どの程度の品質を求めるのか、何を扱ってよくて何を扱ってはいけないのかを、叩き台として言語化できることです。たとえば、「この業務を自動化したい」「このくらいの速度で動いてほしい」「この情報は扱えない」といった内容を整理できれば、それを出発点として、実装を担う人材と一緒に具体化していくことができます。したがって、ストラテジストの役割は、最初から正確で完全な文書を作り切ることではなく、検討の土台となる要件を整理し、叩き台を提示することにあります。 359 Chapter6 AIエージェントを実装する5Dモデル POINT そのためには、要件定義書にどのような内容を含めるべきかを理解しておくことが重要です。主な構成要素は、次の4つです。 POINT ・機能要件機能要件とは、AIエージェントに何をさせたいのかを定めるものです。たとえば、「応募書類からスキル情報を抽出する」「求人要件と照合して適合度を算出する」といった内容がこれに当たります。 POINT ・非機能要件非機能要件とは、どの程度の品質や条件で動作してほしいのかを定めるものです。たとえば、「30秒以内に結果を返す」「平日の日中は安定して利用できる」といった、応答速度、安定性、可用性などに関する期待水準がこれに当たります。整理のしかたとしては、「何をするか」が機能要件、「どの水準で実現するか」が非機能要件と捉えると理解しやすくなります。 POINT ・制約条件制約条件とは、設計や運用において守らなければならないルールです。たとえば、「応募者の性別や年齢を評価に用いてはならない」といった法務・倫理・業務ルール上の制約がこれに当たります。前提条件前提条件とは、設計を進めるうえで、あらかじめ満たされているとみなす条件です。 360 Chapter6 AIエージェントを実装する5Dモデル POINT たとえば、「応募書類はPDFまたはWord形式で提出される」「求人要件は採用管理システムに登録済みである」といった条件がこれに当たります。前提条件が実際には満たされていない場合、設計そのものを見直す必要が生じるため、事前に明確にしておくことが重要です。このように、要件定義書は、単に開発のための文書というだけではありません。ストラテジストが業務側の要求を整理し、実装側と認識をそろえるための共通の土台でもあります。ストラテジストが作成した叩き台に対して、実装担当者が技術的観点から補足や修正を加えながら精度を高めていくことで、はじめて実現可能な設計へとつながります。このような共同作業こそが、Deﬁnitionの重要な役割です。ペルソナの定義ペルソナの定義とは、AIエージェントを利用するユーザーの典型像を具体的に描写し、誰がどのようなニーズからこのエージェントを使うのかを明確にすることです。この定義が曖昧だと「技術的にはすごいが、誰も使わないエージェント」になるリスクがあります。 POINT AI固有のペルソナで重要なのは、年齢や役職といった属性情報ではなく「この人はAIエージェントの出力をどう使って、どんな判断を下すのか」を描写することです。たとえば「AIエージェントのスコアを見て一次選考の合否を判断する人事担当者」と「スコアの根拠を見て面接対象者を絞り込むエンジニアリングマネージャー」では、AIエージェントの出力に求めるものがまったく違います。前者はスコアの信頼性を、後者はスコアの根拠の具体性を重視します。この違いが、機能要件の設計に直結します。見落としやすいのが「間接ユーザー」のペルソナです。AIエージェントの直接ユーザーだけでなく、AIエージェントの出力を確認・監督する社内担当者もペルソナとして定義すべきです。Section11のSIPOC分析で学んだ「出力の受取者を漏れなく洗い出す」考え方が、ここで活きます。 361 Chapter6 AIエージェントを実装する5Dモデル合格基準の事前定義合格基準とは、AIエージェントの品質が「業務に使えるレベルに達しているか」を判断するための定量的な基準です。 Definitionの段階で定義しておく理由は、Step 4のDevelopment &amp; PoCでの検証の合否判定に使うためです。合格基準が事前に決まっていなければ、PoCの結果を見て「これで十分なのか」が主観的判断になります。合格基準の設定には「なんとなく90%以上」ではなく、業務上の要求から逆算した根拠が必要です。合格基準とKPIの区別も押さえてください。合格基準は「PoCの合否を判定する一回限りの基準」、KPIは「運用中の継続的な成果測定に使う指標」です。 2 業務シナリオ：採⽤スクリーニングAIでのDeﬁnition Discoveryで、エンジニア職の一次スクリーニング自動化が、クイックウィン（比較的短期間で成果を示しやすい対象）として選定されました。Definitionでは、この業務をAIエージェントとして実現するために必要な要件を具体化していきます。判断 1 採⽤スクリーニング業務のフローチャート作成現行の一次スクリーニング業務を詳細なフローチャートとして可視化します。業務は次の6ステップで構成されていることがわかりました。応募書類の受領：応募者からの履歴書‧職務経歴書をメールまたは採⽤管理システムで受け付ける書類の形式確認：必要書類が揃っているか、フォーマットに不備がないかを確認するスキル要件の照合：職務経歴書からスキル‧経験を読み取り、求⼈要件と照合する 362 Chapter6 AIエージェントを実装する5Dモデル ⼀次評価の判定：照合結果に基づき「通過」「不通過」「保留」を判定する評価コメントの作成：判定理由を記録し、次の⾯接担当者に共有する結果通知：応募者に⼀次選考の結果をメールで通知する各ステップのAIエージェントと人間の役割分担は以下の通りです。ステップ1・2は定型処理として自動化します。ステップ3はAIエージェントがスキル抽出と照合を担当します。ステップ4はAIエージェントが一次判定案を生成し、人事担当者が最終判定を行います。導入初期はHuman-in-the-Loopで全件を人間が確認します。ステップ5はAIエージェントが評価コメントのドラフトを生成します。ステップ6は判定結果に基づきメールを自動送信します。 Discoveryでは「スクリーニングに月間670時間かかっている」という認識にとどまっていましたが、Definitionでは6つのステップに分解して役割分担を具体的に切り分けています。この粒度の違いがDiscoveryとDefinitionの境界線です。判断 2 要件定義書の作成機能要件として5点を定義しました。応募書類のPDFやWordファイルからテキストを抽出する。職務経歴書からスキル・経験・年数を構造化データとして抽出する。求人要件との適合度を100点満点でスコアリングする。スコアに基づき「通過」「不通過」「保留」の判定案を生成する。判定理由の評価コメントを自動生成する。非機能要件として、1件あたりの処理時間は30秒以内、スコアリングの再現性は同一書類に対して±5点以内のブレ、24 時間稼働としました。制約条件として、応募者の氏名・住所・生年月日・顔写真はスコアリング処理には使用しないこと、スコアリングに使用するのはスキル・経験・資格のみとすることを定めました。これはバイアス防止のための重要な制約であり、氏名や出身大学をスコアリングに含めると、無意識のバイアスがAIエージェントに再現されてしまうリスクがあります。判断 3 ペルソナ定義ペルソナAは人事担当者です。「中堅企業の人事担当者。採用経験5年。月間400件のエンジニア職応募書類を担当。技術的なスキル評価には自信がなく、現在はエンジニアリングマネージャーに都度確認している。AIエージェントのスコアリングに技術的な根拠が示されていれば、自信を持って一次判定を下せる。」ペルソナBはエンジニアリングマネージャーです。「開発チームのマネージャー。面接の時間を確保するのが大変で、一次スクリーニングの質が上がれば面接対象者が絞られて助かる。AIエージェントの評価に『なぜこのスコアなのか』の根拠が欲しい。根拠がないスコアは信用できない。」ペルソナBの「スコアの根拠が欲しい」という要求から、機能要件「判定理由の評価コメントを自動生成する」が導き出されました。スコアだけでなく「Python経験5年、要件3年以上 → ◎。マネジメント経験なし、要件：あれば尚可 → △」のような根拠付きの評価が必要です。 363 Chapter6 AIエージェントを実装する5Dモデル判断 4 合格基準の設定スキル要件マッチングの適合度スコアの精度は90%以上とします。ベテラン人事担当者の判定と一致する割合で測定します。90%の根拠は、現状の担当者間の一致率が85%であり、AIがこれを上回ることを最低条件としたためです。「通過/不通過」判定の一致率は85%以上とします。「保留」判定が多くなりすぎると人事担当者の確認工数が減らないため、保留率は20%以下を基準とします。処理時間は1件あたり30秒以内とします。現行の20分と比較して大幅な短縮を実現する水準です。バイアステストとして、同一スキルセットで氏名・性別・年齢を変えた10パターンの模擬応募書類を入力し、スコアの差が±3点以内であることを確認します。採用スクリーニングAI固有の合格基準であり、公平性を担保するための重要なテストです。 364 Chapter6 AIエージェントを実装する5Dモデル 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch06_s01_3" onclick="retryQ('ch06_s01_3')">↩ もう一度</button>
+      <button class="next-btn" id="nch06_s01_3" onclick="showScore('ch06_s01',3)">結果を見る →</button>
     </div>
   </div>
 
@@ -527,49 +385,18 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#1a4a26;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、Discoveryで選定したユースケースを、AIエージェントの設計・開発に渡せる具体
 的な形へ落とし込むステップを扱います。試験では、業務フローチャート、要件定義書、ペルソナ
 定義、合格基準という四つの成果物について、それぞれの役割と記載内容が問われます。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">5Dモデル全体像</div>
-<div class="five-d"><div class="five-d-step" style="background:rgba(26,74,38,.35);color:#555;"><div class="five-d-num">Step1</div><div class="five-d-d">D</div><div class="five-d-name">発見</div></div><div class="five-d-step active" style="background:#2a6e3a;color:white;"><div class="five-d-num">Step2</div><div class="five-d-d">D</div><div class="five-d-name">定義</div></div><div class="five-d-step" style="background:rgba(58,142,74,.35);color:#555;"><div class="five-d-num">Step3</div><div class="five-d-d">D</div><div class="five-d-name">設計</div></div><div class="five-d-step" style="background:rgba(74,174,90,.35);color:#555;"><div class="five-d-num">Step4</div><div class="five-d-d">D</div><div class="five-d-name">開発検証</div></div><div class="five-d-step" style="background:rgba(90,190,106,.35);color:#555;"><div class="five-d-num">Step5</div><div class="five-d-d">D</div><div class="five-d-name">展開定着</div></div></div>
-
-<div class="ov-subtitle">Definitionの4つの成果物</div>
-<div class="req-cards">
-  <div class="req-card" style="border-color:#1a4a26;background:#e0f4e6;">
-    <div class="req-head">① 業務フローチャート</div>
-    <div class="req-body">対象業務を詳細に可視化。HTAとIPOを活用。AIと人間の担当範囲を切り分ける。暗黙知を形式知化する</div>
-    <div class="req-ex">Ch02で学んだスイムレーン図がここで本格活用</div>
-  </div>
-  <div class="req-card" style="border-color:#2a6e3a;background:#f0faf2;">
-    <div class="req-head">② 要件定義書（叩き台）</div>
-    <div class="req-body">機能要件（何をするか）・非機能要件（どの水準で）・制約条件（守るべきルール）・前提条件（あらかじめ満たされている条件）の4要素</div>
-    <div class="req-ex">ストラテジストは完全な文書でなく「叩き台」を作る役割</div>
-  </div>
-  <div class="req-card" style="border-color:#4a9e5c;background:#f5fbf6;">
-    <div class="req-head">③ ペルソナ定義</div>
-    <div class="req-body">AIエージェントを使う典型ユーザーの描写。年齢でなく「出力をどう使い・何を判断するか」を定義。直接ユーザーと間接ユーザー（監督者）の両方</div>
-    <div class="req-ex">例：「スコアで一次選考する人事担当」vs「根拠を見て絞り込むEM」では必要な出力が異なる</div>
-  </div>
-  <div class="req-card" style="border-color:#5ab86a;background:#eaf9ec;">
-    <div class="req-head">④ 合格基準（事前定義）</div>
-    <div class="req-body">PoCでの合否判定に使う定量基準。「なんとなく90%以上」でなく業務要求から逆算した根拠が必要</div>
-    <div class="req-ex">合格基準（一回限り）vs KPI（運用中の継続測定）を区別</div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">要件定義書の作成</div><div class="ov-section-body">たとえば、「この業務を自動化したい」「このくらいの速度で動いてほしい」「この情報は扱えない」といった内容を整理できれば、それを出発点として、実装を担う人材と一緒に具体化していくことができます。したがっ…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">「要件定義書」と聞くと、ITエンジニアが作成する技術的で複雑な文書を想像するかもしれません。</div></div>
 </div>
 
-<ul class="point-list">
-  <li>Definition＝「何をやりたいか」を「どう実現するか」に橋渡しするステップ</li>
-  <li>曖昧なままDesignに進むと「AIと人間の担当範囲が不明確」→後続で大きな手戻りが発生</li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">Definition＝業務フローチャート・要件定義書・ペルソナ・合格基準の4成果物。叩き台で十分。合格基準は事前に数値で定義</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch06_s02">
@@ -578,6 +405,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -595,11 +423,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #2a6e3a;">
   <div class="quiz-hdr" style="color:#1a4a26;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch06_s02" onclick="startRetake('ch06_s02')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch06_s02" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch06_s02_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-num">問 1 ／ 3</div>
     <div class="quiz-question">採用スクリーニングAIの要件定義書に以下の記載があります。「非機能要件」に該当するものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch06_s02_1',0,1)">A　職務経歴書からスキル・経験・年数を構造化データとして抽出する</button>
@@ -618,7 +449,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch06_s02_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-num">問 2 ／ 3</div>
     <div class="quiz-question">採用スクリーニングAIのペルソナとして「エンジニアリングマネージャー」を定義した結果、導き出された機能要件として最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch06_s02_2',0,1)">A　応募書類のPDFからテキストを自動抽出する機能</button>
@@ -632,7 +463,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch06_s02_2" onclick="retryQ('ch06_s02_2')">↩ もう一度</button>
-      <button class="next-btn" id="nch06_s02_2" onclick="showScore('ch06_s02',2)">結果を見る →</button>
+      <button class="next-btn" id="nch06_s02_2" onclick="showNext('ch06_s02_3')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch06_s02_3" style="display:none;">
+    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-question">採用スクリーニングAIのペルソナとして「エンジニアリングマネージャー」を定義した結果、導き出された機能要件として最も適切なものはどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch06_s02_3',0,1)">A　応募書類のPDFからテキストを自動抽出する機能</button>
+      <button class="choice-btn" onclick="answer('ch06_s02_3',1,1)">B　スコアの根拠を「Python経験5年、要件3年以上 → ◎」のようにSection別に提示する機能</button>
+      <button class="choice-btn" onclick="answer('ch06_s02_3',2,1)">C　応募者に結果通知メールを自動送信する機能</button>
+      <button class="choice-btn" onclick="answer('ch06_s02_3',3,1)">D　応募書類を職種別に自動分類する機能</button>
+    </div>
+    <div class="explanation" id="ech06_s02_3">
+      <div class="ans-label">✅ 正解：B</div>
+      エンジニアリングマネージャーのペルソナの要求は「スコアの根拠が欲しい。根拠がないスコアは信用できない」です。スコアだけでなく、各スキル要件に対する評価根拠をSection別に提示する機能が、このペルソナから導き出されます。A・C・Dはペルソナの要求とは直接結びつかない機能です。 367 Chapter6 AIエージェントを実装する5Dモデル CHAPTER 6 設計‧プロンプト学習のポイント本Sectionでは、Definitionで整理した要件を、具体的な技術設計へ落とし込む方法を学びます。設計は、コンテキスト設計、I/O設計、セキュリティ設計の3つの領域に分けて考えます。試験では、それぞれの領域で扱う手法や用語を正しく区別し、どの設計論点がどの領域に属するかを判断できることが求められます。 1 知識なぜDesignが独⽴したステップとして必要か Definitionで「何をやりたいか」が決まりました。しかし「何をやりたいか」と「どう実現するか」の間には大きなギャップがあります。「応募書類からスキルを抽出してスコアリングしたい」という要件だけでは、AIエージェントは動かせません。どんな指示を与えるか、出力をどんな形式で受け取るか、どんなデータを渡してはいけないか。これらを具体的に設計するのがDesignです。 Designステップには3つの設計領域があります。コンテキスト設計、I/O設計、セキュリティ設計です。コンテキスト設計 — AIエージェントにどう指⽰するかコンテキスト設計は、Section21で学んだコンテキストエンジニアリングの考え方を、Designステップの具体的な設計作業として実装するものです。 Section21が「AIエージェントに渡す情報をどう考えるか」の原則論であるのに対し、ここでは「システムプロンプトに何を書くか」「Few-shotにどんな例を入れるか」「Chain-of-Thoughtでどう推論させるか」という具体的な手法に踏み込みます。システムプロンプトは、AIエージェントの役割・前提条件・制約条件を定義する最上位の指示にあたります。「あなたはエンジニア採用の一次スクリーニング担当です」のように、AIエージェントがどんな立場で何をすべきかを役割として明示します。このとき、AIエージェントの出⼒品質を⾼める代表的な技法が2つあります。 Few-shotプロンプトとは、入力例と出力例の組み合わせをプロンプトに含めることで、AIエージェントに期待する出力の形式や判断傾向を示す手法です。たとえば、職務経歴書に対してどのような観点でスコアを付けるべきかを示した入出力例を数件与えることで、AIエージェントの出力パターンを安定させやすくなります。 368 Chapter6 AIエージェントを実装する5Dモデル一方で、Few-shotは、どの例を与えるかによって出力品質が大きく左右される手法でもあります。偏った例だけを並べると、AIエージェントはその偏りを出力パターンとして強く学習し、似たケースには対応できても、少し条件の異なるケースでは判断が不安定になりやすくなります。たとえば、スキル要件に明確に合致する候補者の例だけを並べると、合格か不合格かが微妙な候補者に対する判定が不安定になることがあります。 POINT そのため、例を選ぶ際には、明確な合格例、明確な不合格例、判断が分かれやすい境界事例など、異なるパターンをバランスよく含めることが重要です。Few-shotは有効な手法ですが、例の選び方を誤ると、かえって精度を下げるおそれがある点に注意が必要です。この弱点を補う実務的な方法として、例そのものを並べるだけでなく、例から判断ルールを抽出するという考え方があります。具体的には、入出力例をそのままプロンプトに載せるのではなく、まずAIエージェントに複数の例を分析させ、どのような基準で判断しているのかを言語化させます。そのうえで、人間がその内容を確認し、必要に応じて修正し、整理された判断ルールをシステムプロンプトへ組み込みます。この方法の利点は、個別の例に依存しにくくなることです。例は特定のケースに対しては有効ですが、そこから整理されたルールは、より幅広いケースに適用しやすくなります。そのため、未知のパターンに対する対応力を高めやすくなります。 Chain-of-Thoughtは、AIエージェントに思考過程を段階的に出力させる手法です。たとえば採用スクリーニングであれば、「まず職務経歴書からスキルキーワードを抽出し、次に各スキルの経験年数を特定し、求人要件と1項目ずつ照合し、最後に総合スコアを算出する」のように、推論の順序を明示的に指示します。 Chain-of-Thoughtが有効な理由は、LLMが「一気に答えを出す」よりも「段階を踏んで考える」ほうが正確性が上がるためです。人間でも「直感で答える」より「紙に書きながら順番に考える」ほうが複雑な問題を正確に解けるのと同じ原理です。 Chain-of-Thoughtが有効なのは、LLMが一度に結論だけを出すよりも、判断の過程を段階的にたどる方が、複雑な問題で正確性が高まりやすいためです。これは、人間が複雑な問題を考えるときに、直感だけで答えるよりも、紙に書き出しながら順序立てて考える方が正確になりやすいことと似ています。実務上の注意点は、推論の段階が増えるほど、使用するトークン量も増えやすいことです。 Section8で扱った推論モデルは、このような段階的な考え方を行いやすいように設計されたモデルです。一方で、通常のLLMであっても、「順を追って判断する」「まず条件を整理してから結論を出す」といった指示をプロンプトで与えることで、同様の考え方をある程度促すことができます。 369 Chapter6 AIエージェントを実装する5Dモデルただし、この方法をすべてのタスクに使う必要はありません。たとえば、「スキル要件を複数の観点で照合し、そのうえで総合判定を行う」といった、複数の判断を組み合わせる処理に限定して用いることで、コストと精度のバランスを取りやすくなります。 I/O設計 — AIエージェントとどんな形式でやり取りするか I/O設計は、AIエージェントに何を⼊⼒し、どんな形式で出⼒を受け取るかを設計する領域です。 AIエージェントの出力を自然言語のまま受け取ると、その先の処理で困ります。たとえば採用スクリーニングAIが「この候補者はスコア85点で、通過が妥当だと思います。Python経験が豊富で…」と文章で返してきた場合を考えてください。人間が読むには問題ありませんが、このスコアを採用管理システムに自動登録しようとすると、文章の中から「85」という数字を見つけ出す処理が必要になります。AIエージェントが次の候補者では「85点くらいだと思います」と返したら、「くらい」という抽象的な言葉をどう扱うかでシステムが止まります。 POINT この問題を防ぐために、AIエージェントの出力は、あらかじめ決めた形式で返させる必要があります。その代表的な形式がJSONです。JSONとは、項目名と値を対応させて記述するデータ形式であり、たとえば overall_score: 85 や recommendation: 通過のように、どこに何の情報が入っているかを明確に示すことができます。形式が統一されていれば、採用管理システムは必要な情報を機械的に取り出して登録しやすくなります。 370 Chapter6 AIエージェントを実装する5Dモデルここでいうスキーマとは、JSONの構造をあらかじめ定めた設計ルールのことです。たとえば、どの項目を含めるのか、各項目には文字列・数値・真偽値のどの型を使うのか、どの項目を必須にするのか、値の範囲をどこまで許容するのか、といった内容を事前に決めておきます。つまり、スキーマは、JSONをどの形で出力させるかを定める設計図に当たります。 POINT このようにスキーマを定めておくことで、AIエージェントの出力が期待した形式になっているかどうかを、自動で確認できるようになります。この確認の仕組みをバリデーションといいます。バリデーションの結果、必要な項目が欠けている、数値であるべき項目に文字列が入っている、といった不整合が見つかった場合には、AIエージェントに再生成を求める、または人間へ引き継ぐといった対応を、あらかじめ設計しておくことが重要です。セキュリティ設計 — AIエージェントに何を⾒せて何を⾒せないか 371 Chapter6 AIエージェントを実装する5Dモデル POINT セキュリティ設計とは、AIエージェントが業務上必要な範囲で安全に動作するように、情報の入力と出力の両面を制御する設計です。ここで重要なのは、「AIエージェントに何を見せるか」と「AIエージェントに何を出させるか」の両方を管理することです。前者に当たるのがアクセス制御です。アクセス制御とは、AIエージェントが参照できる情報の範囲を制限することを指します。たとえば、応募書類を処理する際に、AIエージェントの処理に不要な氏名や住所をあらかじめ除外またはマスキングしたうえで渡す、あるいは特定の機密文書にはアクセスできないようにする、といった設計がこれに当たります。後者に当たるのがガードレールです。ガードレールとは、AIエージェントの出力内容や動作に制限を設ける仕組みです。たとえば、AIエージェントの回答に個人情報や不適切な表現が含まれている場合に、その出力を遮断したり、再生成を求めたりする仕組みがこれに当たります。 POINT このように、セキュリティ設計では、入力段階で参照範囲を制御し、出力段階で不適切な内容を防ぐという二重の考え方が重要です。ストラテジストがDesignで果たす役割 3領域の技術的な実装はアーキテクトの仕事です。ストラテジストが果たすべき役割は、Definitionで定義した業務要件が設計に正しく反映されているかを確認することです。たとえば「ペルソナBの『スコアの根拠が欲しい』という要求が、I/O設計のJSONスキーマに反映されているか」「制約条件のバイアス防止が、セキュリティ設計のアクセス制御に落とし込まれているか」をレビューします。Section15で学んだ橋渡しの役割が、ここで発揮されます。 372 Chapter6 AIエージェントを実装する5Dモデル 2 業務シナリオ：採⽤スクリーニングAIでのDesign Definitionで要件定義書・フローチャート・ペルソナ・合格基準が整いました。Designでは、これらの要件を「どう実現するか」の技術設計に落とし込みます。判断 1 コンテキスト設計 — スキル評価プロンプトの設計採⽤スクリーニングAIのシステムプロンプトを設計します。「あなたの役割はエンジニア採用の一次スクリーニング担当として、応募者の職務経歴書から技術スキル・経験年数・プロジェクト実績を抽出し、求人要件との適合度を100点満点でスコアリングすることです。スコアの根拠をSection別に明記してください。氏名・性別・年齢・出身大学・顔写真の情報はスコアリングに使用することは禁止します。」ここで重要な設計判断が2つあります。 1つ目は「スコアの根拠を項目別に明記」の指示です。これはDefinitionでペルソナBとして定義したエンジニアリングマネージャーの「根拠がないスコアは信用できない」という要求から導き出された機能要件を、プロンプトで実現するものです。 2つ目は「氏名・性別・年齢・出身大学を使用しない」という指示です。これはDefinitionの制約条件であるバイアス防止をプロンプトレベルで実装しています。ただし、プロンプトでの指示だけではバイアスを完全に排除できないため、セキュリティ設計の判断3でも対策を講じます。コンテキスト設計では、①で学んだ「例からルールを抽出する」アプローチを適用します。まず、ベテラン人事担当者が評価したサンプルの入出力ペアを10件、AIエージェントに渡した上で、「あなたはどういうロジックでスコアリングしているか」を言語化させます。 AIエージェントが出力した思考ロジックの例としては「必須スキルを1つずつ照合し、完全合致なら◎、関連経験ありなら△、経験なしなら×と判定する。尚可スキル（あれば望ましいスキル）は加点のみで減点しない。総合スコアは必須スキルの◎の割合を基本とし、尚可スキルの加点を上乗せする」といったものです。 373 Chapter6 AIエージェントを実装する5Dモデルこのロジックをベテラン人事担当者にレビューしてもらい、「フリーランス経験は会社員経験と同等に扱うべき」「GCPとAWSは関連スキルとして△にすべき」といった修正を加えます。修正後のロジックをシステムプロンプトに組み込むことで、個別の例に依存しない汎用的な評価基準がAIエージェントに伝わります。その上で、Few-shotの例も補助的に3件含めます。合格・不合格・ボーダーラインの3パターンをバランスよく入れることで、ルールだけでは伝わりにくい「判定の粒度感」をAIエージェントに示します。判断 2 I/O設計 — 評価レポートの構造化 AIエージェントの出力をJSON形式で構造化し、採用管理システムへの登録や人事担当者への通知といった後続の処理に接続しやすい設計にします。 JSON 構造化された出力例 { &quot;candidate_id&quot;: &quot;ENG-2026-0042&quot;, &quot;overall_score&quot;: 85, &quot;recommendation&quot;: &quot;通過&quot;, &quot;skill_evaluation&quot;: [ { &quot;skill&quot;: &quot;Python&quot;, &quot;candidate_level&quot;: &quot;5年の実務経験&quot;, &quot;requirement&quot;: &quot;3年以上&quot;, &quot;match&quot;: &quot;◎&quot;, &quot;comment&quot;: &quot;Webアプリケーション開発で5年間継続使用&quot; } ], &quot;confidence&quot;: 0.92, &quot;bias_check_passed&quot;: true } POINT 設計のポイントは3つあります。第1に、skill_evaluationを配列にすることで、Section別の評価根拠がペルソナBの要求を満たします。第2に、confidenceはAIエージェントの判定確信度を表すフィールドで、確信度が低い場合に自動的に人事担当者の確認を求めるルールを設計できます。第3に、 bias_check_passedフラグにより、バイアスチェックの結果を後続処理で参照できます。 374 Chapter6 AIエージェントを実装する5Dモデル判断 3 セキュリティ設計 — バイアス防⽌と個⼈情報保護入口側の制限であるアクセス制御として、応募書類をAIエージェントに送信する前に、氏名・性別・年齢・顔写真・出身大学名をマスキングする前処理を設計します。プロンプトで「使用しない」と指示するだけでなく、そもそもAIエージェントにバイアスの元になる情報を見せない設計が、セキュリティ・バイ・デザインの原則に基づく対策です。出口側の制限に当たるガードレールとして、AIエージェントの出力に、応募者の年齢、性別、出身大学などの属性に基づく評価コメントが含まれていないかを自動で確認する仕組みを設計します。たとえば、「男性なので〜」「女性なので〜」「○○大学出身なので〜」といった表現が出力に含まれていた場合には、不適切な出力として検知し、再生成を求めるようにします。 POINT また、設計段階で定めたルールを一度入れて終わりにするのではなく、運用後も継続的に偏りを監視する仕組みを組み込むことが重要です。たとえば、同じスキルや経験を持つ模擬応募書類について、属性情報だけを変えて入力し、評価結果の差が許容範囲内に収まっているかを定期的に確認します。こうした監視を継続することで、出力上のバイアスが生じていないかを把握しやすくなります。 375 Chapter6 AIエージェントを実装する5Dモデル 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch06_s02_3" onclick="retryQ('ch06_s02_3')">↩ もう一度</button>
+      <button class="next-btn" id="nch06_s02_3" onclick="showScore('ch06_s02',3)">結果を見る →</button>
     </div>
   </div>
 
@@ -657,61 +507,20 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#1a4a26;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、Definitionで整理した要件を、具体的な技術設計へ落とし込む方法を学びます。設
 計は、コンテキスト設計、I/O設計、セキュリティ設計の3つの領域に分けて考えます。試験では、
 それぞれの領域で扱う手法や用語を正しく区別し、どの設計論点がどの領域に属するかを判断でき
 ることが求められます。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">5Dモデル全体像</div>
-<div class="five-d"><div class="five-d-step" style="background:rgba(26,74,38,.35);color:#555;"><div class="five-d-num">Step1</div><div class="five-d-d">D</div><div class="five-d-name">発見</div></div><div class="five-d-step" style="background:rgba(42,110,58,.35);color:#555;"><div class="five-d-num">Step2</div><div class="five-d-d">D</div><div class="five-d-name">定義</div></div><div class="five-d-step active" style="background:#3a8e4a;color:white;"><div class="five-d-num">Step3</div><div class="five-d-d">D</div><div class="five-d-name">設計</div></div><div class="five-d-step" style="background:rgba(74,174,90,.35);color:#555;"><div class="five-d-num">Step4</div><div class="five-d-d">D</div><div class="five-d-name">開発検証</div></div><div class="five-d-step" style="background:rgba(90,190,106,.35);color:#555;"><div class="five-d-num">Step5</div><div class="five-d-d">D</div><div class="five-d-name">展開定着</div></div></div>
-
-<div class="ov-subtitle">Designの3領域</div>
-<ul class="point-list">
-  <li><strong>コンテキスト設計</strong>：AIエージェントへの指示設計（システムプロンプト・Few-shot・Chain-of-Thought）</li>
-  <li><strong>I/O設計</strong>：入力と出力の形式設計（JSON等の構造化出力）</li>
-  <li><strong>セキュリティ設計</strong>：データマスキング・アクセス権限・ログ設計</li>
-</ul>
-
-<div class="ov-subtitle">コンテキスト設計の3技法</div>
-<div class="prompt-cards">
-  <div class="prompt-card" style="border-color:#1a4a26;">
-    <div class="prompt-head">
-      <div class="prompt-name">システムプロンプト</div>
-    </div>
-    <div class="prompt-body">AIエージェントの役割・前提・制約・行動指針を定義する最上位の指示。「あなたはエンジニア採用の一次スクリーニング担当です」のように役割を明示。<strong>設計に最も時間をかけるべき要素</strong></div>
-  </div>
-  <div class="prompt-card" style="border-color:#2a6e3a;">
-    <div class="prompt-head">
-      <div class="prompt-name">Few-shotプロンプト</div>
-    </div>
-    <div class="prompt-body">入力例と出力例の組み合わせを複数示すことで、期待する出力形式・判断傾向をAIに示す技法。
-      <div class="prompt-note">注意：例の選び方が出力品質を左右。合格例・不合格例・<strong>境界事例</strong>をバランスよく含める。偏った例のみでは精度が下がる</div>
-    </div>
-  </div>
-  <div class="prompt-card" style="border-color:#4a9e5c;">
-    <div class="prompt-head">
-      <div class="prompt-name">Chain-of-Thought（CoT）</div>
-    </div>
-    <div class="prompt-body">AIに思考過程を段階的に出力させる技法。「まず○○を抽出し、次に照合し、最後にスコアを算出する」と順序を明示。複数の判断を組み合わせる処理に特に有効。
-      <div class="prompt-note">注意：トークン消費が増える。すべてのタスクに使わず、複雑な多段判断に限定</div>
-    </div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">なぜDesignが独⽴したステップとして必要か</div><div class="ov-section-body">Definitionで「何をやりたいか」が決まりました。しかし「何をやりたいか」と「どう実現するか」の間には大きなギャップがあります。「応募書類からスキルを抽出してスコアリングしたい」という要件だけで…</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">コンテキスト設計 — AIエージェントにどう指⽰するか</div><div class="ov-section-body">コンテキスト設計は、Section21で学んだコンテキストエンジニアリングの考え方を、Designステップの具体的な設計作業として実装するものです。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">活動Xは要件定義書への記載であり、「何をどの品質で実現するか」を定義するDefinitionです。</div></div>
 </div>
 
-<div class="ov-subtitle">I/O設計：JSON出力の重要性</div>
-<ul class="point-list">
-  <li>自然言語のまま出力を受け取ると後続システムへの自動連携が困難。「85点くらい」と返されるとシステムが止まる</li>
-  <li><strong>JSON形式</strong>で出力させることで機械的な処理が可能に。スキーマ（構造の事前定義）をシステムプロンプトで指定</li>
-  <li>例：<code style="background:#f0f0f0;padding:1px 5px;border-radius:3px;font-size:11px;">{"overall_score": 85, "recommendation": "通過", "reasons": [...]}</code></li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">Design＝コンテキスト（システムプロンプト・Few-shot・CoT）・I/O（JSON化）・セキュリティの3領域。Few-shotは境界事例を必ず含める</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch06_s03">
@@ -720,6 +529,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -746,11 +556,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #2a6e3a;">
   <div class="quiz-hdr" style="color:#1a4a26;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch06_s03" onclick="startRetake('ch06_s03')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch06_s03" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch06_s03_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-num">問 1 ／ 3</div>
     <div class="quiz-question">採用スクリーニングAIのDesignにおいて、以下の2つの活動が行われました。活動X：「要件定義書に『スキル適合度スコアの精度90%以上』と記載した」活動Y：「AIエージェントの出力をJSON形式で構造化し、skill_evaluationフィールドのスキーマを定義した」 XとYはそれぞれDモデルのどのステップに該当しますか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch06_s03_1',0,1)">A　X=Design、Y=Development</button>
@@ -769,7 +582,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch06_s03_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-num">問 2 ／ 3</div>
     <div class="quiz-question">採用スクリーニングAIの出力に「応募者は女性なので、コミュニケーション力が高いと推定される」という評価コメントが含まれていました。この問題を防ぐためのDesign上の対策として、最も適切な組み合わせはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch06_s03_2',0,1)">A　システムプロンプトで「性別に基づく評価を禁止する」指示のみ</button>
@@ -783,7 +596,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch06_s03_2" onclick="retryQ('ch06_s03_2')">↩ もう一度</button>
-      <button class="next-btn" id="nch06_s03_2" onclick="showScore('ch06_s03',2)">結果を見る →</button>
+      <button class="next-btn" id="nch06_s03_2" onclick="showNext('ch06_s03_3')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch06_s03_3" style="display:none;">
+    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-question">採用スクリーニングAIの出力に「応募者は女性なので、コミュニケーション力が高いと推定される」という評価コメントが含まれていました。この問題を防ぐためのDesign上の対策として、最も適切な組み合わせはどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch06_s03_3',0,1)">A　システムプロンプトで「性別に基づく評価を禁止する」指示のみ</button>
+      <button class="choice-btn" onclick="answer('ch06_s03_3',1,1)">B　入力側で性別情報をマスキングし、出力側で性別に基づく表現を自動検出してブロックする</button>
+      <button class="choice-btn" onclick="answer('ch06_s03_3',2,1)">C　I/O設計でJSONスキーマにgenderフィールドを追加する</button>
+      <button class="choice-btn" onclick="answer('ch06_s03_3',3,1)">D　Few-shotに性別に基づく評価の「正しい例」を追加する</button>
+    </div>
+    <div class="explanation" id="ech06_s03_3">
+      <div class="ans-label">✅ 正解：B</div>
+      バイアス防止には入口と出口の両方の対策が必要です。入口側のアクセス制御として性別情報をマスキングし、出口側のガードレールとして性別に基づく表現を自動検出・ブロックします。Aはプロンプト指示だけでは完全に排除できません。CはJSONに性別フィールドを追加するとバイアスを助長します。Dは不適切な評価の「正しい例」は存在しません。 378 Chapter6 AIエージェントを実装する5Dモデル CHAPTER 6 開発‧検証学習のポイント本Sectionでは、Designで作成した設計をもとに、実際に動作するプロトタイプを構築し、想定どおりに機能するかを検証する段階を扱います。 POINT 試験では、プロトタイピング、サンドボックス、Human-in-the-Loop、フィードバックループという4つの概念について、それぞれの意味と役割を区別できることが求められます。特に、限定された環境で動作や精度を確認する段階がDevelopmentであり、本番環境へ展開し、業務への定着を図る段階がDeploymentである、という違いは重要な論点です。 1 知識プロトタイピング — 「設計通りに動くか」を最速で確かめるプロトタイピングとは、Designで作成した設計をもとに、必要最小限の機能だけを持つ試作品を作ることです。目的は、完成品を作ることではなく、設計どおりに動くか、技術的に実現できそうかを早い段階で確認することにあります。ここで、似た⾔葉との違いを整理しておきます。プロトタイプは、設計した仕組みが技術的に動くかを確認するための試作品です。主な利用者は、開発や設計に関わるメンバーであり、「この設計で本当に動くか」を確かめるために用います。 PoC は、その仕組みが業務上または技術上、実現可能だと示すための検証です。主な対象は、導入判断を行う意思決定者であり、「この方法で実際に効果が期待できるか」「導入に進む価値があるか」を判断する材料として用います。 MVP は、実際の利用者に最小限の価値を提供できる状態まで作り込んだ製品です。主な利用者は実際の業務担当者や顧客であり、「最低限使える形で提供し、実際の利用を通じて改善していく」ことを目的とします。このように整理すると、プロトタイプは「動くかを確かめる試作品」、PoCは「実現可能性を確かめる検証」、MVPは「最小限でも価値を提供する実用品」という違いがあります。 379 Chapter6 AIエージェントを実装する5Dモデルサンドボックス — 本番環境から隔離された安全な検証空間サンドボックスとは、本番環境から切り離された検証用の環境を指します。ここでは、テスト用のデータを用いて、プロトタイプが設計どおりに動作するかを確認します。本番データや本番業務に影響を与えずに検証できる点が特徴です。サンドボックスとパイロットの違いは、検証の段階と対象にあります。サンドボックスは、開発・検証の段階で用いる環境であり、テスト用データを使って、限られた関係者が隔離環境の中で動作確認を行います。一方、パイロットは、本番導入の直前または初期段階で行う限定運用であり、実際の利用者と実データを対象として、本番に近い環境で運用上の課題を確認します。したがって、サンドボックスは「安全に試すための検証環境」であり、パイロットは「実運用に近い条件で確かめるための限定導入」と整理できます。 Human-in-the-Loop HITL（Human-in-the-Loop）とは、AIエージェントの処理の途中に、人間による確認、判断、修正の工程を組み込む仕組みです。Section21で扱った考え方を、Developmentの段階で実際の運用設計に当てはめたものといえます。開発段階では、AIエージェントの出力品質がまだ安定していないことが多いため、人間が内容を確認する工程が重要になります。また、その確認結果や修正内容は、AIエージェントの改善に活用できるフィードバックとして蓄積できます。 Section2で学んだ自律性レベルとの関係で整理すると、支援型では、人間の確認が常に入るため、HITLが継続的に組み込まれた状態になります。これに対して協働型では、通常はAIエージェントが処理を進めつつ、一定の条件に当てはまる場合に限って人間が介入するため、HITLは条件付きで機能する形になります。 380 Chapter6 AIエージェントを実装する5Dモデルフィードバックループフィードバックループとは、「実行→結果の評価→改善→再実行」を繰り返す改善サイクルのことです。Step 2の Definitionで設定した合格基準が、「このサイクルをいつ終了してよいか」の判断基準として機能します。 Go / No-Go / Pivot判断 PoCの結果を受けて、プロジェクトの継続可否を判断します。Goは「本番展開に進む」、No-Goは「中止する」、Pivot は「方向転換する」判断です。この判断の根拠となるのは、すべてDefinitionで設定した合格基準です。 2 業務シナリオ：採⽤スクリーニングAIでのプロトタイプ構築とPoC Designでプロンプト設計書、I/O仕様書、セキュリティ設計書が完成しました。ここからDevelopmentに入り、実際に動くプロトタイプを構築して検証します。判断 1 プロトタイプ構築全職種を同時にプロトタイプ化すると、対象業務や評価条件が多様になり、検証すべき変数が増えすぎます。そのため、 Discoveryで比較的短期間に成果を示しやすい対象として選定したエンジニア職に絞って検証します。ここでは、「エンジニア職の応募書類からスキルを抽出し、求人要件と照合してスコアリングする」という中核機能が、設計どおりに動作するかを確認します。ワークフロー構築ツールを使えば、プロンプト設計書に基づいたプロトタイプを短期間で構築できます。この段階では、画面の完成度や、発生頻度の低い特殊なケースまで最初から完全に対応することを目指すのではなく、まず主要な利用場面で期待した出力が得られるかの確認に集中します。 381 Chapter6 AIエージェントを実装する5Dモデル判断 2 サンドボックスでのPoC設計プロトタイプが完成したら、次にサンドボックス環境でPoCを実施します。検証には、エンジニア職の応募書類50件を用います。内訳は、要件に明確に合致する書類15件、要件に明確に合致しない書類15件、判断が分かれやすいボーダーラインの書類10件、さらに、異業種からの転職、フリーランス経験のみ、海外での職務経歴など、発生頻度は低いものの判断が難しいケース10件です。これら50件をプロトタイプに入力し、Definitionで定めた合格基準と照合して評価します。その結果、処理時間は平均12 秒であり、合格基準である30秒以内を満たしました。また、バイアステストについても、許容範囲を±3点以内とした基準に対し、実測値は±2点であり、基準を満たしました。一方で、スキル適合度スコアの精度は、合格基準90％に対して初回結果が78％、通過・不通過の判定一致率は、合格基準85％に対して初回結果が72％にとどまりました。このことから、処理速度とバイアス面では基準を満たしているものの、スコアリング精度と判定の安定性には改善が必要であると判断できます。したがって、次の段階では、この結果をもとにフィードバックループを回し、どこに精度低下の原因があるのかを分析しながら、設計と実装を改善していきます。判断 3 フィードバックループ次に、ベテランの人事担当者2名にHuman-in-the-Loopとして参加してもらい、プロトタイプの出力内容を確認しながらフィードバックを収集します。初回の確認では、主に次の3点の問題が明らかになりました。 1つ目は、フリーランス経験の評価が低すぎるという点です。人事担当者からは、「フリーランス経験も、内容によっては会社員としての経験と同等に評価すべきである」という指摘がありました。これに対して、Few-shotの例にフリーランス経歴を適切に評価した事例を追加しました。 2つ目は、類似する役割名称を別のスキルとして扱っているという点です。たとえば、「チームリーダー」と「テックリード」を別の役割として判定していましたが、実務上は近い役割として扱う方が適切であると判断されました。これに対して、システムプロンプトに役割名称の同義語リストを追加しました。 3つ目は、求人要件に明示されていないが関連性の高い技術的貢献が評価に反映されていないという点です。これに対して、「求人要件に直接記載がない場合でも、関連する技術的貢献は加点対象とする」という判断ルールを追加しました。これらの修正を反映したうえで再度検証を行ったところ、スキル適合度スコアの精度は86％、通過・不通過の判定一致率は80％まで改善しました。さらに、2回目のフィードバックを反映して3回目の検証を行った結果、スキル適合度スコアの精度は92％、判定一致率は87％となり、いずれも合格基準を満たしました。 382 Chapter6 AIエージェントを実装する5Dモデル判断 4 Go/No-Go/Pivot判断フィードバックループを3回実施した結果、最終的な評価は次のとおりとなりました。・スキル適合度スコアの精度は 92％であり、合格基準である90％を満たしています。・通過、不通過の判定一致率は87％であり、合格基準である85％ を満たしています。・処理時間は平均12秒であり、合格基準である30秒以内を満たしています。 ‧また、バイアステストの結果も±2点であり、合格基準である±3点以内を満たしています。 POINT このように、設定した合格基準をすべて満たしたため、このケースではGo判断、すなわち次のStep 5であるDeploymentへ進む判断となります。一方で、Developmentの結果が基準を満たさない場合には、直ちに本番展開へ進むのではなく、状況に応じて判断を分ける必要があります。たとえば、スキル適合度スコアの精度が80％台から改善せず、フィードバックを重ねても基準に届かない場合には、現時点では導入を進めないNo-Go判断が適切です。この場合は、求人要件の記述方法そのものを見直す、評価軸を再設計する、といった前提条件の見直しが必要になります。また、精度自体は基準を満たしていても、処理コストが想定を大きく上回る場合には、進め方を修正するPivot判断が適切です。たとえば、対象をシニアエンジニア職に限定する、あるいはより軽量なモデルへ切り替えるといった形で、スコープや実装方式を見直すことが考えられます。 POINT このように、Developmentの最終判断は、単に「成功か失敗か」の二択ではありません。そのまま次へ進むのか、いったん止めるのか、方向を修正して続けるのかを、合格基準に照らして判断することが重要です。 383 Chapter6 AIエージェントを実装する5Dモデル 384 Chapter6 AIエージェントを実装する5Dモデル 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch06_s03_3" onclick="retryQ('ch06_s03_3')">↩ もう一度</button>
+      <button class="next-btn" id="nch06_s03_3" onclick="showScore('ch06_s03',3)">結果を見る →</button>
     </div>
   </div>
 
@@ -808,6 +640,7 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#1a4a26;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、Designで作成した設計をもとに、実際に動作するプロトタイプを構築し、想定ど
@@ -817,48 +650,12 @@ POINT
 う4つの概念について、それぞれの意味と役割を区別できることが求められます。特に、限定された
 環境で動作や精度を確認する段階がDevelopmentであり、本番環境へ展開し、業務への定着を図る
 段階がDeploymentである、という違いは重要な論点です。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">5Dモデル全体像</div>
-<div class="five-d"><div class="five-d-step" style="background:rgba(26,74,38,.35);color:#555;"><div class="five-d-num">Step1</div><div class="five-d-d">D</div><div class="five-d-name">発見</div></div><div class="five-d-step" style="background:rgba(42,110,58,.35);color:#555;"><div class="five-d-num">Step2</div><div class="five-d-d">D</div><div class="five-d-name">定義</div></div><div class="five-d-step" style="background:rgba(58,142,74,.35);color:#555;"><div class="five-d-num">Step3</div><div class="five-d-d">D</div><div class="five-d-name">設計</div></div><div class="five-d-step active" style="background:#4aae5a;color:white;"><div class="five-d-num">Step4</div><div class="five-d-d">D</div><div class="five-d-name">開発検証</div></div><div class="five-d-step" style="background:rgba(90,190,106,.35);color:#555;"><div class="five-d-num">Step5</div><div class="five-d-d">D</div><div class="five-d-name">展開定着</div></div></div>
-
-<div class="ov-subtitle">3用語の厳密な違い</div>
-<div class="term-cmp">
-  <div class="term-row" style="background:#e0f4e6;">
-    <div class="term-badge" style="background:#1a4a26;">プロトタイプ</div>
-    <div class="term-content"><strong>設計した仕組みが技術的に動くかを確認する試作品</strong>。対象：開発・設計メンバー。問い：「この設計で本当に動くか」</div>
-  </div>
-  <div class="term-row" style="background:#e8f5eb;">
-    <div class="term-badge" style="background:#2a6e3a;">PoC</div>
-    <div class="term-content"><strong>業務上・技術上の実現可能性を示す検証</strong>。対象：意思決定者。問い：「この方法で効果が期待できるか」「導入に進む価値があるか」。Go/No-Go/Pivotを判断する</div>
-  </div>
-  <div class="term-row" style="background:#d5f5e3;">
-    <div class="term-badge" style="background:#4a9e5c;">MVP</div>
-    <div class="term-content"><strong>最小限の価値を提供できる実用品</strong>。対象：実際の業務担当者・顧客。問い：「最小限でも使ってもらえるか」→改善へ</div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">プロトタイピング — 「設計通りに動くか」を最速で確かめる</div><div class="ov-section-body">プロトタイピングとは、Designで作成した設計をもとに、必要最小限の機能だけを持つ試作品を作ることです。目的は、完成品を作ることではなく、設計どおりに動くか、技術的に実現できそうかを早い段階で確認す…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">AIエージェントの処理プロセスの中に人間による確認・判断・修正のステップを組み込む仕組みがHITLです。</div></div>
 </div>
 
-<div class="ov-subtitle">サンドボックス vs パイロットの違い</div>
-<table class="cmp-table">
-  <tr><th></th><th>サンドボックス</th><th>パイロット</th></tr>
-  <tr><td>フェーズ</td><td>Development段階</td><td>Deployment初期</td></tr>
-  <tr><td>データ</td><td>テスト用データ</td><td>実データ</td></tr>
-  <tr><td>ユーザー</td><td>開発・設計メンバー</td><td>実際の業務担当者</td></tr>
-  <tr><td>目的</td><td>安全な動作確認</td><td>実運用の課題確認</td></tr>
-</table>
-
-<div class="ov-subtitle">Go / No-Go / Pivot判断</div>
-<ul class="point-list">
-  <li><strong>Go</strong>：定義済みの合格基準を達成→本番展開へ</li>
-  <li><strong>No-Go</strong>：効果が見込めない・技術的に実現不可→中止</li>
-  <li><strong>Pivot</strong>：元の方向性は維持しつつ手段・対象・設計を転換→再検証</li>
-  <li>判断の根拠は常にDefinitionで設定した<strong>合格基準</strong>。主観的判断を排除</li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">プロトタイプ（動くか確認）・PoC（効果があるか確認）・MVP（最小実用品）は別物。Go/No-Go/Pivotは合格基準で機械的に判断</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch06_s04">
@@ -867,6 +664,7 @@ POINT
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -887,11 +685,14 @@ POINT
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #2a6e3a;">
   <div class="quiz-hdr" style="color:#1a4a26;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch06_s04" onclick="startRetake('ch06_s04')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch06_s04" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch06_s04_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-num">問 1 ／ 3</div>
     <div class="quiz-question">プロトタイプの検証で、ベテラン人事担当者がAIエージェントのスコアリング結果を1件ずつ確認し、誤りがあれば正しい評価を記録してプロンプト改善の根拠としました。この仕組みを何と呼びますか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch06_s04_1',0,2)">A　サンドボックス</button>
@@ -910,7 +711,7 @@ POINT
   </div>
 
   <div class="quiz-block" id="qch06_s04_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-num">問 2 ／ 3</div>
     <div class="quiz-question">PoCの結果、スコア精度が78%で合格基準の90%に達しませんでした。次に取るべきアクションとして最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch06_s04_2',0,1)">A　精度が不十分なので、プロジェクトを即時中止する</button>
@@ -924,7 +725,26 @@ POINT
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch06_s04_2" onclick="retryQ('ch06_s04_2')">↩ もう一度</button>
-      <button class="next-btn" id="nch06_s04_2" onclick="showScore('ch06_s04',2)">結果を見る →</button>
+      <button class="next-btn" id="nch06_s04_2" onclick="showNext('ch06_s04_3')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch06_s04_3" style="display:none;">
+    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-question">PoCの結果、スコア精度が78%で合格基準の90%に達しませんでした。次に取るべきアクションとして最も適切なものはどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch06_s04_3',0,1)">A　精度が不十分なので、プロジェクトを即時中止する</button>
+      <button class="choice-btn" onclick="answer('ch06_s04_3',1,1)">B　フィードバックループでプロンプトとFew-shotを改善し、再検証する</button>
+      <button class="choice-btn" onclick="answer('ch06_s04_3',2,1)">C　合格基準を78%に引き下げて、Deploymentに進む</button>
+      <button class="choice-btn" onclick="answer('ch06_s04_3',3,1)">D　全職種に展開してデータ量を増やし、精度向上を図る</button>
+    </div>
+    <div class="explanation" id="ech06_s04_3">
+      <div class="ans-label">✅ 正解：B</div>
+      合格基準に届かなかった場合、まずフィードバックループを回して改善を試みるのが適切です。1回の検証で合格基準に届かないことは珍しくなく、複数回の改善サイクルを経て精度を引き上げていくのがDevelopmentの本質です。Aは時期尚早、Cは業務上の根拠に基づく品質水準を損ないます。D はサンドボックス検証すら通過していない段階で展開を広げるのはリスク拡散です。 387 Chapter6 AIエージェントを実装する5Dモデル CHAPTER 6 展開‧定着学習のポイント本Sectionでは、5Dモデルの最終ステップとして、検証済みのAIエージェントを本番環境へ展開し、組織内に定着させる方法を学びます。試験では、パイロット導入からロールアウト、さらにスケーリングへと進む段階的な展開プロセス、AI-SECIモデルの考え方、KPIモニタリングを通じた継続的改善の進め方が問われます。 1 知識パイロット導⼊とは何かパイロット導入とは、AIエージェントを全社一斉に展開するのではなく、まず限定された部門・チーム・業務で本番稼働させることです。 Step4のサンドボックス検証との最大の違いは、実データと実ユーザーを対象に、本番環境で運用する点にあります。サンドボックスではテスト用データを用いるため、設計どおりに動作しているように見えても、本番環境では、実データ特有のばらつきや、想定していなかった例外的なケースが表面化することがあります。 POINT パイロットが重要なのは、本格展開の前に、実環境で使ったときの問題を小さな範囲で把握し、修正できるからです。その理由は、大きく3つあります。 1つ目は、実環境でしか見つからない品質上の問題があるためです。テストデータでは問題なく動作していても、実データには表記の揺れ、例外的なケース、入力ミスなどが含まれるため、本番に近い環境で初めて精度上の課題が見つかることがあります。 2つ目は、AIエージェント本体だけでなく、運用の仕組みも同時に検証する必要があるためです。たとえば、AIエージェントが判断できないケースを誰に引き継ぐのか、誤出力があった場合にどう対応するのか、といった運用手順は、実際に回してみなければ機能するか分からない場合があります。パイロットは、技術面だけでなく運用面の妥当性を確認するために必要です。 388 Chapter6 AIエージェントを実装する5Dモデル 3つ目は、小さな成功実績が、その後の展開を進める根拠になるためです。AIエージェント導入では、いきなり全社展開を行うよりも、まず限定範囲で成果を示した方が、経営層や現場の理解を得やすくなります。パイロットで定量的な成果や改善効果を示せれば、それが次の展開判断の材料になります。これは、Section25で学んだクイックウィンの考え方にもつながります。ロールアウトによる利⽤者の段階的拡⼤ ロールアウトとは、パイロットの成功を受けて対象範囲を段階的に広げていくプロセスです。ロールアウトの核心は「同じ機能を、より多くの人に届ける」ことであり、機能自体は変わりません。段階的に進める意味は、リスクを管理可能な範囲に収めることにあります。全社一斉に展開して問題が起きれば影響は全社に及びますが、段階的に広げれば各段階で問題を検出・修正してから次に進めます。スケーリングによる機能‧範囲の拡張スケーリングとは、AIエージェントの処理能力や適用範囲を拡大することです。ロールアウトが「同じ機能を多くの人に広げる」のに対し、スケーリングは対象業務の拡大や新しい機能の追加など、能力そのものの拡張を含みます。 AI-SECIモデルが描く⼈間とAIエージェントの知識循環 AI-SECIモデルは、Section12で学んだSECIモデルを、AIエージェントの文脈に拡張した概念です。従来のSECIモデルが「人間同士」の知識変換を扱うのに対し、AI-SECIモデルは「人間とAIエージェント」の間で知識が循環する構造を捉えます。共同化では、担当者がAIエージェントの出力を日々確認する中で、感覚的な判断を蓄積していきます。表出化では、蓄積された暗黙知がAIエージェントへのフィードバックとして明文化されます。連結化では、フィードバックが既存のプロンプトやナレッジベースに統合されます。内面化では、改善されたAIエージェントの出力を通じて、担当者が新たな判断力を身につけます。このサイクルが回り続けることで、AIエージェントの精度と人間の判断力が同時に向上し、組織全体の知的資産が厚みを増していきます。 KPIモニタリング Section23で学んだアウトプット指標とアウトカム指標の区別が、ここで実務に適⽤されます。「AIエージェントが1日に200件の応募書類を処理しています」はアウトプット指標です。処理件数が多くても、スコアリングの精度が低ければ人事担当者の差し戻しが増え、かえって工数が膨らむ可能性があります。追うべきは「1件あたりの処理時間がどれだけ短縮されたか」「担当者間の判定一致率がどう変化したか」「AIエージェントが高スコアを付けた候補者が実際に入社後に活躍しているか」といったアウトカム指標です。 389 Chapter6 AIエージェントを実装する5Dモデル POINT 特に3つ目の「入社後のパフォーマンス」は、採用スクリーニングAI固有の本質的な指標です。書類選考の工数を削減しても、採用した人材の質が下がっていれば導入の意味がありません。この指標は半年〜1年のスパンで追跡する必要があるため、短期のアウトカム指標と長期のアウトカム指標を分けて設計しておくことが重要です。 2 業務シナリオ：採⽤スクリーニングAIでの段階展開と定着化 Step 4でエンジニア職の採用スクリーニングプロトタイプがPoC合格基準をすべてクリアし、Go判断が出ました。ここからStep 5に入り、本番環境への展開と組織への定着を進めます。判断 1 パイロット運⽤の設計全職種・全担当者に一斉展開するのではなく、まずエンジニア職の採用を担当する人事担当者2名でパイロット導入します。期間は2週間とし、実際の応募書類をAIエージェントが処理する本番運用を行います。パイロットで確認すべき観点は、主に3つあります。 390 Chapter6 AIエージェントを実装する5Dモデル POINT 1つ目は、実データでも精度が維持されるかという点です。サンドボックスではスコア精度92％を達成していても、実際の応募書類には、誤字脱字、記載形式のばらつき、異業種からの転職者に見られる特殊な経歴記述などが含まれます。そのため、本番に近いデータでも同程度の精度が維持できるかを確認する必要があります。 POINT 2つ目は、運用プロセスが実際に機能するかという点です。たとえば、AIエージェントが出したスコアリング結果を人事担当者がどのように確認するのか、その結果をエンジニアリングマネージャーへどのように共有するのか、といった一連の運用フローが無理なく回るかを検証します。ここでは、AIエージェント単体の性能だけでなく、人間との役割分担や引継ぎの流れまで含めて確認することが重要です。 3つ目は、定量的な成果が実際に得られるかという点です。たとえば、「1件あたりの処理時間が20分から3分に短縮された」「担当者間の判定一致率が85％から92％に向上した」といった形で、導入効果を数値として把握します。この数値は、単に成果を確認するためだけでなく、その後の展開判断や予算確保の根拠にもなります。このような観点で数週間のパイロットを行い、たとえば処理時間が85％短縮され、判定の一貫性にも改善が見られた場合、その結果は初期導入の成功事例として位置づけることができます。このような⼩さな成功実績が、クイックウィンとして全社展開の説得材料になります。判断 2 ロールアウトとスケーリングの計画パイロットの成功を受けて、展開計画を策定します。第1段階はエンジニア職担当の人事担当者2名でのパイロットで、これは完了済みです。第2段階では全エンジニア職採用の担当者5名に展開します。これは同じ機能の利用者数を拡大するロールアウトです。第3段階では営業職・バックオフィス職への対応を追加します。営業職は「コミュニケーション力」のような定性的スキルの評価基準を新たに設計する必要があり、これは能力の拡張を伴うスケーリングです。第4段階で面接日程の自動調整機能を追加します。カレンダー連携という新機能の追加なので、これもスケーリングです。 391 Chapter6 AIエージェントを実装する5Dモデル各段階の進行判断基準として「スコア精度85%以上を2週間維持」「バイアステスト合格」「担当者満足度70%以上」の 3条件をすべて満たした場合に次の段階へ進むルールを設定します。判断 3 AI-SECIモデルによる定着化 POINT 採用スクリーニングAIが稼働し始めた後、最も重要なのは定着化と継続改善です。AI-SECIモデルが機能する具体的な場面を見てみます。共同化の場面として、ベテラン人事担当者がAIエージェントのスコアリング結果を日々確認する中で、「フリーランスで複数の短期プロジェクトを経験している候補者を、AIエージェントがスキル年数で過小評価する傾向がある」という暗黙知を蓄積します。表出化の場面として、この暗黙知が「フリーランス経歴の場合、プロジェクト数×平均期間で実質経験年数を算出すべき」というフィードバックとして明文化されます。連結化の場面として、このフィードバックがFew-shotの例に追加され、フリーランス経歴の評価パターンとして既存のプロンプトに統合されます。さらに、この知見がエンジニア職だけでなくデザイナー職のスクリーニングにも横展開されます。内面化の場面として、改善されたAIエージェントのスコアリング結果を日々確認する新人人事担当者が、「フリーランス経歴はこう評価すべきだ」という判断力を自然に習得していきます。 KPIモニタリングでは、アウトカム指標を中心に成果を追跡します。具体的には、1件あたりの処理時間の短縮率、担当者間の判定一致率の変化、バイアステストの定期的な合格確認、採用後のパフォーマンスの追跡です。特に「AIエージェントが高スコアを付けた候補者が実際に入社後に活躍しているか」は、採用スクリーニングAIの本質的な成果を測るアウトカム指標です。 392 Chapter6 AIエージェントを実装する5Dモデル実践事例：⼩さく試して効果を確認し全社展開する 393 Chapter6 AIエージェントを実装する5Dモデル 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch06_s04_3" onclick="retryQ('ch06_s04_3')">↩ もう一度</button>
+      <button class="next-btn" id="nch06_s04_3" onclick="showScore('ch06_s04',3)">結果を見る →</button>
     </div>
   </div>
 
@@ -949,81 +769,19 @@ POINT
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#1a4a26;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、5Dモデルの最終ステップとして、検証済みのAIエージェントを本番環境へ展開
 し、組織内に定着させる方法を学びます。試験では、パイロット導入からロールアウト、さらにス
 ケーリングへと進む段階的な展開プロセス、AI-SECIモデルの考え方、KPIモニタリングを通じた継
 続的改善の進め方が問われます。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">5Dモデル全体像</div>
-<div class="five-d"><div class="five-d-step" style="background:rgba(26,74,38,.35);color:#555;"><div class="five-d-num">Step1</div><div class="five-d-d">D</div><div class="five-d-name">発見</div></div><div class="five-d-step" style="background:rgba(42,110,58,.35);color:#555;"><div class="five-d-num">Step2</div><div class="five-d-d">D</div><div class="five-d-name">定義</div></div><div class="five-d-step" style="background:rgba(58,142,74,.35);color:#555;"><div class="five-d-num">Step3</div><div class="five-d-d">D</div><div class="five-d-name">設計</div></div><div class="five-d-step" style="background:rgba(74,174,90,.35);color:#555;"><div class="five-d-num">Step4</div><div class="five-d-d">D</div><div class="five-d-name">開発検証</div></div><div class="five-d-step active" style="background:#5abe6a;color:white;"><div class="five-d-num">Step5</div><div class="five-d-d">D</div><div class="five-d-name">展開定着</div></div></div>
-
-<div class="ov-subtitle">段階的展開の3ステップ</div>
-<div class="deploy-steps">
-  <div class="deploy-step">
-    <div class="deploy-step-head" style="background:#1a4a26;color:white;">
-      <span>パイロット導入</span>
-      <span class="deploy-step-tag">限定範囲・実データ</span>
-    </div>
-    <div class="deploy-step-body">
-      サンドボックスとの違い：<strong>実データ・実ユーザー・本番環境</strong>で動かす。<br>
-      目的①実環境でしか見つからない品質問題の発見②運用手順の妥当性確認③小さな成功実績の獲得（次の展開の根拠に）
-    </div>
-  </div>
-  <div class="deploy-arrow">↓</div>
-  <div class="deploy-step">
-    <div class="deploy-step-head" style="background:#2a6e3a;color:white;">
-      <span>ロールアウト</span>
-      <span class="deploy-step-tag">対象範囲の段階的拡大</span>
-    </div>
-    <div class="deploy-step-body">
-      「<strong>同じ機能を、より多くの人に届ける</strong>」。機能自体は変わらない。<br>
-      段階的に広げることでリスクを管理可能な範囲に収める。各段階で問題を検出・修正してから次へ
-    </div>
-  </div>
-  <div class="deploy-arrow">↓</div>
-  <div class="deploy-step">
-    <div class="deploy-step-head" style="background:#4a9e5c;color:white;">
-      <span>スケーリング</span>
-      <span class="deploy-step-tag">機能・範囲の拡張</span>
-    </div>
-    <div class="deploy-step-body">
-      ロールアウトが「同じ機能を広げる」のに対し、<strong>対象業務の拡大・新機能の追加</strong>など能力そのものを拡張する。エージェント連携・マルチエージェント化など
-    </div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">パイロット導⼊とは何か</div><div class="ov-section-body">パイロット導入とは、AIエージェントを全社一斉に展開するのではなく、まず限定された部門・チーム・業務で本番稼働させることです。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">パイロットが重要なのは、本格展開の前に、実環境で使ったときの問題を小さな範囲で把握し、修正できるからです。</div></div>
 </div>
 
-<div class="ov-subtitle">AI-SECIモデル（人間×AIの知識循環）</div>
-<div class="ai-seci">
-  <div class="ai-seci-cell" style="background:#e0f4e6;">
-    <div class="ai-seci-head">共同化 <span class="ai-seci-arrow">暗→暗</span></div>
-    <div class="ai-seci-body">担当者がAI出力を日々確認し、感覚的な判断を蓄積</div>
-  </div>
-  <div class="ai-seci-cell" style="background:#e8f5eb;">
-    <div class="ai-seci-head">表出化 <span class="ai-seci-arrow">暗→形</span></div>
-    <div class="ai-seci-body">蓄積した暗黙知がAIへのフィードバックとして言語化・明文化</div>
-  </div>
-  <div class="ai-seci-cell" style="background:#d5f5e3;">
-    <div class="ai-seci-head">連結化 <span class="ai-seci-arrow">形→形</span></div>
-    <div class="ai-seci-body">フィードバックが既存のプロンプト・ナレッジベースに統合</div>
-  </div>
-  <div class="ai-seci-cell" style="background:#c0edd0;">
-    <div class="ai-seci-head">内面化 <span class="ai-seci-arrow">形→暗</span></div>
-    <div class="ai-seci-body">改善されたAI出力を通じて担当者が新たな判断力を習得</div>
-  </div>
-</div>
-
-<ul class="point-list">
-  <li>このサイクルが回ることで<strong>AIの精度と人間の判断力が同時に向上</strong>。組織の知的資産が増強される</li>
-  <li><strong>KPIモニタリング</strong>：アウトプット指標（処理件数）でなくアウトカム指標（処理時間削減・判定一致率・入社後活躍度）を追う。短期・長期に分けて設計</li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">展開＝パイロット（実環境検証）→ロールアウト（同機能を広げる）→スケーリング（機能拡張）。AI-SECIで人間とAIが共に成長するサイクルを回せ</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch06_s05">
@@ -1032,6 +790,7 @@ POINT
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -1050,11 +809,14 @@ POINT
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #2a6e3a;">
   <div class="quiz-hdr" style="color:#1a4a26;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch06_s05" onclick="startRetake('ch06_s05')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch06_s05" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch06_s05_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 1</div>
+    <div class="quiz-num">問 1 ／ 2</div>
     <div class="quiz-question">採用スクリーニングAIの成果を測る指標として、最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch06_s05_1',0,2)">A　AIエージェントが処理した応募書類の月間件数</button>
@@ -1068,7 +830,26 @@ POINT
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch06_s05_1" onclick="retryQ('ch06_s05_1')">↩ もう一度</button>
-      <button class="next-btn" id="nch06_s05_1" onclick="showScore('ch06_s05',1)">結果を見る →</button>
+      <button class="next-btn" id="nch06_s05_1" onclick="showNext('ch06_s05_2')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch06_s05_2" style="display:none;">
+    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-question">採用スクリーニングAIの成果を測る指標として、最も適切なものはどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch06_s05_2',0,2)">A　AIエージェントが処理した応募書類の月間件数</button>
+      <button class="choice-btn" onclick="answer('ch06_s05_2',1,2)">B　人事担当者のAIエージェント利用回数</button>
+      <button class="choice-btn" onclick="answer('ch06_s05_2',2,2)">C　AIスクリーニング導入後の1件あたり処理時間の短縮率と、AIエージェントが選択した高評価候補者の入社後パフォーマンス</button>
+      <button class="choice-btn" onclick="answer('ch06_s05_2',3,2)">D　プロンプトの改善回数</button>
+    </div>
+    <div class="explanation" id="ech06_s05_2">
+      <div class="ans-label">✅ 正解：C</div>
+      A・B・Dはアウトプット指標です。Cは「処理時間の短縮」という業務効率の改善と、「入社後パフォーマンス」というビジネス成果を組み合わせたアウトカム指標です。特に「AIエージェントが高スコアを付けた候補者が実際に活躍しているか」は、採用スクリーニングAIの本質的な成果を測る指標です。 395 Chapter6 AIエージェントを実装する5Dモデル CHAPTER 6 おわりに AIエージェント‧ストラテジストとして、これからへ QUESTION あなたはなぜ、この資格を⼿にしましたか？・AIの波に乗り遅れてはいけないという焦りだったかもしれません。・組織をもっとうまく動かしたいという悩みだったかもしれません。・あるいは、誰かに背中を押されたのかもしれません。 1 最後まで読み切ったという事実 2 現場と組織の成果につなげる視点 3 資格取得はゴールではなくスタートライン動機はそれぞれでいい。 ⼤切なのは、あなたがこのテキストを最後まで読み切ったという事実です。このテキストで学んできたのは、AIの知識だけではありません。 AIエージェントを、現場と組織の成果につなげるための視点です。資格取得は、ゴールではありません。ここからが本番です。ここから先は、あなた⾃⾝の現場で、その学びをどう使うかが問われます。 396 Chapter6 AIエージェントを実装する5Dモデル代表メッセージ MESSAGE 01 一般社団法人AICX協会　代表理事 ⼩澤健祐この公式テキストを最後まで読んでくださったあなたに、まず⼼からの感謝をお伝えしたいと思います。 AIエージェントという言葉が急速に広まるなかで、私が感じてきた違和感があります。「AIが仕事を奪う」「使いこなせなければ終わり」そんな恐怖を煽る言説が溢れる一方で、では具体的に自分はどこに立ち、何を設計し、どう組織を動かせばいいのかを丁寧に語る場所がほとんどありませんでした。 AICX協会を⽴ち上げたのも、この資格制度をつくったのも、その「空⽩」を埋めたかったからです。日本中の現場を見てきました。そこで繰り返し目撃してきたのは、ツールの導入を急ぐあまり「なぜ導入するのか」「誰の何を変えるのか」が抜け落ちた失敗でした。AIエージェントは万能ではありません。しかし、戦略と業務設計と組織設計が三位一体で機能したとき、その変革の速度と深度は、これまでのどんなテクノロジーとも比較になりません。このテキストで学んできたのは、単なるツールの使い方ではありません。AIエージェントを事業の文脈に接続し、 ROIとして語り、人と組織が動ける設計へと落とし込む力です。それがAIエージェント・ストラテジストという役割の本質だと、私は信じています。 AICX協会のミッションは、「分断を超え、体験を変える」です。部門と部門、経営と現場、人間とAI――AIエージェント時代には、あらゆる分断が変革の障壁になります。AIエージェント・ストラテジストはその分断を橋渡しし、顧客体験と組織のあり方そのものを変えていく存在です。あなたがこの資格を通じて身につけたのは、まさにそのための力だと思っています。正直に言えば、この資格に込めた期待は大きいです。日本にAIエージェントの実装を担える人材が生まれることで、停滞している現場が動き始める。その連鎖をつくりたくて、この資格制度を設計しました。資格取得はゴールではなく、スタートラインです。あなたがこのテキストを閉じた瞬間から、もう次のステージは始まっています。次は現場で試し、失敗し、また設計し直す番です。 AIエージェントと、現場と組織の未来を設計する⼈へ。ともに、その未来をつくっていきましょう。 397 Chapter6 AIエージェントを実装する5Dモデル MESSAGE 02 一般社団法人AICX協会　代表理事 ⼩栗伸この公式テキストを最後まで読み進めてくださり、本当にありがとうございます。この資格は、AIエージェントを現場に根づかせたいという多くの声と、実装に向き合ってきた実務者・有識者の知見から生まれました。この資格で大切にしたいのは、知識を得ることだけではなく、学んだことを現場で使い、実装に向けて動き出すことです。私自身、事業づくりや組織づくりの学びと実践の中で、「Thinker to Doer」、つまり考える人から行動する人へ、という考え方の大切さに何度も立ち返ってきました。AIエージェント・ストラテジストに求められるのも、まさにこの姿勢です。構想を描くだけで終わらせず、業務に落とし込み、関係者を巻き込み、小さくても実践を始めること。AIエージェントの実装は、一部の専門家だけが担うものではありません。現場を知る人、業務を設計する人、技術を形にする人、組織を動かす人。それぞれの立場から関わる人が、自分の役割を見つけ、同じ方向を向いて動き出すことが必要です。資格を取得したみなさんには、ぜひそれぞれの現場で、学びを実践に変える担い手になっていただきたいと思っています。 AICX協会では、「AI Agent Day」や「AICX Forum」、業界横断の委員会活動などを通じて、資格取得後も学びと実践を続けられる場を用意しています。 ⼀⼈ひとりの実践が共有され、別の現場のヒントになり、次の挑戦につながっていく。行動する人が増え、その経験がつながっていくことで、組織も、業界も、少しずつ変わっていくはずです。その循環を、AICX協会として大切に育てていきます。ここから先は、私たちと一緒に、AIエージェントが現場に根づき、新しい顧客体験を生み出す未来をつくっていきましょう。 398 Chapter6 AIエージェントを実装する5Dモデル発⾏情報書名発行日 2026年5月12日発行一般社団法人AICX協会代表理事小栗伸 ／ 小澤健祐理事山﨑 陽平有識者理事神川陽太 ／ 加藤大己事務局牧野雄太 ／ 九鬼至 ／ 牛島圭史 ／ 齊藤博文廣瀬花鈴 ／ 田尾早和美 ／ 岩﨑 大作 ／ 清崎広子豊田留実 ／ 中山恵里加 ／ 藤居大地権利表記 ©2026 一般社団法人AICX協会 All Rights Reserved. 本テキストの無断転載・複製を禁じます。 399
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch06_s05_2" onclick="retryQ('ch06_s05_2')">↩ もう一度</button>
+      <button class="next-btn" id="nch06_s05_2" onclick="showScore('ch06_s05',2)">結果を見る →</button>
     </div>
   </div>
 
@@ -1114,32 +895,57 @@ function answer(qid, ci, correct) {
   var next  = document.getElementById('n' + qid);
   expl.classList.add('show');
 
+  var sid      = qid.replace(/_\d+$/, '');
+  var section  = document.getElementById(sid);
+  var isRetake = section && section.classList.contains('retake-mode');
+
   if (ci === correct) {
     if (next) next.classList.add('show');
     localStorage.removeItem('qfail_' + qid);
+    if (isRetake) localStorage.removeItem('qwrong_' + qid);
   } else {
     expl.classList.add('hint');
     if (retry) retry.classList.add('show');
     localStorage.setItem('qfail_' + qid, '1');
+    localStorage.setItem('qwrong_' + qid, '1');
   }
+  updateRetakeBtn(sid);
+}
+
+function resetQuizBlock(qid) {
+  QS[qid] = null;
+  document.querySelectorAll('#q' + qid + ' .choice-btn').forEach(function(b) {
+    b.classList.remove('correct', 'wrong', 'dimmed');
+  });
+  var expl = document.getElementById('e' + qid);
+  if (expl) expl.classList.remove('show', 'hint');
+  var retry = document.getElementById('r' + qid);
+  if (retry) retry.classList.remove('show');
+  var next = document.getElementById('n' + qid);
+  if (next) next.classList.remove('show');
 }
 
 function retryQ(qid) {
-  QS[qid] = null;
-  document.querySelectorAll('#q' + qid + ' .choice-btn').forEach(b => {
-    b.classList.remove('correct','wrong','dimmed');
-  });
-  var expl = document.getElementById('e' + qid);
-  expl.classList.remove('show','hint');
-  document.getElementById('r' + qid).classList.remove('show');
+  resetQuizBlock(qid);
 }
 
 function showNext(nqid) {
+  var sid = nqid.replace(/_\d+$/, '');
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
   var el = document.getElementById('q' + nqid);
   if (el) { el.style.display = 'block'; el.scrollIntoView({behavior:'smooth', block:'start'}); }
 }
 
 function showScore(sid, total) {
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
   var ok = 0;
   for (var i = 1; i <= total; i++) {
     var st = QS[sid + '_' + i];
@@ -1153,6 +959,106 @@ function showScore(sid, total) {
   }
 }
 
+function startRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  var wrongQids = [];
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) {
+      wrongQids.push(key.replace('qwrong_', ''));
+    }
+  }
+  if (!wrongQids.length) return;
+  wrongQids.sort(function(a, b) {
+    return parseInt(a.split('_').pop()) - parseInt(b.split('_').pop());
+  });
+
+  section.classList.add('retake-mode');
+  section.dataset.retakeQueue = JSON.stringify(wrongQids);
+  section.dataset.retakeIdx   = '0';
+
+  var score = document.getElementById('sc_' + sid);
+  if (score) score.classList.remove('show');
+
+  section.querySelectorAll('.quiz-block').forEach(function(block) {
+    block.style.display = 'none';
+  });
+  wrongQids.forEach(function(qid) { resetQuizBlock(qid); });
+
+  var first = document.getElementById('q' + wrongQids[0]);
+  if (first) { first.style.display = 'block'; first.scrollIntoView({behavior:'smooth', block:'start'}); }
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'block';
+
+  var btn = document.getElementById('rtk_' + sid);
+  if (btn) btn.style.display = 'none';
+}
+
+function retakeAdvance(sid) {
+  var section = document.getElementById(sid);
+  if (!section || !section.classList.contains('retake-mode')) return;
+  var queue = JSON.parse(section.dataset.retakeQueue || '[]');
+  var idx   = parseInt(section.dataset.retakeIdx || '0');
+
+  var cur = document.getElementById('q' + queue[idx]);
+  if (cur) cur.style.display = 'none';
+
+  idx++;
+  section.dataset.retakeIdx = String(idx);
+
+  if (idx < queue.length) {
+    var nxt = document.getElementById('q' + queue[idx]);
+    if (nxt) { nxt.style.display = 'block'; nxt.scrollIntoView({behavior:'smooth', block:'start'}); }
+  } else {
+    endRetake(sid);
+  }
+}
+
+function endRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  section.classList.remove('retake-mode');
+  delete section.dataset.retakeQueue;
+  delete section.dataset.retakeIdx;
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'none';
+
+  section.querySelectorAll('.quiz-block').forEach(function(block, i) {
+    var qid = block.id.replace(/^q/, '');
+    resetQuizBlock(qid);
+    block.style.display = (i === 0) ? 'block' : 'none';
+  });
+
+  updateRetakeBtn(sid);
+}
+
+function updateRetakeBtn(sid) {
+  var count = 0;
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) count++;
+  }
+  var btn = document.getElementById('rtk_' + sid);
+  if (!btn) return;
+  if (count > 0) {
+    btn.textContent = '❌ ' + count + '問 再テスト';
+    btn.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+function initRetakeBtns() {
+  document.querySelectorAll('section[id^="ch"]').forEach(function(sec) {
+    updateRetakeBtn(sec.id);
+  });
+}
+
 window.addEventListener('load', function() {
   document.querySelectorAll('.status-btns[data-sid]').forEach(function(wrap) {
     var v = loadStatus('s_' + wrap.dataset.sid);
@@ -1161,8 +1067,8 @@ window.addEventListener('load', function() {
       if (b) b.classList.add('active');
     }
   });
+  initRetakeBtns();
 });
 </script>
-<a href="index.html" class="float-home">📚 目次</a>
 </body>
 </html>

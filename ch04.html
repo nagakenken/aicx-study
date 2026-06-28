@@ -196,6 +196,17 @@ body {
 }
 .score-banner.show { display: block; }
 .score-main { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.retake-btn-main {
+  display: block; width: 100%; background: #fce8e6; color: #b31412;
+  border: 2px solid #ea4335; border-radius: 8px; padding: 10px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  margin-bottom: 12px; -webkit-tap-highlight-color: transparent;
+}
+.retake-banner {
+  background: #fff3e0; border: 2px solid #ff9500; border-radius: 8px;
+  padding: 10px 14px; margin-bottom: 12px;
+  font-size: 14px; font-weight: 700; color: #c67200; text-align: center;
+}
 
 /* ── ナビ ────────────────────────────────── */
 .nav-footer { display: flex; gap: 10px; margin-top: 16px; padding-bottom: 24px; }
@@ -226,164 +237,6 @@ body {
 .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; flex-shrink: 0; margin-left: auto; }
 .status-dot.done  { background: #34a853; }
 .status-dot.later { background: #4285f4; }
-
-/* ── OVサブタイトル ─────────────────────── */
-.ov-subtitle {
-  font-size:13px; font-weight:700; margin:14px 0 8px;
-  padding-bottom:4px; border-bottom:1.5px solid #fff0e0;
-  color:#8a3e06;
-}
-
-/* ── ポイントリスト ──────────────────────── */
-.point-list { list-style:none; padding:0; margin:10px 0; display:flex; flex-direction:column; gap:5px; }
-.point-list li {
-  font-size:13px; line-height:1.65; color:#333;
-  padding-left:16px; position:relative;
-}
-.point-list li::before {
-  content:'▸'; position:absolute; left:0;
-  color:#c45a0a; font-size:11px; top:3px;
-}
-.point-list li strong { color:#8a3e06; }
-
-/* ── 自動化ラダー ────────────────────────── */
-.auto-ladder { display:flex; flex-direction:column; gap:6px; margin:10px 0; }
-.auto-rung {
-  border-radius:10px; padding:10px 14px;
-  box-shadow:0 1px 3px rgba(0,0,0,.08);
-  border-left:5px solid;
-}
-.auto-rung-head { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
-.auto-lv {
-  width:26px; height:26px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  font-size:11px; font-weight:800; flex-shrink:0; color:white;
-}
-.auto-title { font-size:13px; font-weight:700; }
-.auto-meta  { font-size:11px; color:#888; margin-left:auto; }
-.auto-body  { font-size:12px; color:#333; line-height:1.5; }
-.auto-body em { font-style:normal; color:#8a3e06; font-weight:600; }
-
-/* ── トリガーカード ─────────────────────── */
-.trigger-cards { display:flex; flex-direction:column; gap:8px; margin:10px 0; }
-.trigger-card {
-  border-radius:10px; overflow:hidden;
-  box-shadow:0 1px 3px rgba(0,0,0,.08);
-}
-.trigger-card-head {
-  padding:8px 14px; font-size:12.5px; font-weight:700;
-}
-.trigger-card-body {
-  padding:9px 14px; background:#f9fafb;
-  border-top:1px solid rgba(0,0,0,.06);
-  font-size:12px; line-height:1.55; color:#333;
-}
-.trigger-examples { font-size:11.5px; color:#c45a0a; margin-top:4px; font-style:italic; }
-
-/* ── アクション3種類 ─────────────────────── */
-.action-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:10px 0; }
-.action-card { border-radius:10px; padding:11px 10px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,.08); }
-.action-icon { font-size:22px; margin-bottom:4px; }
-.action-name { font-size:12px; font-weight:700; margin-bottom:3px; }
-.action-desc { font-size:11px; color:#555; line-height:1.4; }
-
-/* ── 分岐比較カード ─────────────────────── */
-.branch-cards { display:flex; flex-direction:column; gap:8px; margin:10px 0; }
-.branch-card {
-  border-radius:10px; border:1.5px solid;
-  padding:10px 14px;
-}
-.branch-head { display:flex; align-items:center; gap:8px; margin-bottom:5px; }
-.branch-icon { font-size:18px; }
-.branch-name { font-size:13px; font-weight:700; }
-.branch-body { font-size:12px; color:#333; line-height:1.55; }
-.branch-usecase { font-size:11.5px; color:#c45a0a; margin-top:4px; font-weight:600; }
-
-/* ── コンテキスト4課題カード ─────────────── */
-.problem-cards { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0; }
-.problem-card { border-radius:10px; border:1.5px solid; padding:10px 12px; }
-.problem-head { font-size:12.5px; font-weight:700; margin-bottom:5px; color:#8a3e06; }
-.problem-body { font-size:12px; color:#333; line-height:1.5; }
-
-/* ── 情報種別リスト ─────────────────────── */
-.info-types { display:flex; flex-direction:column; gap:5px; margin:10px 0; }
-.info-type { display:flex; align-items:flex-start; gap:8px; border-radius:8px; padding:8px 12px; background:#fff8f0; }
-.info-badge { font-size:10px; font-weight:700; background:#8a3e06; color:white; border-radius:4px; padding:2px 6px; flex-shrink:0; white-space:nowrap; margin-top:2px; }
-.info-content { font-size:12px; color:#333; line-height:1.45; }
-.info-content strong { color:#8a3e06; }
-
-/* ── 比較テーブル ───────────────────────── */
-.cmp-table { width:100%; border-collapse:collapse; margin:10px 0; font-size:12.5px; }
-.cmp-table th {
-  padding:7px 10px; color:white; font-size:12px; font-weight:700; text-align:center;
-  background:#8a3e06;
-}
-.cmp-table td { padding:7px 10px; border-bottom:1px solid #eee; vertical-align:top; line-height:1.55; }
-.cmp-table tr:nth-child(even) td { background:#f9f9f9; }
-.cmp-table td:first-child { font-weight:600; color:#666; font-size:12px; }
-
-/* ── フローティングナビ ───────────────── */
-.float-home {
-  position: fixed; bottom: 22px; right: 14px;
-  background: rgba(26,26,26,.88);
-  color: white !important;
-  padding: 9px 15px; border-radius: 22px;
-  font-size: 13px; font-weight: 700;
-  text-decoration: none !important; letter-spacing: .3px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.30);
-  z-index: 500; backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  -webkit-tap-highlight-color: transparent;
-  display: flex; align-items: center; gap: 4px;
-  border: 1px solid rgba(255,255,255,.15);
-  transition: opacity .15s;
-}
-.float-home:active { opacity: .7; }
-
-/* ── 章先頭セクション一覧バー ────────── */
-.chapter-toc {
-  position: sticky; top: 0; z-index: 400;
-  background: var(--ch-dark);
-  padding: 0 12px;
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  border-bottom: 2px solid var(--ch-accent);
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
-  scrollbar-width: none;
-}
-.chapter-toc::-webkit-scrollbar { display: none; }
-.chapter-toc-inner {
-  display: inline-flex; align-items: center; gap: 0;
-  height: 44px;
-}
-.toc-home {
-  color: rgba(255,255,255,.8); text-decoration: none;
-  font-size: 12px; font-weight: 700;
-  padding: 0 14px 0 4px;
-  border-right: 1px solid rgba(255,255,255,.2);
-  margin-right: 10px;
-  display: flex; align-items: center; gap: 4px;
-  flex-shrink: 0;
-  -webkit-tap-highlight-color: transparent;
-  height: 100%;
-}
-.toc-home:active { opacity: .7; }
-.toc-link {
-  color: rgba(255,255,255,.7); text-decoration: none;
-  font-size: 12px; font-weight: 600;
-  padding: 0 10px;
-  display: inline-flex; align-items: center; gap: 4px;
-  height: 100%;
-  border-right: 1px solid rgba(255,255,255,.12);
-  -webkit-tap-highlight-color: transparent;
-  flex-shrink: 0;
-}
-.toc-link:last-child { border-right: none; }
-.toc-link:active { background: rgba(255,255,255,.12); }
-.toc-link.toc-current { color: white; }
-.toc-snum { font-size: 10px; opacity: .7; }
-
 </style>
 </head>
 <body>
@@ -399,51 +252,16 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#8a3e06;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、自動化の4段階を理解し、業務の性質やリスクに応じて適切な自動化レベルを選べるようになることを目的とします。試験では、具体的な業務シナリオに対して、どの自動化レベルが適切かを判断する力が問われます。特に、あらかじめ定めた手順に沿って処理を進めるLv.3のワークフロー型と、状況に応じて自律的に判断・実行するLv.4の自律型エージェントの違いは重要な論点です。あわせて、最初から大規模導入を目指すのではなく、最小限の範囲で価値を検証しながら進めるMVPの考え方も理解しておく必要があります。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">自動化4レベル（Lv1 → Lv4）</div>
-<div class="auto-ladder">
-  <div class="auto-rung" style="border-color:#aaa;background:#f9f9f9;">
-    <div class="auto-rung-head">
-      <div class="auto-lv" style="background:#aaa;">1</div>
-      <div class="auto-title">アドホック（一問一答）</div>
-      <div class="auto-meta">個別対話</div>
-    </div>
-    <div class="auto-body">毎回その場で指示を出す使い方。ChatGPT等の一般的な使用。<em>人間が操縦する</em>。生産性向上は個人レベルにとどまる</div>
-  </div>
-  <div class="auto-rung" style="border-color:#e07a30;background:#fff5ec;">
-    <div class="auto-rung-head">
-      <div class="auto-lv" style="background:#e07a30;">2</div>
-      <div class="auto-title">カスタムチャットボット</div>
-      <div class="auto-meta">専用設定</div>
-    </div>
-    <div class="auto-body">業務固有のシステムプロンプト・データソースを設定。社内Q&A・営業支援等。<em>繰り返し使えるが自律実行はしない</em></div>
-  </div>
-  <div class="auto-rung" style="border-color:#c45a0a;background:#fff0e0;">
-    <div class="auto-rung-head">
-      <div class="auto-lv" style="background:#c45a0a;">3</div>
-      <div class="auto-title">ワークフロー型エージェント</div>
-      <div class="auto-meta">電車の比喩</div>
-    </div>
-    <div class="auto-body"><em>電車＝決まったレール（ワークフロー）を自動で走る</em>。トリガー→処理→出力を自律実行。ただし路線変更は人間が設計する。承認ワークフロー・定期レポート生成等</div>
-  </div>
-  <div class="auto-rung" style="border-color:#8a3e06;background:#ffe8cc;">
-    <div class="auto-rung-head">
-      <div class="auto-lv" style="background:#8a3e06;">4</div>
-      <div class="auto-title">自律型エージェント</div>
-      <div class="auto-meta">自家用車の比喩</div>
-    </div>
-    <div class="auto-body"><em>自家用車＝目的地を告げると自分でルートを判断して走る</em>。ゴール指示→タスク分解→ツール選択→実行を自律的に行う。最もリスクが高く、ガバナンス設計が最重要</div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#c45a0a;color:#8a3e06;">なぜ「段階的に進める」必要があるのか</div><div class="ov-section-body">AIエージェントの導入を検討するとき、「せっかくやるなら最初から全自動にしよう」と考えたくなります。しかしこの発想が、多くのプロジェクトを失敗に導いています。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">前者はトリガーから各ステップが事前設計されたフローで連鎖しており、Lv.3です。</div></div>
 </div>
 
-<div class="memory-key" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">電車（Lv3）＝レール固定・自動走行。自家用車（Lv4）＝目的地だけ伝え自律で走る。今の企業はLv3から始めよ</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch04_s01">
@@ -452,6 +270,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -475,11 +294,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #c45a0a;">
   <div class="quiz-hdr" style="color:#8a3e06;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch04_s01" onclick="startRetake('ch04_s01')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch04_s01" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch04_s01_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-num">問 1 ／ 3</div>
     <div class="quiz-question">Salesforceで案件ステージが「提案準備」に変更されると、自動的に顧客情報取得、過去提案書検索、ドラフト生成、担当者通知が実行される仕組みを構築しました。各ステップの順序とロジックはDX推進リーダーが事前に設計しています。一方、別のAIエージェントはSalesforceの商談進捗を自ら監視し、提案タイミングの判断、構成の計画、作成、送付までを自律的に遂行します。前者と後者の自動化レベルの組み合わせとして正しいものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s01_1',0,2)">A　前者＝Lv.2、後者＝Lv.3</button>
@@ -498,7 +320,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch04_s01_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-num">問 2 ／ 3</div>
     <div class="quiz-question">提案書AIの導入にあたり、「まずカスタムチャットボットで5名の営業担当者に先行利用してもらい、提案書の品質と時間短縮効果を検証してからSalesforce連携の構築に進む」というアプローチを採用しました。このアプローチに関する記述として最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s01_2',0,1)">A　いきなりLv.3から始めたほうが効率的であり、Lv.2での検証は時間の無駄である</button>
@@ -512,7 +334,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch04_s01_2" onclick="retryQ('ch04_s01_2')">↩ もう一度</button>
-      <button class="next-btn" id="nch04_s01_2" onclick="showScore('ch04_s01',2)">結果を見る →</button>
+      <button class="next-btn" id="nch04_s01_2" onclick="showNext('ch04_s01_3')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch04_s01_3" style="display:none;">
+    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-question">提案書AIの導入にあたり、「まずカスタムチャットボットで5名の営業担当者に先行利用してもらい、提案書の品質と時間短縮効果を検証してからSalesforce連携の構築に進む」というアプローチを採用しました。このアプローチに関する記述として最も適切なものはどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch04_s01_3',0,1)">A　いきなりLv.3から始めたほうが効率的であり、Lv.2での検証は時間の無駄である</button>
+      <button class="choice-btn" onclick="answer('ch04_s01_3',1,1)">B　MVPアプローチにより「この業務はAIエージェントで自動化する価値があるか」を低コストで検証し、データに基づいてLv.3への投資判断を行える</button>
+      <button class="choice-btn" onclick="answer('ch04_s01_3',2,1)">C　MVPは品質の低い試作品を出すことであり、本番環境では使えない</button>
+      <button class="choice-btn" onclick="answer('ch04_s01_3',3,1)">D　Lv.2での検証が成功したら、Lv.3を飛ばしてLv.4に進むべきである</button>
+    </div>
+    <div class="explanation" id="ech04_s01_3">
+      <div class="ans-label">✅ 正解：B</div>
+      MVPアプローチは「最小限だが実際に価値を提供できる製品」で素早く検証し、段階的に進化させる考え方です。Lv.2のカスタムチャットボットは2週間程度で構築でき、1ヶ月の検証で定量的なデータが得られれば、Lv.3への投資判断に説得力が生まれます。 239 Chapter4 自動化レベルとワークフロー設計 CHAPTER 4 Section20. ワークフロー設計トリガーとアクション学習のポイント本Sectionでは、ワークフロー型の自動化を構成する基本要素である「トリガー」と「アクション」の設計を学びます。トリガーは処理を開始するきっかけであり、アクションは実際に実行される処理です。試験では、トリガーの3つの種類の違いと、アクションの主要な3種類の役割や位置づけが問われます。 1 知識すべての業務には「きっかけ」がある少し立ち止まって、自分の日常業務を振り返ってみてください。あなたが業務を開始するとき、そこには必ず何らかの「きっかけ」があるはずです。たとえば、上司や顧客から「これを対応してほしい」と依頼されて始まる業務があります。また、毎週月曜日の朝に実施すると決まっている週次レポートの作成のように、あらかじめ時期が決まっている業務もあります。さらに、「エラーが発生したら対応する」「在庫が一定量を下回ったら発注する」といったように、特定の条件が満たされたときに開始される業務もあります。これらはそれぞれ、指示型・定時型・条件型という3つの起動パターンに分類できます。実はこれは人間の仕事だけでなく、AIエージェントのワークフロー設計にもそのまま当てはまります。前のSectionでLv.3ワークフローを「決められたレールの上を走る電車」と表現しましたが、その電車を「何をきっかけに発車させるか」がトリガーの設計であり、「発車してからどこへ向かうか」がアクションの設計です。トリガー設計「何をきっかけに動くか」ワークフローにおけるトリガーは、業務がどのようなきっかけで開始されるかという観点から整理できます。基本的には3つの大きな分類があり、それぞれの分類の中に、実装上の具体的な種類が含まれます。 240 Chapter4 自動化レベルとワークフロー設計【指⽰型】⼈間の意図的な⾏為が合図になる誰かが「やってほしい」という意思によって起動するトリガーです。人間の業務における「依頼を受けて動く」行動に該当します。チャット・音声指示：チャットボットへのメッセージ入力や、音声アシスタントへの発話がトリガーになります。Lv.2のカスタムチャットボットとの違いは、会話の結果として外部システムへの書き込みや後続フローの起動が連動する点です。「〇〇を予約して」と話すと予約システムへの登録まで自動で完結する、というイメージです。手動実行：担当者がボタンを押すなど、明示的に「今すぐ実行」を指示するトリガーです。定期的ではないが決まったタイミングでまとめて処理したい場合や、承認後に処理を走らせたい場合に使います。 241 Chapter4 自動化レベルとワークフロー設計【定時型】時計が合図を出す時間の経過や到来が起動の合図になるトリガーです。⼈間の業務における「定例業務」に対応します。スケジュール実行：「毎朝9時」「毎週月曜」「毎月1日」のように、あらかじめ設定した日時・頻度でワークフローを起動します。最もシンプルで予測可能なトリガーであり、導入初期にまず試すべき起点です。「毎朝、前日の問い合わせ件数を集計してSlackに通知する」「毎月末に売上レポートを自動生成して経営陣にメールする」のような使い方が典型例です。期限・日付ベース：「契約更新日の30日前」「タスクの期限当日」のように、特定の日付や期限との相対的な関係でワークフローを起動します。スケジュール実行が「固定の時刻」に動くのに対し、こちらはデータの中に記録された日付を参照して動く点が異なります。更新案内メールの自動送付、リマインダーの自動通知などに活用されます。【条件型】変化を検知して動く特定の状態や出来事の発生が起動の合図になるトリガーです。人間の業務における「何かが起きたら対応する」仕事に対応します。イベントトリガー：「新規メールが届いた」「ファイルがアップロードされた」「CRMのステータスが変更された」など、システム内の特定の状態変化を検知して起動します。ワークフロー側が監視対象を常に見張っており、変化を検知した瞬間に動き始めます。人間が「気づいて動く」という判断をAIエージェントが肩代わりするため、対応の遅延や見落としを構造的になくせます。フォーム送信：Webフォームや社内申請フォームが送信されたときに起動します。問い合わせフォーム・稟議申請・社内 IT申請などが典型例です。人間がフォームを送信した瞬間に自動で次の処理が走るため、「送信後に手動でメールを転送する」「Excelに手で転記する」といった工程を丸ごと削除できます。 242 Chapter4 自動化レベルとワークフロー設計 Webhook：外部システム側で何らかの出来事が発生したときに、その通知がワークフローへ送られることで起動する方式です。たとえば、決済サービスが「支払い完了」を通知する、ECサイトが「注文受付」を通知する、といった場面がこれに当たります。イベントトリガーとの違いは、変化を検知する主体にあります。イベントトリガーでは、ワークフロー側が対象システムの変化を確認して起動します。これに対しWebhookでは、外部システム側が変化の発生をワークフローへ通知することで起動します。閾値トリガー：たとえば、「在庫が100個を下回ったら」「エラー率が5%を超えたら」「問い合わせ件数が1時間で50 件を超えたら」といったように、数値が特定の閾値を超えたときに起動します。監視・アラート・自動対応の自動化に活用されます。 POINT 実務でのトリガー選択では、技術的な種別の区別よりも「業務上、何をきっかけにワークフローが動くべきか」を先に決め、その要件に合うトリガーを選ぶ順序が重要です。 243 Chapter4 自動化レベルとワークフロー設計アクション設計「動いたら何をするか」トリガーで起動した後に実行される処理がアクションです。アクションも、その性質に応じて3つの大分類で整理できます。【データ処理】情報を取得‧変換‧整理する外部から情報を取り込み、必要な形に加⼯する処理です。ワークフローの「インプット」を担う段階にあたります。 APIコール（データ取得）：CRMから顧客情報を取得する、データベースから在庫情報を引き出す、など外部サービスから情報を取り込む処理です。ワークフローが複数のシステムをまたいで動けるのは、このAPIコールが支えています。 244 Chapter4 自動化レベルとワークフロー設計データ抽出・構造化：メール本文から注文番号と顧客名を抽出する、PDFの請求書から金額と振込期限を読み取るなど、非構造化データから必要な情報を取り出し、構造化する処理です。LLMと組み合わせることで、自然言語で書かれた文書からも情報を正確に抽出できます。データ変換・整形：取得したデータを後続の処理が扱いやすい形式に変換する処理です。日付フォーマットの統一、通貨換算、CSVからJSONへの変換などが該当します。【⽣成‧判断】AIエージェントが考えて出⼒する LLMが中⼼的な役割を担う処理です。ワークフローの中で最もAIらしい判断と⽣成を⾏う段階にあたります。コンテンツ生成：問い合わせへの一次返信メールの作成、週次レポートの下書き作成、議事録の要約など、文章や文書を自動で作成する処理です。あらかじめ用意した定型文に情報を差し込む方法から、LLMが文脈を踏まえて文章を生成する方法まで含まれます。分類・振り分け：入力された内容を、あらかじめ定めたカテゴリに割り当てる処理です。たとえば、問い合わせ内容を「技術的な質問」「請求に関する質問」「苦情」などに分類したり、優先度を判定したりする場合がこれに当たります。多くの場合、後続の担当者振り分けや処理フローの分岐と組み合わせて用いられます。判断・条件分岐：一定のルールや基準に基づいて、次に進む処理を分けるための処理です。たとえば、「この問い合わせは人が対応すべきか、自動返信で完了できるか」「この申請は承認基準を満たしているか」といった判断がこれに当たります。ワークフローに条件分岐を持たせることで、状況に応じた処理の流れを設計できます。 245 Chapter4 自動化レベルとワークフロー設計【実⾏‧連携】結果を外部に書き出し、⼈間に引き渡す生成・判断の結果を実際のシステムや人間に届ける処理です。ワークフローの「アウトプット」を担う段階にあたります。 APIコール（データ送信）：Slackに通知を送る、CRMに対応履歴を登録する、カレンダーに予定を作成するなど、外部サービスに情報を書き込む処理です。データ取得のAPIコールと方向が逆であり、ワークフローの結果を他のシステムに反映させます。ファイル操作：レポートをPDF形式で生成する、データをCSVでエクスポートする、特定のフォルダに自動で振り分けるなどの処理です。人間が受け取る成果物を自動生成する場面で使われます。 Human-in-the-Loop（人間への引き渡し）：AIエージェントが判断できない・すべきでないケースを人間に引き渡す処理です。「このクレームは担当者にエスカレーションする」「この申請は上長の承認を要求する」のように、ワークフローの途中で人間のチェックポイントを設けます。完全自動化ではなく、人間の判断が必要な箇所を明示的に設計することが、ガバナンスを維持しながら自動化を進める上で不可欠です。 246 Chapter4 自動化レベルとワークフロー設計トリガーとアクションを組み合わせて設計するワークフロー設計の実務では、まず「この業務には自然なトリガーポイントがどこにあるか」を業務フローの中から探すことが出発点になります。「問い合わせフォームが送信される（指示型：フォーム送信）→メール本文から問い合わせ内容と顧客名を抽出する（データ処理：データ抽出）→AIエージェントが内容を分類し担当部署を判定する（生成・判断：分類）→一次返信メールを自動生成する（生成・判断：コンテンツ生成）→CRMに対応履歴を登録する（実行・連携：APIコール）→担当者にSlackで通知する（実行・連携：APIコール）」。このように、1つのトリガーに対して複数のアクションを連鎖させることで、人間が介在しなければできなかった一連の業務が自動化できます。前のSectionで学んだAs-Is分析とHTAで業務を分解した結果が、ここでのトリガーとアクションの設計に直接活きます。「誰がやるか」「何をするか」が明確に分解された業務フローは、そのままワークフローの設計図になります。 247 Chapter4 自動化レベルとワークフロー設計 2 業務シナリオ：提案書AIでのワークフロー設計 Section19でLv.3ワークフローが提案書AI導入の現実的な到達点であると判断しました。次は「具体的にどうワークフローを設計するか」を、トリガーとアクションの観点で考えていきます。判断 1 提案書⽣成ワークフローのトリガー設計提案書AIのワークフローは「何をきっかけに起動すべきか」を検討します。選択肢A（スケジュールトリガー）は、毎朝9時にSalesforceの全案件をスキャンし、「提案準備」ステージにある案件を対象にドラフト生成を実行する方式です。設計はシンプルですが、最大24時間のタイムラグが発生します。選択肢B（イベントトリガー）は、Salesforce上で営業担当者が案件ステージを「提案準備」に変更した瞬間を検知し、ワークフローが起動する方式です。リアルタイム性が高く、不要な起動も起きにくい利点があります。選択肢C（フォーム送信トリガー）は、営業担当者が専用フォームに顧客名・案件概要を入力して送信する方式です。意図は明確ですが、Salesforceにすでにある情報をフォームに再入力する二重入力の手間が発生します。 Salesforceにすでに案件情報が蓄積されている環境では選択肢Bが最適です。既存の業務フローに自然に組み込まれ、営業担当者に追加の操作を求めません。Section3で学んだ「現場に負荷をかけずにAIエージェントを業務に溶け込ませる」設計の実践です。判断 2 アクションの連鎖設計トリガーが決まったら、次は「何をするか」をアクションとして設計します。ステップ1はAPIコールです。Salesforceの案件IDをもとに、顧客名‧業界‧案件規模‧商談履歴を取得します。 248 Chapter4 自動化レベルとワークフロー設計ステップ2はAPIコールとデータ抽出の組み合わせです。取得した業界情報を検索キーとして、社内ナレッジベースから類似業界の過去受注提案書を検索し、提案書の構成パターンや成功要因を取り出します。ステップ3はコンテンツ生成です。ステップ1の顧客情報とステップ2の過去提案書の知見をもとに、LLMが提案書ドラフトを生成します。ここで生成されるのはあくまでドラフトであり、営業担当者が確認・修正したうえで顧客に提出します。ステップ4はAPIコールです。⽣成された提案書ドラフトをSlackで営業担当者に通知します。ステップ5はファイル操作です。提案書ドラフトをPDF化し、案件ごとのフォルダに保存します。判断 3 複数ワークフローの全体設計 POINT 実際の運用では、提案書の下書き作成だけでなく、関連する複数のワークフローを組み合わせて設計する必要があります。ワークフロー1 は、提案書作成のメインフローです。案件ステージの変更をきっかけとして、提案書の下書きを自動生成します。これは、判断1と判断2で設計した内容に当たります。ワークフロー2 は、週次レポート作成のフローです。毎週月曜日の午前9時をきっかけとして、営業支援システムから週間の案件情報を取得し、レポートを作成してPDFで保存します。ワークフロー3 は、提案依頼書の受信時に動く分析フローです。顧客から提案依頼書や見積依頼のメールを受信したことをきっかけとして、依頼内容から要件を抽出し、関連する過去案件を検索し、その結果を要約した分析メモを担当者へ通知します。 POINT このように、実務では一つの業務課題に対して、複数のワークフローを組み合わせて設計することがあります。その際に重要なのは、各ワークフローについて、適切なトリガーを選び、必要なアクションを適切な順序でつなぐことです。これが、ワークフロー設計の基本となります。 249 Chapter4 自動化レベルとワークフロー設計 250 Chapter4 自動化レベルとワークフロー設計 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch04_s01_3" onclick="retryQ('ch04_s01_3')">↩ もう一度</button>
+      <button class="next-btn" id="nch04_s01_3" onclick="showScore('ch04_s01',3)">結果を見る →</button>
     </div>
   </div>
 
@@ -537,67 +378,19 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#8a3e06;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、ワークフロー型の自動化を構成する基本要素である「トリガー」と「アクショ
 ン」の設計を学びます。トリガーは処理を開始するきっかけであり、アクションは実際に実行され
 る処理です。試験では、トリガーの3つの種類の違いと、アクションの主要な3種類の役割や位置づ
 けが問われます。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">トリガー3種類</div>
-<div class="trigger-cards">
-  <div class="trigger-card">
-    <div class="trigger-card-head" style="background:#8a3e06;color:white;">指示型トリガー</div>
-    <div class="trigger-card-body">
-      人間が能動的に指示・入力することで起動。最も直接的な連携。
-      <div class="trigger-examples">例：チャットでの質問送信・ボタンクリック・フォーム送信</div>
-    </div>
-  </div>
-  <div class="trigger-card">
-    <div class="trigger-card-head" style="background:#c45a0a;color:white;">定時型トリガー</div>
-    <div class="trigger-card-body">
-      時刻・スケジュール・期限を条件として自動起動。人間の操作不要。
-      <div class="trigger-examples">例：毎朝9時に日報生成・月次決算日に自動集計・契約期限3日前に通知</div>
-    </div>
-  </div>
-  <div class="trigger-card">
-    <div class="trigger-card-head" style="background:#e07a30;color:white;">条件型トリガー</div>
-    <div class="trigger-card-body">
-      特定のイベント・データ変化・閾値超過で自動起動。最も自律的。
-      <div class="trigger-examples">例：フォーム送信→処理開始 / Webhook受信 / 在庫が閾値を下回ったら発注</div>
-    </div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#c45a0a;color:#8a3e06;">すべての業務には「きっかけ」がある</div><div class="ov-section-body">少し立ち止まって、自分の日常業務を振り返ってみてください。あなたが業務を開始するとき、そこには必ず何らかの「きっかけ」があるはずです。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">Salesforceの案件ステージという「システム内の状態変化」を検知してワークフローが起動しているため、イベントトリガーです。</div></div>
 </div>
 
-<div class="ov-subtitle">アクション3種類</div>
-<div class="action-cards">
-  <div class="action-card" style="background:#fff0e0;">
-    <div class="action-icon">⚙</div>
-    <div class="action-name">データ処理<br>アクション</div>
-    <div class="action-desc">取得・変換・保存・転送。構造化データの自動操作</div>
-  </div>
-  <div class="action-card" style="background:#ffe8cc;">
-    <div class="action-icon">✨</div>
-    <div class="action-name">生成アクション</div>
-    <div class="action-desc">テキスト・コード・メール・レポートの生成。LLMの出番</div>
-  </div>
-  <div class="action-card" style="background:#ffd5b0;">
-    <div class="action-icon">🔀</div>
-    <div class="action-name">判断アクション</div>
-    <div class="action-desc">条件分岐・ルーティング・優先度判断。文脈に応じた処理振り分け</div>
-  </div>
-</div>
-
-<ul class="point-list">
-  <li>ワークフローは「何をきっかけに（トリガー）」「何をするか（アクション）」の組み合わせで設計する</li>
-  <li>条件型トリガー＋判断アクションの組み合わせが最も高度で、Lv3〜4エージェントの核心</li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">トリガー＝指示型・定時型・条件型。アクション＝データ処理・生成・判断。組み合わせでワークフローが生まれる</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch04_s02">
@@ -606,6 +399,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -631,9 +425,12 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #c45a0a;">
   <div class="quiz-hdr" style="color:#8a3e06;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch04_s02" onclick="startRetake('ch04_s02')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch04_s02" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch04_s02_1" style="display:block;">
     <div class="quiz-num">問 1 ／ 3</div>
     <div class="quiz-question">提案書AIのワークフローで、Salesforce上の案件ステージが「提案準備」に変更されたことを検知して起動する仕組みを採用しました。このトリガーはどの種別に該当しますか。</div>
@@ -712,57 +509,16 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#8a3e06;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、ワークフローを柔軟に制御するための基本要素である「変数」と「条件分岐」を学びます。試験では、条件分岐の3つの型、すなわちIf/Else、ルーティング、フィルタリングの違いを理解していることが求められます。最終的には、具体的な業務シナリオに対して、どの条件分岐を用いるべきかを判断できるようになることが目標です。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">条件分岐の3パターン</div>
-<div class="branch-cards">
-  <div class="branch-card" style="border-color:#8a3e06;background:#fff5ec;">
-    <div class="branch-head">
-      <div class="branch-icon">⑆</div>
-      <div class="branch-name">If / Else（二択分岐）</div>
-    </div>
-    <div class="branch-body">条件がTrueなら処理A、FalseならB。最も基本的な分岐。<strong>2択しか存在しない</strong>場合に使う</div>
-    <div class="branch-usecase">例：承認か差し戻しか / エラーなら通知・なければ続行</div>
-  </div>
-  <div class="branch-card" style="border-color:#c45a0a;background:#fff0e0;">
-    <div class="branch-head">
-      <div class="branch-icon">🔀</div>
-      <div class="branch-name">ルーティング（多方向分岐）</div>
-    </div>
-    <div class="branch-body">条件の内容によって<strong>3方向以上</strong>に振り分け。「どのチームに回すか」「どの処理を適用するか」を決定</div>
-    <div class="branch-usecase">例：問い合わせ種別→営業/技術/経理に振り分け / リスクレベル→低中高で処理変更</div>
-  </div>
-  <div class="branch-card" style="border-color:#e07a30;background:#fff8f0;">
-    <div class="branch-head">
-      <div class="branch-icon">🔽</div>
-      <div class="branch-name">フィルタリング（通過・遮断）</div>
-    </div>
-    <div class="branch-body">条件を満たすデータだけを「通過させる」。満たさないものは<strong>除外・遮断・スキップ</strong></div>
-    <div class="branch-usecase">例：スコア80以上の候補者のみ次工程へ / 営業部門宛メールのみ転送</div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#c45a0a;color:#8a3e06;">なぜ条件分岐が必要か同じ処理をすべての案件に当てはめてはいけない</div><div class="ov-section-body">Section18で学んだワークフローは、トリガーからアクションへの流れで動く仕組みでした。しかし実際の業務を思い浮かべると、すべての案件をまったく同じように処理できる場面はほとんどありません。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">エラーハンドリングはIf/Elseの応用であり、「正常系」と「異常系」で分岐させます。</div></div>
 </div>
 
-<div class="ov-subtitle">変数の概念</div>
-<ul class="point-list">
-  <li><strong>変数</strong>：ワークフロー内で値を一時保存する「入れ物」。前のステップの出力を後のステップに渡す仕組み</li>
-  <li>例：「顧客名」変数にS01で抽出した名前を格納→S03でメール送信の宛名に使う</li>
-  <li><strong>エラーハンドリング</strong>：If/Elseの応用。「正常系か異常系か」で分岐し、異常時はフォールバック処理（人間への通知等）を実行。<strong>Human-in-the-Loopの設計と直結</strong></li>
-</ul>
-
-<div class="ov-subtitle">エラーハンドリングの設計原則</div>
-<ul class="point-list">
-  <li>完全自動化を目指しながら、<strong>異常時に人間が介入できる経路</strong>を残す</li>
-  <li>「エラーが起きたら全停止」ではなく「担当者にSlackで通知して手動対応を依頼」するフォールバック設計</li>
-  <li>ガバナンスの観点からも、AIが処理できない・すべきでないケースを人間に戻すパスを明示的に設計することが必須</li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">分岐＝2択(If/Else)・多方向(ルーティング)・除外(フィルタリング)の3種。エラーは「全停止」でなく「人間へ返す」設計で</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch04_s03">
@@ -771,6 +527,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -792,11 +549,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #c45a0a;">
   <div class="quiz-hdr" style="color:#8a3e06;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch04_s03" onclick="startRetake('ch04_s03')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch04_s03" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch04_s03_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-num">問 1 ／ 3</div>
     <div class="quiz-question">提案書生成ワークフローで、Salesforce APIコールが失敗した場合の処理として最も効果的なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s03_1',0,2)">A　ワークフロー全体を停止し、次回のトリガーまで待機する</button>
@@ -815,7 +575,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch04_s03_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-num">問 2 ／ 3</div>
     <div class="quiz-question">あなたは提案書AIのワークフローに条件分岐を追加する設計を検討しています。以下のうち、条件分岐の設計として最も適切な考え方はどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s03_2',0,2)">A　提案の成否に影響するすべての変数で分岐を設計し、可能な限り細かく処理を分けるべきである</button>
@@ -829,7 +589,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch04_s03_2" onclick="retryQ('ch04_s03_2')">↩ もう一度</button>
-      <button class="next-btn" id="nch04_s03_2" onclick="showScore('ch04_s03',2)">結果を見る →</button>
+      <button class="next-btn" id="nch04_s03_2" onclick="showNext('ch04_s03_3')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch04_s03_3" style="display:none;">
+    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-question">あなたは提案書AIのワークフローに条件分岐を追加する設計を検討しています。以下のうち、条件分岐の設計として最も適切な考え方はどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch04_s03_3',0,2)">A　提案の成否に影響するすべての変数で分岐を設計し、可能な限り細かく処理を分けるべきである</button>
+      <button class="choice-btn" onclick="answer('ch04_s03_3',1,2)">B　条件分岐は複雑になるため一切使わず、すべての案件を同じテンプレートで処理すべきである</button>
+      <button class="choice-btn" onclick="answer('ch04_s03_3',2,2)">C　提案の成否に最も影響する変数に絞って条件分岐を設計し、過度に細かい分岐は避けるべきである</button>
+      <button class="choice-btn" onclick="answer('ch04_s03_3',3,2)">D　条件分岐はエラーハンドリングにのみ使用し、業務ロジックには使わないべきである</button>
+    </div>
+    <div class="explanation" id="ech04_s03_3">
+      <div class="ans-label">✅ 正解：C</div>
+      条件分岐の設計では「どの変数で、どの粒度で分岐させるか」の判断が重要です。Aのようにすべてを細かく分岐させるとメンテナンスが大変になり、新しいパターンが加わるたびに設計変更が必要になります。Bのように一切分岐しないと、業界の異なる顧客に同じ構成の提案書が届いてしまいます。提案の成否に最も影響する変数に絞って設計するのが、品質と保守性のバランスが取れた実務的なアプローチです。 267 Chapter4 自動化レベルとワークフロー設計 CHAPTER 4 Section22. コンテキストエンジニアリング概論学習のポイント本Sectionでは、LLMに適切な文脈情報を与え、望ましい出力を得るための考え方である「コンテキストエンジニアリング」を理解します。試験では、プロンプトエンジニアリングとの違い、LLM に与える情報の種類とその選び方、さらに「出力品質の問題はコンテキスト設計の問題として捉える必要がある」という考え方が問われます。 1 知識コンテキストエンジニアリングとは何か AIエージェントの出力品質に問題が生じたとき、多くの組織では、まずモデルの性能に原因があると考えがちです。しかし、実務では、モデルを変更しても期待した改善が得られない場合が少なくありません。その理由は、問題の中心がモデルそのものの性能ではなく、モデルにどのような情報を与え、どのような条件で回答させているかという設計にあることが多いためです。 LLMは「与えられたコンテキストの範囲内で」回答を生成します。どれほど高性能なモデルを使っても、渡す情報が不十分であれば的外れな出力になります。情報が過剰であればノイズに埋もれて要点を見失います。情報の順序が悪ければ、重要な前提を見落とします。コンテキストエンジニアリングとは、LLMに渡す文脈情報を体系的に設計・管理する技術です。「何を、どのフォーマットで、どのタイミングで、どの順序で渡すか」を設計することが、LLMの能力を引き出す鍵であり、AIエージェント導入の成否を分ける最重要の技術領域です。この概念を広く知らしめたのは、元OpenAI研究者のAndrej Karpathy氏による発言です。同氏はLLMを新しい種類のオペレーティングシステム（OS）に例え、コンテキストウィンドウをCPUに対するRAM（作業メモリ）と位置づけました。 OSがRAMに載せるデータを管理するように、開発者がコンテキストウィンドウに載せる情報を設計・管理する行為こそがコンテキストエンジニアリングである、という考え方です。この比喩は「プロンプトの書き方」ではなく「何をメモリに載せるか」という問いに設計の本質があることを鮮やかに示し、多くの開発者・実務者の認識を塗り替えました。なお、この発言と時を同じくしてShopify CEOのTobias Lütke氏も「プロンプトエンジニアリングよりもコンテキストエンジニアリングという言葉のほうがコアスキルを的確に表している」と発信しており、二つの声が重なる形でこの概念の認知が一気に広がりました。前のSectionで繰り返し登場した「AIエージェントにとって見えないものは、存在しないのと同じ」という原則は、コンテキストエンジニアリングの核心をそのまま表しています。 268 Chapter4 自動化レベルとワークフロー設計プロンプトエンジニアリングとの違い POINT コンテキストエンジニアリングを理解するには、まずプロンプトエンジニアリングとの違いを整理する必要があります。プロンプトエンジニアリングは、LLMに対してどのように指示を出せば望ましい出力が得られるかという、指示文そのものの工夫に焦点を当てた考え方です。これに対し、コンテキストエンジニアリングは、指示文に加えて、LLMに与える文書、参考情報、利用可能なツール、会話履歴などを含め、回答の前提となる情報全体を設計する考え方です。たとえば、新人に業務を依頼する場面で考えることができます。プロンプトエンジニアリングは、「この提案書を作成してください」といった指示の出し方を工夫することに当たります。一方、コンテキストエンジニアリングは、その指示に加えて、過去の成功事例、社内ルール、顧客情報、利用可能な資料やツールなど、業務に必要な情報をそろえて渡すことに当たります。このように、プロンプトエンジニアリングが指示の設計を扱うのに対し、コンテキストエンジニアリングは指示を含めた入力全体の設計を扱います。したがって、プロンプトエンジニアリングは、コンテキストエンジニアリングの一部として位置づけることができます。 269 Chapter4 自動化レベルとワークフロー設計コンテキストエンジニアリングが解決する4つの課題コンテキストエンジニアリングが必要になる理由は、LLMが抱える4つの本質的な限界にあります。いずれもモデルを高性能にするだけでは解消しない、情報管理の問題です。 1 ⼊⼒可能な情報量の限界 LLMには、一度に処理できる情報量の上限（コンテキストウィンドウ）があります。エージェントが長時間実行されると、ツールの実行結果・検索データ・対話履歴が蓄積され、容易にこの上限に達します。上限を超えた情報は処理されず、重要な情報が除外されたり、古い情報が残り続けて判断を阻害したりします。より大きなコンテキストウィンドウを持つモデルが開発されても、エージェントが扱う情報量の増加に比例して問題は残り続けます。 2 認識の限界（Lost in the Middle）コンテキストウィンドウに情報が収まっていても、LLMがすべての情報を均等に認識できるわけではありません。スタンフォード大学の研究によれば、LLMはコンテキストの先頭と末尾に配置された情報を参照しやすく、中間部分に置かれた情報は見落としやすい傾向があります。これを「Lost in the Middle」と呼びます。重要な情報をどの位置に配置するかが、出⼒品質を⼤きく左右します。 3 コンテキスト汚染 LLMが生成した不正確な情報（ハルシネーション）がコンテキストに混入し、後続の判断に悪影響を与える問題です。エージェントは自身の出力を次の入力として使用するため、一度発生したハルシネーションが連鎖的に拡散する危険性があります。誤情報が訂正されることなく蓄積され、最終的な判断の品質を大きく低下させます。 4 コンテキスト混乱タスクに無関係な情報や矛盾する情報が混在することで、LLMの推論が阻害される問題です。過去の対話履歴がそのまま残っていたり、古い企業情報と最新の企業情報が混在したりすると、LLMはどちらを信用すべきか判断できず、不正確な結論を出します。情報の関連性・時系列・矛盾を管理する設計が必要です。 270 Chapter4 自動化レベルとワークフロー設計 LLMに渡す情報の7種類 POINT コンテキストエンジニアリングを実践するには、LLMに渡せる情報の種類を体系的に把握しておく必要があります。7つに整理します。 1 システムプロンプトAIエージェントの「⼈格と前提」を定義するすべての対話に共通する、AIエージェントの役割・前提条件・制約条件・行動指針を定義するベースの設定です。「あなたは法務アシスタントです。法律用語を使わず平易な日本語で回答し、末尾に必ず免責事項を付けてください」のように、AIエージェントが常に守るべき前提を記述します。コンテキストエンジニアリングの土台であり、最初に最も時間をかけて設計すべき要素です。エージェントが長時間実行される中でタスクの目的を見失わないよう、「ぶれない軸」として機能します。 2 ユーザープロンプト都度の指⽰と⼊⼒ AIエージェントを使う人が対話の中で都度入力する指示や質問です。エージェント環境では、人間からの直接的な指示だけでなく、システム内部で生成される中間的なタスク指示も含みます。 271 Chapter4 自動化レベルとワークフロー設計入力フォームの構造化や、ユーザーが入力すべき情報の誘導設計が重要であり、「自由に書いてください」よりも「業界・課題・予算を明記してください」と入力形式を設計するだけで、AIエージェントへの入力品質が大幅に向上します。 3 短期メモリ現在のセッション内の⽂脈を保持する POINT 現在のセッション内での対話履歴と状態情報です。ユーザーとエージェントのやり取り・ツール実行の結果・中間的な判断内容などが含まれます。これによりエージェントは文脈を理解し、一貫した対応を継続できます。管理のポイントは、古い情報が現在のタスクに不要になった場合は適切に除去し、重要な決定事項は保持し続けることです。 4 ⻑期メモリセッションをまたいで蓄積される知識複数のセッションにわたって保持される持続的な情報です。ユーザーの好み・過去のプロジェクトの要約・学習した失敗パターンなど、将来の判断に活用される情報が格納されます。長期メモリには3種類あります。「特定の状況でどう対応すべきか」という手続き記憶、「過去にどんな出来事があったか」というエピソード記憶、「この企業の主力製品は何か」という事実情報である意味記憶です。 5 外部知識（RAG）社内固有の情報をリアルタイムで追加する POINT RAGによってナレッジベースから検索・取得した情報です。LLMが事前学習で知らない社内固有の情報を、実行時にコンテキストへ追加できます。重要なのは、RAGで取得した情報をそのまま追加すればいいわけではないという点です。検索結果の関連度・情報の鮮度・情報量のバランスを考慮した上でコンテキストに組み込む設計が必要です。 272 Chapter4 自動化レベルとワークフロー設計 ⑥ツールの情報AIエージェントが使える道具を定義する AIエージェントが利用できるツールの定義と使い方の説明です。メール送信・データベース検索・ファイル操作・外部 API呼び出しなど、多様な機能の名称・パラメータ・実行条件・期待される出力形式などがこれにあたります。ツールの説明が曖昧だと、AIエージェントは適切なツールを選べず、誤ったツールを呼び出すか、ツールを使わずに自分の知識だけで回答しようとします。類似した機能を持つツールが多数ある場合、RAGを活用してタスクに適したツールのみを選択して提示する設計が有効です。 ⑦構造化出⼒回答の形式を指定する LLMの応答形式を制御する指示です。JSON・表形式・特定のテンプレートなど、後続の処理で扱いやすい形式を指定します。エージェントでは出力が別のシステムやツールに渡されるため、形式がぶれると解析エラーの原因になります。コンテキストエンジニアリングの4つの⼿法コンテキストウィンドウを効率的に使うための手法は、大きく4つに分類できます。これらは単独で使うものではなく、組み合わせて初めて効果を発揮します。 1 書き出し（Write）重要な情報を外部に保存する重要な情報を外部のストレージに書き出し、コンテキストウィンドウの容量を確保する手法です。Manusがタスクの進行に合わせてToDoリストを常に書き直していたのは、この手法の実践例です。 273 Chapter4 自動化レベルとワークフロー設計重要な判断根拠・実行手順・失敗の記録を外部ファイルに保存することで、コンテキストウィンドウが圧迫されても情報が失われず、必要なときに再利用できます。「Lost in the Middle」対策としても有効で、重要な情報をメモとして外部に出すことで、コンテキストの中央部分に埋もれることを防げます。ただし、すべての情報を保存すると検索時のノイズが増加します。情報の重要度に基づいた整理・古いデータの定期的な削除・RAGシステムとの連携が、書き出しを機能させるための設計上の注意点です。 2 選択（Select）必要な情報だけを取り出す膨大な情報の中から現在のタスクに必要なものだけを取得する手法です。保存されたメモや記憶から関連するものを選択的に読み込む「メモリの読み込み」、多数存在するツールの中からタスクに適したものだけを選ぶ「ツールの選択」、RAGで外部知識から関連情報を絞り込む「情報の検索」などがこれにあたります。選択の精度がコンテキストの品質を決定します。関連性の低い情報を渡すことは、渡さないことより悪い場合があります。 3 圧縮（Compress）情報の密度を⾼めるコンテキストに含まれる情報を要約・削減し、重要な内容のみを保持する手法です。長大な対話履歴やツール実行結果を要約して要点のみ保持する「コンテキストの要約」、時系列と関連性に基づいて不要になった情報を削除する「古い情報の削除」などが含まれます。ただし圧縮は必要な情報の欠落リスクを伴うため、可能な限り避けるべき手法です。圧縮が必要になる前に、タスクの分割や情報選択の最適化を先に検討します。 4 分割（Isolate）複雑な問題を⼩さく分けて処理する複雑な問題は、そのまま一つの大きなタスクとして扱うのではなく、小さな部分問題に分割して処理することが有効です。これにより、各処理で必要となる情報量を抑えることができ、コンテキストウィンドウの制約に対応しやすくなります。分割の方法には、主に2つあります。1つ目は、複数のAIエージェントが異なる専門領域を担当し、それぞれ独立したコンテキストで処理するマルチエージェント構成です。2つ目は、1つのAIエージェントの中で、大きなタスクを段階的に処理し、各段階で必要な情報だけを保持する方法です。 274 Chapter4 自動化レベルとワークフロー設計 POINT ただし、分割の適用は、複雑な方法から始めるのではなく、単純な方法から検討することが重要です。まずは指示を短く明確にし、次に一つのセッション内で段階的に処理できるかを確認し、それでも難しい場合に限って、複数の専門エージェントによる分散処理を検討します。コンテキストの量と質のトレードオフコンテキストエンジニアリングで起こりやすい誤解の一つは、「情報は多く与えるほど良い」という考え方です。しかし、LLMに大量の情報を一度に渡すことが、必ずしも回答品質の向上につながるわけではありません。情報を過剰に与えると、主に3つの問題が生じます。第1に、処理する情報量が増えるため、応答速度が低下しやすくなります。第2に、トークン消費量が増えるため、コストが高くなります。第3に、本当に重要な情報が、関係の薄い情報の中に埋もれ、AIが適切に参照しにくくなるおそれがあります。 275 Chapter4 自動化レベルとワークフロー設計 POINT そのため、コンテキストエンジニアリングでは、「何を渡すか」と同じくらい、「何を渡さないか」を設計することが重要です。たとえば、RAGで取得したチャンクをすべて入力するのではなく、関連性の高いものに絞って渡す、過去の会話履歴をすべて残すのではなく、今回のタスクに必要な部分だけを使う、といった判断が必要になります。 POINT このように、コンテキストエンジニアリングとは、コンテキストウィンドウの中に情報をできるだけ多く詰め込むことではなく、次の処理に必要な情報だけを選び、適切に渡すことだと理解する必要があります。コンテキストエンジニアリングの実践4つの設計原則 276 Chapter4 自動化レベルとワークフロー設計 1 必要⼗分の原則タスクに必要な情報はすべて含め、不要な情報は含めない。「関係するかもしれない」という理由で情報を追加するのではなく、「この情報がなければ正しい出力ができないか」を問い続けます。 2 構造化の原則重要な制約条件はシステムプロンプトの冒頭に置く・参照情報と指示文を明確に区別する・番号付きリストや見出しで情報を構造化する。同じ情報でも、渡す形式と順序によって出力品質が変わります。人間にとって読みやすい文書とAIエージェントにとって処理しやすい構造は異なる場合があります。 3 鮮度の原則 LLMはコンテキストウィンドウの後半（最新部分）の情報をより強く参照する傾向があります。重要な指示や直近の状況ほど、コンテキストの後半に配置する設計が有効です。ManusがToDoリストを常に書き直すことで「計画をコンテキストの最新部分に保ち続ける」設計をしていたのは、この特性を利用したものです。 4 反復検証の原則コンテキストの設計は一度で完成しません。情報を1つ追加・削除したときに出力がどう変わるかを小さく試しながら、フィードバックループで改善していく姿勢がコンテキストエンジニアリングの実践的な進め方です。 277 Chapter4 自動化レベルとワークフロー設計「安いデモ」と「魔法のようなエージェント」の違いコンテキストエンジニアリングの効果は、同じ機能を持つエージェントの⽐較で最も鮮明に現れます。「安いデモ」レベルのエージェントは、ユーザーからの単純な入力のみを処理します。「明日の会議について確認したい」という要求に対して、「明日の会議について詳細を教えてください。何時からでしょうか？」という機械的な返答になります。「魔法のようなエージェント」は、同じ要求に対してコンテキストエンジニアリングの手法を活用します。ユーザーのカレンダー情報を取得し（選択）、過去のメール履歴から相手との関係性を把握し（RAG検索）、会議の背景情報を整理します（書き出し）。その結果、「田中部長との四半期レビューですね。明日の午後2時からの予定ですが、前回の議事録を確認したところ売上データの準備が必要でした。最新の数値をお送りしますか？」という具体的で実用的な応答を生成できます。この差は、コードの複雑さではなく、LLMに提供するコンテキストの質によって⽣まれます。ハーネスエンジニアリングAIエージェントが正しく動ける環境を設計するコンテキストエンジニアリングがLLMに「渡す情報の設計」であるとすれば、ハーネスエンジニアリングはAIエージェントが「正しく動ける環境全体の設計」です。ハーネスとは馬を正しい方向に導く手綱のことであり、AIエージェントが暴走せず狙い通りの成果を出し続けるための包括的な設計概念です。コンテキストエンジニアリングはハーネスエンジニアリングの中核を担いますが、それだけでは不十分です。ハーネスエンジニアリングが扱う範囲は以下の4つの領域で構成されます。 278 Chapter4 自動化レベルとワークフロー設計 1 コンテキスト設計本Sectionで学んだコンテキストエンジニアリングそのものです。LLMに渡す情報の種類・量・順序・形式を設計します。 2 データ品質管理前のSectionで扱った「AIエージェントにとって読みやすいデータ」「ナレッジベースの鮮度管理」「AI Readyデータ」は、このデータ品質管理に当たります。どれほど適切にコンテキストを設計しても、参照するデータに不足、誤り、古い情報、表記のばらつきがあれば、出力品質は安定しません。したがって、AIエージェントの品質を高めるには、コンテキスト設計だけでなく、参照データそのものの品質を維持することが必要です。 3 出⼒の⾃動チェック AIエージェントの出力が期待した形式・内容・品質を満たしているかを自動で検証する仕組みです。エラーハンドリングと組み合わせることで、問題のある出力が後続処理に流れる前に検出・修正できます。「AIエージェントが自律的に動く」環境では、出力の品質を人間が都度確認できないため、この自動チェックの設計が特に重要になります。 4 Human-in-the-Loopの設計 AIエージェントが自動で判断できない場合や、自動で判断させるべきでない場合に、人間へ引き継ぐための確認ポイントを設計することが重要です。 POINT AIエージェント導入では自動化を進めることが目的になりますが、異常時、高リスクの処理、AIエージェントの判断に十分な確信が持てない場合には、人間が介入できる流れをあらかじめ設けておく必要があります。このような引継ぎの仕組みを明確にしておくことで、自動化の効果を確保しつつ、ガバナンスとリスク管理を両立しやすくなります。ハーネスエンジニアリングが示す本質的な視点は、「AIエージェントの回答品質はAIモデルの賢さだけでは決まらない」ということです。同じモデルでも、コンテキストの設計・データの整備・チェック体制の設計によって成果は大きく変わります。性能を上げることよりも、AIエージェントが正しく動ける環境を整えることのほうが、多くの場合において効果的かつ即効性があります。 279 Chapter4 自動化レベルとワークフロー設計コンテキストエンジニアリングとLv.2〜Lv.4の関係コンテキストエンジニアリングは、AIエージェントのすべての⾃動化レベルに横断的に関わります。 Lv.2のカスタムチャットボットでは、システムプロンプトとナレッジの設計がコンテキストエンジニアリングの主戦場です。GPTsやGemの出力品質の差は、ほぼこの設計の差で説明できます。Lv.3のワークフローでは、各アクションに渡すコンテキストの設計が重要になります。前のステップの出力結果をどのように次のステップのコンテキストに組み込むか、変数をどのタイミングでプロンプトに埋め込むかが、ワークフロー全体の精度を決めます。Lv.4の自律型エージェントでは、コンテキストエンジニアリングが最も複雑かつ重要になります。 Manusが「ファインチューニングではなくコンテキストエンジニアリングに賭けた」と明言していたように、自律型エージェントの品質はモデルの性能よりもコンテキストの設計で決まります。エージェントが自律的に判断を積み重ねるほど、各ステップで渡すコンテキストの設計精度が最終的な成果の品質を規定します。ツールを選ぶことより、コンテキストを設計することに投資する。この発想の転換が、AIエージェントを本物の業務変革につなげる条件です。 280 Chapter4 自動化レベルとワークフロー設計 2 業務シナリオ：提案書AIでのコンテキスト設計提案書自動生成AIエージェントでは、「営業担当者が顧客名と要件を入力するだけで、高品質な提案書ドラフトが生成される」ことを目指します。LLMに渡す情報をどう設計するかが、出力品質を直接左右します。判断 1 基盤となるコンテキストの設計まず、すべての提案書⽣成に共通する情報を設計します。システムプロンプトに「あなたの役割は提案書のプロとしてクライアントの課題に寄り添い、具体的な解決策を提示することにあります。トーンは信頼感のあるビジネス文書として、断定的かつ前向きな表現を使ってください」と記述します。これがなければ、LLMは汎用的な文章スタイルで出力してしまいます。判断 2 動的に切り替えるコンテキストの設計次に、顧客や案件ごとに変わる情報の設計です。ここが出⼒品質の差を⽣むポイントです。 Salesforceから取得した顧客情報をコンテキストに含めます。さらに、Section19で設計した業界別ルーティングを適用し、製造業の顧客には「生産効率・品質管理・サプライチェーンの観点を重視してください」、金融業の顧客には「コンプライアンス・リスク管理・規制対応の観点を重視してください」といった業界固有の指示を自動で差し替えます。 RAGを通じて、社内ナレッジベースから類似業界・類似規模の過去受注提案書を検索し、コンテキストに追加します。過去の商談で顧客が示した予算上限や優先課題が記憶されていれば、それも参照して提案内容を調整します。 281 Chapter4 自動化レベルとワークフロー設計 POINT ここで重要なのは、コンテキストの取捨選択です。過去の受注提案書が20件ヒットしたとしても、すべてをコンテキストに含めれば情報過多になります。業界・規模・課題の類似度が高い上位2〜3 件に絞り、「これらの過去事例を参考に提案書を作成してください」と渡すほうが、出力品質は高くなります。判断 3 コンテキストの品質が出⼒品質を決める提案書AIの試験運⽤で、以下の品質問題が発覚したとします。問題A：提案書のトーンがカジュアルすぎる。 →原因はシステムプロンプトのトーン指定が不十分であること。「信頼感のあるビジネス文書」だけでは曖昧なので、「です・ます調で、主語を明示し、根拠を数値で示す」のように具体化します。問題B：顧客の業界に合わない事例が引用されている。 →原因はRAGの検索精度の問題か、業界別ルーティングが機能していないこと。Section14のチャンク設計やメタデータの見直しが必要です。問題C：前回の商談で伝えた予算上限が反映されていない。原因は過去の商談情報が記憶されていないか、コンテキストに含められていないことでした。このように、出力品質の問題はほぼすべて「LLMに渡している情報の問題」に帰着します。モデルを変更する前に、まず「必要な情報が正しいフォーマットで渡されているか」を確認するのがコンテキストエンジニアリングの基本姿勢です。この「モデルの前にコンテキストを疑う」という姿勢は、Section16で学んだ「AIの性能より環境設計が効く」というハーネスエンジニアリングの考え方と一貫しています。出力に問題があったとき、以下の順序で原因を切り分けます。第1に、必要な情報がコンテキストに含まれているか（情報の欠落）。第2に、不要な情報が混じっていないか（ノイズ）。第3に、情報のフォーマットや指示の粒度は適切か（伝え方）。この3つを確認してなお問題が残る場合に初めて、モデルの変更やアーキテクチャの見直しを検討します。 282 Chapter4 自動化レベルとワークフロー設計実践事例：社内データをAIで使える資産に変える 283 Chapter4 自動化レベルとワークフロー設計 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch04_s03_3" onclick="retryQ('ch04_s03_3')">↩ もう一度</button>
+      <button class="next-btn" id="nch04_s03_3" onclick="showScore('ch04_s03',3)">結果を見る →</button>
     </div>
   </div>
 
@@ -854,77 +633,19 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#8a3e06;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、LLMに適切な文脈情報を与え、望ましい出力を得るための考え方である「コンテ
 キストエンジニアリング」を理解します。試験では、プロンプトエンジニアリングとの違い、LLM
 に与える情報の種類とその選び方、さらに「出力品質の問題はコンテキスト設計の問題として捉え
 る必要がある」という考え方が問われます。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">コンテキストエンジニアリングとは</div>
-<ul class="point-list">
-  <li><strong>定義</strong>：LLMに渡す文脈情報（何を・どのフォーマットで・どのタイミングで・どの順序で）を体系的に設計・管理する技術</li>
-  <li><strong>Andrej Karpathy（元OpenAI）の比喩</strong>：LLM＝新種のOS、コンテキストウィンドウ＝RAM。OSがRAMに載せるデータを管理するように、コンテキストウィンドウに載せる情報を設計する行為がコンテキストエンジニアリング</li>
-  <li><strong>プロンプトエンジニアリングとの違い</strong>：プロンプト＝指示文の工夫（コンテキストエンジニアリングの一部）。コンテキストエンジニアリング＝指示文＋参考文書＋ツール＋会話履歴など<strong>入力全体の設計</strong></li>
-</ul>
-
-<div class="ov-subtitle">LLMが抱える4つの本質的課題</div>
-<div class="problem-cards">
-  <div class="problem-card" style="border-color:#8a3e06;">
-    <div class="problem-head">コンテキストウィンドウ限界</div>
-    <div class="problem-body">一度に処理できる情報量の上限。長時間実行で蓄積されたツール結果・履歴が上限を超える。重要情報が除外される</div>
-  </div>
-  <div class="problem-card" style="border-color:#c45a0a;">
-    <div class="problem-head">Lost in the Middle</div>
-    <div class="problem-body">スタンフォード研究：LLMはコンテキストの<strong>先頭と末尾は参照しやすく、中間は見落としやすい</strong>。重要情報の配置順が出力品質を左右する</div>
-  </div>
-  <div class="problem-card" style="border-color:#e07a30;">
-    <div class="problem-head">コンテキスト汚染</div>
-    <div class="problem-body">ハルシネーションがコンテキストに混入→後続の判断に悪影響。AIの自己出力が次の入力になるため誤りが連鎖的に拡散</div>
-  </div>
-  <div class="problem-card" style="border-color:#e0956a;">
-    <div class="problem-head">コンテキスト混乱</div>
-    <div class="problem-body">無関係・矛盾する情報が混在するとLLMの推論が阻害される。古い情報と最新情報が混在すると正確な判断が困難</div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#c45a0a;color:#8a3e06;">コンテキストエンジニアリングとは何か</div><div class="ov-section-body">AIエージェントの出力品質に問題が生じたとき、多くの組織では、まずモデルの性能に原因があると考えがちです。しかし、実務では、モデルを変更しても期待した改善が得られない場合が少なくありません。その理由は…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">プロンプトエンジニアリングはLLMへの指示の書き方を工夫する技術であり、コンテキストエンジニアリングの一部です。</div></div>
 </div>
 
-<div class="ov-subtitle">LLMに渡す情報7種類</div>
-<div class="info-types">
-  <div class="info-type">
-    <div class="info-badge">①</div>
-    <div class="info-content"><strong>システムプロンプト</strong>：役割・前提・制約・行動指針。AIエージェントの「ぶれない軸」</div>
-  </div>
-  <div class="info-type">
-    <div class="info-badge">②</div>
-    <div class="info-content"><strong>ユーザープロンプト</strong>：都度の指示・質問。人間からの直接入力</div>
-  </div>
-  <div class="info-type">
-    <div class="info-badge">③</div>
-    <div class="info-content"><strong>会話履歴</strong>：過去の対話記録。文脈の継続性を保つ。蓄積管理が必要</div>
-  </div>
-  <div class="info-type">
-    <div class="info-badge">④</div>
-    <div class="info-content"><strong>ツール実行結果</strong>：API応答・DB検索結果・計算結果</div>
-  </div>
-  <div class="info-type">
-    <div class="info-badge">⑤</div>
-    <div class="info-content"><strong>RAG検索結果</strong>：ナレッジベースから取得した関連文書・参考情報</div>
-  </div>
-  <div class="info-type">
-    <div class="info-badge">⑥</div>
-    <div class="info-content"><strong>構造化データ</strong>：テーブル・JSONなど整形された情報</div>
-  </div>
-  <div class="info-type">
-    <div class="info-badge">⑦</div>
-    <div class="info-content"><strong>外部コンテキスト</strong>：現在時刻・ユーザー属性・環境情報など</div>
-  </div>
-</div>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">出力品質の問題はモデルでなくコンテキスト設計の問題。何をRAMに載せるかが勝負。LostInMiddle・汚染・混乱の4課題を設計で解決</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch04_s04">
@@ -933,6 +654,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -956,11 +678,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #c45a0a;">
   <div class="quiz-hdr" style="color:#8a3e06;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch04_s04" onclick="startRetake('ch04_s04')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch04_s04" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch04_s04_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 3</div>
+    <div class="quiz-num">問 1 ／ 4</div>
     <div class="quiz-question">コンテキストエンジニアリングとプロンプトエンジニアリングの関係として、最も適切な説明はどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s04_1',0,1)">A　プロンプトエンジニアリングとコンテキストエンジニアリングはまったく別の技術であり、互いに関係しない</button>
@@ -979,7 +704,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch04_s04_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 3</div>
+    <div class="quiz-num">問 2 ／ 4</div>
     <div class="quiz-question">提案書AIの出力品質に以下の問題が発生しています。最も適切な改善アプローチはどれですか。問題：提案書のトーンがカジュアルすぎて、ビジネス⽂書として顧客に送れない</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s04_2',0,2)">A　LLMをより高性能なモデルに切り替える</button>
@@ -998,7 +723,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch04_s04_3" style="display:none;">
-    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-num">問 3 ／ 4</div>
     <div class="quiz-question">AIエージェントの出力品質が期待を下回るとき、原因の切り分けとして最も適切な順序はどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch04_s04_3',0,1)">A　モデルの性能を確認する → コンテキストを見直す → データ品質を確認する</button>
@@ -1012,7 +737,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch04_s04_3" onclick="retryQ('ch04_s04_3')">↩ もう一度</button>
-      <button class="next-btn" id="nch04_s04_3" onclick="showScore('ch04_s04',3)">結果を見る →</button>
+      <button class="next-btn" id="nch04_s04_3" onclick="showNext('ch04_s04_4')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch04_s04_4" style="display:none;">
+    <div class="quiz-num">問 4 ／ 4</div>
+    <div class="quiz-question">AIエージェントの出力品質が期待を下回るとき、原因の切り分けとして最も適切な順序はどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch04_s04_4',0,1)">A　モデルの性能を確認する → コンテキストを見直す → データ品質を確認する</button>
+      <button class="choice-btn" onclick="answer('ch04_s04_4',1,1)">B　コンテキストに必要な情報が含まれているかを確認する → 不要な情報がノイズになっていないかを確認する → 情報のフォーマットや指示の粒度を確認する → それでも解決しない場合にモデルの変更を検討する</button>
+      <button class="choice-btn" onclick="answer('ch04_s04_4',2,1)">C　データ品質を確認する → モデルの性能を確認する → コンテキストを見直す</button>
+      <button class="choice-btn" onclick="answer('ch04_s04_4',3,1)">D　まずモデルを最新版にアップグレードし、改善しなければコンテキストを見直す</button>
+    </div>
+    <div class="explanation" id="ech04_s04_4">
+      <div class="ans-label">✅ 正解：B</div>
+      コンテキストエンジニアリングの基本姿勢は「モデルを変える前に、渡している情報を見直す」ことです。出力品質の問題は多くの場合、情報の欠落、ノイズの混入、伝え方の粒度の問題に帰着します。これらを順に確認し、それでも解決しない場合に初めてモデルの変更を検討するのが効率的な切り分け手順です。 AやDのようにモデル変更を先に検討するアプローチは、問題の原因を特定しないまま対策を講じることになり、コストがかかる割に効果が得られないリスクがあります。 287
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch04_s04_4" onclick="retryQ('ch04_s04_4')">↩ もう一度</button>
+      <button class="next-btn" id="nch04_s04_4" onclick="showScore('ch04_s04',4)">結果を見る →</button>
     </div>
   </div>
 
@@ -1058,32 +802,57 @@ function answer(qid, ci, correct) {
   var next  = document.getElementById('n' + qid);
   expl.classList.add('show');
 
+  var sid      = qid.replace(/_\d+$/, '');
+  var section  = document.getElementById(sid);
+  var isRetake = section && section.classList.contains('retake-mode');
+
   if (ci === correct) {
     if (next) next.classList.add('show');
     localStorage.removeItem('qfail_' + qid);
+    if (isRetake) localStorage.removeItem('qwrong_' + qid);
   } else {
     expl.classList.add('hint');
     if (retry) retry.classList.add('show');
     localStorage.setItem('qfail_' + qid, '1');
+    localStorage.setItem('qwrong_' + qid, '1');
   }
+  updateRetakeBtn(sid);
+}
+
+function resetQuizBlock(qid) {
+  QS[qid] = null;
+  document.querySelectorAll('#q' + qid + ' .choice-btn').forEach(function(b) {
+    b.classList.remove('correct', 'wrong', 'dimmed');
+  });
+  var expl = document.getElementById('e' + qid);
+  if (expl) expl.classList.remove('show', 'hint');
+  var retry = document.getElementById('r' + qid);
+  if (retry) retry.classList.remove('show');
+  var next = document.getElementById('n' + qid);
+  if (next) next.classList.remove('show');
 }
 
 function retryQ(qid) {
-  QS[qid] = null;
-  document.querySelectorAll('#q' + qid + ' .choice-btn').forEach(b => {
-    b.classList.remove('correct','wrong','dimmed');
-  });
-  var expl = document.getElementById('e' + qid);
-  expl.classList.remove('show','hint');
-  document.getElementById('r' + qid).classList.remove('show');
+  resetQuizBlock(qid);
 }
 
 function showNext(nqid) {
+  var sid = nqid.replace(/_\d+$/, '');
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
   var el = document.getElementById('q' + nqid);
   if (el) { el.style.display = 'block'; el.scrollIntoView({behavior:'smooth', block:'start'}); }
 }
 
 function showScore(sid, total) {
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
   var ok = 0;
   for (var i = 1; i <= total; i++) {
     var st = QS[sid + '_' + i];
@@ -1097,6 +866,106 @@ function showScore(sid, total) {
   }
 }
 
+function startRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  var wrongQids = [];
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) {
+      wrongQids.push(key.replace('qwrong_', ''));
+    }
+  }
+  if (!wrongQids.length) return;
+  wrongQids.sort(function(a, b) {
+    return parseInt(a.split('_').pop()) - parseInt(b.split('_').pop());
+  });
+
+  section.classList.add('retake-mode');
+  section.dataset.retakeQueue = JSON.stringify(wrongQids);
+  section.dataset.retakeIdx   = '0';
+
+  var score = document.getElementById('sc_' + sid);
+  if (score) score.classList.remove('show');
+
+  section.querySelectorAll('.quiz-block').forEach(function(block) {
+    block.style.display = 'none';
+  });
+  wrongQids.forEach(function(qid) { resetQuizBlock(qid); });
+
+  var first = document.getElementById('q' + wrongQids[0]);
+  if (first) { first.style.display = 'block'; first.scrollIntoView({behavior:'smooth', block:'start'}); }
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'block';
+
+  var btn = document.getElementById('rtk_' + sid);
+  if (btn) btn.style.display = 'none';
+}
+
+function retakeAdvance(sid) {
+  var section = document.getElementById(sid);
+  if (!section || !section.classList.contains('retake-mode')) return;
+  var queue = JSON.parse(section.dataset.retakeQueue || '[]');
+  var idx   = parseInt(section.dataset.retakeIdx || '0');
+
+  var cur = document.getElementById('q' + queue[idx]);
+  if (cur) cur.style.display = 'none';
+
+  idx++;
+  section.dataset.retakeIdx = String(idx);
+
+  if (idx < queue.length) {
+    var nxt = document.getElementById('q' + queue[idx]);
+    if (nxt) { nxt.style.display = 'block'; nxt.scrollIntoView({behavior:'smooth', block:'start'}); }
+  } else {
+    endRetake(sid);
+  }
+}
+
+function endRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  section.classList.remove('retake-mode');
+  delete section.dataset.retakeQueue;
+  delete section.dataset.retakeIdx;
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'none';
+
+  section.querySelectorAll('.quiz-block').forEach(function(block, i) {
+    var qid = block.id.replace(/^q/, '');
+    resetQuizBlock(qid);
+    block.style.display = (i === 0) ? 'block' : 'none';
+  });
+
+  updateRetakeBtn(sid);
+}
+
+function updateRetakeBtn(sid) {
+  var count = 0;
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) count++;
+  }
+  var btn = document.getElementById('rtk_' + sid);
+  if (!btn) return;
+  if (count > 0) {
+    btn.textContent = '❌ ' + count + '問 再テスト';
+    btn.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+function initRetakeBtns() {
+  document.querySelectorAll('section[id^="ch"]').forEach(function(sec) {
+    updateRetakeBtn(sec.id);
+  });
+}
+
 window.addEventListener('load', function() {
   document.querySelectorAll('.status-btns[data-sid]').forEach(function(wrap) {
     var v = loadStatus('s_' + wrap.dataset.sid);
@@ -1105,8 +974,8 @@ window.addEventListener('load', function() {
       if (b) b.classList.add('active');
     }
   });
+  initRetakeBtns();
 });
 </script>
-<a href="index.html" class="float-home">📚 目次</a>
 </body>
 </html>

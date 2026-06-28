@@ -196,6 +196,17 @@ body {
 }
 .score-banner.show { display: block; }
 .score-main { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.retake-btn-main {
+  display: block; width: 100%; background: #fce8e6; color: #b31412;
+  border: 2px solid #ea4335; border-radius: 8px; padding: 10px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  margin-bottom: 12px; -webkit-tap-highlight-color: transparent;
+}
+.retake-banner {
+  background: #fff3e0; border: 2px solid #ff9500; border-radius: 8px;
+  padding: 10px 14px; margin-bottom: 12px;
+  font-size: 14px; font-weight: 700; color: #c67200; text-align: center;
+}
 
 /* ── ナビ ────────────────────────────────── */
 .nav-footer { display: flex; gap: 10px; margin-top: 16px; padding-bottom: 24px; }
@@ -223,28 +234,16 @@ body {
 .section-link:last-child { border-bottom: none; }
 .section-link:active { background: #f5f5f7; }
 .sec-num { font-weight: 700; font-size: 12px; min-width: 28px; }
-.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; flex-shrink: 0; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; flex-shrink: 0; margin-left: auto; }
 .status-dot.done  { background: #34a853; }
 .status-dot.later { background: #4285f4; }
-
-/* ── 誤答バッジ ─────────────────────────── */
-.fail-badge {
-  display: none; margin-left: auto;
-  background: #ea4335; color: white;
-  font-size: 10px; font-weight: 700;
-  border-radius: 10px; padding: 2px 7px;
-  flex-shrink: 0; letter-spacing: .2px;
-}
-.fail-badge.has-fail { display: inline-flex; align-items: center; gap: 2px; }
-.section-link.has-fail { background: #fff5f5; }
-.section-link.has-fail:active { background: #fce8e6; }
 </style>
 </head>
 <body>
 <div class="index-header">
   <h1>📚 AICX 学習マップ</h1>
   <p>AIエージェント・ストラテジスト資格 ｜ 全32セクション</p>
-  <p style="margin-top:8px;font-size:12px;opacity:.6;">🟢 Done &nbsp;🔵 後で確認する &nbsp;⚪ 未確認 &nbsp;<span style="background:#ea4335;border-radius:8px;padding:1px 6px;font-size:11px;">✗ 誤答あり</span></p>
+  <p style="margin-top:8px;font-size:12px;opacity:.6;">🟢 Done &nbsp;🔵 後で確認する &nbsp;⚪ 未確認</p>
 </div>
 
   <div class="chapter-card">
@@ -254,49 +253,41 @@ body {
       <a class="section-link" href="ch01.html#ch01_s01">
         <span class="sec-num" style="color:#2d6a9f;">S01</span>
         <span>生成AIの基礎</span>
-        <span class="fail-badge" id="fail_ch01_s01"></span>
         <span class="status-dot" id="dot_ch01_s01"></span>
       </a>
       <a class="section-link" href="ch01.html#ch01_s02">
         <span class="sec-num" style="color:#2d6a9f;">S02</span>
         <span>AIエージェントの定義と構成要素</span>
-        <span class="fail-badge" id="fail_ch01_s02"></span>
         <span class="status-dot" id="dot_ch01_s02"></span>
       </a>
       <a class="section-link" href="ch01.html#ch01_s03">
         <span class="sec-num" style="color:#2d6a9f;">S03</span>
         <span>AIエージェントの起動タイプ</span>
-        <span class="fail-badge" id="fail_ch01_s03"></span>
         <span class="status-dot" id="dot_ch01_s03"></span>
       </a>
       <a class="section-link" href="ch01.html#ch01_s04">
         <span class="sec-num" style="color:#2d6a9f;">S04</span>
         <span>RPAとAIエージェントの違い</span>
-        <span class="fail-badge" id="fail_ch01_s04"></span>
         <span class="status-dot" id="dot_ch01_s04"></span>
       </a>
       <a class="section-link" href="ch01.html#ch01_s05">
         <span class="sec-num" style="color:#2d6a9f;">S05</span>
         <span>エージェントの接続標準 MCP</span>
-        <span class="fail-badge" id="fail_ch01_s05"></span>
         <span class="status-dot" id="dot_ch01_s05"></span>
       </a>
       <a class="section-link" href="ch01.html#ch01_s06">
         <span class="sec-num" style="color:#2d6a9f;">S06</span>
         <span>AIエージェント導入の価値</span>
-        <span class="fail-badge" id="fail_ch01_s06"></span>
         <span class="status-dot" id="dot_ch01_s06"></span>
       </a>
       <a class="section-link" href="ch01.html#ch01_s07">
         <span class="sec-num" style="color:#2d6a9f;">S07</span>
         <span>AIエージェントのリスクと対策</span>
-        <span class="fail-badge" id="fail_ch01_s07"></span>
         <span class="status-dot" id="dot_ch01_s07"></span>
       </a>
       <a class="section-link" href="ch01.html#ch01_s08">
         <span class="sec-num" style="color:#2d6a9f;">S08</span>
         <span>生成AIの発展トレンド</span>
-        <span class="fail-badge" id="fail_ch01_s08"></span>
         <span class="status-dot" id="dot_ch01_s08"></span>
       </a>
   </div>
@@ -307,19 +298,16 @@ body {
       <a class="section-link" href="ch02.html#ch02_s01">
         <span class="sec-num" style="color:#6b4fa8;">S01</span>
         <span>業務の構造的理解</span>
-        <span class="fail-badge" id="fail_ch02_s01"></span>
         <span class="status-dot" id="dot_ch02_s01"></span>
       </a>
       <a class="section-link" href="ch02.html#ch02_s02">
         <span class="sec-num" style="color:#6b4fa8;">S02</span>
         <span>BPR（業務改革）の基礎</span>
-        <span class="fail-badge" id="fail_ch02_s02"></span>
         <span class="status-dot" id="dot_ch02_s02"></span>
       </a>
       <a class="section-link" href="ch02.html#ch02_s03">
         <span class="sec-num" style="color:#6b4fa8;">S03</span>
         <span>業務可視化の手法</span>
-        <span class="fail-badge" id="fail_ch02_s03"></span>
         <span class="status-dot" id="dot_ch02_s03"></span>
       </a>
   </div>
@@ -330,43 +318,36 @@ body {
       <a class="section-link" href="ch03.html#ch03_s01">
         <span class="sec-num" style="color:#2a8a7a;">S01</span>
         <span>ナレッジマネジメントの基礎</span>
-        <span class="fail-badge" id="fail_ch03_s01"></span>
         <span class="status-dot" id="dot_ch03_s01"></span>
       </a>
       <a class="section-link" href="ch03.html#ch03_s02">
         <span class="sec-num" style="color:#2a8a7a;">S02</span>
         <span>データの種類と特性</span>
-        <span class="fail-badge" id="fail_ch03_s02"></span>
         <span class="status-dot" id="dot_ch03_s02"></span>
       </a>
       <a class="section-link" href="ch03.html#ch03_s03">
         <span class="sec-num" style="color:#2a8a7a;">S03</span>
         <span>RAGの仕組み</span>
-        <span class="fail-badge" id="fail_ch03_s03"></span>
         <span class="status-dot" id="dot_ch03_s03"></span>
       </a>
       <a class="section-link" href="ch03.html#ch03_s04">
         <span class="sec-num" style="color:#2a8a7a;">S04</span>
         <span>AIガバナンスと法務</span>
-        <span class="fail-badge" id="fail_ch03_s04"></span>
         <span class="status-dot" id="dot_ch03_s04"></span>
       </a>
       <a class="section-link" href="ch03.html#ch03_s05">
         <span class="sec-num" style="color:#2a8a7a;">S05</span>
         <span>AIエージェントが読みやすいデータを作る</span>
-        <span class="fail-badge" id="fail_ch03_s05"></span>
         <span class="status-dot" id="dot_ch03_s05"></span>
       </a>
       <a class="section-link" href="ch03.html#ch03_s06">
         <span class="sec-num" style="color:#2a8a7a;">S06</span>
         <span>AIプロジェクトの進め方</span>
-        <span class="fail-badge" id="fail_ch03_s06"></span>
         <span class="status-dot" id="dot_ch03_s06"></span>
       </a>
       <a class="section-link" href="ch03.html#ch03_s07">
         <span class="sec-num" style="color:#2a8a7a;">S07</span>
         <span>AIプロジェクトの成功の定義：3層フレームワーク</span>
-        <span class="fail-badge" id="fail_ch03_s07"></span>
         <span class="status-dot" id="dot_ch03_s07"></span>
       </a>
   </div>
@@ -377,25 +358,21 @@ body {
       <a class="section-link" href="ch04.html#ch04_s01">
         <span class="sec-num" style="color:#c45a0a;">S01</span>
         <span>自動化レベルの進化論と実務における最適解</span>
-        <span class="fail-badge" id="fail_ch04_s01"></span>
         <span class="status-dot" id="dot_ch04_s01"></span>
       </a>
       <a class="section-link" href="ch04.html#ch04_s02">
         <span class="sec-num" style="color:#c45a0a;">S02</span>
         <span>ワークフロー設計 トリガーとアクション</span>
-        <span class="fail-badge" id="fail_ch04_s02"></span>
         <span class="status-dot" id="dot_ch04_s02"></span>
       </a>
       <a class="section-link" href="ch04.html#ch04_s03">
         <span class="sec-num" style="color:#c45a0a;">S03</span>
         <span>ワークフロー設計 変数と条件分岐</span>
-        <span class="fail-badge" id="fail_ch04_s03"></span>
         <span class="status-dot" id="dot_ch04_s03"></span>
       </a>
       <a class="section-link" href="ch04.html#ch04_s04">
         <span class="sec-num" style="color:#c45a0a;">S04</span>
         <span>コンテキストエンジニアリング概論</span>
-        <span class="fail-badge" id="fail_ch04_s04"></span>
         <span class="status-dot" id="dot_ch04_s04"></span>
       </a>
   </div>
@@ -406,31 +383,26 @@ body {
       <a class="section-link" href="ch05.html#ch05_s01">
         <span class="sec-num" style="color:#a01850;">S01</span>
         <span>AIエージェント導入と組織文化の変革</span>
-        <span class="fail-badge" id="fail_ch05_s01"></span>
         <span class="status-dot" id="dot_ch05_s01"></span>
       </a>
       <a class="section-link" href="ch05.html#ch05_s02">
         <span class="sec-num" style="color:#a01850;">S02</span>
         <span>AIエージェント推進の組織類型</span>
-        <span class="fail-badge" id="fail_ch05_s02"></span>
         <span class="status-dot" id="dot_ch05_s02"></span>
       </a>
       <a class="section-link" href="ch05.html#ch05_s03">
         <span class="sec-num" style="color:#a01850;">S03</span>
         <span>人材評価と指標の再設計</span>
-        <span class="fail-badge" id="fail_ch05_s03"></span>
         <span class="status-dot" id="dot_ch05_s03"></span>
       </a>
       <a class="section-link" href="ch05.html#ch05_s04">
         <span class="sec-num" style="color:#a01850;">S04</span>
         <span>チェンジマネジメント</span>
-        <span class="fail-badge" id="fail_ch05_s04"></span>
         <span class="status-dot" id="dot_ch05_s04"></span>
       </a>
       <a class="section-link" href="ch05.html#ch05_s05">
         <span class="sec-num" style="color:#a01850;">S05</span>
         <span>AIエージェント推進者が現場で直面する5つの問いと答え方</span>
-        <span class="fail-badge" id="fail_ch05_s05"></span>
         <span class="status-dot" id="dot_ch05_s05"></span>
       </a>
   </div>
@@ -441,31 +413,26 @@ body {
       <a class="section-link" href="ch06.html#ch06_s01">
         <span class="sec-num" style="color:#2a6e3a;">S01</span>
         <span>5DモデルStep1 Discovery — 発見・選定</span>
-        <span class="fail-badge" id="fail_ch06_s01"></span>
         <span class="status-dot" id="dot_ch06_s01"></span>
       </a>
       <a class="section-link" href="ch06.html#ch06_s02">
         <span class="sec-num" style="color:#2a6e3a;">S02</span>
         <span>5DモデルStep2 Definition — 定義・構造化</span>
-        <span class="fail-badge" id="fail_ch06_s02"></span>
         <span class="status-dot" id="dot_ch06_s02"></span>
       </a>
       <a class="section-link" href="ch06.html#ch06_s03">
         <span class="sec-num" style="color:#2a6e3a;">S03</span>
         <span>5DモデルStep3 Design — 設計・プロンプト</span>
-        <span class="fail-badge" id="fail_ch06_s03"></span>
         <span class="status-dot" id="dot_ch06_s03"></span>
       </a>
       <a class="section-link" href="ch06.html#ch06_s04">
         <span class="sec-num" style="color:#2a6e3a;">S04</span>
         <span>5DモデルStep4 Development &amp; PoC — 開発・検証</span>
-        <span class="fail-badge" id="fail_ch06_s04"></span>
         <span class="status-dot" id="dot_ch06_s04"></span>
       </a>
       <a class="section-link" href="ch06.html#ch06_s05">
         <span class="sec-num" style="color:#2a6e3a;">S05</span>
         <span>5DモデルStep5 Deployment &amp; Scale — 展開・定着</span>
-        <span class="fail-badge" id="fail_ch06_s05"></span>
         <span class="status-dot" id="dot_ch06_s05"></span>
       </a>
   </div>
@@ -474,31 +441,10 @@ body {
 </div>
 <script>
 window.addEventListener('load', function() {
-  // 学習ステータスドット
   document.querySelectorAll('.status-dot[id]').forEach(function(dot) {
     var sid = dot.id.replace('dot_','');
     var v = localStorage.getItem('s_' + sid);
     dot.className = 'status-dot' + (v ? ' ' + v : '');
-  });
-
-  // 誤答バッジ: qfail_ch01_s01_1 形式のキーを集計
-  var failCounts = {};
-  for (var i = 0; i < localStorage.length; i++) {
-    var key = localStorage.key(i);
-    if (!key || !key.startsWith('qfail_')) continue;
-    var parts = key.replace('qfail_', '').split('_');
-    var sid = parts[0] + '_' + parts[1];  // ch01_s01
-    failCounts[sid] = (failCounts[sid] || 0) + 1;
-  }
-
-  Object.keys(failCounts).forEach(function(sid) {
-    var badge = document.getElementById('fail_' + sid);
-    var link  = badge && badge.closest('.section-link');
-    if (badge) {
-      badge.textContent = '✗ ' + failCounts[sid];
-      badge.classList.add('has-fail');
-    }
-    if (link) link.classList.add('has-fail');
   });
 });
 </script>

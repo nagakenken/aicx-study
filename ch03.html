@@ -196,6 +196,17 @@ body {
 }
 .score-banner.show { display: block; }
 .score-main { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.retake-btn-main {
+  display: block; width: 100%; background: #fce8e6; color: #b31412;
+  border: 2px solid #ea4335; border-radius: 8px; padding: 10px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  margin-bottom: 12px; -webkit-tap-highlight-color: transparent;
+}
+.retake-banner {
+  background: #fff3e0; border: 2px solid #ff9500; border-radius: 8px;
+  padding: 10px 14px; margin-bottom: 12px;
+  font-size: 14px; font-weight: 700; color: #c67200; text-align: center;
+}
 
 /* ── ナビ ────────────────────────────────── */
 .nav-footer { display: flex; gap: 10px; margin-top: 16px; padding-bottom: 24px; }
@@ -226,167 +237,6 @@ body {
 .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; flex-shrink: 0; margin-left: auto; }
 .status-dot.done  { background: #34a853; }
 .status-dot.later { background: #4285f4; }
-
-/* ── OVサブタイトル ─────────────────────── */
-.ov-subtitle {
-  font-size:13px; font-weight:700; margin:14px 0 8px;
-  padding-bottom:4px; border-bottom:1.5px solid #e0f5f0;
-  color:#1a5e52;
-}
-
-/* ── ポイントリスト ──────────────────────── */
-.point-list { list-style:none; padding:0; margin:10px 0; display:flex; flex-direction:column; gap:5px; }
-.point-list li {
-  font-size:13px; line-height:1.65; color:#333;
-  padding-left:16px; position:relative;
-}
-.point-list li::before {
-  content:'▸'; position:absolute; left:0;
-  color:#2a8a7a; font-size:11px; top:3px;
-}
-.point-list li strong { color:#1a5e52; }
-
-/* ── フロー図 ────────────────────────────── */
-.flow-diagram {
-  display:flex; align-items:center; gap:5px; margin:10px 0;
-  flex-wrap:wrap; justify-content:center;
-}
-.flow-box {
-  background:#f5f5f7; border:1.5px solid #d0d7de; border-radius:8px;
-  padding:8px 10px; font-size:12px; text-align:center; line-height:1.4; min-width:58px;
-}
-.flow-box.flow-hi { font-weight:700; border-width:2px; }
-.flow-arrow { font-size:16px; color:#aaa; flex-shrink:0; }
-
-/* ── SECIモデル 2×2 ───────────────────── */
-.seci-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0; }
-.seci-cell { border-radius:10px; padding:11px 13px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
-.seci-head { font-size:12.5px; font-weight:700; margin-bottom:4px; display:flex; align-items:center; gap:5px; }
-.seci-body { font-size:12px; color:#333; line-height:1.5; }
-.seci-arrow { font-size:10px; opacity:.6; margin-left:auto; }
-
-/* ── データ種類カード（3列） ─────────────── */
-.data-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:10px 0; }
-.data-card { border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.08); }
-.data-card-head { padding:9px 8px; text-align:center; font-size:12px; font-weight:700; line-height:1.35; }
-.data-card-body { padding:9px 9px; font-size:11.5px; line-height:1.5; color:#333; background:#f9fafb; border-top:1px solid rgba(0,0,0,.06); }
-
-/* ── RAGフェーズ図 ───────────────────────── */
-.rag-phase { border-radius:10px; overflow:hidden; margin:8px 0; box-shadow:0 1px 3px rgba(0,0,0,.08); }
-.rag-phase-head { padding:8px 14px; font-size:12.5px; font-weight:700; }
-.rag-phase-body { padding:10px 14px; background:#f9fafb; }
-.rag-steps { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
-.rag-step { background:white; border:1.5px solid; border-radius:7px; padding:6px 9px; font-size:11.5px; text-align:center; line-height:1.35; }
-.rag-step strong { display:block; font-size:10px; font-weight:600; opacity:.7; margin-bottom:2px; }
-
-/* ── 法的リスクカード ────────────────────── */
-.risk-cards { display:flex; flex-direction:column; gap:8px; margin:10px 0; }
-.risk-card { border-radius:10px; border-left:4px solid; padding:10px 14px; }
-.risk-card-head { font-size:13px; font-weight:700; margin-bottom:5px; display:flex; align-items:center; gap:6px; }
-.risk-card-body { font-size:12px; line-height:1.55; color:#333; }
-.risk-card-action { font-size:11.5px; margin-top:5px; font-weight:600; color:#1a5e52; }
-
-/* ── 7つの習慣リスト ────────────────────── */
-.habit-list { display:flex; flex-direction:column; gap:6px; margin:10px 0; }
-.habit-item { display:flex; align-items:flex-start; gap:10px; border-radius:9px; padding:9px 13px; background:#f5fbf9; }
-.habit-num {
-  width:24px; height:24px; border-radius:50%; flex-shrink:0;
-  display:flex; align-items:center; justify-content:center;
-  font-size:11px; font-weight:700; color:white; background:#2a8a7a;
-}
-.habit-body { flex:1; }
-.habit-title { font-size:13px; font-weight:700; margin-bottom:2px; color:#1a5e52; }
-.habit-desc  { font-size:12px; color:#555; line-height:1.45; }
-
-/* ── フェーズゲート図 ────────────────────── */
-.phase-gate { display:flex; flex-direction:column; gap:6px; margin:10px 0; }
-.phase-block { border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.08); }
-.phase-block-head { display:flex; justify-content:space-between; align-items:center; padding:9px 14px; font-weight:700; font-size:13px; }
-.phase-block-body { padding:9px 14px; font-size:12.5px; line-height:1.6; color:#333; background:#f9fafb; border-top:1px solid rgba(0,0,0,.06); }
-.gate-badge { background:white; border-radius:5px; padding:2px 8px; font-size:11px; font-weight:700; }
-
-/* ── 3層フレームワーク ──────────────────── */
-.three-layer { display:flex; flex-direction:column; gap:6px; margin:10px 0; }
-.tlayer-item { border-radius:10px; padding:11px 14px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
-.tlayer-head { display:flex; align-items:center; gap:8px; margin-bottom:5px; }
-.tlayer-num { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:white; flex-shrink:0; }
-.tlayer-title { font-size:13px; font-weight:700; }
-.tlayer-dir { font-size:10.5px; opacity:.7; margin-left:auto; }
-.tlayer-body { font-size:12.5px; color:#333; line-height:1.55; }
-.tlayer-kpi { font-size:11.5px; color:#2a8a7a; margin-top:4px; font-weight:600; }
-
-/* ── 比較テーブル ───────────────────────── */
-.cmp-table { width:100%; border-collapse:collapse; margin:10px 0; font-size:12.5px; }
-.cmp-table th {
-  padding:7px 10px; color:white; font-size:12px; font-weight:700; text-align:center;
-  background:#1a5e52;
-}
-.cmp-table td { padding:7px 10px; border-bottom:1px solid #eee; vertical-align:top; line-height:1.55; }
-.cmp-table tr:nth-child(even) td { background:#f9f9f9; }
-.cmp-table td:first-child { font-weight:600; color:#666; font-size:12px; width:5em; }
-
-/* ── フローティングナビ ───────────────── */
-.float-home {
-  position: fixed; bottom: 22px; right: 14px;
-  background: rgba(26,26,26,.88);
-  color: white !important;
-  padding: 9px 15px; border-radius: 22px;
-  font-size: 13px; font-weight: 700;
-  text-decoration: none !important; letter-spacing: .3px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.30);
-  z-index: 500; backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  -webkit-tap-highlight-color: transparent;
-  display: flex; align-items: center; gap: 4px;
-  border: 1px solid rgba(255,255,255,.15);
-  transition: opacity .15s;
-}
-.float-home:active { opacity: .7; }
-
-/* ── 章先頭セクション一覧バー ────────── */
-.chapter-toc {
-  position: sticky; top: 0; z-index: 400;
-  background: var(--ch-dark);
-  padding: 0 12px;
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  border-bottom: 2px solid var(--ch-accent);
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
-  scrollbar-width: none;
-}
-.chapter-toc::-webkit-scrollbar { display: none; }
-.chapter-toc-inner {
-  display: inline-flex; align-items: center; gap: 0;
-  height: 44px;
-}
-.toc-home {
-  color: rgba(255,255,255,.8); text-decoration: none;
-  font-size: 12px; font-weight: 700;
-  padding: 0 14px 0 4px;
-  border-right: 1px solid rgba(255,255,255,.2);
-  margin-right: 10px;
-  display: flex; align-items: center; gap: 4px;
-  flex-shrink: 0;
-  -webkit-tap-highlight-color: transparent;
-  height: 100%;
-}
-.toc-home:active { opacity: .7; }
-.toc-link {
-  color: rgba(255,255,255,.7); text-decoration: none;
-  font-size: 12px; font-weight: 600;
-  padding: 0 10px;
-  display: inline-flex; align-items: center; gap: 4px;
-  height: 100%;
-  border-right: 1px solid rgba(255,255,255,.12);
-  -webkit-tap-highlight-color: transparent;
-  flex-shrink: 0;
-}
-.toc-link:last-child { border-right: none; }
-.toc-link:active { background: rgba(255,255,255,.12); }
-.toc-link.toc-current { color: white; }
-.toc-snum { font-size: 10px; opacity: .7; }
-
 </style>
 </head>
 <body>
@@ -402,52 +252,16 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、組織の中で知識がどのように存在し、どのように共有・発展していくかを理解することを目的とします。試験では、暗黙知と形式知の違いに加え、SECIモデルの4つのフェーズについて、具体的な事例に照らして正しく判別できることが求められます。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">暗黙知と形式知の変換サイクル</div>
-<div class="flow-diagram">
-  <div class="flow-box flow-hi" style="background:#e0f5f0;border-color:#2a8a7a;">暗黙知<br><span style="font-size:10px;font-weight:400;">経験・勘・コツ</span></div>
-  <div class="flow-arrow">⇄</div>
-  <div class="flow-box flow-hi" style="background:#e0f0f8;border-color:#2a7a8a;">形式知<br><span style="font-size:10px;font-weight:400;">文書・手順書・DB</span></div>
-</div>
-<ul class="point-list">
-  <li><strong>暗黙知</strong>：言葉にしにくいノウハウ・勘。熟練者の頭の中に眠っている知識。AIは読めない</li>
-  <li><strong>形式知</strong>：文書化・構造化されて他者と共有できる知識。AIが活用できる形式</li>
-</ul>
-
-<div class="ov-subtitle">SECIモデル（知識変換の4象限）</div>
-<div class="seci-grid">
-  <div class="seci-cell" style="background:#e0f5f0;">
-    <div class="seci-head" style="color:#1a5e52;">共同化 <span class="seci-arrow">暗→暗</span></div>
-    <div class="seci-body">体験・観察で暗黙知を共有。OJT・見習い・現場同行。AIは介在不可</div>
-  </div>
-  <div class="seci-cell" style="background:#e8f8f5;">
-    <div class="seci-head" style="color:#1a5e52;">表出化 <span class="seci-arrow">暗→形</span></div>
-    <div class="seci-body">暗黙知を言語化・文書化。ナレッジDB作成。<strong>AIが活用できる形への変換</strong></div>
-  </div>
-  <div class="seci-cell" style="background:#e0f5ee;">
-    <div class="seci-head" style="color:#1a5e52;">連結化 <span class="seci-arrow">形→形</span></div>
-    <div class="seci-body">形式知同士を統合・体系化。マニュアル整理・DB統合。<strong>RAGの土台</strong></div>
-  </div>
-  <div class="seci-cell" style="background:#d5f5ec;">
-    <div class="seci-head" style="color:#1a5e52;">内面化 <span class="seci-arrow">形→暗</span></div>
-    <div class="seci-body">形式知を実践で身体化。学習・トレーニング。AI出力を見て担当者が判断力を磨く</div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">知識とは何か組織の競争⼒の正体</div><div class="ov-section-body">知識は、情報とは異なります。情報は「事実の記述」であり、誰でも同じように参照できます。知識は「判断の根拠」であり、情報をどのように活用するかに、組織力の差が生まれます。たとえば、「顧客Aの購買データが…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">企業の競争力はどこにあるのでしょうか。</div></div>
 </div>
 
-<div class="ov-subtitle">RAGとの接続</div>
-<ul class="point-list">
-  <li><strong>RAG（Retrieval-Augmented Generation）</strong>：ナレッジベース（形式知の集積）から必要な情報を検索し、LLMに与えて回答生成させる技術</li>
-  <li>暗黙知を形式知化→ナレッジベース化→RAGで活用、という流れが組織のAI活用の基本戦略</li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">暗黙知→形式知→RAG活用が組織AI化の本質。SECIの「表出化」が最重要ステップ</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch03_s01">
@@ -456,6 +270,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -476,11 +291,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #2a8a7a;">
   <div class="quiz-hdr" style="color:#1a5e52;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch03_s01" onclick="startRetake('ch03_s01')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch03_s01" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch03_s01_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-num">問 1 ／ 3</div>
     <div class="quiz-question">以下の4つの活動は、SECIモデルのどのフェーズに該当しますか。正しい組み合わせはどれですか。 W：新人が熟練工の横について作業を観察し、判断の勘所を体感的に学ぶ X：熟練工が「異音による機械トラブルの判定フロー」をフローチャートとして文書化する Y：判定フローと既存の保全マニュアルと故障履歴を統合して、総合トラブルシューティングガイドを作成する Z：新人がガイドに従って点検を繰り返すうちに、ガイドなしでも判断できるようになる</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s01_1',0,0)">A　W=共同化, X=表出化, Y=連結化, Z=内面化</button>
@@ -499,7 +317,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch03_s01_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-num">問 2 ／ 3</div>
     <div class="quiz-question">AIエージェント稼働後、新人担当者がAIエージェントの回答を日々確認する中で「AIエージェントがうまく対応できないパターン」を発見し、その改善点をナレッジベースにフィードバックしました。この活動は SECIモデルのどのフェーズに該当しますか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s01_2',0,1)">A　共同化 — 暗黙知が暗黙知として共有された</button>
@@ -513,7 +331,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch03_s01_2" onclick="retryQ('ch03_s01_2')">↩ もう一度</button>
-      <button class="next-btn" id="nch03_s01_2" onclick="showScore('ch03_s01',2)">結果を見る →</button>
+      <button class="next-btn" id="nch03_s01_2" onclick="showNext('ch03_s01_3')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch03_s01_3" style="display:none;">
+    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-question">AIエージェント稼働後、新人担当者がAIエージェントの回答を日々確認する中で「AIエージェントがうまく対応できないパターン」を発見し、その改善点をナレッジベースにフィードバックしました。この活動は SECIモデルのどのフェーズに該当しますか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch03_s01_3',0,1)">A　共同化 — 暗黙知が暗黙知として共有された</button>
+      <button class="choice-btn" onclick="answer('ch03_s01_3',1,1)">B　表出化 — 実務で得た暗黙知が形式知に変換された</button>
+      <button class="choice-btn" onclick="answer('ch03_s01_3',2,1)">C　連結化 — 既存の形式知同士が組み合わされた</button>
+      <button class="choice-btn" onclick="answer('ch03_s01_3',3,1)">D　内面化 — 形式知が暗黙知として定着した</button>
+    </div>
+    <div class="explanation" id="ech03_s01_3">
+      <div class="ans-label">✅ 正解：B</div>
+      新人が実務の中で体感的に気づいた「AIエージェントが苦手なパターン」は暗黙知です。それをナレッジベースにフィードバックする行為は、暗黙知を形式知に変換する表出化に該当します。コラム：ナレッジマネジメントと「早すぎる最適化」の罠ソフトウェア開発の分野には、「早すぎる最適化は諸悪の根源である（Premature optimization is the root of all evil.）」という考え方があります。これは、全体像が固まる前に細部を作り込みすぎると、かえって非効率になりやすいという意味です。この考え方は、ナレッジマネジメントにも当てはまります。AIエージェントの対象業務や活用範囲が定まる前に、「まず社内の知識をすべて整理しよう」と進めてしまうと、必要性の低い情報まで整備対象に含めることになり、プロジェクトが長期化しやすくなります。その結果、本来優先すべき知識の整備が遅れ、導入目的とのズレも生じやすくなります。 147 Chapter3 AIデータリテラシーとマネジメント POINT そのため、ナレッジマネジメントでは、最初から全体を網羅するのではなく、まず解決すべき業務課題を定め、その課題に必要な知識から優先的に形式知化することが重要です。ヘルプデスク業務を先に対象として定めるのも、その業務で実際に必要となる知識から整理を始めるためです。また、最初は対象範囲を限定して運用を開始し、実際の利用を通じて得られたフィードバックをもとにナレッジを追加・修正していく方が、最初から全体を設計しようとする場合よりも、導入までの時間を短縮しやすく、実務に合った精度向上にもつながります。 148 Chapter3 AIデータリテラシーとマネジメント CHAPTER 3 Section13. データの種類と特性学習のポイント本Sectionでは、AIエージェントが扱いやすいデータと、従来のITシステムが扱いやすいデータの違いを整理します。試験では、構造化データ、非構造化データ、半構造化データの定義と具体例、メタデータの役割、ならびにAIエージェント活用における各データ種類の特性が問われます。なお、本項目ではデータの種類と特徴の理解に焦点を当て、具体的な活用方法はSection14で扱います。 1 知識なぜデータの種類を区別する必要があるのか AIエージェントを設計するとき、避けて通れない「このデータは、誰が（何が）処理すべきか」という問いがあります。売上データや顧客リストのような数値・項目の集合と、メールの文面や会議の議事録のような自然言語の文章では、適した処理方法が異なります。前者は従来のデータベースやシステムが得意とする領域であり、後者はLLMが真価を発揮する領域です。この区別を持たないまま設計すると、「LLMに向いていない処理までLLMに任せてコストを無駄にする」「従来のシステムでは扱えないデータを活かせないまま放置する」という判断ミスが起きます。データを正しく分類し、それぞれの処理に最適な担い手を割り当てる。この発想がAIエージェント設計の根幹を成します。データの3分類構造化‧⾮構造化‧半構造化構造化データとは、データベースのテーブルやExcelスプレッドシートのように、行と列の明確な構造を持つデータです。受注管理システムの受注履歴、人事システムの社員情報、会計システムの仕訳データなどが該当します。各フィールドのデータ型が定まっているため、検索・集計・比較が容易であり、従来のITシステムが最も得意とする領域です。非構造化データとは、明確な構造を持たないデータです。メール、チャットメッセージ、Word文書、PDF、画像、音声、動画などが該当します。企業が保有するデータの約80%は非構造化データと言われており、この膨大な情報をどう活かすかが長年の課題でした。従来のITシステムでは「メールの文面から問い合わせの意図を理解する」ことは困難でしたが、LLMはこれを得意とします。非構造化データの処理こそが生成AIの最大の強みであり、企業がAIエージェントを導入する動機の中核です。 149 Chapter3 AIデータリテラシーとマネジメント半構造化データとは、完全な構造は持たないものの、タグやキーによって部分的に整理されたデータです。名刺を例に考えるとわかりやすいでしょう。名刺には「氏名」「会社名」「電話番号」という項目がありますが、レイアウトや記載順は人によって異なります。「行と列で完全に整理されているわけではないが、ある程度の構造は持っている」という中間的な存在です。技術的な代表例はJSONとXMLです。たとえば、AIエージェントが問い合わせに回答した結果を後続のシステムに渡すとき、以下のようなJSON形式で出力します。 json JSON 構造化された出力例 { &quot;category&quot;: &quot;VPN&quot;, &quot;answer&quot;: &quot;設定画面からプロファイルを追加してください&quot;, &quot;confidence&quot;: 0.92 } キーと値のペアで「何がどんな情報か」が明示されていますが、行と列で整然と並ぶ構造化データとは異なります。AIエージェントの入出力のインターフェースとして、半構造化データは実務で頻繁に登場します。データの種類と処理の担い⼿ 3種類のデータは、それぞれ異なる処理の担い⼿と組み合わせることで最⼤の効果を発揮します。構造化データは、APIやワークフローの定型処理で扱うのが効率的です。データベースからの情報取得やシステム間のデータ連携など、形式が定まったデータの操作はLLMに頼る必要がありません。たとえば、問い合わせが来た際に社員IDをもとにデータベースから「このユーザーのOSはWindows 11、部署は営業部」という情報を取得し、AIエージェントのプロンプトに追加する処理は定型処理で扱います。非構造化データは、LLMで処理するのが適しています。メールの内容理解、マニュアルを参照した回答生成、議事録の要約と構造化など、自然言語の意味を解釈する処理はLLMの領域です。半構造化データは、AIエージェントの入出力のインターフェースとして機能します。LLMの出力をJSON形式で構造化し、後続のシステムに渡すことで、AIエージェントの判断結果を他のシステムと連携させることができます。 POINT 重要なのは、すべてをAIエージェントに任せないという前提です。構造化データの取得はAPIに、非構造化データの理解はLLMに、それぞれの強みを活かして組み合わせることで、処理の精度・速度・コストのすべてが最適化されます。 150 Chapter3 AIデータリテラシーとマネジメント 1つの業務フローに複数のデータが混在する実務では、一つの業務フローの中に複数種類のデータが混在することが一般的です。そのため、設計上の重要な問いは、「このデータは何種類あるか」ではなく、業務フローのどの場面で、どの種類のデータが発生し、それをどの仕組みが処理するかを整理することです。たとえば、顧客対応AIエージェントでは、問い合わせメールのような非構造化データはLLMが意図を理解し、顧客の契約情報のような構造化データはAPIを通じて取得し、AIエージェントの回答結果はJSON形式のような半構造化データとしてCRMシステムへ連携する、といった設計が考えられます。 POINT このように、同じ業務フローの中でも、データの種類に応じて適切な処理方法を選ぶ必要があります。したがって、設計者には、データの種類を見極め、それに応じてAIエージェント、API、既存システムの役割分担を整理する視点が求められます。 151 Chapter3 AIデータリテラシーとマネジメントメタデータデータの「⽂脈」を設計するメタデータとは「データについてのデータ」です。文書そのものではなく、文書に付与される属性情報にあたります。IT マニュアルの本文がデータであれば、「カテゴリ：VPN」「対応OS：Windows 11」「最終更新日：2026年1月」がメタデータです。メタデータがRAGの検索精度を左右するという点は、ナレッジマネジメントのセクションで触れた通りです。「VPN接続手順」というカテゴリタグがメタデータとして付与されていれば、VPNに関する問い合わせに対して該当ドキュメントを素早く特定できます。逆にメタデータが整備されていなければ、ナレッジベースに正しい情報が存在していても、AIエージェントが適切なタイミングで参照できないという事態が起きます。 POINT ナレッジベースの品質はコンテンツの質だけで決まるのではなく、メタデータの設計によっても大きく変わります。「どんなタグを付与するか」「どんな属性を管理するか」は、RAGの設計と一体で考える必要があります。 152 Chapter3 AIデータリテラシーとマネジメント「AIエージェントが読みやすいデータ」を今⽇から作る POINT AIエージェント導入にあたって、過去のデータをすべてさかのぼって整備することは、現実的でない場合が多くあります。そのため、より重要なのは、今後作成・更新するデータを、AIエージェントが読み取りやすく活用しやすい形で蓄積する運用を定着させることです。たとえば、1つのセルには1つのデータだけを入力する、表記を統一する、ファイル名に日付や分類を含める、文書にカテゴリ情報を付ける、といった工夫が挙げられます。このような日常的な整備が、将来のAIエージェント活用におけるデータ品質を左右します。 POINT したがって、データ整備はAIエージェント導入の準備ではなく、その一部として捉える必要があります。データの質が高まるほど、AIエージェントの精度やナレッジベースの価値も高まりやすくなります。そのため、データを単なる記録ではなく、AIエージェントが活用する資産として設計する視点が求められます。 153 Chapter3 AIデータリテラシーとマネジメント 2 業務シナリオ：ヘルプデスクAIのデータ種類の整理ヘルプデスクAIが扱うデータを3分類で整理し、各データの処理⽅針を検討します。判断 1 ヘルプデスクAIが扱うデータの3分類構造化データに該当するのは、チケットシステムの対応履歴やデータベース内の社員情報です。非構造化データに該当するのは、社員からの問い合わせメール本文、ITマニュアル、FAQ集、過去の回答メール本文です。こうしたテキストデータは、企業が日々の業務で蓄積してきた独自の知識資産であり、AIエージェントに活用されることで初めてその価値が引き出されます。半構造化データに該当するのは、AIの出⼒仕様やWebhookの通知データです。いずれもJSON形式です。判断 2 ⾮構造化データの前処理 ⾮構造化データをAIエージェントに参照させるには、前処理が⽋かせません。 ITマニュアルの場合、PDFからテキストを抽出し、章立てごとに分割します。この「長い文書を意味のあるまとまりごとに区切る」処理をチャンキングと呼び、区切られた各単位をチャンク（塊）と呼びます。たとえば、100ページのITマニュアルを「VPN設定」「メール設定」「プリンタ設定」のように章や節ごとのチャンクに分割し、各チャンクにカテゴリタグをメタデータとして付与します。チャンクの大きさや分割の方法はRAG（検索拡張生成）の精度に直結する重要な設計判断であり、詳細はSection14で学びます。 FAQ集の場合、質問と回答のペアを1件ずつ分離し、各ペアにカテゴリと対応OSのメタデータを付与することで、検索精度が高まります。 154 Chapter3 AIデータリテラシーとマネジメント判断 3 構造化データの活⽤ 構造化データはLLMに直接入力するのではなく、APIで取得してプロンプトのコンテキストに追加する設計が効率的です。たとえば、問い合わせが来た際に社員IDからデータベースで「この社員のOSはWindows 11」という情報をAPIで取得し、AIエージェントのプロンプトに追加します。 155 Chapter3 AIデータリテラシーとマネジメント 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch03_s01_3" onclick="retryQ('ch03_s01_3')">↩ もう一度</button>
+      <button class="next-btn" id="nch03_s01_3" onclick="showScore('ch03_s01',3)">結果を見る →</button>
     </div>
   </div>
 
@@ -538,6 +375,7 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIエージェントが扱いやすいデータと、従来のITシステムが扱いやすいデータの
@@ -545,41 +383,12 @@ body {
 メタデータの役割、ならびにAIエージェント活用における各データ種類の特性が問われます。な
 お、本項目ではデータの種類と特徴の理解に焦点を当て、具体的な活用方法はSection14で扱いま
 す。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">3種類のデータ</div>
-<div class="data-cards">
-  <div class="data-card">
-    <div class="data-card-head" style="background:#e0f5f0;color:#1a5e52;">構造化データ</div>
-    <div class="data-card-body">表形式。DB・スプレッドシート。<br>SQL等で処理可能。<br>全体の約20%</div>
-  </div>
-  <div class="data-card">
-    <div class="data-card-head" style="background:#e8f8f5;color:#1a6050;">非構造化データ</div>
-    <div class="data-card-body">メール・文書・音声・画像。<br><strong>企業データの約80%</strong>。<br>LLMの強みが活きる</div>
-  </div>
-  <div class="data-card">
-    <div class="data-card-head" style="background:#d5f5ec;color:#155040;">半構造化データ</div>
-    <div class="data-card-body">JSON・XML・HTML。<br>規則性はあるが表形式でない。<br>APIレスポンス等</div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">なぜデータの種類を区別する必要があるのか</div><div class="ov-section-body">AIエージェントを設計するとき、避けて通れない「このデータは、誰が（何が）処理すべきか」という問いがあります。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">従来のITシステムは構造化データの処理を得意としていましたが、メールや文書などの非構造化データの「意味の理解」は困難でした。</div></div>
 </div>
 
-<div class="ov-subtitle">メタデータと処理担い手</div>
-<ul class="point-list">
-  <li><strong>メタデータ</strong>：データについてのデータ。ファイルの作成日時・作者・タグ等。AIが「どのデータを参照すべきか」を判断する手がかりになる</li>
-  <li><strong>処理担い手マッピング</strong>：構造化データ→従来DB/RPA、非構造化データ→LLM/AIエージェント、という適材適所の設計が重要</li>
-</ul>
-
-<table class="cmp-table">
-  <tr><th>データ種別</th><th>処理担い手</th><th>AIエージェントへの適合性</th></tr>
-  <tr><td>構造化</td><td>DB・RPA・従来システム</td><td>低（既存ツールで十分）</td></tr>
-  <tr><td>非構造化</td><td>LLM・AIエージェント</td><td>高（LLMの最大の強み）</td></tr>
-  <tr><td>半構造化</td><td>パーサー＋LLM組合せ</td><td>中（変換後に活用）</td></tr>
-</table>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">企業データの8割は非構造化。そこにLLMの価値がある。構造化はDBとRPAに任せよ</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch03_s02">
@@ -588,6 +397,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -613,11 +423,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #2a8a7a;">
   <div class="quiz-hdr" style="color:#1a5e52;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch03_s02" onclick="startRetake('ch03_s02')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch03_s02" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch03_s02_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 3</div>
+    <div class="quiz-num">問 1 ／ 4</div>
     <div class="quiz-question">非構造化データの処理に関する記述として、最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s02_1',0,1)">A　非構造化データは構造化データに変換してからでなければAIエージェントで処理できない</button>
@@ -636,7 +449,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch03_s02_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 3</div>
+    <div class="quiz-num">問 2 ／ 4</div>
     <div class="quiz-question">ヘルプデスクAIの設計で、社員の所属部署やOS環境の情報を活用したいと考えています。最も適切な設計はどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s02_2',0,1)">A　社員情報をすべてRAGのナレッジベースに登録し、AIエージェントが検索して取得する</button>
@@ -655,7 +468,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch03_s02_3" style="display:none;">
-    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-num">問 3 ／ 4</div>
     <div class="quiz-question">営業部門のAIエージェントが商談報告を処理するフローを設計しています。以下のうち、データの種類に応じた処理方法の組み合わせとして最も適切なものはどれですか。状況：営業担当者が自由記述で書いた商談メモをもとに、AIエージェントが商談内容を要約し、顧客管理システム（CRM）に登録する。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s02_3',0,1)">A　商談メモをAPIで解析し、要約結果をExcelに構造化データとして保存し、CRMには手動で入力する</button>
@@ -669,7 +482,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch03_s02_3" onclick="retryQ('ch03_s02_3')">↩ もう一度</button>
-      <button class="next-btn" id="nch03_s02_3" onclick="showScore('ch03_s02',3)">結果を見る →</button>
+      <button class="next-btn" id="nch03_s02_3" onclick="showNext('ch03_s02_4')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch03_s02_4" style="display:none;">
+    <div class="quiz-num">問 4 ／ 4</div>
+    <div class="quiz-question">営業部門のAIエージェントが商談報告を処理するフローを設計しています。以下のうち、データの種類に応じた処理方法の組み合わせとして最も適切なものはどれですか。状況：営業担当者が自由記述で書いた商談メモをもとに、AIエージェントが商談内容を要約し、顧客管理システム（CRM）に登録する。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch03_s02_4',0,1)">A　商談メモをAPIで解析し、要約結果をExcelに構造化データとして保存し、CRMには手動で入力する</button>
+      <button class="choice-btn" onclick="answer('ch03_s02_4',1,1)">B　商談メモをLLMで内容理解・要約し、要約結果をJSON形式で出力し、CRMにはAPIで構造化データとして登録する</button>
+      <button class="choice-btn" onclick="answer('ch03_s02_4',2,1)">C　商談メモをデータベースに直接格納し、CRM側のLLMが必要に応じて検索・要約する</button>
+      <button class="choice-btn" onclick="answer('ch03_s02_4',3,1)">D　商談メモ・要約・CRM登録のすべてをLLMに一括処理させ、APIは使用しない</button>
+    </div>
+    <div class="explanation" id="ech03_s02_4">
+      <div class="ans-label">✅ 正解：B</div>
+      商談メモは自由記述の非構造化データであり、内容の理解と要約はLLMが担うべき処理です。LLMの出力をJSON形式の半構造化データとして構造化することで、後続のシステムが扱いやすくなります。CRMへの登録は、形式が定まった構造化データの書き込みであるため、APIによる定型処理が適しています。このように、非構造化データ→LLM→半構造化データ→API→構造化データという流れは、AIエージェント設計における典型的なデータ変換パターンです。Aは非構造化データの解析にAPIを使う点が不適切です。Cは自由記述テキストをそのままデータベースに格納しても活用できません。 DはすべてをLLMに任せると、CRMへの登録のような定型処理まで不必要にLLMを使うことになり、コストと信頼性の両面で問題があります。 159 Chapter3 AIデータリテラシーとマネジメント CHAPTER 3 Section14. RAGの仕組み学習のポイント本Sectionでは、AIエージェントに社内固有の知識を教える標準技術「RAG」の基本メカニズムと構成要素を理解します。試験では、RAGの2フェーズの流れ、チャンク分割の設計判断、意味の近さで検索する仕組みの理解が問われます。Section12のナレッジマネジメントとSection13のデータ分類の知識がここで合流します。 1 知識なぜRAGが必要なのか LLMは事前学習によって膨大な知識を持っています。しかしその知識は、インターネット上に公開された一般的な情報を中心としたものです。自社の業務マニュアル、社内規程、製品仕様、過去の対応履歴といったような組織固有の情報は LLMの学習データには含まれておらず、仕組みを設けなければAIエージェントはそれらを参照できません。この問題を解決するのがRAG（Retrieval-Augmented Generation：検索拡張生成）です。RAGとは、「LLMが知らない情報を、必要なときに検索して与える」仕組みです。社内のナレッジベースをリアルタイムで検索し、その結果をLLMのプロンプトに組み込んで回答を生成することで、汎用モデルが自社固有の文脈で機能するようになります。 POINT 前のセクションで述べた通り、ナレッジベースに蓄積された組織の知識は他社には複製できない競争優位の源泉です。RAGはその知識をAIエージェントが活用するための技術的な橋渡しであり、ナレッジマネジメントとRAGは表裏一体の関係にあります。 RAGの2フェーズ「準備」と「検索‧⽣成」 RAGは大きく2つのフェーズで動作します。事前にナレッジベースを構築する「保存フェーズ」と、ユーザーの質問に対してリアルタイムで動作する「検索・生成フェーズ」です。 160 Chapter3 AIデータリテラシーとマネジメント保存フェーズナレッジベースをAIエージェントが検索できる形にするドキュメントをそのまま格納してもAIエージェントは効率的に検索できません。3つのステップを経て、検索可能な形式に変換します。チャンク分割は、ドキュメントを適切なサイズのかたまり（チャンク）に分割する工程です。チャンクが大きすぎると複数のトピックが混在して検索する際にノイズとなり、小さすぎると文脈が失われます。「1つのトピックが1つのチャンクに収まる」サイズが目安であり、マニュアルであれば見出し単位が一般的です。ベクトル化は、各チャンクのテキストを数値の列に変換する工程です。テキストの「意味」を数値で表現することで、意味が近いテキスト同士を近い位置に配置できるようになります。たとえば「初期設定の手順を教えてください」と「セットアップの方法は？」は表現が異なりますが意味は近く、ベクトル化すると近い数値になります。インデックス化は、ベクトル化されたチャンクをデータベースに格納し、高速に検索できるよう索引を作成する工程です。これにより、ユーザーの質問に対して瞬時に関連チャンクを照合できる状態が整います。 161 Chapter3 AIデータリテラシーとマネジメント検索‧⽣成フェーズ質問から回答へユーザーが質問を投げると、以下の流れで回答が⽣成されます。まず質問テキストをベクトル化し、ナレッジベースのチャンクと意味の近さを比較して関連チャンクを検索します。この検索はキーワードの完全一致ではなく意味の近さで行われるため、表現が異なっていても意味が近ければヒットします。これをセマンティック検索と呼びます。次に、検索で取得した複数のチャンクを関連性の高い順に並べ替え、上位のチャンクをLLMへの入力に含めます。LLM は、それらの情報を根拠として回答を生成します。このように、AIエージェントの回答を外部の文書やデータに基づかせる方法をグラウンディングといいます。これにより、AIエージェントが根拠のない内容をもっともらしく答えるリスクを抑えやすくなります。 RAGの精度を左右する⼆つの段階 RAGを導入しただけでは十分ではありません。「本当に正しい情報を検索できているか」「検索した情報をもとに正しく回答できているか」を定量的に評価する仕組みが必要です。 RAGの精度は検索の精度と⽣成の精度の2段階で測ります。検索の精度とは、ユーザーの質問に対して、関連するチャンクをどの程度適切に取得できているかを指します。検索結果が的外れであれば、LLMがどれほど高性能であっても、正確な回答を生成することはできません。生成の精度とは、検索で取得したチャンクの内容に忠実であり、かつ質問に対して過不足なく回答できているかを指します。たとえ関連するチャンクが取得できていても、LLMがその内容を十分に反映せずに回答すれば、RAGとしての品質は確保できません。「RAGの精度が低い」という問題に対しては、検索と生成のどちらに原因があるのかを切り分けることが改善の出発点となります。両者を区別しないまま対処すると、原因ではない側を改善し続けることになり、効率的な改善ができません。 162 Chapter3 AIデータリテラシーとマネジメント POINT そのため、実務では、検索精度と生成精度をそれぞれ評価し、ボトルネックを特定することが重要です。RAG評価のための手法やツールを活用することで、検索と生成を分けて確認し、改善対象を明確にしやすくなります。 RAGの精度向上ストラテジストが知るべき4つの観点 POINT RAGの精度向上は、技術的には複雑な検討を伴う領域です。ただし、ストラテジストとしても、精度が低い場合に、検索と生成のどちらに原因があり得るかを構造的に把握しておくことが重要です。なぜなら、この理解があることで、技術担当者との認識を合わせやすくなり、改善の優先順位やプロジェクト上の判断を適切に行いやすくなるためです。 163 Chapter3 AIデータリテラシーとマネジメント 1 質問の変換ユーザーの質問は曖昧だったり、ナレッジベースの用語と一致しないことがあります。「ネットが繋がらない」という質問をそのまま検索しても、「VPN接続手順」や「Wi-Fi設定」のチャンクには意味的にヒットしにくい場合があります。質問を検索に適した形に変換したり、複数のクエリに分解することで、検索精度が向上します。 2 検索先の振り分け企業内のデータがすべて1つのナレッジベースに入っているとは限りません。マニュアルはベクトルデータベースに、社員情報はリレーショナルデータベースに、組織構造はまた別のシステムにある場合があります。質問の内容に応じて適切な検索先を選ぶ設計ができると、精度とコストの両面が改善されます。 3 検索結果の並べ替えと絞り込みベクトル検索で取得したチャンクが必ずしも最適な順序とは限りません。検索結果をさらに関連度で並べ替える「リランキング」や、質問との関連が低いチャンクを除外するフィルタリングにより、LLMに渡す情報の質が向上します。 4 チャンクの設計と構造化チャンク分割の粒度に加え、メタデータの付与、要約テキストの併用など、ナレッジベースの構造そのものを工夫することで検索精度を高められます。前のセクションで述べたメタデータの設計がここで直接効いてきます。これらの改善は段階的に行うものです。まず基本的なRAGを構築して運用し、「検索精度が低い」「回答が的外れ」といった具体的な問題が発生した段階で、どの観点を改善すべきかをアーキテクトと議論する。その判断ができることが、AI エージェント・ストラテジストとしての役割です。 AIエージェント‧ストラテジストが押さえるべき四つの原則 RAGに関してAIエージェント‧ストラテジストが持つべき視点を4点で整理します。第1に、ナレッジベースの品質がRAGの精度を直接左右することです。ナレッジマネジメントの質は、そのままAIエージェントの回答精度に影響します。どれほど高度なRAGの仕組みを構築しても、ナレッジベースに必要な情報が不足していたり、内容が古かったり、整理が不十分であったりすれば、適切な回答は得られません。第2に、チャンク分割の設計は最初から完璧を目指さなくてよいことです。まず動くものを作り、テスト運用で問題を発見し、フィードバックしながら改善していく進め方が現実的です。完璧な設計を待ち続けることが、最も避けるべきことです。第3に、メタデータの付与が検索精度を大きく左右することです。カテゴリタグ・対応OS・更新日などのメタデータにより、質問に合ったチャンクを優先的に返せるようになります。ナレッジベースの品質はコンテンツの質だけでなく、メタデータの設計によっても決まります。 164 Chapter3 AIデータリテラシーとマネジメント第4に、RAGの精度問題は「検索」と「生成」に分けて原因を特定することです。回答が不正確なとき、正しいチャンクが検索できていないのか、検索はできているがLLMの回答生成に問題があるのかを切り分けることで、適切な改善策を判断できます。この切り分けができないストラテジストは、アーキテクトに対して的外れな改善指示を出し続けることになります。 2 業務シナリオ：ヘルプデスクAIのRAG構築 Section12〜13でナレッジマネジメントとデータ分類を学びました。ここでは、それらの知識を実際のRAG構築に適用します。判断 1 保存フェーズ — ITマニュアルのチャンク設計 ITマニュアル約50ページ、約75,000トークンをRAGのナレッジベースに取り込みます。チャンク方針として、セクション単位で分割します。「VPN接続手順 — Windows 11版」「VPN接続手順 — Mac版」「パスワードリセット手順」のように、1つのトピックが1つのチャンクに収まるようにします。各チャンクにはカテゴリ、対応OS、最終更新日のメタデータを付与します。これにより、問い合わせた社員のOS環境に合ったチャンクを優先的に検索できるようになります。判断 2 検索‧⽣成フェーズの設計社員が「VPNが繋がりません。Windows 11を使っています」と問い合わせた場合の流れです。質問テキストをベクトル化し、類似チャンクを検索します。メタデータでOS＝Windows 11のチャンクを優先してフィルタリングし、上位3件を選択します。選択されたチャンクをプロンプトに含め、「以下のITマニュアルの情報に基づいて回答してください」と指示してLLMが回答を生成します。 165 Chapter3 AIデータリテラシーとマネジメントただし、回答が正確かどうかは最終的に人間が確認する体制が欠かせません。特に導入初期は、AIエージェントの回答を担当者がレビューしてからユーザーに返す運用が信頼性確保の基本です。判断 3 チャンクサイズの最適化テスト運⽤で以下の問題が発覚したとします。「VPN接続手順」のチャンクが大きすぎて、Windows版とMac版の手順が混在しており、Windows 11の社員にMac版の手順が回答されてしまう。対策として、OS版ごとにチャンクを分割します。「パスワードリセット手順」のチャンクが小さすぎて、「手順3：新しいパスワードを入力する」だけのチャンクが検索にヒットし、文脈がないため回答の質が低い。対策として、手順全体を1チャンクにまとめます。最初から完璧なチャンク設計を目指すよりも、まず動くものを作り、実際の問い合わせデータをもとに段階的に精度を高める進め方が現実的です。判断 4 精度評価と改善サイクルテスト運⽤では、RAGの精度を「検索」と「⽣成」に分けて評価します。検索の精度を確認するには、実際の問い合わせに対してどのチャンクが検索されたかを記録し、「正しいチャンクが上位に含まれているか」を確認します。たとえば、「Outlookのメール設定」の問い合わせに対してVPN関連のチャンクが上位に来ている場合、検索精度に問題があります。原因としては、チャンクの粒度が粗い、メタデータが不足している、質問の表現とナレッジベースの用語が乖離している、といった可能性が考えられます。生成の精度を確認するには、正しいチャンクが取得されているにもかかわらずAIエージェントの回答が不正確なケースを特定します。この場合はプロンプトの指示の改善やLLMの設定調整が対策になります。このように「検索と生成のどちらに問題があるか」を切り分けることで、改善の優先順位と具体的な対策が明確になります。 166 Chapter3 AIデータリテラシーとマネジメント 167 Chapter3 AIデータリテラシーとマネジメント 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch03_s02_4" onclick="retryQ('ch03_s02_4')">↩ もう一度</button>
+      <button class="next-btn" id="nch03_s02_4" onclick="showScore('ch03_s02',4)">結果を見る →</button>
     </div>
   </div>
 
@@ -694,73 +526,16 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIエージェントに社内固有の知識を教える標準技術「RAG」の基本メカニズムと構成要素を理解します。試験では、RAGの2フェーズの流れ、チャンク分割の設計判断、意味の近さで検索する仕組みの理解が問われます。Section12のナレッジマネジメントとSection13のデータ分類の知識がここで合流します。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">RAGの2フェーズ</div>
-
-<div class="rag-phase">
-  <div class="rag-phase-head" style="background:#1a5e52;color:white;">
-    フェーズ1：保存フェーズ（オフライン事前処理）
-  </div>
-  <div class="rag-phase-body">
-    <div class="rag-steps">
-      <div class="rag-step" style="border-color:#2a8a7a;">
-        <strong>① 文書取込</strong>PDF・Word・メール等
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="rag-step" style="border-color:#2a8a7a;">
-        <strong>② チャンク分割</strong>適切な粒度に分割
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="rag-step" style="border-color:#2a8a7a;">
-        <strong>③ ベクトル化</strong>意味を数値に変換
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="rag-step" style="border-color:#2a8a7a;">
-        <strong>④ インデックス化</strong>ベクトルDBに格納
-      </div>
-    </div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">なぜRAGが必要なのか</div><div class="ov-section-body">LLMは事前学習によって膨大な知識を持っています。しかしその知識は、インターネット上に公開された一般的な情報を中心としたものです。自社の業務マニュアル、社内規程、製品仕様、過去の対応履歴といったような…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">前のセクションで述べた通り、ナレッジベースに蓄積された組織の知識は他社には複製できない競争優位の源泉です。</div></div>
 </div>
 
-<div class="rag-phase">
-  <div class="rag-phase-head" style="background:#2a8a7a;color:white;">
-    フェーズ2：検索・生成フェーズ（リアルタイム）
-  </div>
-  <div class="rag-phase-body">
-    <div class="rag-steps">
-      <div class="rag-step" style="border-color:#4db8a6;">
-        <strong>① クエリ</strong>ユーザーの質問
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="rag-step" style="border-color:#4db8a6;">
-        <strong>② セマンティック<br>検索</strong>意味で類似文書検索
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="rag-step" style="border-color:#4db8a6;">
-        <strong>③ コンテキスト<br>注入</strong>検索結果をプロンプトに付加
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="rag-step" style="border-color:#4db8a6;">
-        <strong>④ 回答生成</strong>LLMが応答
-      </div>
-    </div>
-  </div>
-</div>
-
-<ul class="point-list">
-  <li><strong>セマンティック検索</strong>：キーワード一致ではなく「意味の近さ」で検索。「売上が下がる」＝「収益減少」も拾える</li>
-  <li><strong>グラウンディング</strong>：LLMの回答を外部の事実データに根拠づけること。ハルシネーション抑制の主要手段</li>
-  <li>RAGは「検索精度」と「生成品質」の両方が必要。片方が弱いと全体が崩れる</li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">RAG＝保存(分割→ベクトル化→インデックス)＋検索・生成(セマンティック検索→コンテキスト注入→回答)の2フェーズ</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch03_s03">
@@ -769,6 +544,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -790,11 +566,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #2a8a7a;">
   <div class="quiz-hdr" style="color:#1a5e52;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch03_s03" onclick="startRetake('ch03_s03')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch03_s03" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch03_s03_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 3</div>
+    <div class="quiz-num">問 1 ／ 4</div>
     <div class="quiz-question">RAGの保存フェーズで、マニュアルのチャンクサイズが「大きすぎる」場合と「小さすぎる」場合に発生する問題の組み合わせとして、正しいものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s03_1',0,1)">A　大きすぎる＝検索速度が低下する、小さすぎる＝ベクトル化できなくなる</button>
@@ -813,7 +592,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch03_s03_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 3</div>
+    <div class="quiz-num">問 2 ／ 4</div>
     <div class="quiz-question">RAGの検索・生成フェーズで、「初期設定がうまくいかない」という質問に対してベクトル検索を行いました。類似度が最も高いと期待されるチャンクはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s03_2',0,1)">A　「製品の返品手続き：購入後30日以内に連絡してください」</button>
@@ -832,7 +611,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch03_s03_3" style="display:none;">
-    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-num">問 3 ／ 4</div>
     <div class="quiz-question">ヘルプデスクAIのテスト運用で、「Outlookでメールが送信できない」という問い合わせに対して、AIエージェントが「VPN接続を確認してください」と回答しました。原因の切り分けと対策として、最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s03_3',0,1)">A　LLMの性能が低いため、より高性能なモデルに変更する</button>
@@ -846,7 +625,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch03_s03_3" onclick="retryQ('ch03_s03_3')">↩ もう一度</button>
-      <button class="next-btn" id="nch03_s03_3" onclick="showScore('ch03_s03',3)">結果を見る →</button>
+      <button class="next-btn" id="nch03_s03_3" onclick="showNext('ch03_s03_4')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch03_s03_4" style="display:none;">
+    <div class="quiz-num">問 4 ／ 4</div>
+    <div class="quiz-question">ヘルプデスクAIのテスト運用で、「Outlookでメールが送信できない」という問い合わせに対して、AIエージェントが「VPN接続を確認してください」と回答しました。原因の切り分けと対策として、最も適切なものはどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch03_s03_4',0,1)">A　LLMの性能が低いため、より高性能なモデルに変更する</button>
+      <button class="choice-btn" onclick="answer('ch03_s03_4',1,1)">B　検索されたチャンクを確認し、メール関連のチャンクではなくVPN関連のチャンクが上位にヒットしていた場合、メタデータの付与やチャンク分割の見直しで検索精度を改善する</button>
+      <button class="choice-btn" onclick="answer('ch03_s03_4',2,1)">C　回答の精度が低いため、ナレッジベースのすべてのドキュメントを作り直す</button>
+      <button class="choice-btn" onclick="answer('ch03_s03_4',3,1)">D　RAGの仕組み上、このような誤りは避けられないため、すべての回答を人間が書き直す運用に変更する</button>
+    </div>
+    <div class="explanation" id="ech03_s03_4">
+      <div class="ans-label">✅ 正解：B</div>
+      RAGの精度問題は「検索」と「生成」のどちらに原因があるかを切り分けて対処します。この事例では、まず検索されたチャンクを確認します。メール関連ではなくVPN関連のチャンクが上位にヒットしていれば、問題は検索段階にあります。原因としてはチャンクの粒度が粗い（メールとVPNが同じチャンクに混在している）、カテゴリのメタデータが不足している、といった可能性が考えられ、チャンク分割の見直しやメタデータの追加で改善できます。Aのようにモデル変更から着手するのは、原因の特定なしに対策を講じることになり非効率です。 Cのようにすべてを作り直すのは現実的ではありません。DのようにRAGそのものを諦める必要はなく、段階的な改善で精度を高められます。 171 Chapter3 AIデータリテラシーとマネジメント CHAPTER 3 Section15. AIガバナンスと法務学習のポイント本Sectionでは、AIエージェント導入に伴う法的リスクを理解し、法務部門やセキュリティ部門と適切に連携できるようになることを目的とします。試験では、AIポリシーの主な構成要素、著作権侵害リスクや個人情報保護法の基本的な考え方、さらに法務・セキュリティ部門と事業部門の橋渡し役としてのAIエージェント・ストラテジストの役割が問われます。技術と法務の両方を理解し、関係者に伝わる形で整理して説明できることが重要です。 1 知識 AIガバナンスとは何か「動かせる」からこそ「管理する」 AIガバナンスとは、組織としてAIエージェントをどのように利用し、管理し、監督するかを定めた体制・ルール・プロセスの総称です。なぜガバナンスが必要なのか。その答えは、AIエージェントの本質的な特性にあります。従来の「ツールとしてAIエージェントを活用する場面」では、人間が都度操作するため、何が起きているかは比較的把握しやすかったのですが、「エージェントとしてAIを活用する場面」では、AIエージェントが人間の指示なしに判断・行動する部分があります。複数のエージェントが連携し、外部システムに接続し、自律的にタスクを実行する環境では、「誰が、どこで、何のために動かしているか」を組織として把握しておかなければ、問題が起きたときに原因を特定できません。ガバナンスなしに導入を進めることは、ブレーキのない車を走らせることに等しいです。AIエージェントの自律性が高まるほど、ガバナンスの設計はツール選定や業務設計と同等の重みを持ちます。 172 Chapter3 AIデータリテラシーとマネジメント AIポリシーの策定「何を許可し、何を禁⽌するか」を定義する AIポリシーとは、組織としてのAIエージェント利用ルールを文書化したものです。その核心は、「入力を許可するデータ」と「入力を禁止するデータ」の明確な定義にあります。 POINT 重要なのは、AIポリシーに「万社共通の正解」は存在しないということです。どのデータを許可し禁止するかは、業種・扱うデータの機密レベル・利用するAIサービスの形態・適用される法規制によって企業ごとに大きく異なります。医療機関では患者データの扱いが最も厳格になりますが、社内業務マニュアルの扱いは比較的緩やかかもしれません。製造業では製品設計データが最重要機密であり、社員の連絡先よりも厳しく管理されるケースがあります。金融機関では未公開の顧客資産情報が最上位の禁止データになりますが、一般的な市場情報の扱いは異なります。 AIエージェント・ストラテジストの役割は、「自社にとっての入力許可データと禁止データ」を、法務部門・セキュリティ部門・事業部門と協議して定義することです。他社のポリシーをそのまま流用するのではなく、自社の業務内容とリスク許容度に基づいて策定することが不可欠です。 173 Chapter3 AIデータリテラシーとマネジメント POINT 入力許可データの一般的な例としては、公開情報・社内FAQ・一般的な業務文書などがあります。禁止データの一般的な例としては、マスキングされていない個人情報・未公開の財務情報・営業秘密などが挙げられます。ただしこれらはあくまで出発点であり、自社の判断で具体化することが求められます。 AIポリシーは策定して終わりではありません。AIエージェントの活用範囲が広がるにつれて、想定していなかった利用場面が生まれます。半年から一年に一度の定期的な見直しを運用サイクルに組み込んでおくことが現実的です。利⽤ガイドラインポリシーを⽇常の⾏動に落とし込む AIポリシーが「組織としての方針」であるとすれば、利用ガイドラインは「個々の従業員が日常業務で判断するための基準」です。ポリシーがどれほど精緻に設計されていても、現場の担当者が「この場合はAIに入力して良いのか」を判断できなければ、ポリシーは機能しません。ガイドラインの役割は、ポリシーの抽象的なルールを、具体的な行動レベルの指針に変換することです。たとえば、「AIエージェントに社内情報を入力する際は、個人名・顧客名・口座番号を匿名化または削除すること」「AI エージェントの出力をそのまま顧客に送付せず、必ず担当者が内容を確認した上で送信すること」「AIエージェントが生成した文書を社外に公開する場合は、管理職の承認を得ること」などを記述します。 174 Chapter3 AIデータリテラシーとマネジメントガイドラインの質は、具体性によって決まります。「適切に利用すること」という表現は、判断基準として機能しません。「何を」「どうすれば」「誰が確認するか」まで記述することで、初めて現場で使えるガイドラインになります。 AIエージェント利⽤に伴う法的リスク知らないでは済まされない3つの領域 AIエージェントの導入は、技術的な問題であると同時に法的な問題でもあります。ストラテジストとして最低限押さえるべき法的リスクは3つです。著作権リスクには2つの側面があります。1つはAIエージェントの学習データに含まれる著作物の権利問題。もう1つはAI エージェントが生成したコンテンツの権利帰属の問題です。現時点では「AIの出力そのものには著作権が原則として発生しない」とする見解が主流ですが、人間が創作的な関与を行った場合は著作権が認められる可能性があります。この解釈は国‧地域‧判例の蓄積によって変化し続けており、法務部⾨との継続的な確認が必要です。個人情報保護法リスクは、AIエージェントが個人情報を扱う際に生じるリスクです。個人を特定できる情報を含むデータを連携されたサービスに送信する場合、利用目的の明示・本人の同意・安全管理措置が必要になります。顧客情報をAIエージェントに入力する際のマスキング処理は、この法的要件への具体的な対応策です。責任分界点のリスクは、「AIエージェントが誤った判断をした場合、誰が責任を負うか」という問いに組織として答えられていないリスクです。AIには法的責任を負わせることができません。 Human-in-the-Loopの設計によって「AIエージェントの判断をそのまま実行したわけではない」状態を作り、設計者・承認者・経営者それぞれの責任範囲を明文化しておくことが必要です。 175 Chapter3 AIデータリテラシーとマネジメント法務部との連携技術を法的リスクの⾔葉に翻訳するストラテジストに求められる固有の能力の一つが、技術と法務の橋渡しです。技術部門が使う言葉と法務部門が判断に必要な言葉は、多くの場合かみ合っていません。たとえば技術的な説明として「RAGでナレッジベースを検索し、LLMがプロンプトに含めて回答を生成します」という表現があったとします。これをそのまま法務部門に伝えても、「何が問題になりうるか」の判断材料になりません。法務向けに翻訳すると次のようになります。「社内文書のテキストが外部のAIサービスに送信され、AIエージェントがその内容を参照して回答を生成します。送信される文書に個人情報・未公開の財務情報・営業秘密が含まれる場合、個人情報保護法への対応と情報漏洩リスクの評価が必要です」。技術の中身を正確に、かつ相手が判断できる言葉で伝える。この翻訳力がなければ、法務部門は適切なリスク評価ができず、技術部門は必要な制約の理由を理解できないまま進みます。両者の認識のずれが、後から深刻なコンプライアンス問題として浮上するのが、AIエージェント導入プロジェクトにおける典型的な失敗パターンの1つです。ガバナンスの設計は、リスクを恐れて導入を止めるためにあるのではありません。リスクを可視化し、許容できる範囲で管理しながら、組織としてAIエージェントを安全に活用するための土台を作るためにあります。 176 Chapter3 AIデータリテラシーとマネジメント 2 業務シナリオ：ヘルプデスクAIのガバナンス設計ヘルプデスクAIの導⼊にあたり、AIポリシーの策定と法務部⾨との連携を⾏います。判断 1 AIポリシーの策定 IT部門とセキュリティ部門、法務部門の3者で協議し、自社の業務内容とリスク許容度に基づいて入力許可データと禁止データを定義します。入力許可データの例：問い合わせ内容のテキスト（個人情報マスキング後）、ITマニュアル・FAQ、チケットの対応履歴（個人名を匿名化した状態）。禁止データの例：社員の個人情報（マスキング前の生データ）、人事評価データ、給与データ、未公開の経営情報、サーバーのルートパスワード。これはあくまでこの企業の判断です。たとえばオンプレミスでLLMを運用する企業であれば、データが外部に送信されないため許可データの範囲が広くなる可能性があります。判断 2 法務部⾨との連携ストラテジストがリスクを整理し、法務部⾨との協議に臨みます。技術側の説明：「RAGで社内文書を参照する際、文書の一部がLLMに入力されます」法務向け翻訳：「社内文書のテキストが外部のAIサービスに送信されます。文書に個人情報や営業秘密が含まれる場合、個人情報保護法や不正競争防止法への対応が必要です」 177 Chapter3 AIデータリテラシーとマネジメント技術側の説明：「AIエージェントがハルシネーションを起こし、誤った⼿順を回答するリスクがあります」法務向け翻訳：「AIエージェントの誤回答により業務上の損害が発生した場合、使用者責任が問われる可能性があります。回答精度の合格基準と、誤回答時の免責事項の設計が必要です」判断 3 責任分界点の設定とエージェント台帳の整備 FAQ該当の自動回答の場合、AIエージェントの回答に起因するトラブルの第一義的な責任は運用管理者が負います。非 FAQ案件の担当者確認付き回答の場合、AIエージェントのドラフトを担当者が確認して送信した時点で、回答内容の責任は確認した担当者に移ります。あわせて、Section7のブラックボックス化リスクへの対策として「AIエージェント台帳」を整備します。ヘルプデスクAI を第1号として登録し、エージェント名、目的、管理者、使用LLM、入力データの範囲、出力の利用範囲、アクセス権限、更新頻度、最終監査日を記録します。四半期に1回の棚卸で、登録外のエージェントが存在しないかを確認する運用ルールも策定します。 178 Chapter3 AIデータリテラシーとマネジメント実践事例：PoCから本番化する前に管理体制を整える 179 Chapter3 AIデータリテラシーとマネジメント 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch03_s03_4" onclick="retryQ('ch03_s03_4')">↩ もう一度</button>
+      <button class="next-btn" id="nch03_s03_4" onclick="showScore('ch03_s03',4)">結果を見る →</button>
     </div>
   </div>
 
@@ -871,6 +669,7 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIエージェント導入に伴う法的リスクを理解し、法務部門やセキュリティ部門と
@@ -878,39 +677,13 @@ body {
 侵害リスクや個人情報保護法の基本的な考え方、さらに法務・セキュリティ部門と事業部門の橋渡
 し役としてのAIエージェント・ストラテジストの役割が問われます。技術と法務の両方を理解し、
 関係者に伝わる形で整理して説明できることが重要です。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">3つの法的リスク</div>
-<div class="risk-cards">
-  <div class="risk-card" style="border-color:#c0392b;background:#fff5f5;">
-    <div class="risk-card-head">⚖ 著作権リスク</div>
-    <div class="risk-card-body">LLMが学習データの著作物をそのまま再現する可能性。生成物の著作権帰属も未解決（国・ケース依存）</div>
-    <div class="risk-card-action">→ 生成物の社外公開前に確認プロセスを設ける</div>
-  </div>
-  <div class="risk-card" style="border-color:#e67e22;background:#fff8f0;">
-    <div class="risk-card-head">🔐 個人情報保護法リスク</div>
-    <div class="risk-card-body">顧客・従業員データをAIに入力する際の目的外利用・越境移転問題。クラウドAPIに送信するだけで違反になりうる</div>
-    <div class="risk-card-action">→ マスキング処理・データの最小化・契約確認</div>
-  </div>
-  <div class="risk-card" style="border-color:#8e44ad;background:#fdf5ff;">
-    <div class="risk-card-head">⚡ 責任分界点リスク</div>
-    <div class="risk-card-body">AIの出力による損害の責任は誰が負うか？ベンダー・開発者・利用者間の責任が曖昧になりやすい</div>
-    <div class="risk-card-action">→ 利用規約・契約でAI出力の最終確認責任を明記</div>
-  </div>
+<p class="ov-body-p">AIガバナンスとは何か「動かせる」からこそ「管理する」</p>
+<p class="ov-body-p">AIガバナンスとは、組織としてAIエージェントをどのように利用し、管理し、監督するかを定めた体制・ルール・プロセスの総称です。</p>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">Bは技術的に正確で、かつ法務部門が法的リスクを評価できる翻訳です。</div></div>
 </div>
 
-<div class="ov-subtitle">AIポリシーの構成要素</div>
-<ul class="point-list">
-  <li><strong>利用ガイドライン</strong>：何に使っていいか・何に使ってはいけないか。禁止事項（機密情報の入力禁止等）を具体的に列挙</li>
-  <li><strong>データ取扱いルール</strong>：社内データをAIに渡す際の分類・マスキング・保存ルール</li>
-  <li><strong>承認プロセス</strong>：新規AIツール導入時の審査手順（IT・法務・経営の承認フロー）</li>
-  <li><strong>モニタリング</strong>：AI出力品質の定期確認・インシデント発生時の報告ライン</li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">3大法的リスク＝著作権・個人情報・責任分界点。ガバナンスは「使う前」に設計する</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch03_s04">
@@ -919,6 +692,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -940,11 +714,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #2a8a7a;">
   <div class="quiz-hdr" style="color:#1a5e52;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch03_s04" onclick="startRetake('ch03_s04')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch03_s04" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch03_s04_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-num">問 1 ／ 3</div>
     <div class="quiz-question">ストラテジストが法務部門に「RAGでナレッジベースを検索し、LLMがプロンプトに含めて回答を生成します」と説明しました。法務部門が理解しやすい翻訳として最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s04_1',0,1)">A　「AIエージェントが社内文書を自動学習して知識を更新します」</button>
@@ -963,7 +740,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch03_s04_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-num">問 2 ／ 3</div>
     <div class="quiz-question">AIエージェントの自動回答が誤った情報を案内し、業務上の損害が発生しました。この場合の責任に関する記述として、最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s04_2',0,2)">A　AIエージェントの開発元が全責任を負う</button>
@@ -977,7 +754,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch03_s04_2" onclick="retryQ('ch03_s04_2')">↩ もう一度</button>
-      <button class="next-btn" id="nch03_s04_2" onclick="showScore('ch03_s04',2)">結果を見る →</button>
+      <button class="next-btn" id="nch03_s04_2" onclick="showNext('ch03_s04_3')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch03_s04_3" style="display:none;">
+    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-question">AIエージェントの自動回答が誤った情報を案内し、業務上の損害が発生しました。この場合の責任に関する記述として、最も適切なものはどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch03_s04_3',0,2)">A　AIエージェントの開発元が全責任を負う</button>
+      <button class="choice-btn" onclick="answer('ch03_s04_3',1,2)">B　AIエージェントが自律的に回答したため、誰も責任を負わない</button>
+      <button class="choice-btn" onclick="answer('ch03_s04_3',2,2)">C　AIポリシーに基づく責任分界点に従い、運用管理者または組織が責任を負う</button>
+      <button class="choice-btn" onclick="answer('ch03_s04_3',3,2)">D　AIエージェントの出力を利用したユーザーの自己責任である</button>
+    </div>
+    <div class="explanation" id="ech03_s04_3">
+      <div class="ans-label">✅ 正解：C</div>
+      AIエージェント導入前に責任分界点をAIポリシーで定義しておくことが重要です。Bの「誰も責任を負わない」は組織として許容されません。AIエージェントが自律的に動くからこそ、責任の所在を人間の側で事前に決めておくことがガバナンスの核心です。 182 Chapter3 AIデータリテラシーとマネジメント CHAPTER 3 Section16. AIエージェントが読みやすいデータを作る学習のポイント本項目では、RAGをはじめとする生成AI活用において、AIエージェントが参照しやすいデータとは何かを理解することを目的とします。人にとって読みやすい文書やデータであっても、そのままAI エージェントにとって扱いやすいとは限りません。AIエージェントは、情報の区切り方、表記の一貫性、検索しやすさなどの影響を強く受けるためです。試験では、AIエージェントにとって扱いやすいデータと扱いにくいデータの特徴、データ品質を高めるための実務上の工夫、AI Readyデータの考え方と基本的な整理方法、ナレッジベースの更新管理、既存データをどこまで整形すべきかの判断が問われます。 1 知識 ⼈間にとっての読みやすさとAIエージェントにとっての読みやすさは違う Excelでセルを結合して見出しを中央揃えにした表。人間が画面で見るぶんには整然として見やすい。しかしAIエージェントがこの表を読み取ろうとすると、セル結合によって行と列の対応が崩れ、どの値がどの項目に属するかを正しく判定できなくなります。たとえば、議事録に「例の件、確認済み。OKとのこと」とだけ書かれていても、AIエージェントには「例の件」が何を指すのか分かりません。その場にいた人には通じる表現でも、主語や対象、判断内容が明示されていなければ、AIエージェントは正しく理解できず、検索にも活用しにくくなります。このような曖昧な記述は、「ナレッジベースにデータを入れているのに、RAGの精度が上がらない」原因になります。 RAGの検索精度は、ナレッジベースの品質に大きく左右されるためです。 AIエージェントが扱いやすいデータとは、その記述だけで意味が分かること、1つの項目に1つの情報だけが入っていること、情報の構造が文字として明示されていることを満たすデータです。逆に、前提知識がなければ理解できないデータ、複数の情報が混在したデータ、見た目だけで意味を表しているデータは、AIエージェントにとって扱いにくいデータだといえます。ここで重要な原則を押さえます。「AIエージェントが見えないものは、存在しないのと同じ」。どれだけ価値がある情報でも、テキストとして明文化されていなければAIエージェントはそのデータを活用できません。この原則を踏まえ、以下では、個人が実践できる7つの習慣と、組織として必要となるデータ戦略を整理します。 183 Chapter3 AIデータリテラシーとマネジメント実践で使える7つの習慣ここで扱う習慣は、いずれも現在の業務を大きく変えるものではなく、日々の作業の進め方を少し見直すことで実践できるものです。もし「AIエージェントのために新たな作業を増やす」と受け取られると、現場で定着しにくくなります。そのため、ここでは、既存業務の延長で実践できる工夫として整理します。以下では、データの内容に関する5つの習慣と、データの管理に関する2つの習慣に分けて説明します。習慣1：固有名詞で書く「例の件」「先日の対応と同様に」ではなく、「2026年3月のサーバー障害対応と同じ手順で」と書きます。今の同僚には冗長に見えても、半年後にAIエージェントが読むとき、異動してきた新人が読むときに意味が通ります。「その場にいた人間なら察せる」表現は、AIエージェントにとっては存在しない情報と同義です。 184 Chapter3 AIデータリテラシーとマネジメント習慣2：「⾒た⽬」より「構造」で作るセル結合をしない。色で意味を持たせない。1セルに1データ。判断基準は「見栄えの良い資料」ではなく「フィルタやピボットテーブルが使える状態」です。見た目の整理はフィルター表示やピボットで後からいくらでも作れますが、構造が崩れたデータをAIエージェントが正しく読み取ることはできません。 185 Chapter3 AIデータリテラシーとマネジメント習慣3：正しい⼊⼒がラクにできる環境を作る同じ顧客を「トヨタ」「トヨタ自動車」「Toyota」と複数の表記で入力すると、AIエージェントは別々の顧客と認識する可能性があります。「表記を統一しよう」と呼びかけるだけでは定着しません。プルダウンで選択させる、マスタテーブルから参照させる、入力フォームの選択肢を用意する。人間の注意力に頼るのではなく、そもそも入力を間違えにくい仕組みにすることが本質です。この「人間の注意力に頼らず、仕組みで品質を担保する」という発想は、データ品質管理に限らず、AIエージェントの運用設計全般に通じる重要な原則です。習慣4：重要な画像データに注釈を⼊れるスクリーンショットを貼って「これ見て」は人間には通じますが、AIエージェントは画像の中のテキストをそのままでは正確に読めません。手順書やマニュアルのスクリーンショットにはキャプションやテキストでの説明を付けます。設備点検の写真であれば「右上の配管に亀裂あり」とテキストで注記しておけば、AIエージェントは画像を解析しなくてもその情報を活用できます。 186 Chapter3 AIデータリテラシーとマネジメント習慣5：⽇付とカテゴリタグを⼊れる「最終更新：2026年3月」の日付があれば、RAGのメタデータフィルタリングで古い情報を除外できます。「カテゴリ：ネットワーク」「対象OS：Windows 11」のようなタグも検索精度を大きく左右します。すべてのメタデータを人間が手作業でつける必要はなく、「このファイルは何のカテゴリか」だけ人間が判断し、詳細なタグ付けはAIエージェントの自動付与に任せるのが現実的な分担です。 187 Chapter3 AIデータリテラシーとマネジメント習慣6：バージョン管理をファイル名ではなく履歴機能で⾏う「提案書_最終版」「提案書_最終版_修正」「提案書_最終版_修正2_確定」のように、同じ文書の版違いが複数残っている場合、AIエージェントがRAGで検索した際に、古い版を最新版と区別できず、誤って過去の情報を参照するおそれがあります。 POINT そのため、文書管理では、SharePointやGoogle Driveのバージョン履歴機能などを活用し、AIが参照する対象を常に最新版に限定できる状態を整えることが重要です。習慣7：AIエージェントがアクセスできる場所にデータを置く POINT どれだけデータの品質を上げても、個人のPCのデスクトップやメールの添付ファイルの中に埋もれていれば、AIは参照できません。SharePoint・Google Drive・Boxなどのクラウドストレージに置いて初めてAIの検索対象になります。「データの品質」と同じくらい「データの置き場所」が重要です。 188 Chapter3 AIデータリテラシーとマネジメント AI Readyデータという考え⽅個⼈の習慣を組織の戦略へ 7つの習慣は個人レベルの実践です。しかしAIエージェントの導入を組織として成功させるには、データを「組織の資産」として戦略的に整備する視点が必要です。この視点を体系化したのが「AI Readyデータ」という概念です。米国の調査・コンサルティング会社であるGartnerは「2026年までに、AI Readyデータの不備が原因でAIプロジェクトの 60%が中止される」と予測しています。同社の2024年の調査では、データ管理リーダーの63%が「AI向けの正しいデータ管理プラクティスが自社にあるかどうか不明」と回答しています。また、米国のテクノロジー企業であるIBMの2024年調査でも、技術部門の責任者のうち、「自社のデータがAIに必要な品質、アクセスしやすさ、セキュリティの基準を満たしている」と回答したのは29%にとどまっています。 Lack of AI-Ready Data Puts AI Projects at Risk Gartner 2025.2.26 AIプロジェクトの成否は、AIエージェントの技術力ではなくデータの準備状況で決まる。この事実を経営層と共有できることが、ストラテジストの武器になります。 AI Readyデータとは、AIエージェントが正確かつ安全に処理・活用できる状態に整備されたデータのことです。Gartner はその条件を4つの特性で整理しています。正確性：データが正確で矛盾がない。可視性：データの所在と意味が明確で、メタデータが整備されている。追跡可能性：データの出所と変更履歴が追跡可能である。安全性：アクセス制御とプライバシー保護が適切に設計されている。これらの特性は、7つの習慣の上位概念にあたります。習慣1〜4がデータの正確性を、習慣5（メタデータ付与）が可視性を、習慣6（バージョン管理）が追跡可能性を、習慣7（アクセス可能な場所に置く）と前のセクションで学んだガバナンスが安全性をそれぞれ支えています。個人の習慣は、組織のAI Readyデータ戦略の「実行の最前線」なのです。 189 Chapter3 AIデータリテラシーとマネジメント既存データはどこまで整形するか「全部やる」は罠「過去何年分ものデータがExcelに蓄積されているが、すべて整形すべきか」という問いに対しては、まず利用対象となる範囲から優先的に整形する、という考え方が基本です。最初から全件を整備する必要はありません。なぜ多くの企業でデータが整備されていないかというと、従来のナレッジマネジメントは「入力する人にメリットがなく、活用する人だけが得をする」構造だったからです。入力者にコストだけ押しつけると、時間が経つにつれて誰も入力しなくなり、形だけ残って使われない状態に陥ります。「全部きれいにしてからAIエージェント導入」では永遠に始まりません。判断基準はシンプルです。導入対象の業務を決め、RAGで参照するナレッジベースの範囲をあわせて決める。その範囲のデータを優先的に整形し、それ以外は後回しにしてまずAIエージェントを動かし始める。試験運用でデータ品質の問題を発見し、フィードバックループで改善していく進め方が現実的です。 190 Chapter3 AIデータリテラシーとマネジメントナレッジベースの鮮度管理「作って終わり」にしない仕組みナレッジベースは「一度構築したら完了」ではありません。社内マニュアルは更新され、就業規則は改定され、製品仕様は変わります。ナレッジベースが古い情報を返し続けると、AIエージェントの回答品質が徐々に劣化する「ドリフト」と呼ばれる現象が発生します。ナレッジベースを静的に扱うこと（一度投入したら更新しないこと）が、品質劣化の最大の原因です。品質を維持するには、文書の更新をナレッジベースへ継続的に反映する仕組みが必要です。この更新パイプラインは、次の4つのステップで整理できます。 1 変更の検知社内WikiやSharePoint上の文書が更新されたことを自動で把握します。そのために、ファイルの更新日時や、バージョン管理機能の差分情報を利用します。 2 変更箇所の反映更新された文書だけをナレッジベースへ再登録します。毎回すべての文書を再処理するのではなく、変更があった文書や箇所だけを対象とすることで、処理時間とコストを抑えやすくなります。 3 古い情報の除外更新前の内容が検索結果に残らないようにします。その方法としては、古いチャンクを削除する、無効とする、あるいは適用開始日や有効期限などの情報を付けて、古い内容を検索対象から外す設計が考えられます。 191 Chapter3 AIデータリテラシーとマネジメント 4 品質の確認更新後のナレッジベースが、期待どおりに機能しているかを確認します。たとえば、更新前と同じ質問を使って回答を比較することで、更新によって意図しない精度低下が起きていないかを確認できます。 POINT このように、更新パイプラインでは、変更を見つける、反映する、古い情報を除外する、品質を確認するという流れを継続的に回すことが重要です。更新パイプラインを設計するだけでなく、「誰が・いつ・何をトリガーに」更新を行うかの運用ルールも必要です。自動更新が適するのは、ITマニュアルやFAQのように更新頻度が高く形式が定まっているドキュメントです。定期棚卸しが適するのは、就業規則や契約テンプレートのように更新頻度は低いが影響が大きいドキュメントです。そして業務プロセスの変更や組織変更など、ドキュメントの更新だけでは捉えきれない変化については、現場の担当者が「この情報が古くなった」と気づいた時点でナレッジベースの更新を申請するフィードバックループを設計します。これはSECIモデルにおける表出化の継続であり、組織の知識が循環し続けるための仕組みです。 192 Chapter3 AIデータリテラシーとマネジメントナレッジソースの階層管理信頼度で分けるナレッジベースに投入するドキュメントのすべてが同じ信頼度を持つわけではありません。公式ドキュメント（社内規程・製品仕様書・認定されたマニュアル）と、非公式ドキュメント（Slackの会話ログ・個人のメモ・社内フォーラムの投稿）では、情報の信頼性が大きく異なります。実務上のベストプラクティスは、信頼度の高いプライマリソース（公式ドキュメント）を最優先でナレッジベースに投入し、セカンダリソース（Slack・フォーラム等）は投入の際にフィルタリング条件を設けることです。「直近1年以内の投稿のみ」「特定のチャンネルのみ」「特定のロール（ベテラン担当者など）の投稿のみ」といった条件です。 POINT セキュリティの観点からは、機密性の異なるデータを同じナレッジベースにまとめず、アクセス権限に応じて分けて管理することが重要です。たとえば、全社員が参照できる一般向けのナレッジベースと、人事部門だけが参照できる機密情報用のナレッジベースを分けておくことで、AIエージェントが機密情報を不適切な相手への回答に含めるリスクを抑えやすくなります。 AIエージェントがデータを整える時代へ⼈間とAIの役割分担近年では、データ整備の負担を軽減する機能を備えたツールも増えています。たとえば、SharePointやBoxなどでは、保存された文書の内容をAIエージェントが読み取り、カテゴリ、日付、キーワードなどをメタデータとして自動で付与する機能が提供されています。これにより、契約書の条項、請求書の金額、文書の分類情報などを、人手だけに頼らず整理しやすくなっています。 193 Chapter3 AIデータリテラシーとマネジメントただし、こうした機能があるからといって、人間によるデータ整備が不要になるわけではありません。前述した7つの習慣で示したような、「1セルに1データを入れる」「固有名詞を省略せずに記録する」といった基本的な整備ができていなければ、AIエージェントによる自動付与の精度も安定しにくくなります。したがって、実務では、人間がデータの基本的な書き方や整理のルールを守りつつ、メタデータの付与やタグ付けのような補助的な作業はAIエージェントで自動化する、という役割分担が有効です。このように、人間による整備とAIエージェントによる補助を組み合わせることが、限られたリソースの中でデータ品質を高める現実的な進め方となります。「AIエージェントが動く環境」を設計するという発想このSectionではデータの品質に焦点を当ててきましたが、AIエージェントが安定して成果を出すには、データ品質だけでは不十分です。最近のAIエージェント活用の現場では、コンテキストエンジニアリングという考え方が注目されています。AIエージェントが暴走せず狙い通りの成果を出し続けるための「環境設計」全般を指す概念です。このSectionで学んだ「AIエージェントが読みやすいデータを作る」「ナレッジベースの鮮度を管理する」「仕組みで品質を担保する」といった実践はすべて、コンテキストエンジニアリングのデータ品質に関わる一部分にあたります。これに加えて、AIエージェントの出力を自動チェックする仕組み、段階的に作業を進めさせるワークフロー設計、参照するルールの明文化なども含む、より広い概念です。ストラテジストが押さえるべき本質的な視点は、「AIエージェントの回答品質はAIモデルの賢さだけでは決まらない」ということです。同じAIモデルでも、データの整備状況・ルールの明文化・チェック体制の設計によって成果は大きく変わります。 AIエージェントの性能を上げることよりも、AIエージェントが正しく動ける環境を整えることのほうが、多くの場合において効果的かつ即効性があります。 194 Chapter3 AIデータリテラシーとマネジメント 2 業務シナリオ：ヘルプデスクAIのデータ品質改善 Section14でヘルプデスクAIのRAGを構築しました。しかし試験運用を始めたところ、検索精度に問題が出ています。原因を調べると、ナレッジベースに投入したデータの品質に問題がありました。判断 1 読みづらいデータの発⾒と修正試験運⽤で発覚した問題を2つ挙げます。 ITマニュアルの手順書に「上記の手順と同様に設定する」と記載されている場合、人であれば直前の説明を見返して意味を補えますが、RAGでは文書がチャンク単位で検索されるため、「上記」が何を指しているのか分からず、十分な根拠として利用できないことがあります。このような場合は、「VPN接続手順 ― Windows 11版のステップ3と同様に設定する」のように、参照先を固有名詞で明示して書き直すことが有効です。これは、前提知識がなくても意味が分かるようにする習慣の適用例です。また、過去の対応履歴に「いつもの対応で解決」とだけ記録されている場合も問題になります。この表現は、ベテラン担当者には意味が通じても、AIエージェントや新人担当者には具体的な対応内容が分かりません。そのため、対応履歴の入力様式に「実施した対応手順」の項目を設け、具体的な手順を必ず記録するようにします。これは、内容を明⽰することと、必要な情報を項⽬として分けて記録することを組み合わせた改善例です。 195 Chapter3 AIデータリテラシーとマネジメント POINT ここで重要なのは、単に「丁寧に書くよう注意する」ことではなく、必要な情報を自然に記録できる入力の仕組みを作ることです。毎回「具体的に書いてください」と依頼するだけでは、記録の質は担当者ごとにばらつきやすくなります。そのため、テンプレートや入力項目を設計し、必要な情報が抜けにくい形にしておくことが、データ品質を安定させるうえで有効です。判断 2 既存データの整形範囲の判断ヘルプデスクのナレッジベースには、ITマニュアル約50ページ、FAQ200件、過去3年分の対応履歴約18,000件があります。まずは、優先順位をつけます。最優先はITマニュアルです。全社員が参照する基幹ドキュメントであり、RAGの検索対象として最も頻繁に使われます。 50ページなら1〜2週間で整形できます。次にFAQです。200件の表記統一とメタデータ付与は比較的短期間で対応可能です。対応履歴18,000件は後回しにします。過去データを遡って修正するのではなく、今後の対応履歴から新しいテンプレートで記録を開始し、品質の高いデータを段階的に蓄積していきます。判断 3 AIエージェントによるメタデータ⾃動付与の活⽤ ITマニュアルとFAQ集については、AI in SharePointのメタデータ自動付与機能を活用します。AIエージェントがファイル内容を読み取り、「カテゴリ：VPN」「対象OS：Windows 11」「最終更新日：2026年3月」を自動で抽出・付与します。ただし、AIエージェントが付与したメタデータをそのまま確定するのではなく、IT部門の担当者が抽出結果を確認してから確定する運用にします。AIエージェントがメタデータの叩き台を作り、人間が確認・修正する。ゼロから手作業でタグ付けするよりもはるかに効率的です。判断 4 ナレッジベースの鮮度管理設計ヘルプデスクAIのナレッジベースの更新ルールを設計します。 ITマニュアルは自動更新が適するケースです。SharePointのドキュメントライブラリとナレッジベースを連携させ、マニュアルが更新されたら差分処理で自動反映します。旧版のチャンクは自動的に無効化されます。就業規則やセキュリティポリシーは定期棚卸しが適するケースです。四半期に1回、IT部門の管理者がナレッジベース内の該当ドキュメントの最終更新日を確認し、現行版と照合します。 196 Chapter3 AIデータリテラシーとマネジメント FAQ集は人間によるフィードバックトリガーが有効です。AIエージェントの回答が不十分だったケースをCS担当者が報告し、その報告をもとにFAQ集を更新し、ナレッジベースに反映します。このフィードバックループが、Section12で学んだSECIモデルの表出化の継続にあたります。 197 Chapter3 AIデータリテラシーとマネジメント 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch03_s04_3" onclick="retryQ('ch03_s04_3')">↩ もう一度</button>
+      <button class="next-btn" id="nch03_s04_3" onclick="showScore('ch03_s04',3)">結果を見る →</button>
     </div>
   </div>
 
@@ -1002,6 +798,7 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本項目では、RAGをはじめとする生成AI活用において、AIエージェントが参照しやすいデータとは
@@ -1011,65 +808,12 @@ body {
 すいデータと扱いにくいデータの特徴、データ品質を高めるための実務上の工夫、AI Readyデータ
 の考え方と基本的な整理方法、ナレッジベースの更新管理、既存データをどこまで整形すべきかの
 判断が問われます。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">AI Readyデータの7つの習慣</div>
-<div class="habit-list">
-  <div class="habit-item">
-    <div class="habit-num">1</div>
-    <div class="habit-body">
-      <div class="habit-title">固有名詞を正確に表記</div>
-      <div class="habit-desc">商品名・人名・部署名を略称・通称ではなく正式名称で統一。「営推」ではなく「営業推進部」</div>
-    </div>
-  </div>
-  <div class="habit-item">
-    <div class="habit-num">2</div>
-    <div class="habit-body">
-      <div class="habit-title">構造化して書く</div>
-      <div class="habit-desc">見出し・箇条書き・テーブルを使う。AIは構造から情報の重要度を判断する</div>
-    </div>
-  </div>
-  <div class="habit-item">
-    <div class="habit-num">3</div>
-    <div class="habit-body">
-      <div class="habit-title">入力環境を統一</div>
-      <div class="habit-desc">フォーマットばらつき（全角/半角混在・改行ルール不統一）はAIの解析精度を下げる</div>
-    </div>
-  </div>
-  <div class="habit-item">
-    <div class="habit-num">4</div>
-    <div class="habit-body">
-      <div class="habit-title">画像・図表にキャプション・注釈</div>
-      <div class="habit-desc">画像だけではAIは読めない。テキストで補足説明を付ける（Alt属性・キャプション）</div>
-    </div>
-  </div>
-  <div class="habit-item">
-    <div class="habit-num">5</div>
-    <div class="habit-body">
-      <div class="habit-title">日付・期間を明示タグ</div>
-      <div class="habit-desc">「先月」「最近」ではなく「2025年4月」と絶対表記。時制の曖昧さはRAG検索精度を下げる</div>
-    </div>
-  </div>
-  <div class="habit-item">
-    <div class="habit-num">6</div>
-    <div class="habit-body">
-      <div class="habit-title">バージョン管理</div>
-      <div class="habit-desc">旧バージョンの文書とAIが混同しないよう、廃止文書は明示的に削除・アーカイブ</div>
-    </div>
-  </div>
-  <div class="habit-item">
-    <div class="habit-num">7</div>
-    <div class="habit-body">
-      <div class="habit-title">置き場所の一元化</div>
-      <div class="habit-desc">ナレッジが散在すると検索漏れが起きる。RAGのインデックス対象を一箇所に集約</div>
-    </div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">⼈間にとっての読みやすさとAIエージェントにとっての読みやすさは違う</div><div class="ov-section-body">Excelでセルを結合して見出しを中央揃えにした表。人間が画面で見るぶんには整然として見やすい。しかしAIエージェントがこの表を読み取ろうとすると、セル結合によって行と列の対応が崩れ、どの値がどの項目…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">ITマニュアルとFAQ集は量が限定的で短期間に整形でき、RAGの検索対象として高頻度で使われます。</div></div>
 </div>
 
-<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">AIに見えないものは存在しないと同じ。7つの習慣で「AIが読める」データを作る</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch03_s05">
@@ -1078,6 +822,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -1100,11 +845,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #2a8a7a;">
   <div class="quiz-hdr" style="color:#1a5e52;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch03_s05" onclick="startRetake('ch03_s05')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch03_s05" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch03_s05_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 3</div>
+    <div class="quiz-num">問 1 ／ 4</div>
     <div class="quiz-question">ヘルプデスクAIのナレッジベースに投入するデータとして、ITマニュアル 50ページ、FAQ集200件、過去3年分の対応履歴18,000件があります。データ整形の優先順位として最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s05_1',0,2)">A　対応履歴18,000件を最優先で整形する。データ量が最も多く、整形効果が最大だから</button>
@@ -1123,7 +871,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch03_s05_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 3</div>
+    <div class="quiz-num">問 2 ／ 4</div>
     <div class="quiz-question">AIエージェントによるメタデータ自動付与機能を使ってITマニュアルにタグを付与する運用を検討しています。最も適切な運用方針はどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s05_2',0,1)">A　AIエージェントが付与したメタデータをそのまま確定し、人間の確認は不要とする</button>
@@ -1142,7 +890,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch03_s05_3" style="display:none;">
-    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-num">問 3 ／ 4</div>
     <div class="quiz-question">AIエージェントの回答品質を向上させるアプローチとして、最も効果的なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s05_3',0,1)">A　より高性能で最新のLLMモデルに定期的にアップグレードする</button>
@@ -1156,7 +904,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch03_s05_3" onclick="retryQ('ch03_s05_3')">↩ もう一度</button>
-      <button class="next-btn" id="nch03_s05_3" onclick="showScore('ch03_s05',3)">結果を見る →</button>
+      <button class="next-btn" id="nch03_s05_3" onclick="showNext('ch03_s05_4')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch03_s05_4" style="display:none;">
+    <div class="quiz-num">問 4 ／ 4</div>
+    <div class="quiz-question">AIエージェントの回答品質を向上させるアプローチとして、最も効果的なものはどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch03_s05_4',0,1)">A　より高性能で最新のLLMモデルに定期的にアップグレードする</button>
+      <button class="choice-btn" onclick="answer('ch03_s05_4',1,1)">B　AIエージェントが参照するデータの品質を高め、ルールの明文化やチェック体制など、AIエージェントが正しく動ける環境を整備する</button>
+      <button class="choice-btn" onclick="answer('ch03_s05_4',2,1)">C　プロンプトを長く詳細に書くことで、AIエージェントに対する指示の精度を上げる</button>
+      <button class="choice-btn" onclick="answer('ch03_s05_4',3,1)">D　AIエージェントの回答をすべて人間がチェックし、不正確な回答を手動で書き直す</button>
+    </div>
+    <div class="explanation" id="ech03_s05_4">
+      <div class="ans-label">✅ 正解：B</div>
+      AIエージェントの回答品質は、AIモデルの性能だけで決まるものではありません。データの品質、ルールの明文化、チェック体制の設計といった「AIエージェントが動く環境」の整備こそが、多くの場合において最も効果的かつ即効性のある改善策です。この考え方はハーネスエンジニアリングと呼ばれ、AIエージェント活用の現場で注目されています。 Aはモデルの性能向上だけでは、参照するデータが不正確であれば回答品質は改善しません。Cはプロンプトの改善は有効な手段の1つですが、それだけではデータ品質やナレッジベースの鮮度の問題は解決しません。Dはすべてを人間がチェックする運用はスケールせず、AIエージェント導入のメリットを大きく損ないます。 201 Chapter3 AIデータリテラシーとマネジメント CHAPTER 3 Section17. AIプロジェクトの進め⽅ 学習のポイント本Sectionでは、AIプロジェクトが通常のITプロジェクトと異なる点を理解し、PoC（概念実証）を中心とした導入初期の進め方を設計できるようになることを目指します。試験では、各ステップの目的と判断のポイント、業務分析や現場確認の進め方、効果検証の設計方法が問われます。 1 知識 AIプロジェクトはなぜ「普通のプロジェクト」と違うのか不確実性の種類が違うソフトウェア開発プロジェクトには不確実性がつきものです。しかしAIプロジェクトが抱える不確実性は、通常の開発プロジェクトとは種類が異なります。通常のシステム開発では「何を作るか」は概ね決まっており、「どう実装するか」「どれくらいの工数がかかるか」が不確実です。しかしAIプロジェクトでは、もっと根本的な問いが未解決のまま始まります。「そもそもAIエージェントはこの課題を解けるのか」これが答えられない状態で本番開発に突入すると、数百万円の開発費をかけた後に「精度が出ない」「現場に使ってもらえない」という結末を迎えます。この失敗は珍しくありません。 AIプロジェクトには、少なくとも3種類の不確実性が重なっています。技術面の不確実性 AIモデルが、その業務課題に対して必要な精度を実際に満たせるかどうかは、事前の想定だけでは判断できません。自然言語処理や画像認識といった技術が一般に有効とされていても、自社で扱うデータの質、量、表現のばらつきによって、期待した精度が得られない場合があります。業務適合性の不確実性 AIエージェントが技術的に動作したとしても、それが実際の業務フローの中で無理なく使われ、現場担当者に受け入れられるとは限りません。操作が分かりにくい、回答を信頼しにくい、既存業務とかみ合わないといった理由により、導入後に十分に使われなくなる可能性があります。効果面の不確実性 AIエージェントを導入しても、業務効率の向上や利用者満足度の改善といった効果が、想定どおりに現れるとは限りません。実際の効果は、導入後の利用状況や運用方法に左右されるため、稼働前に完全に確定することはできず、実測による確認が必要になります。 202 Chapter3 AIデータリテラシーとマネジメントこのように、技術面、業務適合性、効果面の三つに不確実性があるため、AIプロジェクトでは、本番導入の前に限定的な範囲で試行し、その有効性や課題を確認することが不可欠です。このような事前検証の工程をPoC（概念実証）といいます。アジャイル開発‧デザイン思考との⽐較 AIプロジェクトの進め方を考えるとき、アジャイル開発やデザイン思考を参照する人は多くいます。どちらも「反復と検証」を重視しており、AIプロジェクトとの親和性を感じるのは自然です。しかし、AIプロジェクトにはこれらのフレームワークが想定していない問題があります。アジャイル開発は「何を作るかはわかっている、どう実装するかを反復する」ことを前提にしています。スプリントで機能を積み重ね、フィードバックで修正するサイクルは強力ですが、「そもそもAIがこの課題を解けるか」という問い自体には答えてくれません。デザイン思考は「ユーザーの課題発見」に優れており、共感・定義・発想・プロトタイプ・テストというプロセスはAIプロジェクトの初期フェーズと重なる部分があります。しかし、AIプロトタイプのテスト結果をどう評価するか ——精度は十分か、業務に定着するか—— の判断フレームは持っていません。つまり両者ともAIプロジェクトの一部には有効ですが、最も重要な判断 ——「このPoCは合格か、やり直しか、撤退か」 —— を下すための基準を提供してくれません。 AIプロジェクトには、これらを参考にしつつもAI固有の不確実性に対処するための独⾃のプロセス設計が必要です。 AIプロジェクトの全体フロー AIプロジェクトは⼤きく2つのフェーズで構成されます。 A：実験フェーズ（PoC） ⸺「AIエージェントでこの課題を解けるか」を⼩さく検証する B：本運⽤フェーズ ⸺検証済みの解決策を本番システムとして展開する最も重要な設計思想は2点あります。AからBへの移行を「判断ゲート」で制御すること、そしてAフェーズは繰り返しが前提であることです。判断ゲートとは「次のステップに進む前に、進むべき条件が揃っているかを確認する意思決定ポイント」です。条件が揃っていなければ前のステップに戻るか、プロジェクト自体の継続を再考します。このゲートを省略して「とりあえず進む」判断がプロジェクトを迷走させます。また、一度のPoCで成功するケースは少数です。スコープの修正・モデルの改良・検証方法の見直しを経て初めてBフェーズに進めます。図中の「繰り返す」矢印はこの設計思想を示しており、繰り返すこと自体は失敗ではなくAIプロジェクトの正常な進行です。 203 Chapter3 AIデータリテラシーとマネジメント Aフェーズ：実験（PoC）の各ステップステップ1：初期相談 — 「やりたいこと」を「解くべき課題」に変換するプロジェクトの起点は「AIエージェントを使いたい」という要望のヒアリングです。しかしここで注意が必要です。「AI エージェントで業務を効率化したい」「ChatGPTのようなものを社内に作りたい」という要望は、課題ではなく手段の指定です。手段から入ると、課題に合わない解決策を設計するリスクが高まります。初期相談で確認すべき問いは3点です。今、何が困っているか（課題の特定）それが解決されたとき、何が変わるか（成果のイメージ）今はどうやって対処しているか（現状の業務フロー）このヒアリングで「課題の輪郭」が見えてきたら、次の業務分析・現場視察に進むかを判断します。要望が漠然としていたり、そもそもAIエージェントが解決できるタイプの課題でなければ、ここで立ち止まることが正しい判断です。判断ゲート ☑ 解くべき課題が具体的に言語化できているか 204 Chapter3 AIデータリテラシーとマネジメント ☑ 関係者が「課題認識」を共有しているかステップ2：業務分析‧現場視察 — AIプロジェクトで最も重要な⼯程業務分析と現場視察は、AIプロジェクトの成否に大きく影響する工程です。ここが不十分なまま進むと、技術的には一定の精度が出ていても、現場で使われないAIエージェントになりやすくなります。その理由は、AIエージェントの精度や定着率が、どのようなデータが存在するか、担当者が実際にはどのような基準で判断しているか、どの場面でAIエージェントの出力が利用されるかといった要素に大きく左右されるためです。これらは文書だけでは十分に把握できない場合が多く、実際の業務や現場の流れを確認してはじめて明らかになることが少なくありません。したがって、業務分析と現場視察は、AIエージェント導入設計の質を左右する重要な工程といえます。業務分析でやることまず資料・ドキュメントのレビューから始めます。既存の業務マニュアル、FAQ、過去の対応履歴、システムログなどを収集し、業務フローを文書上で把握します。ただしこれはあくまで「仮説の素材」です。次に詳細ヒアリングを行います。担当者へのインタビューを通じて、ドキュメントに書かれていない判断基準・例外処理・暗黙のルールを引き出します。「マニュアルに書いてあることと実際にやっていることが違う」ケースは非常に多く、この差分がAIエージェントの設計に直接影響します。現場視察でやること実際の業務現場に足を運び、担当者がどのように仕事をしているかを観察します。目的は、ヒアリングだけでは出てこない「無意識の判断」「ツールの実際の使い方」「想定外の業務フロー」を発見することです。 POINT 現場視察のポイントは「観察」であって「提案」ではないことです。「こうすればいいのに」という改善提案をしたくなる気持ちを抑え、まず現状を正確に把握することに集中します。業務分析と現場視察を通じて明らかにすべき事項は以下の通りです。 As-Is（現状）の業務フロー全体 205 Chapter3 AIデータリテラシーとマネジメント AIエージェントに任せる部分‧⼈間が担う部分の切り分け必要なデータの存在‧品質‧アクセス可否現場担当者の懸念‧抵抗感 To-Be（何が達成されれば「効果があった」といえるか）これを業務分析の段階で合意しておかないと、後の効果検証で「何をもって成功とするか」を巡る議論が発生し、プロジェクトが漂流します。判断ゲート ☑ AIエージェントで解ける課題かどうかの実現可能性に見通しがついているか ☑ 必要なデータが存在し、利用できる状態にあるか ☑ 「成功の定義」が関係者間で合意されているかステップ3：提案‧スコープ設計 — 「全部やる」は失敗の始まり業務分析・現場視察の結果をもとに、解決すべき課題のスコープ、As-IsからTo-Be、作成するMVP（Minimum Viable Product：最小限の機能で検証できるプロダクト）、効果検証方法を設計します。ここでの最大の落とし穴は、スコープを広げすぎることです。業務分析をすると「あれも改善できる、これもAIエージェントにできそう」と可能性が広がります。しかしソフトウェア開発の原則「早すぎる最適化は諸悪の根源」と同じで全体を最適化しようとすると、何も完成しません。最初のPoCで検証するスコープは、「最も課題インパクトが高く、最も実現可能性の見通しが立っている一点」に絞るべきです。 MVPの設計では「本番で使えるものを作る」のではなく「検証できる最小限のものを作る」ことが目的です。精度の検証が目的なら、UIは最低限で構いません。判断ゲート ☑ スコープが「一点集中」になっているか ☑ 効果検証方法（何をどう測るか）が事前に定義されているか 206 Chapter3 AIデータリテラシーとマネジメント ☑ 関係者がスコープと効果検証方法に合意しているかステップ4：モデル開発‧MVP開発 — 検証のための最⼩限を作る設計に基づいてAIモデルの開発とMVPシステムの構築を⾏います。このフェーズで意識すべき最重要原則は「作り込みすぎない」ことです。PoCの目的は「動くものを作ること」ではなく「検証できる状態を作ること」です。技術的には、モデルの精度が出るかどうかの検証を最優先にします。精度が出なければMVPシステムがいくら綺麗でも意味がなく、逆に精度が出れば、システムは後で作り直せます。 POINT MVPシステムの開発が入ると工数が増加します（図の注記参照）。UI・インフラ・セキュリティなどシステム面のコストが加わるためです。どこまでをPoCスコープに含めるかを、予算と照らし合わせて事前に合意しておく必要があります。ステップ5：効果検証 — PoCの合否を判定する POINT 効果検証は、ステップ3で事前に定義した検証方法に基づいて実施します。「事前に定義した方法で測る」という順序が重要です。結果を見てから基準を設定すると無意識のバイアスが入り、失敗を見逃します。検証の⽅法は⼤きく2種類あります。定量検証：正答率・削減率・処理時間など数値で測定します。「AIエージェントの回答正答率80%以上」「問い合わせ対応時間30%削減」といった事前定義の基準と照合します。定性検証：現場担当者にMVPを実際に使ってもらい、使いやすさ・信頼感・業務への組み込みやすさを評価してもらいます。定量的に精度が出ていても「使いたくない」という反応が出る場合があります。定性検証はその理由を特定するために不可欠です。効果検証の結果は3通りの判断につながります。 207 Chapter3 AIデータリテラシーとマネジメント合格：Bフェーズ（本運⽤）へ進む修正が必要：課題を特定してAフェーズを繰り返す ⾒通しが⽴たない：プロジェクト撤退を判断する「撤退の判断」は失敗ではありません。PoCで⼩さく失敗を発⾒したことが、⼤きな損失を防いだ成果です。判断ゲート ☑ 事前に定義した基準を満たしているか（定量） ☑ 現場担当者が実際に使えると判断しているか（定性） ☑ 本番開発の投資対効果に関係者が合意しているか 208 Chapter3 AIデータリテラシーとマネジメント Bフェーズ：本運⽤への移⾏ AフェーズのPoCで「この課題にAIエージェント導⼊は有効」という検証ができて初めて、本運⽤フェーズに移ります。 BフェーズはAフェーズと性格が大きく異なります。AフェーズはPoC（実験）であり、「動くかどうかを検証する」ことが目的でした。Bフェーズは本番システムの構築であり、「安定して動き続けること」が要件になります。PoCで目をつむっていたセキュリティ・パフォーマンス・障害対応・運用監視・ユーザー管理が、すべて本番要件として浮上します。要件定義：PoCで得た知⾒をもとに、本番システムの要件を定義します。システム開発：要件定義に基づき本番システムを開発します。社内リソースで行うか外部ベンダーに委託するかは、技術力・コスト・スピードの観点から判断します。導入：システムと新しいオペレーションを現場に展開します。技術的な完成と現場への定着は別物です。導入後の研修・サポート体制・フィードバックループの設計が、AIエージェントの定着率を左右します。 209 Chapter3 AIデータリテラシーとマネジメント 2 業務シナリオ：ヘルプデスクAI導⼊プロジェクトの進め⽅ ある企業がヘルプデスク業務の効率化を目的としたAIエージェントの導入を検討しています。AIエージェント・ストラテジストとして、どのようにプロジェクトを進めるかを設計します。ステップ1：初期相談 IT部門マネージャーから「問い合わせ対応の工数を減らしたい」という要望が上がりました。ただし「チャットボットを作ってほしい」という形で要望が来た場合、まずここを課題に変換します。「何が一番困っているか」を深掘りすると「ベテラン担当者が離席中に問い合わせが滞留し、他のメンバーでは対応できない」という具体的な課題が見えてきました。課題の輪郭が見えたため、業務分析・現場視察に進む判断をします。ステップ2：業務分析‧現場視察ヒアリングと現場観察の結果、次の点が明らかになりました。 210 Chapter3 AIデータリテラシーとマネジメント POINT ・問い合わせの約70％は、特定の10パターンに集中している POINT ・特に多いのは、VPN接続、パスワード再設定、ライセンス切れに関する問い合わせである POINT ・ベテラン担当者は、エラーメッセージを見るだけで原因をおおよそ特定できるが、その判断基準は文書化されていない POINT ・現場観察の結果、担当者は利用者と電話しながら画面を確認し、口頭で手順を案内していることが分かった POINT ・この運用実態を踏まえると、AIエージェントが作成した回答を担当者が確認し、そのまま読み上げて案内する使い方が現実的であると判断できるまた、PoCの成功条件については、VPN接続、パスワード再設定、ライセンス切れの三つのカテゴリにおいて、正答率 85％以上を満たすこと、かつ担当者の定性評価で「業務で使える」と回答した割合が80％以上であることを、関係者間で合意しました。ステップ3：提案‧スコープ設計 3カテゴリのうち最も問い合わせ頻度が高く、かつベテランのノウハウが最も明確なVPNカテゴリに絞ってPoCを設計します。全カテゴリを一度にやろうとせず、一点突破で検証します。 MVP開発はUI最⼩限とし、AIエージェントの回答精度の検証を優先します。ステップ4‧5：モデル開発‧MVP開発‧効果検証 VPNトラブル対応のナレッジベースを構築し、RAGベースのAIエージェントのMVPを開発します。効果検証では、事前定義した基準（正答率85%以上）を達成し、担当者の定性評価も「使える」が90%に達しました。この結果を受けてパスワードリセット・ライセンス切れのカテゴリにスコープを拡大し、Aフェーズをもう一周します。最終的に3カテゴリすべてで基準を達成した後、Bフェーズへ移行しました。 211 Chapter3 AIデータリテラシーとマネジメント 212 Chapter3 AIデータリテラシーとマネジメント 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch03_s05_4" onclick="retryQ('ch03_s05_4')">↩ もう一度</button>
+      <button class="next-btn" id="nch03_s05_4" onclick="showScore('ch03_s05',4)">結果を見る →</button>
     </div>
   </div>
 
@@ -1181,56 +948,19 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIプロジェクトが通常のITプロジェクトと異なる点を理解し、PoC（概念実証）
 を中心とした導入初期の進め方を設計できるようになることを目指します。試験では、各ステップ
 の目的と判断のポイント、業務分析や現場確認の進め方、効果検証の設計方法が問われます。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">AIプロジェクト特有の3つの不確実性</div>
-<div class="seci-grid" style="grid-template-columns:1fr 1fr 1fr;">
-  <div class="seci-cell" style="background:#e0f5f0;">
-    <div class="seci-head" style="color:#1a5e52;">技術的不確実性</div>
-    <div class="seci-body">「そもそもAIで解けるか」。精度・処理速度が要件を満たせるか、PoCで確認が必要</div>
-  </div>
-  <div class="seci-cell" style="background:#e8f8f5;">
-    <div class="seci-head" style="color:#1a5e52;">業務適合性不確実性</div>
-    <div class="seci-body">「現場の業務に馴染むか」。UI・フローが現場の実態に合うか、パイロットで検証</div>
-  </div>
-  <div class="seci-cell" style="background:#d5f5ec;">
-    <div class="seci-head" style="color:#1a5e52;">効果不確実性</div>
-    <div class="seci-body">「投資対効果が出るか」。ROIは導入前には確定できない。前提条件付きで試算し検証</div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">AIプロジェクトはなぜ「普通のプロジェクト」と違うのか</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">不確実性の種類が違う</div><div class="ov-section-body">ソフトウェア開発プロジェクトには不確実性がつきものです。しかしAIプロジェクトが抱える不確実性は、通常の開発プロジェクトとは種類が異なります。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">業務分析・現場視察の目的は「現状を正確に把握すること」です。</div></div>
 </div>
 
-<div class="ov-subtitle">A/Bフェーズ＋判断ゲート</div>
-<div class="phase-gate">
-  <div class="phase-block">
-    <div class="phase-block-head" style="background:#1a5e52;color:white;">
-      <span>フェーズA：PoC・概念実証</span>
-      <span class="gate-badge" style="color:#1a5e52;">探索フェーズ</span>
-    </div>
-    <div class="phase-block-body">小規模・限定範囲で実施。「技術的に実現できるか」「期待効果が出るか」を仮説検証。目標：Go/No-Go/Pivotを判断できる根拠の収集</div>
-  </div>
-  <div style="text-align:center;font-size:20px;color:#bbb;">↓ 判断ゲート</div>
-  <div style="text-align:center;background:#fff8dc;border-radius:8px;padding:8px 14px;font-size:12.5px;font-weight:700;color:#7a5500;">
-    経営層の意思決定：Go → フェーズB / No-Go → 中止 / Pivot → 方向転換
-  </div>
-  <div style="text-align:center;font-size:20px;color:#bbb;">↓</div>
-  <div class="phase-block">
-    <div class="phase-block-head" style="background:#2a8a7a;color:white;">
-      <span>フェーズB：本格導入・展開</span>
-      <span class="gate-badge" style="color:#2a8a7a;">実装フェーズ</span>
-    </div>
-    <div class="phase-block-body">パイロット→ロールアウト→スケーリングの順で段階的に範囲拡大。KPI継続モニタリング</div>
-  </div>
-</div>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">AIプロジェクトは3種の不確実性を持つ。PoCで検証→判断ゲート→本格展開の順序を守る</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch03_s06">
@@ -1239,6 +969,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -1262,11 +993,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #2a8a7a;">
   <div class="quiz-hdr" style="color:#1a5e52;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch03_s06" onclick="startRetake('ch03_s06')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch03_s06" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch03_s06_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-num">問 1 ／ 3</div>
     <div class="quiz-question">AIエージェント・ストラテジストが業務分析・現場視察を行っています。以下の行動のうち、このステップの目的として最も不適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s06_1',0,1)">A　担当者が実際の業務でどのような判断をしているかを観察する</button>
@@ -1285,7 +1019,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch03_s06_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-num">問 2 ／ 3</div>
     <div class="quiz-question">PoCの効果検証の結果、定量基準（正答率80%以上）は達成したものの、現場担当者からは「使いたくない」という声が多数出ました。AIエージェント推進担当者の判断として最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch03_s06_2',0,2)">A　定量基準を達成しているため、Bフェーズ（本運用）への移行を進める</button>
@@ -1299,7 +1033,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch03_s06_2" onclick="retryQ('ch03_s06_2')">↩ もう一度</button>
-      <button class="next-btn" id="nch03_s06_2" onclick="showScore('ch03_s06',2)">結果を見る →</button>
+      <button class="next-btn" id="nch03_s06_2" onclick="showNext('ch03_s06_3')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch03_s06_3" style="display:none;">
+    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-question">PoCの効果検証の結果、定量基準（正答率80%以上）は達成したものの、現場担当者からは「使いたくない」という声が多数出ました。AIエージェント推進担当者の判断として最も適切なものはどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch03_s06_3',0,2)">A　定量基準を達成しているため、Bフェーズ（本運用）への移行を進める</button>
+      <button class="choice-btn" onclick="answer('ch03_s06_3',1,2)">B　定量基準を引き上げてさらにモデルを改良し、精度を上げることで解決を図る</button>
+      <button class="choice-btn" onclick="answer('ch03_s06_3',2,2)">C　定性検証で「使いたくない」理由を特定し、課題に応じてAフェーズを繰り返す</button>
+      <button class="choice-btn" onclick="answer('ch03_s06_3',3,2)">D　現場担当者の抵抗は導入後の研修で解消できるため、Bフェーズへの移行を進める</button>
+    </div>
+    <div class="explanation" id="ech03_s06_3">
+      <div class="ans-label">✅ 正解：C</div>
+      効果検証は定量・定性の両方で合格することが条件です。「使いたくない」という定性評価には理由があり（UIの問題、回答の信頼性への懸念、業務フローへの組み込みにくさなど）、その理由を特定せずにBフェーズへ進むと、本番導入後に使われないシステムになります。理由を特定してスコープ・設計を修正し、Aフェーズを一周させることが正しい判断です。 215 Chapter3 AIデータリテラシーとマネジメント CHAPTER 3 Section18. AIプロジェクトの成功の定義：3層フレームワーク学習のポイント本Sectionでは、AIプロジェクトの成功定義が難しい本質的な理由と、それを解決する3層フレームワークの構造を理解します。特に「定義はトップダウン（効果層→定着層→精度層の順で逆算する）、達成はボトムアップ（精度→定着→効果の順で積み上がる）」という二重構造が核心です。試験では、与えられた状況に対して「どの層に問題があるか」を診断し、「次に取るべき打ち手」を判断する力が問われます。また、定着層の測定をPoC中は定性・本運用後は定量と使い分ける理由についても理解する必要があります。なぜ「成功の定義」はこれほど難しいのか AIプロジェクトの現場で最も頻繁に起きるトラブルのひとつが、プロジェクト終了後に「これは成功だったのか、失敗だったのか」について関係者の意見が割れることです。その原因は明らかで、関係者それぞれが異なる成功を頭に描いているからです。 AIエンジニアは「正答率が85％を超えた」と評価し、現場担当者は「使いにくく、実務では活用しにくい」と感じ、経営層は「コスト削減効果がどの程度あるのか」を重視します。いずれも正当な観点ですが、評価している対象が異なるため、そのままでは議論がかみ合いません。この混乱を防ぐ唯⼀の⽅法は、PoCが始まる前に、3つの層すべてで成功の定義を合意しておくことです。 3層の成功定義フレームワーク AIプロジェクトの成功は、以下の3層で構成されます。 ┌ ┐ │ 第1層：効果層ビジネスに効果が出ているか？ │ ← まずここを定義する ├ ┤ │ 第2層：定着層現場の⼈が使っているか？ │ ← 効果から逆算して定義 216 Chapter3 AIデータリテラシーとマネジメント ├ ┤ │ 第3層：精度層 AIが正しく答えられるか？ │ ← 定着から逆算して定義 └ ┘ この3層には、理解しておくべき重要な⼆重構造があります。定義する順序はトップダウンです。「どんな業務効果を出したいか」が決まって初めて、「そのために定着率はどこまで必要か」「そのために精度はどこまで必要か」が逆算できます。効果層が決まっていない状態で精度の目標値を設定しても、それは根拠のない数字です。達成される順序はボトムアップです。精度が出なければ使われず、使われなければ効果が出ない。上の層は下の層の上に成立します。【定義の順序】トップダウン【達成の順序】ボトムアップ効果層 ← まず定義精度層 → 達成 ↓ ↓ 定着層 ← 逆算定着層 → 達成 ↓ ↓ 精度層 ← 逆算効果層 → 達成この二重構造を理解していないプロジェクトは、精度層だけを定義して「正答率80%達成＝成功」と判断し、後から「使われていない」「効果が出ていない」という問題に直面します。第1層：効果層 ⸺「ビジネスに効果が出ているか」最初にここを定義する。これがプロジェクト全体のゴールです。効果層は、AIエージェントの導入が実際に業務やビジネスを改善したかを測ります。経営層が最も関心を持つ層であり、本運用フェーズへの投資判断の根拠になります。そしてここから逆算することで、定着層・精度層の目標値に根拠が生まれます。代表的な測定指標 217 Chapter3 AIデータリテラシーとマネジメントベースライン測定の重要性 POINT 効果層で最も起こりやすいミスの一つは、導入前のベースライン、すなわち改善前の基準となる数値を測定していないことです。ベースラインがなければ、導入後に業務がどの程度改善したのかを客観的に示すことができません。したがって、PoCを開始する前には、現状の業務状況を数値で記録しておく必要があります。主な測定項目としては、対象業務の平均処理時間、一定期間あたりの対応件数、担当者数やコスト、品質に関する現状指標（クレーム件数、エラー率など）が挙げられます。逆算の使い⽅ 効果層の目標が決まったら、それを達成するために定着層はどこまで必要かを問います。「問い合わせ対応時間を30% 削減したい」のであれば、「AIエージェントの回答を担当者が採用する割合が60%以上でなければ時間削減にならない」という形で定着層の目標値が逆算できます。第2層：定着層 ⸺「現場の⼈が使っているか」定着層は、AIエージェントが現場に受け入れられているかを測ります。技術的に完成したシステムが使われない理由のほとんどは、この層の問題に起因します。効果層のゴールを達成するための「中間条件」として定義します。代表的な測定指標 PoCと本運⽤で測定⽅法を変える定着層には、実務上の重要な注意点があります。PoC期間中（数週間〜数ヶ月）に定量的な定着指標を測定しても、解釈が難しいという現実です。利用率が50%だったとき、それは「UIが使いにくいから」なのか「まだ慣れていないだけ」なのかが判別できません。短期間のデータでは、定量指標の数値が意味を持ちにくいのです。そこでPoC期間中は、定性的な代理指標で定着の⾒通しを評価します。 PoCでは「この人たちは本番でも使ってくれそうか」という見通しを定性的に掴み、定量的な検証は本運用フェーズで行うという割り切りが現実的です。 218 Chapter3 AIデータリテラシーとマネジメント「使いたくない」理由の分類 POINT 定性評価で「使いたくない」という反応が出たとき、その理由を特定することが次のアクションを決める鍵です。理由は大きく4種類に分類できます。精度への不信感：「回答が間違っていることがあるから信頼できない」→ 第3層（精度層）の問題にフィードバック UXの問題：「画⾯が使いにくい」「回答が⻑すぎる」→ インターフェース改善業務フローへの不適合：「このタイミングでAIエージェントに聞く余裕がない」→ 業務設計の⾒直し ⼼理的抵抗：「AIに頼ると⾃分のスキルが落ちる気がする」→ 変⾰管理（Change Management）の問題理由を特定せずに「もっと精度を上げれば使われる」と判断するのは、原因を誤診した対処です。第3層：精度層 ⸺「AIエージェントが正しく答えられるか」精度層は、AIエージェントが技術的に課題を解けているかを測ります。最も定義しやすい層ですが、「これだけ定義して満足してしまうこと」が最大の罠です。精度層は定着層・効果層から逆算して設定するものであり、それ単体で目標値を決めるべきものではありません。代表的な測定指標 219 Chapter3 AIデータリテラシーとマネジメント ⽬標値は逆算で決める POINT AIエージェントの目標値を設定する際に、「とりあえず正答率80%以上を目指す」といった形で、根拠なく数値を置くことは適切ではありません。目標値は、現状の実力、現場で受け入れられる水準、業務上許容できるリスクを踏まえて逆算する必要があります。主な観点は、次の3つです。 POINT ・現在、人間がどの程度の精度で対応できているかこれは、導入前の基準値として把握しておくべき数値です。 POINT ・どの程度の精度であれば、現場担当者が実務で使えると判断するかこれは、定着の可否に関わる観点です。 POINT ・どの程度の精度であれば、本番運用時のリスクが許容範囲に収まるかこれは、業務の重要性や誤判断時の影響を踏まえて決める必要があります。 POINT たとえば、ヘルプデスク業務において、ベテラン担当者の正答率が95%である場合、AIにも直ちに同水準を求めることは現実的ではありません。そのため、「頻度の高い問い合わせ上位10種類については正答率90%以上を目標とし、それ以外は担当者へ引き継ぐ」といった形で、対象範囲と目標水準をあわせて設計することが現実的です。このような数値は、効果面だけでなく、現場で使われるかどうか、誤回答のリスクをどこまで許容できるかといった観点から逆算して決める必要があります。 220 Chapter3 AIデータリテラシーとマネジメント POINT また、同じ「精度」を評価する場合でも、業務によって重視すべき観点は異なります。たとえば、品質検査AIエージェントでは、不良品を見逃さないことが重要であるため、見逃しの少なさを重視する必要があります。一方、スパムフィルタでは、正常なメールを誤って除外しないことが重要であるため、誤検知の少なさを重視する必要があります。したがって、精度の目標値は、単に高ければよいというものではなく、現状の水準、現場での受容性、業務上のリスク特性を踏まえて設定することが重要です。成功定義シート 3層の定義を業務分析・現場視察のステップで関係者全員と合意するためのツールです。このシートをPoC開始前に埋めることが、後の混乱を防ぐ最も効果的な手段です。成功定義シートプロジェクト名：________ 作成⽇：________ ■ 解くべき課題（例：VPN接続トラブルに対するヘルプデスク担当者の負担を削減する）【STEP1】第1層：効果層（最初に定義する） 221 Chapter3 AIデータリテラシーとマネジメント測定指標：＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿ 現在値（ベースライン）：＿＿＿＿＿＿＿＿＿＿ ⽬標値：＿＿＿＿＿＿ 測定⽅法：＿＿＿＿＿＿ 測定時期：＿＿＿＿ 【STEP2】第2層：定着層（効果層から逆算して定義する） PoC中の定性評価⽅法：＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿ 本運⽤後の定量指標：＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿ ⽬標値：＿＿＿＿＿＿ 測定時期：本運⽤開始後＿＿＿ヶ⽉ 【STEP3】第3層：精度層（定着層から逆算して定義する）測定指標：＿＿＿＿＿＿＿＿＿（正答率 / 再現率 / 適合率 / ⼈間評価）現在の⼈間の⽔準（ベースライン）：＿＿＿＿＿ ⽬標値：＿＿＿＿＿＿ 測定⽅法：＿＿＿＿＿＿ 測定時期：＿＿＿＿ 合否判定ルール □ 効果層：⽬標値を達成している □ 定着層：PoC中の定性評価で「本番でも使われる⾒通し」がある □ 精度層：⽬標値を達成している → 全て□ → 本運⽤フェーズへ進む → 1つ以上未達 → 原因を特定してAフェーズを繰り返す → 根本的な⾒通しが⽴たない → プロジェクト撤退を検討する合意した関係者 222 Chapter3 AIデータリテラシーとマネジメント技術責任者：＿＿＿＿＿ 現場代表：＿＿＿＿＿ 意思決定者：＿＿＿＿＿
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch03_s06_3" onclick="retryQ('ch03_s06_3')">↩ もう一度</button>
+      <button class="next-btn" id="nch03_s06_3" onclick="showScore('ch03_s06',3)">結果を見る →</button>
     </div>
   </div>
 
@@ -1324,6 +1077,7 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIプロジェクトの成功定義が難しい本質的な理由と、それを解決する3層フレーム
@@ -1332,50 +1086,16 @@ body {
 試験では、与えられた状況に対して「どの層に問題があるか」を診断し、「次に取るべき打ち手」
 を判断する力が問われます。また、定着層の測定をPoC中は定性・本運用後は定量と使い分ける理
 由についても理解する必要があります。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">成功の3層フレームワーク（ボトムアップで達成・トップダウンで定義）</div>
-<div class="three-layer">
-  <div class="tlayer-item" style="background:#e0f5f0;">
-    <div class="tlayer-head">
-      <div class="tlayer-num" style="background:#2a8a7a;">1</div>
-      <div class="tlayer-title">精度層（土台）</div>
-      <div class="tlayer-dir">まず達成すべき基盤</div>
-    </div>
-    <div class="tlayer-body">AIエージェントの出力品質が業務に使えるレベルに達しているか。<br>「正答率90%以上」「処理速度30秒以内」などの技術的合格基準</div>
-    <div class="tlayer-kpi">計測：正答率・エラー率・処理時間</div>
-  </div>
-  <div style="text-align:center;font-size:18px;color:#aaa;">↑ 精度があって初めて定着を問える</div>
-  <div class="tlayer-item" style="background:#c8ede6;">
-    <div class="tlayer-head">
-      <div class="tlayer-num" style="background:#1a5e52;">2</div>
-      <div class="tlayer-title">定着層（中間）</div>
-      <div class="tlayer-dir">現場が使い続けているか</div>
-    </div>
-    <div class="tlayer-body">現場担当者がAIエージェントを日常業務に組み込んで使い続けているか。導入直後だけ使われて形骸化していないか</div>
-    <div class="tlayer-kpi">計測：継続利用率・DAU/MAU・ユーザー満足度</div>
-  </div>
-  <div style="text-align:center;font-size:18px;color:#aaa;">↑ 定着して初めて効果を問える</div>
-  <div class="tlayer-item" style="background:#b0e5da;">
-    <div class="tlayer-head">
-      <div class="tlayer-num" style="background:#1a4a40;">3</div>
-      <div class="tlayer-title">効果層（頂点）</div>
-      <div class="tlayer-dir">経営が最重視する層</div>
-    </div>
-    <div class="tlayer-body">業務効率・コスト削減・売上など経営指標への貢献が出ているか。KGIとの接続が必要</div>
-    <div class="tlayer-kpi">計測：工数削減・コスト削減・ROI・NPS</div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">なぜ「成功の定義」はこれほど難しいのか</div><div class="ov-section-body">AIプロジェクトの現場で最も頻繁に起きるトラブルのひとつが、プロジェクト終了後に「これは成功だったのか、失敗だったのか」について関係者の意見が割れることです。</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">3層の成功定義フレームワーク</div><div class="ov-section-body">AIプロジェクトの成功は、以下の3層で構成されます。</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">┌ ┐│ 第1層：効果層ビジネスに効果が出ているか？ │ ← まずここを定義する</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">├ ┤│ 第2層：定着層現場の⼈が使っているか？ │ ← 効果から逆算して定義</div><div class="ov-section-body">├ ┤│ 第3層：精度層 AIが正しく答えられるか？ │ ← 定着から逆算して定義└ ┘この3層には、理解しておくべき重要な⼆重構造があります。</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">【定義の順序】トップダウン【達成の順序】ボトムアップ</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">効果層で最も起こりやすいミスの一つは、導入前のベースライン、すなわち改善前の基準となる数値を測定していないことです。</div></div>
 </div>
 
-<ul class="point-list">
-  <li><strong>ボトムアップで達成</strong>：精度が整ってから定着を問い、定着してから効果を測る。下層が崩れたまま上層は成立しない</li>
-  <li><strong>トップダウンで定義</strong>：効果（KGI）から逆算してKPI・合格基準を設定する。ゴールから設計する</li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">成功＝精度（技術的合格）→定着（現場が使う）→効果（経営貢献）の3層。下から達成し、上から設計する</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch03_s07">
@@ -1384,6 +1104,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -1449,9 +1170,12 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #2a8a7a;">
   <div class="quiz-hdr" style="color:#1a5e52;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch03_s07" onclick="startRetake('ch03_s07')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch03_s07" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch03_s07_1" style="display:block;">
     <div class="quiz-num">問 1 ／ 4</div>
     <div class="quiz-question">あるAIエージェント・ストラテジストが、ヘルプデスクAIのPoCに向けて成功の定義を設計しています。以下のうち、最初に定義すべき指標として最も適切なものはどれですか。</div>
@@ -1570,32 +1294,57 @@ function answer(qid, ci, correct) {
   var next  = document.getElementById('n' + qid);
   expl.classList.add('show');
 
+  var sid      = qid.replace(/_\d+$/, '');
+  var section  = document.getElementById(sid);
+  var isRetake = section && section.classList.contains('retake-mode');
+
   if (ci === correct) {
     if (next) next.classList.add('show');
     localStorage.removeItem('qfail_' + qid);
+    if (isRetake) localStorage.removeItem('qwrong_' + qid);
   } else {
     expl.classList.add('hint');
     if (retry) retry.classList.add('show');
     localStorage.setItem('qfail_' + qid, '1');
+    localStorage.setItem('qwrong_' + qid, '1');
   }
+  updateRetakeBtn(sid);
+}
+
+function resetQuizBlock(qid) {
+  QS[qid] = null;
+  document.querySelectorAll('#q' + qid + ' .choice-btn').forEach(function(b) {
+    b.classList.remove('correct', 'wrong', 'dimmed');
+  });
+  var expl = document.getElementById('e' + qid);
+  if (expl) expl.classList.remove('show', 'hint');
+  var retry = document.getElementById('r' + qid);
+  if (retry) retry.classList.remove('show');
+  var next = document.getElementById('n' + qid);
+  if (next) next.classList.remove('show');
 }
 
 function retryQ(qid) {
-  QS[qid] = null;
-  document.querySelectorAll('#q' + qid + ' .choice-btn').forEach(b => {
-    b.classList.remove('correct','wrong','dimmed');
-  });
-  var expl = document.getElementById('e' + qid);
-  expl.classList.remove('show','hint');
-  document.getElementById('r' + qid).classList.remove('show');
+  resetQuizBlock(qid);
 }
 
 function showNext(nqid) {
+  var sid = nqid.replace(/_\d+$/, '');
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
   var el = document.getElementById('q' + nqid);
   if (el) { el.style.display = 'block'; el.scrollIntoView({behavior:'smooth', block:'start'}); }
 }
 
 function showScore(sid, total) {
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
   var ok = 0;
   for (var i = 1; i <= total; i++) {
     var st = QS[sid + '_' + i];
@@ -1609,6 +1358,106 @@ function showScore(sid, total) {
   }
 }
 
+function startRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  var wrongQids = [];
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) {
+      wrongQids.push(key.replace('qwrong_', ''));
+    }
+  }
+  if (!wrongQids.length) return;
+  wrongQids.sort(function(a, b) {
+    return parseInt(a.split('_').pop()) - parseInt(b.split('_').pop());
+  });
+
+  section.classList.add('retake-mode');
+  section.dataset.retakeQueue = JSON.stringify(wrongQids);
+  section.dataset.retakeIdx   = '0';
+
+  var score = document.getElementById('sc_' + sid);
+  if (score) score.classList.remove('show');
+
+  section.querySelectorAll('.quiz-block').forEach(function(block) {
+    block.style.display = 'none';
+  });
+  wrongQids.forEach(function(qid) { resetQuizBlock(qid); });
+
+  var first = document.getElementById('q' + wrongQids[0]);
+  if (first) { first.style.display = 'block'; first.scrollIntoView({behavior:'smooth', block:'start'}); }
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'block';
+
+  var btn = document.getElementById('rtk_' + sid);
+  if (btn) btn.style.display = 'none';
+}
+
+function retakeAdvance(sid) {
+  var section = document.getElementById(sid);
+  if (!section || !section.classList.contains('retake-mode')) return;
+  var queue = JSON.parse(section.dataset.retakeQueue || '[]');
+  var idx   = parseInt(section.dataset.retakeIdx || '0');
+
+  var cur = document.getElementById('q' + queue[idx]);
+  if (cur) cur.style.display = 'none';
+
+  idx++;
+  section.dataset.retakeIdx = String(idx);
+
+  if (idx < queue.length) {
+    var nxt = document.getElementById('q' + queue[idx]);
+    if (nxt) { nxt.style.display = 'block'; nxt.scrollIntoView({behavior:'smooth', block:'start'}); }
+  } else {
+    endRetake(sid);
+  }
+}
+
+function endRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  section.classList.remove('retake-mode');
+  delete section.dataset.retakeQueue;
+  delete section.dataset.retakeIdx;
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'none';
+
+  section.querySelectorAll('.quiz-block').forEach(function(block, i) {
+    var qid = block.id.replace(/^q/, '');
+    resetQuizBlock(qid);
+    block.style.display = (i === 0) ? 'block' : 'none';
+  });
+
+  updateRetakeBtn(sid);
+}
+
+function updateRetakeBtn(sid) {
+  var count = 0;
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) count++;
+  }
+  var btn = document.getElementById('rtk_' + sid);
+  if (!btn) return;
+  if (count > 0) {
+    btn.textContent = '❌ ' + count + '問 再テスト';
+    btn.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+function initRetakeBtns() {
+  document.querySelectorAll('section[id^="ch"]').forEach(function(sec) {
+    updateRetakeBtn(sec.id);
+  });
+}
+
 window.addEventListener('load', function() {
   document.querySelectorAll('.status-btns[data-sid]').forEach(function(wrap) {
     var v = loadStatus('s_' + wrap.dataset.sid);
@@ -1617,8 +1466,8 @@ window.addEventListener('load', function() {
       if (b) b.classList.add('active');
     }
   });
+  initRetakeBtns();
 });
 </script>
-<a href="index.html" class="float-home">📚 目次</a>
 </body>
 </html>

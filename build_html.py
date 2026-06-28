@@ -521,6 +521,17 @@ body {
 }
 .score-banner.show { display: block; }
 .score-main { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.retake-btn-main {
+  display: block; width: 100%; background: #fce8e6; color: #b31412;
+  border: 2px solid #ea4335; border-radius: 8px; padding: 10px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  margin-bottom: 12px; -webkit-tap-highlight-color: transparent;
+}
+.retake-banner {
+  background: #fff3e0; border: 2px solid #ff9500; border-radius: 8px;
+  padding: 10px 14px; margin-bottom: 12px;
+  font-size: 14px; font-weight: 700; color: #c67200; text-align: center;
+}
 
 /* ── ナビ ────────────────────────────────── */
 .nav-footer { display: flex; gap: 10px; margin-top: 16px; padding-bottom: 24px; }
@@ -586,32 +597,57 @@ function answer(qid, ci, correct) {
   var next  = document.getElementById('n' + qid);
   expl.classList.add('show');
 
+  var sid      = qid.replace(/_\\d+$/, '');
+  var section  = document.getElementById(sid);
+  var isRetake = section && section.classList.contains('retake-mode');
+
   if (ci === correct) {
     if (next) next.classList.add('show');
     localStorage.removeItem('qfail_' + qid);
+    if (isRetake) localStorage.removeItem('qwrong_' + qid);
   } else {
     expl.classList.add('hint');
     if (retry) retry.classList.add('show');
     localStorage.setItem('qfail_' + qid, '1');
+    localStorage.setItem('qwrong_' + qid, '1');
   }
+  updateRetakeBtn(sid);
+}
+
+function resetQuizBlock(qid) {
+  QS[qid] = null;
+  document.querySelectorAll('#q' + qid + ' .choice-btn').forEach(function(b) {
+    b.classList.remove('correct', 'wrong', 'dimmed');
+  });
+  var expl = document.getElementById('e' + qid);
+  if (expl) expl.classList.remove('show', 'hint');
+  var retry = document.getElementById('r' + qid);
+  if (retry) retry.classList.remove('show');
+  var next = document.getElementById('n' + qid);
+  if (next) next.classList.remove('show');
 }
 
 function retryQ(qid) {
-  QS[qid] = null;
-  document.querySelectorAll('#q' + qid + ' .choice-btn').forEach(b => {
-    b.classList.remove('correct','wrong','dimmed');
-  });
-  var expl = document.getElementById('e' + qid);
-  expl.classList.remove('show','hint');
-  document.getElementById('r' + qid).classList.remove('show');
+  resetQuizBlock(qid);
 }
 
 function showNext(nqid) {
+  var sid = nqid.replace(/_\\d+$/, '');
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
   var el = document.getElementById('q' + nqid);
   if (el) { el.style.display = 'block'; el.scrollIntoView({behavior:'smooth', block:'start'}); }
 }
 
 function showScore(sid, total) {
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
   var ok = 0;
   for (var i = 1; i <= total; i++) {
     var st = QS[sid + '_' + i];
@@ -625,6 +661,106 @@ function showScore(sid, total) {
   }
 }
 
+function startRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  var wrongQids = [];
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) {
+      wrongQids.push(key.replace('qwrong_', ''));
+    }
+  }
+  if (!wrongQids.length) return;
+  wrongQids.sort(function(a, b) {
+    return parseInt(a.split('_').pop()) - parseInt(b.split('_').pop());
+  });
+
+  section.classList.add('retake-mode');
+  section.dataset.retakeQueue = JSON.stringify(wrongQids);
+  section.dataset.retakeIdx   = '0';
+
+  var score = document.getElementById('sc_' + sid);
+  if (score) score.classList.remove('show');
+
+  section.querySelectorAll('.quiz-block').forEach(function(block) {
+    block.style.display = 'none';
+  });
+  wrongQids.forEach(function(qid) { resetQuizBlock(qid); });
+
+  var first = document.getElementById('q' + wrongQids[0]);
+  if (first) { first.style.display = 'block'; first.scrollIntoView({behavior:'smooth', block:'start'}); }
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'block';
+
+  var btn = document.getElementById('rtk_' + sid);
+  if (btn) btn.style.display = 'none';
+}
+
+function retakeAdvance(sid) {
+  var section = document.getElementById(sid);
+  if (!section || !section.classList.contains('retake-mode')) return;
+  var queue = JSON.parse(section.dataset.retakeQueue || '[]');
+  var idx   = parseInt(section.dataset.retakeIdx || '0');
+
+  var cur = document.getElementById('q' + queue[idx]);
+  if (cur) cur.style.display = 'none';
+
+  idx++;
+  section.dataset.retakeIdx = String(idx);
+
+  if (idx < queue.length) {
+    var nxt = document.getElementById('q' + queue[idx]);
+    if (nxt) { nxt.style.display = 'block'; nxt.scrollIntoView({behavior:'smooth', block:'start'}); }
+  } else {
+    endRetake(sid);
+  }
+}
+
+function endRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  section.classList.remove('retake-mode');
+  delete section.dataset.retakeQueue;
+  delete section.dataset.retakeIdx;
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'none';
+
+  section.querySelectorAll('.quiz-block').forEach(function(block, i) {
+    var qid = block.id.replace(/^q/, '');
+    resetQuizBlock(qid);
+    block.style.display = (i === 0) ? 'block' : 'none';
+  });
+
+  updateRetakeBtn(sid);
+}
+
+function updateRetakeBtn(sid) {
+  var count = 0;
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) count++;
+  }
+  var btn = document.getElementById('rtk_' + sid);
+  if (!btn) return;
+  if (count > 0) {
+    btn.textContent = '❌ ' + count + '問 再テスト';
+    btn.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+function initRetakeBtns() {
+  document.querySelectorAll('section[id^="ch"]').forEach(function(sec) {
+    updateRetakeBtn(sec.id);
+  });
+}
+
 window.addEventListener('load', function() {
   document.querySelectorAll('.status-btns[data-sid]').forEach(function(wrap) {
     var v = loadStatus('s_' + wrap.dataset.sid);
@@ -633,6 +769,7 @@ window.addEventListener('load', function() {
       if (b) b.classList.add('active');
     }
   });
+  initRetakeBtns();
 });
 """
 
@@ -643,7 +780,8 @@ def build_quiz_html(quizzes, sid):
         return '<p style="color:#999;font-size:14px;text-align:center;padding:8px 0;">（理解度チェックなし）</p>'
 
     total = len(quizzes)
-    parts = []
+    parts = [f'''  <button class="retake-btn-main" id="rtk_{sid}" onclick="startRetake('{sid}')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_{sid}" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>''']
 
     for idx, q in enumerate(quizzes, 1):
         qid     = f'{sid}_{idx}'

@@ -196,6 +196,17 @@ body {
 }
 .score-banner.show { display: block; }
 .score-main { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.retake-btn-main {
+  display: block; width: 100%; background: #fce8e6; color: #b31412;
+  border: 2px solid #ea4335; border-radius: 8px; padding: 10px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  margin-bottom: 12px; -webkit-tap-highlight-color: transparent;
+}
+.retake-banner {
+  background: #fff3e0; border: 2px solid #ff9500; border-radius: 8px;
+  padding: 10px 14px; margin-bottom: 12px;
+  font-size: 14px; font-weight: 700; color: #c67200; text-align: center;
+}
 
 /* ── ナビ ────────────────────────────────── */
 .nav-footer { display: flex; gap: 10px; margin-top: 16px; padding-bottom: 24px; }
@@ -226,143 +237,6 @@ body {
 .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; flex-shrink: 0; margin-left: auto; }
 .status-dot.done  { background: #34a853; }
 .status-dot.later { background: #4285f4; }
-
-/* ── OVサブタイトル ─────────────────────── */
-.ov-subtitle {
-  font-size:13px; font-weight:700; margin:14px 0 8px;
-  padding-bottom:4px; border-bottom:1.5px solid #ffe0ec;
-  color:#701035;
-}
-
-/* ── ポイントリスト ──────────────────────── */
-.point-list { list-style:none; padding:0; margin:10px 0; display:flex; flex-direction:column; gap:5px; }
-.point-list li {
-  font-size:13px; line-height:1.65; color:#333;
-  padding-left:16px; position:relative;
-}
-.point-list li::before {
-  content:'▸'; position:absolute; left:0;
-  color:#a01850; font-size:11px; top:3px;
-}
-.point-list li strong { color:#701035; }
-
-/* ── 変化比較（道具→同僚） ─────────────── */
-.vs-compare { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0; }
-.vs-col { border-radius:10px; padding:12px 13px; }
-.vs-head { font-size:12.5px; font-weight:700; margin-bottom:8px; text-align:center; padding-bottom:6px; border-bottom:2px solid rgba(255,255,255,.4); }
-.vs-list { list-style:none; padding:0; display:flex; flex-direction:column; gap:5px; }
-.vs-list li { font-size:11.5px; color:#333; padding-left:12px; position:relative; line-height:1.45; }
-.vs-list li::before { content:'·'; position:absolute; left:0; font-weight:900; font-size:14px; }
-
-/* ── デリゲーション3段階 ─────────────────── */
-.deleg-table { width:100%; border-collapse:collapse; margin:10px 0; font-size:12px; }
-.deleg-table th {
-  padding:7px 10px; color:white; font-size:12px; font-weight:700; text-align:center;
-  background:#701035;
-}
-.deleg-table td { padding:8px 10px; border-bottom:1px solid #eee; vertical-align:top; line-height:1.55; }
-.deleg-table tr:nth-child(even) td { background:#fff5f8; }
-.deleg-table td:first-child { font-weight:700; text-align:center; font-size:12px; }
-.risk-low  { color:#2a7a3a; }
-.risk-mid  { color:#c45a0a; }
-.risk-high { color:#701035; }
-
-/* ── 組織類型カード ─────────────────────── */
-.org-cards { display:flex; flex-direction:column; gap:8px; margin:10px 0; }
-.org-card { border-radius:10px; border-left:5px solid; padding:10px 14px; }
-.org-card-head { display:flex; align-items:center; gap:8px; margin-bottom:5px; }
-.org-icon { font-size:18px; }
-.org-name { font-size:13px; font-weight:700; }
-.org-type { font-size:11px; color:#888; margin-left:auto; }
-.org-strong { font-size:12px; font-weight:600; color:#333; margin-bottom:3px; }
-.org-weak   { font-size:12px; color:#666; }
-
-/* ── 指標体系 ───────────────────────────── */
-.metric-frame { display:flex; flex-direction:column; gap:6px; margin:10px 0; }
-.metric-row { border-radius:9px; padding:10px 14px; border-left:4px solid; }
-.metric-head { font-size:13px; font-weight:700; margin-bottom:3px; }
-.metric-body { font-size:12px; color:#333; line-height:1.5; }
-.metric-ex   { font-size:11.5px; color:#a01850; margin-top:3px; font-style:italic; }
-
-/* ── 抵抗3段階 ──────────────────────────── */
-.resist-stages { display:flex; flex-direction:column; gap:6px; margin:10px 0; }
-.resist-stage { border-radius:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.08); }
-.resist-stage-head { padding:9px 14px; font-weight:700; font-size:13px; display:flex; justify-content:space-between; align-items:center; }
-.resist-stage-tag  { font-size:10.5px; opacity:.8; background:rgba(255,255,255,.3); border-radius:4px; padding:1px 6px; }
-.resist-stage-body { padding:9px 14px; font-size:12.5px; line-height:1.6; color:#333; background:#f9fafb; border-top:1px solid rgba(0,0,0,.06); }
-.resist-stage-body strong { color:#701035; }
-.resist-arrow { text-align:center; font-size:18px; color:#bbb; line-height:1.2; }
-
-/* ── 5問答カード ────────────────────────── */
-.qa-cards { display:flex; flex-direction:column; gap:8px; margin:10px 0; }
-.qa-card { border-radius:10px; border:1.5px solid #ffe0ec; overflow:hidden; }
-.qa-q { padding:9px 14px; background:#ffe0ec; font-size:12.5px; font-weight:700; color:#701035; }
-.qa-a { padding:9px 14px; font-size:12px; line-height:1.6; color:#333; }
-.qa-a strong { color:#701035; }
-.qa-key { font-size:11.5px; color:#a01850; margin-top:4px; font-weight:600; border-top:1px solid #ffe0ec; padding-top:5px; }
-
-/* ── フローティングナビ ───────────────── */
-.float-home {
-  position: fixed; bottom: 22px; right: 14px;
-  background: rgba(26,26,26,.88);
-  color: white !important;
-  padding: 9px 15px; border-radius: 22px;
-  font-size: 13px; font-weight: 700;
-  text-decoration: none !important; letter-spacing: .3px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.30);
-  z-index: 500; backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  -webkit-tap-highlight-color: transparent;
-  display: flex; align-items: center; gap: 4px;
-  border: 1px solid rgba(255,255,255,.15);
-  transition: opacity .15s;
-}
-.float-home:active { opacity: .7; }
-
-/* ── 章先頭セクション一覧バー ────────── */
-.chapter-toc {
-  position: sticky; top: 0; z-index: 400;
-  background: var(--ch-dark);
-  padding: 0 12px;
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  border-bottom: 2px solid var(--ch-accent);
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
-  scrollbar-width: none;
-}
-.chapter-toc::-webkit-scrollbar { display: none; }
-.chapter-toc-inner {
-  display: inline-flex; align-items: center; gap: 0;
-  height: 44px;
-}
-.toc-home {
-  color: rgba(255,255,255,.8); text-decoration: none;
-  font-size: 12px; font-weight: 700;
-  padding: 0 14px 0 4px;
-  border-right: 1px solid rgba(255,255,255,.2);
-  margin-right: 10px;
-  display: flex; align-items: center; gap: 4px;
-  flex-shrink: 0;
-  -webkit-tap-highlight-color: transparent;
-  height: 100%;
-}
-.toc-home:active { opacity: .7; }
-.toc-link {
-  color: rgba(255,255,255,.7); text-decoration: none;
-  font-size: 12px; font-weight: 600;
-  padding: 0 10px;
-  display: inline-flex; align-items: center; gap: 4px;
-  height: 100%;
-  border-right: 1px solid rgba(255,255,255,.12);
-  -webkit-tap-highlight-color: transparent;
-  flex-shrink: 0;
-}
-.toc-link:last-child { border-right: none; }
-.toc-link:active { background: rgba(255,255,255,.12); }
-.toc-link.toc-current { color: white; }
-.toc-snum { font-size: 10px; opacity: .7; }
-
 </style>
 </head>
 <body>
@@ -378,67 +252,20 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#701035;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIエージェント導入を、単なる技術導入ではなく、人と組織の設計の問題として
 捉える視点を学びます。試験では、AIエージェントの位置づけが「道具」から「業務を共に進める
 存在」へ変化することの意味、デリゲーション（権限委譲）の範囲設計、人間とAIエージェントの
 協働のあり方、責任分界の定義方法が中心的に問われます。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">AIの位置づけの変化：道具 → 同僚</div>
-<div class="vs-compare">
-  <div class="vs-col" style="background:#f0f0f0;">
-    <div class="vs-head" style="color:#444;border-bottom-color:rgba(0,0,0,.2);">従来のITツール<br>（Excel・RPA等）</div>
-    <ul class="vs-list">
-      <li>人間が操作方法を覚える</li>
-      <li>指示した通りにだけ動く</li>
-      <li>判断しない・文脈を読まない</li>
-      <li>責任は操作者にある</li>
-      <li>導入＝操作習得</li>
-    </ul>
-  </div>
-  <div class="vs-col" style="background:#ffe0ec;">
-    <div class="vs-head" style="color:#701035;border-bottom-color:rgba(112,16,53,.3);">AIエージェント<br>（同僚に近い存在）</div>
-    <ul class="vs-list">
-      <li>文脈を解釈・自ら判断</li>
-      <li>状況に応じて異なる行動を選択</li>
-      <li>「どこまで任せるか」を設計</li>
-      <li>責任分界点の再定義が必要</li>
-      <li>導入＝役割と権限の再設計</li>
-    </ul>
-  </div>
+<p class="ov-body-p">AIの位置づけの変化従来のITツール、たとえばExcel、期間システム（ERP）、RPAといったものは「道具」です。人間が操作方法を覚え、指示した通りに動作し、責任はすべて操作者にあります。道具自体は判断しません。</p>
+<p class="ov-body-p">AIエージェントはこれとは根本的に異なります。文脈を解釈し、自ら判断を行い、状況に応じて異なる行動を選択する。</p>
+<div class="memory-key" style="background:linear-gradient(135deg,#701035,#a01850);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">HITLには2つの役割があります。</div></div>
 </div>
 
-<div class="ov-subtitle">デリゲーション（権限委譲）の3段階設計</div>
-<table class="deleg-table">
-  <tr><th>リスクレベル</th><th>デリゲーション範囲</th><th>設計パターン</th></tr>
-  <tr>
-    <td class="risk-low">低リスク</td>
-    <td>判断＋実行の両方をAIに委譲</td>
-    <td>完全自動化（Full Automation）</td>
-  </tr>
-  <tr>
-    <td class="risk-mid">中リスク</td>
-    <td>AIが判断案を出し、人間が実行前に承認</td>
-    <td>Human-in-the-Loop（HITL）</td>
-  </tr>
-  <tr>
-    <td class="risk-high">高リスク</td>
-    <td>AIは情報提供のみ。判断・実行は人間</td>
-    <td>Human-in-Command</td>
-  </tr>
-</table>
-
-<ul class="point-list">
-  <li><strong>HITL（Human-in-the-Loop）</strong>：AIエージェントの処理の中に人間の確認・承認ステップを組み込む設計。安全装置＋AIを育てるフィードバック収集機構</li>
-  <li>同じ「メール送信」でも社内連絡（低リスク）と契約変更通知（高リスク）では全く異なる設計が必要。<strong>文脈依存性</strong>を見落とさない</li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#701035,#a01850);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">AIは「道具」でなく「同僚」。導入＝権限設計。リスク別に低→HITL→人間判断の3段階でデリゲーションを設計する</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch05_s01">
@@ -447,6 +274,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -466,11 +294,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #a01850;">
   <div class="quiz-hdr" style="color:#701035;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch05_s01" onclick="startRetake('ch05_s01')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch05_s01" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch05_s01_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 1</div>
+    <div class="quiz-num">問 1 ／ 2</div>
     <div class="quiz-question">AIエージェントが生成した顧客向け提案メールを、担当者が確認してから送信する運用（Human-in-the-Loop）を導入しました。この運用の意義について、最も適切な説明はどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch05_s01_1',0,1)">A　AIエージェントの精度が低い間の一時的な措置であり、精度が向上すれば人間の確認は不要になる</button>
@@ -484,7 +315,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch05_s01_1" onclick="retryQ('ch05_s01_1')">↩ もう一度</button>
-      <button class="next-btn" id="nch05_s01_1" onclick="showScore('ch05_s01',1)">結果を見る →</button>
+      <button class="next-btn" id="nch05_s01_1" onclick="showNext('ch05_s01_2')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch05_s01_2" style="display:none;">
+    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-question">AIエージェントが生成した顧客向け提案メールを、担当者が確認してから送信する運用（Human-in-the-Loop）を導入しました。この運用の意義について、最も適切な説明はどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch05_s01_2',0,1)">A　AIエージェントの精度が低い間の一時的な措置であり、精度が向上すれば人間の確認は不要になる</button>
+      <button class="choice-btn" onclick="answer('ch05_s01_2',1,1)">B　AIエージェントの出力品質を担保する安全装置であると同時に、人間のフィードバックがAIエージェントの改善データとして蓄積される仕組みでもある</button>
+      <button class="choice-btn" onclick="answer('ch05_s01_2',2,1)">C　人間が確認するため、AIエージェントを導入する意味がなくなる</button>
+      <button class="choice-btn" onclick="answer('ch05_s01_2',3,1)">D　法律で義務付けられているため、すべてのAIエージェントの出力に人間の確認が必要である</button>
+    </div>
+    <div class="explanation" id="ech05_s01_2">
+      <div class="ans-label">✅ 正解：B</div>
+      HITLには2つの役割があります。1つ目は安全装置として、AIエージェントの誤りが顧客に届く前に人間が検出・修正すること。2つ目は、人間の「正しい/間違っている」というフィードバックがAIエージェントの改善データとして蓄積され、出力品質の向上につながることです。Aは「精度が上がれば不要」としていますが、顧客対応のようなリスクのある業務では精度に関係なく人間の確認が価値を持ちます。Cは誤りで、AIエージェントがドラフトを生成することで担当者の作業時間は大幅に短縮されており、確認作業はゼロから作成するよりはるかに効率的です。Dは法的義務ではなく、業務のリスクレベルに応じた設計判断です。 298 Chapter5 人と組織から考えるAI時代の組織設計 CHAPTER 5 Section24. AIエージェント推進の組織類型学習のポイント本Sectionでは、AIエージェント導入をどのような組織体制で推進するかについて、代表的な類型を理解します。試験では、中央集権型、分散型、ハイブリッド型という3つの組織類型について、それぞれの特徴とトレードオフを正確に理解していることが求められます。あわせて、具体的な企業シナリオに対して、どの推進体制が適切かを判断できることも重要です。特に、中央集権型と分散型は、ガバナンスの強さと現場の俊敏性において対照的な特徴を持つため、その違いを正確に把握する必要があります。また、CoE（Center of Excellence）の役割や、ガバナンスとアジリティのバランスも重要な論点です。経理部門へのAIエージェント導入を題材として、どの推進体制を選ぶべきか、またCoEにどのような役割を持たせるべきかを考えます。 1 知識なぜ推進体制の設計が必要か AIエージェントの導入は、1つの部署だけで完結する取り組みではありません。業務部門がユースケースを提供し、IT部門が技術的な実装を担い、法務部門がリスクを管理し、経営層が意思決定と予算を握ります。こうした組織横断のプロジェクトである以上、「誰が旗を振るのか」「各部署はどう連携するのか」を明確にしなければ、推進力が生まれません。逆に、旗振り役が不在のまま各所が動き出せば、バラバラな取り組みが乱立するだけです。組織の推進体制を考えることは、単なる管理の話ではなく、AIエージェントと共に成果を出す人材をどう配置し、どう連携させるかという設計の問題です。中央集権型：CoE主導で統制する中央集権型は、AIエージェント推進の専門組織であるCoE（Center of Excellence）を設置し、全社のAI施策を一元的にコントロールする体制です。CoEはAI戦略の策定、ツール選定の標準化、ガバナンスルールの制定、各部署への技術支援を担います。すべてのAIプロジェクトはCoEを経由するため、品質と一貫性が保たれます。金融機関や医療機関のようにコンプライアンス要件が厳しい業界、あるいは従業員数が多くガバナンスの統一が不可欠な大企業に向いています。この体制の強みは「統制が効く」ことです。ツール・プロセス・セキュリティ基準が全社で統一され、野良エージェント（Section7）の発生を防ぎやすくなります。ナレッジがCoEに集約されるため、全社的な知見の蓄積と再利用も進みます。 299 Chapter5 人と組織から考えるAI時代の組織設計一方で弱みは「遅さ」です。すべてのプロジェクトがCoEのキャパシティに依存するため、現場が求めるスピードに追いつけないボトルネックが生じます。現場のニーズとCoEの優先順位がずれていくと、現場の当事者意識が薄れるリスクもあります。現場が「自分たちの課題は自分たちが一番わかっている」と感じているときほど、この乖離は深刻になります。分散型：各部署が⾃律的に推進する分散型は、各事業部門・部署がそれぞれ独自にAIエージェント導入を推進する体制です。専門の推進組織は設けず、各部署の裁量でツール選定から実装まで行います。強みは「速さ」です。現場のニーズに最も近い人が意思決定するため、課題の特定から実装までが圧倒的に速く、部署ごとの業務特性に最適化されたソリューションが生まれやすくなります。創業3〜5年のSaaS企業や急成長中のスタートアップに向いています。現場が自ら課題を発見し、自ら解決策を設計する。この当事者意識の高さこそが、分散型の本質的な強みです。一方で弱みは「統制が効かない」ことです。部署ごとに異なるツール・基準・データ管理が乱立し、セキュリティリスクが増大します。同じような仕組みを別々の部署がゼロから作る車輪の再発明が起き、野良エージェントが発生しやすく、ガバナンスが困難になります。 300 Chapter5 人と組織から考えるAI時代の組織設計ハイブリッド型：統制と⾃律のバランスハイブリッド型は、中央集権型と分散型の利点を組み合わせた推進体制です。CoE（Center of Excellence）などの中央組織が、ルール、ガイドライン、セキュリティ基準、共通基盤などを整備し、各部署はその枠組みの中で、自部門の業務に応じたAIエージェント導入を進めます。この体制の特徴は、全社として必要な統制を確保しつつ、各部署が業務に即した形で導⼊を進められる点にあります。一方で、設計上の重要な論点は、中央が定める枠組みをどの程度厳格にするかです。統制を強めすぎれば、各部署の判断や動きが制限され、中央集権型に近づきます。反対に、枠組みを緩くしすぎれば、部署ごとの運用がばらつき、分散型に近づきます。したがって、ハイブリッド型では、ガバナンスと現場の柔軟性のバランスをどのように取るかが重要になります。また、AIエージェント導入を段階的に進める場合にも、ハイブリッド型は適しています。たとえば、まず一つの部署で小規模に導入し、そこで得られた知見やルールを整理したうえで、他部署へ展開していく進め方が考えられます。このように、現場で得た知見を全社共通の枠組みに反映しながら展開できる点は、ハイブリッド型の大きな利点です。 301 Chapter5 人と組織から考えるAI時代の組織設計中央集権型と分散型の逆転関係この2つの類型は、メリットとデメリットが表裏一体の関係にあります。中央集権型の強み（ガバナンスの統一、ナレッジの集約、野良エージェント防止）は、そのまま分散型の弱みです。分散型の強み（現場ニーズへの即応、当事者意識の高さ、部署特性への最適化）は、そのまま中央集権型の弱みです。 POINT 試験では、この逆転関係を正確に把握しているかが繰り返し問われます。どちらかの類型のメリットを見たら「もう一方のデメリットでもある」と即座に対応づけられるようにしておくことが重要です。 302 Chapter5 人と組織から考えるAI時代の組織設計 CoE（Center of Excellence）の役割 CoEはAIエージェント推進の専門組織です。中央集権型ではすべてのAIプロジェクトを主導し、ハイブリッド型ではガバナンスの枠組み策定と技術支援を担います。 CoEの役割は3つに整理できます。第1にガバナンス機能です。全社共通のAI利用ポリシー、セキュリティ基準、データ取扱いルールを策定・管理します。第2に技術支援機能です。各部門のAIエージェント導入プロジェクトに技術的な助言を提供し、ツール選定や設計レビューを支援します。第三にナレッジ共有機能です。経理部門での成功事例・失敗事例を全社の知見として蓄積し、営業部門や製造部門が同じ失敗を繰り返さないようにします。注意すべきは、CoEの機能が形骸化するリスクです。CoEが存在しても人員が少なく、実質的に各部署が独自に推進している状態になれば、形式上はハイブリッド型でも実態は分散型に近くなります。CoEのガバナンス機能が実効性を持つためには、策定したルールの遵守状況を定期的に監査するプロセスが欠かせません。逆に、CoEが策定したルールが非常に厳格で、各部署がすべてCoEの承認を得なければならない状態になれば、実態は中央集権型に近づきます。「すべての施策にCoEの事前承認を義務づける」運用は、ハイブリッド型の設計としては不適切です。判別の決め手は「部署の自律的な裁量が実質的に確保されているか」にあります。 303 Chapter5 人と組織から考えるAI時代の組織設計 2 業務シナリオ：請求書処理AIでの推進体制設計経理部門で月間800件の請求書処理をAIエージェント化するプロジェクトにおいて、推進体制を設計します。この企業は従業員500名の中堅製造業で、経理部門のほかにも営業部門や製造部門でAIエージェント活用を検討し始めています。判断 1 3つの類型のどれが適するかまず、企業の状況を整理します。この企業は従業員500名規模の中堅企業であり、経理、営業、製造といった複数部門で AIエージェント導入を検討しています。経理部門は、財務データという機密性の高い情報を扱い、仕訳や支払処理のように高い正確性が求められる業務を担っています。一方で、営業や製造とは業務内容や扱うデータの性質が大きく異なります。 POINT この条件を踏まえると、まず中央集権型には課題があります。中央集権型では、CoEがすべての部門のAIエージェント導入を統括するため、ガバナンスやセキュリティの統一は図りやすくなります。特に、経理部門のように機密性と正確性が重視される領域では、この点は大きな利点です。しかし、従業員500名規模の企業において、各部門の導入を統括できる専任組織を十分な体制で設けることが現実的かどうかは慎重に考える必要があります。加えて、経理、営業、製造では業務特性が大きく異なるため、中央組織だけで各部門の業務知識を十分に把握しながら推進することには限界があります。 304 Chapter5 人と組織から考えるAI時代の組織設計次に分散型にも課題があります。分散型では、各部門が自部門の業務に即してAIエージェント導入を進められるため、経理部門は請求書処理業務に特化した設計を行いやすくなります。この点では、現場知識を最も活かしやすい体制です。一方で、部門ごとにセキュリティ基準、利用ツール、データ管理の考え方がばらばらになるおそれがあります。特に経理部門のように機密性の高いデータを扱う場合、全社としての統制が弱い状態は望ましくありません。また、他部門でも個別に導入を進めると、同じような検討や仕組みをそれぞれが繰り返す、いわゆる重複投資が起こる可能性があります。これに対して、ハイブリッド型は、この企業の条件に比較的適しています。ハイブリッド型では、IT部門やDX推進担当のような中央機能が、セキュリティ基準、利用可能なツール、データ取扱いルールなどの共通枠組みを整備します。そのうえで、各部門はその枠組みの中で、自部門の業務に即したAIエージェント導入を進めます。この体制であれば、経理部門は自らの業務知識を活かして請求書処理AIを設計しながら、全社として必要なガバナンスやセキュリティも維持しやすくなります。したがって、この企業に最も適しているのはハイブリッド型です。複数部門で導入ニーズがあり、しかも経理部門のように機密性と正確性が特に重要な領域を含む以上、一定の全社統制は必要です。しかし、中央集権型ほど強い集中管理を行うには、企業規模や業務の多様性を考えると負荷が大きく、分散型では統制が不足しやすくなります。そのため、共通ルールは中央で整備し、業務設計と活用は各部門が担うハイブリッド型が、最もバランスの取れた選択肢といえます。 POINT また、このような推進体制の選択は、単に組織図の問題ではありません。 AIエージェントをどこに導入するかだけでなく、AIエージェントを前提として、業務フロー、判断の流れ、責任分界をどのように再設計するかという論点と一体で考える必要があります。したがって、推進体制の設計は、業務再設計の考え方と切り離してはならない重要な判断です。判断 2 経理AI導⼊に最適な推進体制の具体設計ハイブリッド型を採用する方針が決まりました。次に、経理部門の請求書処理AIに特化した推進体制を具体的に設計します。中央（IT部門/DX推進担当）が担う役割は、全社共通のAIセキュリティ基準の策定（たとえば財務データをAIエージェントに渡す場合のデータマスキングルール）、使用可能なAIツール・LLM（大規模言語モデル）の認定リスト作成、AIエージェントの監査プロセスの定義（たとえば四半期ごとにAエージェントIの仕訳精度をレビューする仕組み）です。経理部門が担う役割は、請求書処理のどのステップをAI化するかの業務判断、仕訳ルールのナレッジ整備と精度検証、日常の運用とモニタリングです。 305 Chapter5 人と組織から考えるAI時代の組織設計 POINT ここで重要なのは、「何を中央が決め、何を現場が決めるか」の線引きです。セキュリティ基準やツール選定基準のような全社共通で統一すべき事項は中央が決め、業務プロセスの設計やデリゲーション範囲のような業務固有の判断は現場である経理部門が決めます。この線引きこそがハイブリッド型の設計の肝であり、業務を最もよく知る現場に裁量を残すことが、AIエージェントを実効性のある形で機能させる条件になります。判断 3 CoEの設計と役割分担企業の成長に伴い、経理部門での成功事例を他部門に展開する段階になりました。この段階でCoEの設置を検討します。この企業の規模では、専任のCoEチームを設置するよりも、IT部門内に「AIエージェント推進機能」を持たせる形が現実的です。推進体制は固定的なものではなく、企業の成長段階や導入の進捗に合わせて変化していくものです。ある企業では、ハイブリッド型の推進体制を3段階で進化させています。第1段階では、AI推進室を立ち上げ、専任の推進者1名と現場から手挙げで集めた推進メンバー数名でスタートしました。この段階では推進室が中心となり、全社共通のAIエージェント活用方針を策定しながら、現場メンバーと一緒にユースケースを探索します。第2段階では、各事業部の事業責任者をプロジェクトに巻き込みました。事業責任者に「自分の事業部をAIエージェントでどう変えるか」というミッションを持たせることで、AIエージェント推進が「推進室の取り組み」から「事業部自身の取り組み」に変わりました。第3段階では、各チームに「現場AIリーダー」を立てました。現場リーダーは日々の業務の中で課題を発見し、事業責任者と連携しながらユースケースを設計します。この企業の推進者は「彼らが中心になってユースケースを作っているのでリアリティがある。現場感があって、現場の課題にジャストフィットする」と語っています。 POINT この進化のポイントは、AIエージェント推進室の役割が「自分で作る」から「現場が作れるよう支援する」に段階的に移行している点です。推進の主語が「推進室」から「現場」に移ったとき、AIエージェントは組織に根づきます。この段階的な権限移譲は、Section22のデリゲーション設計の発想と同じ構造です。 306 Chapter5 人と組織から考えるAI時代の組織設計実践事例：経営⽅針と現場の⼯夫をつなぐ実践事例：現場が⾃分でAI活⽤を作れるようにする 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch05_s01_2" onclick="retryQ('ch05_s01_2')">↩ もう一度</button>
+      <button class="next-btn" id="nch05_s01_2" onclick="showScore('ch05_s01',2)">結果を見る →</button>
     </div>
   </div>
 
@@ -509,6 +359,7 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#701035;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIエージェント導入をどのような組織体制で推進するかについて、代表的な類型
@@ -519,52 +370,13 @@ body {
 握する必要があります。また、CoE（Center of Excellence）の役割や、ガバナンスとアジリティの
 バランスも重要な論点です。経理部門へのAIエージェント導入を題材として、どの推進体制を選ぶ
 べきか、またCoEにどのような役割を持たせるべきかを考えます。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">3つの推進体制類型</div>
-<div class="org-cards">
-  <div class="org-card" style="border-color:#701035;background:#fff5f8;">
-    <div class="org-card-head">
-      <div class="org-icon">🏛</div>
-      <div class="org-name">中央集権型（CoE主導）</div>
-      <div class="org-type">統制重視</div>
-    </div>
-    <div class="org-strong">強み：ガバナンス統一・ナレッジ集約・野良エージェント防止・標準化</div>
-    <div class="org-weak">弱み：CoEがボトルネックに。現場スピードに追いつけず、現場の当事者意識が薄れる</div>
-    <div class="org-weak" style="margin-top:4px;color:#701035;">向く組織：金融・医療等コンプライアンス重視の大企業</div>
-  </div>
-  <div class="org-card" style="border-color:#a01850;background:#fff8fa;">
-    <div class="org-card-head">
-      <div class="org-icon">🌐</div>
-      <div class="org-name">分散型（各部署自律）</div>
-      <div class="org-type">俊敏性重視</div>
-    </div>
-    <div class="org-strong">強み：現場ニーズへの即応・当事者意識・部署特性への最適化が速い</div>
-    <div class="org-weak">弱み：ツール乱立・野良エージェント多発・車輪の再発明・セキュリティリスク</div>
-    <div class="org-weak" style="margin-top:4px;color:#701035;">向く組織：創業3〜5年SaaS・急成長スタートアップ</div>
-  </div>
-  <div class="org-card" style="border-color:#cc4878;background:#fff5f8;">
-    <div class="org-card-head">
-      <div class="org-icon">⚖</div>
-      <div class="org-name">ハイブリッド型（両立）</div>
-      <div class="org-type">バランス型</div>
-    </div>
-    <div class="org-strong">中央（CoE）がルール・基準・共通基盤を整備し、各部署はその枠内で自律的に展開</div>
-    <div class="org-weak">設計の核心：枠組みの厳格度のバランス。「全承認必須」なら実質中央集権型に</div>
-    <div class="org-weak" style="margin-top:4px;color:#701035;">見分け方：「部署の実質的な裁量が確保されているか」で判断</div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#a01850;color:#701035;">なぜ推進体制の設計が必要か</div><div class="ov-section-body">AIエージェントの導入は、1つの部署だけで完結する取り組みではありません。業務部門がユースケースを提供し、IT部門が技術的な実装を担い、法務部門がリスクを管理し、経営層が意思決定と予算を握ります。</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#a01850;color:#701035;">中央集権型：CoE主導で統制する</div><div class="ov-section-body">中央集権型は、AIエージェント推進の専門組織であるCoE（Center of Excellence）を設置し、全社のAI施策を一元的にコントロールする体制です。CoEはAI戦略の策定、ツール選定の標準…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#701035,#a01850);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">経理部門へのAIエージェント導入を題材として、どの推進体制を選ぶ べきか、またCoEにどのような役割を持たせるべきかを考えます。</div></div>
 </div>
 
-<div class="ov-subtitle">中央集権型 ⇔ 分散型の逆転関係</div>
-<ul class="point-list">
-  <li>中央集権型の強み＝分散型の弱み（統制・ナレッジ集約）。分散型の強み＝中央集権型の弱み（速さ・当事者意識）</li>
-  <li><strong>CoE（Center of Excellence）</strong>の3機能：ガバナンス（ポリシー策定）・技術支援（設計レビュー）・ナレッジ共有（成功/失敗事例の全社展開）</li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#701035,#a01850);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">3類型：中央（CoE統制・遅いが安全）・分散（速いが管理不能）・ハイブリッド（枠内自律）。逆転関係を即対応できるように</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch05_s02">
@@ -573,6 +385,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -593,9 +406,12 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #a01850;">
   <div class="quiz-hdr" style="color:#701035;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch05_s02" onclick="startRetake('ch05_s02')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch05_s02" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch05_s02_1" style="display:block;">
     <div class="quiz-num">問 1 ／ 1</div>
     <div class="quiz-question">ハイブリッド型の推進体制を採用した企業のCoEが、以下の運用を行っています。このうち、ハイブリッド型の設計として最も不適切なものはどれですか。</div>
@@ -636,6 +452,7 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#701035;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIエージェント導入の成果をどのように測定するかという評価設計と、AIエージ
@@ -643,47 +460,13 @@ body {
 では、アウトカム指標とアウトプット指標の違い、KPI・KGI・OKRの区別、DAUやMAUの意味と
 その限界が重要な論点となります。また、人事評価の観点では、JD（職務定義書）を見直す必要性
 と、リスキリングとアップスキリングの違いも問われます。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">アウトカム指標 vs アウトプット指標</div>
-<div class="metric-frame">
-  <div class="metric-row" style="border-color:#e74c3c;background:#fff5f5;">
-    <div class="metric-head" style="color:#c0392b;">アウトプット指標（活動量）— 補助的に使う</div>
-    <div class="metric-body">DAU/MAU・処理件数など「使われているか」を示す指標。形骸化を見逃しやすい。高くても成果とは限らない</div>
-    <div class="metric-ex">例：「毎日100人がAIエージェントを使っている」→ 成果に結びつかない使い方が横行する危険</div>
-  </div>
-  <div class="metric-row" style="border-color:#701035;background:#ffe0ec;">
-    <div class="metric-head" style="color:#701035;">アウトカム指標（価値）— 主軸に置く</div>
-    <div class="metric-body">AIがもたらした「実際の価値」を測る指標。創出された時間・解決された課題数・従業員満足度</div>
-    <div class="metric-ex">例：「担当者の定型業務時間が月20時間→10時間に削減」「仕訳ミス率5%→1%以下」</div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#a01850;color:#701035;">アウトカム指標の重要性</div><div class="ov-section-body">AIエージェントの導入効果を測る際、多くの組織がまず目を向けるのがDAU/MAU（日次/月次アクティブユーザー数）や処理件数といった活動量です。しかしこれらの指標だけを追い続けると、組織に深刻な歪みが…</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#a01850;color:#701035;">解決された課題数：問い合わせ対応‧ミス件数‧差し戻しなど、実際に減った問題の量</div><div class="ov-section-body">従業員満⾜度：AIエージェントと協働することで、仕事の⼿応えやストレスがどう変わったかの体感値DAUやMAUのような活動量を示す指標は、「そもそも利用されていなければ成果は生まれにくい」という前提を確…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#701035,#a01850);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">KGIはプロジェクトの最終ゴールです。</div></div>
 </div>
 
-<div class="ov-subtitle">KGI・KPI・OKRの体系</div>
-<div class="metric-frame">
-  <div class="metric-row" style="border-color:#701035;background:#fff5f8;">
-    <div class="metric-head">KGI（最終ゴール指標）</div>
-    <div class="metric-body">プロジェクト最終目標の達成度。数値＋期限で定義。<br>例：「顧客対応コストを年間30%削減」</div>
-  </div>
-  <div class="metric-row" style="border-color:#a01850;background:#fff8fa;">
-    <div class="metric-head">KPI（中間指標）</div>
-    <div class="metric-body">KGI達成に向けたマイルストーン。3〜5個選ぶ。アウトカム指標を最低2個含める。<br>例：「AI正答率90%以上」「対応時間50%短縮」</div>
-  </div>
-  <div class="metric-row" style="border-color:#cc4878;background:#fff5f8;">
-    <div class="metric-head">OKR（目標と主要結果）</div>
-    <div class="metric-body">定性的なObjective（ありたい姿）＋定量的KR（測定基準）。探索的・挑戦的目標に最適。<br>初期フェーズ（PoC）に向く</div>
-  </div>
-</div>
-
-<ul class="point-list">
-  <li><strong>フェーズ別使い分け</strong>：Discovery〜PoCはOKR（方向性探索）、Deployment以降はKGI/KPI（数値管理）</li>
-  <li>KGIかKPIかは文脈で変わる。QA部門にとっての正答率95%はKGI、全社から見ればKPI</li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#701035,#a01850);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">アウトカム指標（価値）を主軸に。KGI→KPI→OKR。探索期はOKR、展開期はKPI。DAU/MAUだけ追うと形骸化する</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch05_s03">
@@ -692,6 +475,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -716,11 +500,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #a01850;">
   <div class="quiz-hdr" style="color:#701035;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch05_s03" onclick="startRetake('ch05_s03')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch05_s03" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch05_s03_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-num">問 1 ／ 3</div>
     <div class="quiz-question">請求書処理AIプロジェクトにおいて、以下の指標のうちKGI（重要目標達成指標）として最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch05_s03_1',0,1)">A　AIエージェントの1日あたりの請求書処理件数</button>
@@ -739,7 +526,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch05_s03_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-num">問 2 ／ 3</div>
     <div class="quiz-question">請求書処理AIの導入により、経理担当者の職務が「仕訳入力の実行」から「AIエージェントが生成した仕訳のレビューと例外処理の対応」に変わりました。この変化は、リスキリングとアップスキリングのどちらに該当しますか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch05_s03_2',0,1)">A　アップスキリング。経理業務を続けながらAIエージェント活用スキルを追加したため。</button>
@@ -753,7 +540,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch05_s03_2" onclick="retryQ('ch05_s03_2')">↩ もう一度</button>
-      <button class="next-btn" id="nch05_s03_2" onclick="showScore('ch05_s03',2)">結果を見る →</button>
+      <button class="next-btn" id="nch05_s03_2" onclick="showNext('ch05_s03_3')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch05_s03_3" style="display:none;">
+    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-question">請求書処理AIの導入により、経理担当者の職務が「仕訳入力の実行」から「AIエージェントが生成した仕訳のレビューと例外処理の対応」に変わりました。この変化は、リスキリングとアップスキリングのどちらに該当しますか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch05_s03_3',0,1)">A　アップスキリング。経理業務を続けながらAIエージェント活用スキルを追加したため。</button>
+      <button class="choice-btn" onclick="answer('ch05_s03_3',1,1)">B　リスキリング。職務の中心が「作業実行」から「AIエージェント監督・例外対応」へ変わったため。</button>
+      <button class="choice-btn" onclick="answer('ch05_s03_3',2,1)">C　アップスキリング。経理部門に所属し続けているため。</button>
+      <button class="choice-btn" onclick="answer('ch05_s03_3',3,1)">D　リスキリング。AIツールの操作方法を新しく学んだため。</button>
+    </div>
+    <div class="explanation" id="ech05_s03_3">
+      <div class="ans-label">✅ 正解：B</div>
+      リスキリングかアップスキリングかの判別の決め手は「職務が変わるか変わらないか」です。このケースでは「仕訳入力の実行者」から「AIエージェント出力の監督者・例外処理の担当者」へ職務自体が変わっています。同じ経理部門に所属していても、職務内容が根本的に変わっていればリスキリングです。選択肢Dは「新しいツールを学んだ」だけではリスキリングの理由にならないため不適切です。 326 Chapter5 人と組織から考えるAI時代の組織設計 CHAPTER 5 Section26. チェンジマネジメント学習のポイント本Sectionでは、組織変革に伴って生じる人間の心理的な抵抗を理解し、それにどのように対応すべきかを学びます。試験では、抵抗が生じる心理的プロセスの各段階とその対応策、心理的安全性の定義、抵抗曲線の考え方、Fail-Fastの意味と活用の仕方が問われます。 1 知識チェンジマネジメントとは何かチェンジマネジメントとは、組織変革を計画的に推進し、変革に対する抵抗を小さくしながら定着を促すアプローチです。AIエージェント導入は技術プロジェクトであると同時に組織変革プロジェクトでもあります。優れた技術があっても、現場が受け入れなければ成果は出ません。昨今ニュースでも取り沙汰されるように、AIエージェントは人間の「仕事そのもの」に影響を与えます。新しい表計算ソフトの導入なら仕事のやり方が少し変わるだけですが、AIエージェントの導入は「自分の仕事が奪われるのではないか」という実存的な不安を引き起こします。この不安に十分に向き合わず、技術導入だけを進めると、導入への協力が得られにくくなったり、利用が定着しなかったりすることがあります。具体的には、導入に消極的な態度を取る、必要な情報提供を控える、実際には使わないといった形で、抵抗が表れる場合があります。 POINT 人は変化そのものが嫌いなのではなく、変化の先に自分の居場所があるかどうかが見えないことに不安を感じます。だからこそ、技術導入の前にまず「あなたはこの変化の中でどういう役割を担うのか」という問いに答えを用意しておくことが重要です。 327 Chapter5 人と組織から考えるAI時代の組織設計抵抗の⼼理プロセス（否認→抵抗→受容の3段階）組織変⾰に対する⼈間の⼼理的反応は3段階で進みます。第1段階：否認否認は、変革の必要性そのものをまだ受け入れていない段階です。たとえば、「自分たちの業務にAIエージェントは関係ない」「今のやり方で十分である」といった反応がこれに当たります。 POINT この段階で重要なのは、相手が変革に悪意を持って反対していると捉えないことです。多くの場合、これは変化に対する自然な防衛反応です。そのため、否認段階にある人に対して、単に「AIエージェントを使うべきだ」と求めても、十分な効果は期待できません。有効なのは、なぜ変革が必要なのかを具体的に示すことです。たとえば、業務負荷の増大、処理時間の長さ、問い合わせ件数の増加、人手不足、競争環境の変化などを、実際の数値や事例で示すことで、変革の必要性に対する認識を形成しやすくなります。この段階では、まず必要性を理解してもらうこと、すなわち認知（Awareness）の形成が中心となります。第2段階：抵抗抵抗は、変革の必要性は理解していても、感情的には受け入れられない段階です。たとえば、「AIエージェントに仕事を奪われるのではないか」「これまで培ってきた経験やスキルが無意味になるのではないか」といった不安、怒り、戸惑いが表れます。この段階は、3段階の中でも特に対応が難しい段階です。なぜなら、問題が知識不足ではなく、感情面の不安や喪失感に移っているためです。そのため、論理的な説明だけでは十分ではありません。 POINT ここで必要なのは、変化の先に自分の役割が残ることを具体的に示すことです。たとえば、「これまでの経験は、AIエージェントの出力を確認し、例外対応を判断する役割に活きる」「AIエージェントは仕事をなくすのではなく、反復作業を減らし、より高度な判断へ時間を振り向けるための仕組みである」といった形で、今後の役割やキャリアの見通しを示すことが重要です。あわせて、不安や疑問を率直に表明できる場を設けることも必要です。 328 Chapter5 人と組織から考えるAI時代の組織設計 AIエージェント導入の初期段階で起こりやすい失敗の一つが、恐怖を動機として変化を促そうとすることです。たとえば、「AIエージェントを使えなければ仕事がなくなる」「変化に対応できない人は取り残される」といった伝え方は、短期的には危機感を生むかもしれませんが、中長期的には抵抗を強めるおそれがあります。実際に、ある企業では、導入初期に「仕事がなくなるかもしれない」「今後の生き方を考える必要がある」といったメッセージを強く打ち出した結果、社内から「自分の仕事はなくなるのか」「強い不安を感じた」といった反応が多く寄せられ、AIエージェント活用の推進にブレーキがかかりました。その後、この企業では、「AIエージェントを使うことで働き方がどのように前向きに変わるのか」を伝える方向へ切り替えたところ、抵抗感は徐々に和らいでいきました。 POINT この事例が示しているのは、人が変化そのものを拒んでいるのではなく、変化の先に自分の役割や居場所があるかどうかが見えないことに不安を感じるという点です。したがって、抵抗段階を乗り越えるには、恐怖で動かそうとするのではなく、変化後の役割や価値を具体的に示すことが重要です。第3段階：受容 POINT 変革を受け入れ、新しいやり方を試み始める段階で、「意外と便利だ」という前向きな反応が出始めます。この段階では、小さな成功体験という意味を持つクイックウィンを積み重ねることが重要です。抵抗曲線と「⾕」の意味抵抗曲線とは、組織変革に対して生じる心理的・行動的反応を、時間の経過に沿って示した考え方です。一般に、縦軸に生産性やモチベーション、横軸に時間を取ると、変革の導入直後には一時的な低下が生じ、その後、徐々に回復し、定着とともに向上していくU字型の推移として表されます。この一時的な低下の局面を「谷」と呼びます。 329 Chapter5 人と組織から考えるAI時代の組織設計 POINT この考え方で重要なのは、第1に、谷の存在は異常ではなく、変革に伴って起こりやすい通常の反応であるという点です。新しい仕組みや役割に適応する過程では、一時的に慣れが失われ、迷いや負荷が増えるため、生産性が下がることがあります。したがって、導入初期の低下だけを見て、直ちに失敗と判断することは適切ではありません。第2に、谷の時期だけを見て導入を中止してしまうことが大きな失敗につながるという点です。変革の効果は、一定の適応期間を経てはじめて表れる場合が多くあります。そのため、一時的な低下だけを理由に「AIエージェントは使えない」と判断してしまうと、その後の回復や定着の機会を失うことになります。第3に、谷をできるだけ浅くし、短くするための施策を事前に設計しておくことが重要であるという点です。たとえば、導入前後の研修、相談できる支援体制、段階的な導入、現場からのフィードバックを反映する仕組みなどをあらかじめ用意しておくことで、変革による混乱を抑えやすくなります。 POINT したがって、抵抗曲線を理解するうえでは、谷を避けることよりも、谷が生じることを前提に、その影響を小さくし、早く回復できるように準備することが重要です。 ⼼理的安全性の正確な定義心理的安全性とは、「この組織では、自分の意見を言っても、失敗を報告しても、無知を認めても、罰せられたり恥をかかされたりしない」とメンバーが信じられる状態です。ハーバード・ビジネススクールのエイミー・エドモンドソン教授が提唱した概念で、Google社のProject Aristotleで、チームの生産性を左右する最大の要因として注目されました。 POINT ここで重要なのは、心理的安全性は「居心地の良さ」「仲良し」「甘やかし」とは明確に異なるということです。高い基準と厳しいフィードバックは維持しつつ、「率直に発言しても人格を否定されない」という信頼関係のことを指します。 330 Chapter5 人と組織から考えるAI時代の組織設計心理的安全性が高い環境では、むしろ厳しい指摘や建設的な対立が活発に行われます。表面的な和やかさの裏で本音を飲み込んでいる状態は、心理的安全性が低い典型例です。誰かが正直に「これはうまくいかないと思う」と言えること。それに対して「なぜそう思うのか聞かせてほしい」と返せること。この往復が成り立つ関係性の中でこそ、人は安心してリスクを取れるようになります。 Fail-Fastの正しい理解 Fail-Fastは、小さく素早く実験し、失敗したら早期に方向転換するアプローチです。「無計画に突っ込んで失敗する」こととは明確に異なります。仮説を立て、検証方法を設計し、小規模に実施し、結果から学ぶ。このプロセスこそがFail- Fastを支えています。 Fail-Fastが機能するには心理的安全性が前提になります。失敗が罰せられる環境では誰もリスクを取りません。「失敗してもいいから早く試せ」と号令をかけても、失敗した人が責められる組織では、実験そのものが起きなくなります。 2 業務シナリオ：請求書処理AIでのチェンジマネジメント判断 1 経理部⾨での否認‧抵抗‧受容を識別し、段階に応じて対処する請求書処理AIの導入を経理部門に告知したとき、担当者4名にどのような反応が起きるかを想定します。まず否認段階の発言例です。「AIエージェントに仕訳なんてできるわけない。勘定科目の判断は長年の経験が必要だ」「うちの請求書は取引先ごとにフォーマットがバラバラだから、AIエージェントでは無理」。「できるわけない」と言い切っているのは、変革の必要性自体を認めていない否認段階です。この段階では、他社の導入事例や、AIエージェントによるOCRでの読取と仕訳生成のデモを見せて「技術的に可能である」という事実をデータで示すことが有効です。「使いなさい」と命令しても逆効果です。 331 Chapter5 人と組織から考えるAI時代の組織設計次に抵抗段階の発言例です。「AIエージェントが仕訳までやるなら、自分たちの仕事がなくなるのでは」「20年間この仕事をしてきたのに、もう自分は必要ないということか」という言葉を聞くようになります。変⾰の必要性は理解しつつも、感情的に受け⼊れられない抵抗段階です。「あなたの経験は例外処理や品質管理で引き続き不可欠です」「AIエージェントに定型作業を任せることで、取引先との交渉や決算分析など、より高度な業務に集中できます」という具体的なキャリアパスの提示が必要です。同時に、不安を口にできる場を確保します。20年の経験は消えません。その経験をどこで活かすかが変わるだけ。その「変わり方」を本人と一緒に考えるプロセスが、抵抗段階では何より大切です。最後に受容段階の発言例です。「AIエージェントに定型的な請求書を任せて、例外処理に集中できるなら助かる」「月末の残業が減るなら、試してみたい」という言葉を聞くようになります。前向きに試行を開始する受容段階です。この段階では小さな成功体験を積み重ねます。たとえば「まず定型フォーマットの請求書50件をAIエージェントで処理してみたら、仕訳精度が98%だった」という具体的な成功体験が、受容をさらに深化させます。判断 2 抵抗曲線を理解し、介⼊ポイントを事前に設計する請求書処理AIの導⼊直後、以下のような⼀時的な⽣産性低下が発⽣することを事前に想定します。たとえば導入1〜2週目はAIエージェントへの入力方法の学習に時間がかかり、従来の手作業より処理が遅くなるかもしれません。導入3〜4週目はAIエージェントの仕訳ミスを修正する手間が加わり、「前のやり方のほうが速かった」という声が出ます。そして導入2〜3か月目にようやくAIエージェントの精度が安定し、処理速度が従来を上回り始めるということも多いです。この「谷」の時期に「やはりAIエージェントは使えない」とプロジェクトを中止するのが最大の失敗です。谷を浅く・短くするための事前施策として、次のような計画を立てておきます。導入1〜2週目には操作研修を集中的に実施します。導入3〜4週目にはAIエージェントが間違えやすいパターンのナレッジを整備します。谷の期間中は従来の手作業との並行運用を認めることで心理的負荷を下げます。また、⾕の時期のKPI（重要業績評価指標）は「処理速度」ではなく「学習進捗」で評価するように設計しておきます。判断 3 スモールウィンを戦略的に設計する「まず何から着手するか」は、チェンジマネジメントの成否を分ける重要な判断です。請求書処理AIの場合、最初に取り組むべきは「読取精度が高い定型フォーマットの請求書」です。設計の基準は3点あります。 332 Chapter5 人と組織から考えるAI時代の組織設計 POINT ・短期間で成果が出る →定型フォーマットならOCR精度が高く、1〜2週間で効果が見えます。 POINT ・成果が定量化できる →「処理時間が15分から3分に短縮された」と数字で語れます。関係者にとって理解しやすいこと。経理担当者が日常的に処理している請求書なので実感がわきます。 POINT ・低リスクで実施できる →定型フォーマットは仕訳パターンが限定的で、ミスの影響が小さいからです。逆に、取引先ごとにフォーマットが異なる非定型請求書から着手すると、OCR精度が低く仕訳ミスが多発し、「やはりAIエージェントは使えない」という否認・抵抗を強化してしまいます。 333 Chapter5 人と組織から考えるAI時代の組織設計実践事例：AIを⽇常業務に定着させる 334 Chapter5 人と組織から考えるAI時代の組織設計 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch05_s03_3" onclick="retryQ('ch05_s03_3')">↩ もう一度</button>
+      <button class="next-btn" id="nch05_s03_3" onclick="showScore('ch05_s03',3)">結果を見る →</button>
     </div>
   </div>
 
@@ -778,52 +584,18 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#701035;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、組織変革に伴って生じる人間の心理的な抵抗を理解し、それにどのように対応す
 べきかを学びます。試験では、抵抗が生じる心理的プロセスの各段階とその対応策、心理的安全性
 の定義、抵抗曲線の考え方、Fail-Fastの意味と活用の仕方が問われます。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">変革に対する心理的抵抗の3段階</div>
-<div class="resist-stages">
-  <div class="resist-stage">
-    <div class="resist-stage-head" style="background:#e0e0e0;color:#444;">
-      第1段階：否認
-      <span class="resist-stage-tag">変革の必要性を認めない</span>
-    </div>
-    <div class="resist-stage-body">「自分たちの業務にAIは関係ない」「今のやり方で十分」。悪意でなく<strong>自然な防衛反応</strong>。<br>対応：なぜ変革が必要かを数値・事例で具体的に示す（認知形成）</div>
-  </div>
-  <div class="resist-arrow">↓</div>
-  <div class="resist-stage">
-    <div class="resist-stage-head" style="background:#ffe0ec;color:#701035;">
-      第2段階：抵抗
-      <span class="resist-stage-tag">感情的に受け入れられない</span>
-    </div>
-    <div class="resist-stage-body">「仕事を奪われる」「スキルが無意味になる」という不安・怒り。論理では解決しない。<br><strong>対応：変化の先に自分の役割が残ることを具体的に示す。恐怖で動かさない</strong></div>
-  </div>
-  <div class="resist-arrow">↓</div>
-  <div class="resist-stage">
-    <div class="resist-stage-head" style="background:#ffe0ec;color:#701035;">
-      第3段階：受容
-      <span class="resist-stage-tag">試み始める</span>
-    </div>
-    <div class="resist-stage-body">「意外と便利だ」という前向きな反応が出る段階。<strong>クイックウィン（小さな成功体験）を積み重ねる</strong>ことで定着を促進</div>
-  </div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#a01850;color:#701035;">チェンジマネジメントとは何か</div><div class="ov-section-body">チェンジマネジメントとは、組織変革を計画的に推進し、変革に対する抵抗を小さくしながら定着を促すアプローチです。AIエージェント導入は技術プロジェクトであると同時に組織変革プロジェクトでもあります。優れ…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#701035,#a01850);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">人は変化そのものが嫌いなのではなく、変化の先に自分の居場所があるかどうかが見えないことに不安を感じます。</div></div>
 </div>
 
-<div class="ov-subtitle">抵抗曲線と「谷」の意味</div>
-<ul class="point-list">
-  <li><strong>抵抗曲線</strong>：変革導入直後に生産性・モチベーションが一時的に低下（谷）し、その後回復・向上するU字型の推移</li>
-  <li>谷は異常ではなく<strong>変革に伴う通常の反応</strong>。谷だけを見て「失敗」と判断しない</li>
-  <li>重要：谷を「避けること」より、谷が来ることを前提に<strong>浅く・短くする施策</strong>（研修・相談体制・段階的導入）を事前設計</li>
-  <li><strong>心理的安全性</strong>：「失敗を報告しても・意見を言っても罰せられない」という組織文化。チェンジマネジメントの土台</li>
-</ul>
-
-<div class="memory-key" style="background:linear-gradient(135deg,#701035,#a01850);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">変革の心理：否認→抵抗（最難関）→受容。谷はU字で正常。恐怖でなく役割の見通しで動かせ</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch05_s04">
@@ -832,6 +604,7 @@ body {
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -851,11 +624,14 @@ body {
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #a01850;">
   <div class="quiz-hdr" style="color:#701035;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch05_s04" onclick="startRetake('ch05_s04')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch05_s04" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch05_s04_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-num">問 1 ／ 3</div>
     <div class="quiz-question">請求書処理AIの導入直後、処理速度が一時的に低下し、経理担当者から「前のやり方のほうが速かった」という声が出ています。プロジェクトリーダーとして最も適切な対応はどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch05_s04_1',0,1)">A　AIエージェントの導入を中止し、従来の手作業に戻す</button>
@@ -874,7 +650,7 @@ body {
   </div>
 
   <div class="quiz-block" id="qch05_s04_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-num">問 2 ／ 3</div>
     <div class="quiz-question">請求書処理AIの導入にあたり、経理チーム内でAIエージェントの使い方について議論する場を設けました。以下のうち、心理的安全性が「高い」状態を示すものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch05_s04_2',0,1)">A　チーム内で対立を避け、全員が賛成するまで議論を続けない方針を取っている</button>
@@ -888,7 +664,26 @@ body {
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch05_s04_2" onclick="retryQ('ch05_s04_2')">↩ もう一度</button>
-      <button class="next-btn" id="nch05_s04_2" onclick="showScore('ch05_s04',2)">結果を見る →</button>
+      <button class="next-btn" id="nch05_s04_2" onclick="showNext('ch05_s04_3')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch05_s04_3" style="display:none;">
+    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-question">請求書処理AIの導入にあたり、経理チーム内でAIエージェントの使い方について議論する場を設けました。以下のうち、心理的安全性が「高い」状態を示すものはどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch05_s04_3',0,1)">A　チーム内で対立を避け、全員が賛成するまで議論を続けない方針を取っている</button>
+      <button class="choice-btn" onclick="answer('ch05_s04_3',1,1)">B　AIエージェントの使い方で失敗した担当者が、失敗の経緯と学びを率直に共有し、他メンバーから感謝された</button>
+      <button class="choice-btn" onclick="answer('ch05_s04_3',2,1)">C　リーダーが「失敗は許さない。最初から正しく使うように」と指示している</button>
+      <button class="choice-btn" onclick="answer('ch05_s04_3',3,1)">D　全員がAIエージェントに好意的な意見だけを述べ、懸念を表明する人がいない</button>
+    </div>
+    <div class="explanation" id="ech05_s04_3">
+      <div class="ans-label">✅ 正解：B</div>
+      心理的安全性とは「率直に発言しても罰せられない信頼関係」です。選択肢Bは失敗を報告しても罰されず、むしろ学びとして評価される状態を示しています。選択肢Aは対立回避であり心理的安全性が低い状態、選択肢Cは失敗が罰せられる環境、選択肢Dは懸念を表明できない（本音が言えない）状態であり、いずれも心理的安全性が低いことを示しています。 337 Chapter5 人と組織から考えるAI時代の組織設計 CHAPTER 5 Section27. AIエージェント推進者が現場で直⾯する5つの問いと答え⽅ 学習のポイント本Sectionでは、AIエージェント導入を推進する立場にある人が、社内の経営層、現場、IT部門、法務部門などから実際に受ける難しい問いに、どのように対応すべきかを学びます。 POINT 試験では、それぞれの問いに対して、内容としては誤っていないものの相手に伝わりにくい回答と、正確でありながら相手に伝わる回答とを区別できることが求められます。また、ここで扱う5つの問いは、一般的な業務システム導入とは異なり、AIエージェント導入に特有の論点を含むものです。 1 知識問い1：「AIエージェントは間違えるのではないか」この問いは、経営層からも現場からも、導入時に特に多く出される問いの一つです。そして、AIエージェント・ストラテジストにとって、正確さと伝わりやすさの両方が求められる論点でもあります。まず押さえるべきことは、AIエージェントには誤りが生じる可能性があるという点です。生成AIを基盤とするAIエージェントは、常に同じ入力に対して同じ出力を返すとは限りません。また、事実と異なる内容をもっともらしく生成する、いわゆるハルシネーションが生じる可能性もあります（Section1・7参照）。 338 Chapter5 人と組織から考えるAI時代の組織設計 POINT この点は、従来のITシステムとの大きな違いです。従来のITシステムは、同じ入力に対して同じ処理結果を返すことを前提に設計されることが一般的でした。一方、AIエージェントは、文脈や生成の性質に依存するため、一定の揺らぎや誤りの可能性を前提に設計・運用する必要があります。 POINT ここで重要なのは「間違えるから使えない」ではなく、「間違え方を設計する」という発想の転換です。具体的には、間違えてもリカバリーできる業務から導入する（低リスク業務の選定）、間違いを人間が検出できる仕組みを組み込む（Human-in-the-Loop）、間違いの頻度を定量的に測定して許容範囲内かどうかを判断する、という3点セットで説明します。相手に伝わる言い方の例：「AIエージェントは間違えます。ただし、人間も間違えます。現状の仕訳ミス率は5%です。 AIエージェントのミス率を1%未満に抑え、かつ人間が最終確認する仕組みを入れれば、現状より安全になります」 ⽐較対象を「完璧」ではなく「現状の⼈間のミス率」にすることで、議論が建設的になります。 339 Chapter5 人と組織から考えるAI時代の組織設計問い2：「デモではうまく動いていたが、本番でも同じ品質が出るのか」この問いも、AIエージェント導入において頻繁に生じる重要な問いです。デモ環境では、想定したデータや典型的な利用場面を前提に動作を示すことが多いため、一定の品質が出やすくなります。しかし、本番環境では、入力データのばらつき、例外的なケース、利用者による想定外の使い方などが加わるため、デモ時と同じ品質がそのまま再現されるとは限りません。そのため、この問いに対して「デモどおりに本番でも動く」と断定的に答えることは適切ではありません。そのように説明してしまうと、本番導入後に期待との差が生じた際に、「事前の説明と違う」という受け止めにつながり、信頼を損なうおそれがあります。 POINT 適切な答え方は、デモ環境と本番環境の間には差があり、その差を確認するためにPoCを行うと説明することです。PoC（概念実証）についてはSection17で扱った通り、ここで重要なのは、PoCが「本番導入前に有効性と課題を確認するための検証工程」であるという点です。 POINT また、PoCについては、経営層に対して、PoCは必ず成功しなければならない工程ではないことを事前に理解してもらう必要があります。PoCの結果が期待を下回ったとしても、それは単なる失敗ではありません。その方法では十分な効果が得られないこと、あるいは別の条件や設計が必要であることが分かったのであれば、それ自体が本番導入前に得られた重要な知見です。 POINT したがって、この問いに対しては、デモと本番の差を正直に伝えたうえで、PoCを通じてその差を検証し、導入判断につなげるという考え方を説明することが重要です。相手に伝わる言い方の例：「デモは理想的な条件で動かしています。本番では想定外のデータが来るので、まず50件で検証し、精度を測定してから判断しましょう。2週間あれば結論が出ます」検証の期間と件数を具体的に⽰すことで信頼が⽣まれます。 340 Chapter5 人と組織から考えるAI時代の組織設計問い3：「⾃社データを⼊れても問題はないのか」 POINT この問いは、IT部門と法務部門から必ず出ます。そして多くの場合、推進者はこの問いに答えきれずにプロジェクトが止まります。回答の核心は「何のデータを、どこに、どう渡すかを設計で制御できる」と説明することです。Section15のガバナンス設計と接続しますが、ここでの実務的なポイントは3つです。まず、LLMに渡す前に個人情報をマスキングする前処理を設計できること。次に、クラウドAPIに送信するか、オンプレミス（自社サーバー）で処理するかを選べること。そして、LLM に送信したデータがモデルの学習に使われるかどうかは、契約・設定で制御できること。相手に伝わる言い方の例：「請求書の金額と勘定科目はAIエージェントに渡しますが、取引先名と口座番号はマスキングして渡しません。APIの契約上、送信データはモデル学習に使われない設定です。この設計をIT部門と一緒にレビューしたいのですがいかがでしょうか」具体的に何を渡し何を渡さないかを示し、一緒に確認しようと持ちかけるのがポイントです。 341 Chapter5 人と組織から考えるAI時代の組織設計問い4：「投資対効果（ROI）は⾒込めるのか」 POINT この問いは、経営層から必ずといってよいほど問われる重要な論点です。ただし、AIエージェント導入におけるROIの試算は、従来のIT投資よりも難しい場合があります。なぜなら、AIエージェントの出力品質や業務への適合度は、導入前の時点では完全に確定できず、PoCを通じてはじめて確認できる部分が多いためです。そのため、「やってみなければ分からない」とだけ答えるのも、不確実な数値を確定値のように示すのも、どちらも適切ではありません。重要なのは、前提条件付きでROIを試算し、その前提が成り立つかをPoCで検証するという形で説明することです。たとえば、「AIエージェントの仕訳精度が90％以上であれば、年間○○万円の削減効果が見込まれる。この精度が達成可能かどうかを、2週間のPoCで確認する。PoC費用は○○万円である」といった形で示します。このように、ROIの成立条件と検証方法をセットで提示することが、経営層との適切な対話につながります。相手に伝わる言い方の例：「確定したROIは現時点では算出できません。ただし、定型請求書の70%をAIエージェントが処理できれば年間約420万円の削減になります。この前提が正しいかを50件のPoCで検証します。PoC費用は50万円、期間は1ヶ月です。結果を見てから本格投資を判断いただけませんか」大きな予算をいきなり求めるのではなく、小さな検証費用で判断材料を提供するアプローチが予算獲得の鉄則です。 342 Chapter5 人と組織から考えるAI時代の組織設計問い5：「責任は誰が負うのか」 AIエージェント導入において、「AIエージェントが誤った場合、責任は誰が負うのか」という問いは、法務部門だけでなく、現場担当者からも強く意識される論点です。特に現場では、「AIエージェントの判断を使った結果なのに、なぜ自分が責任を負うのか」という不安や抵抗につながることがあります。 POINT ここでまず確認すべき原則は、AIエージェント自体に法的または実務上の責任主体としての地位はないという点です。したがって、問題が生じた場合であっても、責任をAIエージェントそのものに帰属させることはできません。重要なのは、導入前の段階で、誰がどの判断を担い、どの段階で責任を負うのかを明確にしておくことです。 POINT ただし、この原則をそのまま「最終的にはすべて人の責任である」とだけ伝えると、現場ではAIエージェント活用への抵抗が強まりやすくなります。そのため、実務では、人がどの時点で関与し、何を確認するのかを含めて責任構造を設計する必要があります。その代表的な考え方が、Human-in-the-Loopです。これは、AIエージェントが出した結果を人間が確認し、承認したうえで実行する仕組みです。このような設計にしておけば、AIエージェントの出力がそのまま自動的に確定されるのではなく、人間の確認と判断を経て業務が実行されることになります。 343 Chapter5 人と組織から考えるAI時代の組織設計その結果、責任構造は、従来の業務における確認‧承認の仕組みに近い形で整理しやすくなります。 POINT また、責任は一人に集中させるのではなく、役割ごとに分けて整理することが重要です。たとえば、仕訳ルールや判断基準の設計に誤りがあった場合は設計側の責任、確認すべき内容を見逃した場合は承認者の責任、AIエージェント導入そのものの方針や許容リスクの設定は経営側の責任、というように、責任の所在を分解して整理します。相手に伝わる言い方の例：「AIエージェントは仕訳案を提示しますが、その内容をそのまま確定するわけではありません。担当者が確認し、承認したうえで処理を進めます。したがって、最終判断は人間が担い、責任構造も現在の業務と同様に整理できます。そのうえで、ルール設計の誤りは設計者、確認漏れは承認者、導入判断と許容水準の設定は経営が、それぞれ責任を負う形で整理します。」。 2 業務シナリオ：請求書処理AIの導⼊で5つの問いに答える経理部門に請求書処理AIを導入するプロジェクトで、推進者であるあなたは社内各所から上記の5つの問いを投げかけられます。 344 Chapter5 人と組織から考えるAI時代の組織設計判断 1 CFOへの投資判断説明 CFOから「ROIは出るのか」「デモ通りにいくのか」と聞かれた場⾯を想定します。推進者として答えるべきは「確定ROIではなく、前提条件付きROI＋検証計画」のセットです。「定型請求書（全体の 70%）を自動処理できれば年間約420万円の削減効果です。この前提が正しいかを、定型フォーマットの請求書50件を使ったPoCで検証します。PoC費用は50万円、期間は1ヶ月です。PoCの結果を見てから本格投資を判断いただけませんか」と提案します。 POINT ここでのポイントは、大きな投資判断を求めるのではなく「小さな検証への投資判断」を求めていることです。50万円の意思決定と350万円の意思決定ではハードルがまったく違います。判断 2 経理担当者への説明経理担当者から「AIエージェントは間違えるんでしょ？それで仕訳ミスが出たら私のせいになるの？」と聞かれた場面を想定します。まず前段の問いに対して「AIエージェントは間違えます。ただし、現在の手作業でも仕訳ミス率は5%あります。AIエージェントの場合、すべての仕訳案を画面で確認してから確定する仕組みにするので、確認なしでミスが通ることはありません」と答えます。次に「AIエージェントが出した仕訳案をあなたが確認して承認する流れなので、責任構造は今の業務と同じです。AIエージェントが下書きを作り、あなたが最終判断をする。今までゼロから仕訳を入力していた作業が、その下書きを確認する作業に変わるだけです」と説明します。「AIエージェントのせいで仕事が増える」ではなく「仕訳入力がなくなり、確認作業だけになる」という変化の見せ方が、現場の受容を左右します。判断 3 IT部⾨への技術説明 IT部⾨から「請求書のデータをクラウドに送って⼤丈夫なのか」と聞かれた場⾯を想定します。具体的に何を送り、何を送らないかを図示します。「AIエージェントに渡すのは請求書の金額、日付、品目名、フォーマット情報です。取引先の社名と銀行口座情報はマスキングして渡しません。 API契約は、送信データがモデルの追加学習に使用されない条件を確認済みです。 PoCの段階でこの設計を一緒にレビューしていただけませんか」と、IT部門を「一緒に確認する仲間」として巻き込みます。 345 Chapter5 人と組織から考えるAI時代の組織設計 IT部門に対して「大丈夫です」と断言するのは逆効果です。「一緒に確認しましょう」と持ちかけることで、IT部門はプロジェクトの味方になります。 346 Chapter5 人と組織から考えるAI時代の組織設計 3
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch05_s04_3" onclick="retryQ('ch05_s04_3')">↩ もう一度</button>
+      <button class="next-btn" id="nch05_s04_3" onclick="showScore('ch05_s04',3)">結果を見る →</button>
     </div>
   </div>
 
@@ -913,6 +708,7 @@ body {
   </div>
 </div>
 
+<!-- ① 概要カード -->
 <div class="card">
   <div class="card-title" style="color:#701035;">① 概要カード</div>
   <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIエージェント導入を推進する立場にある人が、社内の経営層、現場、IT部門、
@@ -922,62 +718,13 @@ POINT
 正確でありながら相手に伝わる回答とを区別できることが求められます。
 また、ここで扱う5つの問いは、一般的な業務システム導入とは異なり、AIエージェント導入に特有の論点を含むもので
 す。</div>
-
 <div class="ov-divider"></div>
-<div class="ov-subtitle">現場で直面する5つの問いと答え方の核心</div>
-<div class="qa-cards">
-  <div class="qa-card">
-    <div class="qa-q">Q1：「AIエージェントは間違えるのではないか」</div>
-    <div class="qa-a">
-      <strong>NG</strong>：「間違えません」（断言）。<br>
-      <strong>OK</strong>：比較対象を「完璧」でなく「現状の人間のミス率」にする。<br>
-      「現状の仕訳ミス率は5%。AIは1%未満に抑え、最終確認を人間が行えば現状より安全」
-      <div class="qa-key">核心：間違え方を設計する。低リスク業務から導入・HITL・ミス率の定量測定の3点セット</div>
-    </div>
-  </div>
-  <div class="qa-card">
-    <div class="qa-q">Q2：「デモはうまく動いたが本番も同じか」</div>
-    <div class="qa-a">
-      <strong>NG</strong>：「同じです」（断言）<br>
-      <strong>OK</strong>：デモと本番の差を正直に伝え、PoCで検証する。期間と件数を具体的に示す<br>
-      「まず50件で2週間検証し、精度を測定してから判断しましょう」
-      <div class="qa-key">核心：PoCは「成功しなければならない工程」でなく「本番前に有効性を確認する工程」と経営層に事前理解を得る</div>
-    </div>
-  </div>
-  <div class="qa-card">
-    <div class="qa-q">Q3：「自社データを入れても問題ないか」</div>
-    <div class="qa-a">
-      <strong>OK</strong>：「何のデータを・どこに・どう渡すかを設計で制御できる」と説明<br>
-      ①個人情報はマスキング②オンプレ or クラウドAPIを選べる③学習利用は契約で制御
-      <div class="qa-key">核心：「何を渡し何を渡さないか」を具体的に示し、IT部門と一緒に確認すると持ちかける</div>
-    </div>
-  </div>
-  <div class="qa-card">
-    <div class="qa-q">Q4：「投資対効果（ROI）は見込めるか」</div>
-    <div class="qa-a">
-      <strong>NG</strong>：「必ず出ます」or「やってみないと分かりません」<br>
-      <strong>OK</strong>：前提条件付きでROIを試算し、PoCでその前提を検証する形で提示<br>
-      「定型請求書の70%をAI処理できれば年間420万円削減。この前提をPoC50件で検証、費用50万円・1ヶ月」
-      <div class="qa-key">核心：ROIの成立条件と検証方法をセットで提示。いきなり大きな予算を求めない</div>
-    </div>
-  </div>
-  <div class="qa-card">
-    <div class="qa-q">Q5：「責任は誰が負うのか」</div>
-    <div class="qa-a">
-      <strong>NG</strong>：「最終的にはすべて人の責任です」（これだけ伝えると現場の抵抗が強まる）<br>
-      <strong>OK</strong>：責任を役割ごとに分けて整理し、Human-in-the-Loopで設計する<br>
-      ・設計者の責任：ルール・判断基準の誤り<br>
-      ・承認者の責任：確認すべき内容の見逃し<br>
-      ・経営の責任：導入判断と許容リスクの設定<br>
-      <div class="qa-key">核心：AIエージェントに法的責任主体の地位はない。役割ごとの責任分担を明確化することで現場の不安を解消する</div>
-    </div>
-  </div>
+<p class="ov-body-p">問い：「AIエージェントは間違えるのではないか」</p>
+<p class="ov-body-p">この問いは、経営層からも現場からも、導入時に特に多く出される問いの一つです。そして、AIエージェント・ストラテジストにとって、正確さと伝わりやすさの両方が求められる論点でもあります。</p>
+<div class="memory-key" style="background:linear-gradient(135deg,#701035,#a01850);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">送信するデータと送信しないデータを具体的に示し、IT部門を「一緒に設計を確認する仲間」として巻き込むのが正しいアプローチです。</div></div>
 </div>
 
-<div class="memory-key" style="background:linear-gradient(135deg,#701035,#a01850);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">5つの問い：①間違え方を設計②PoC検証を提案③データ設計で制御④前提条件付きROI⑤責任構造を役割ごとに設計</div></div>
-
-</div>
-
+<!-- ② 学習ステータス -->
 <div class="status-card">
   <span class="status-label">② 学習ステータス</span>
   <div class="status-btns" data-sid="ch05_s05">
@@ -986,6 +733,7 @@ POINT
   </div>
 </div>
 
+<!-- ③ 深掘りノート -->
 <div class="deepdive-wrap">
   <button class="deepdive-btn" onclick="toggleDeepDive(this)">
     <span>📖 ③ 詳細を確認する（深掘りノート）</span>
@@ -999,11 +747,14 @@ POINT
   </div>
 </div>
 
+<!-- ④ 理解度チェック -->
 <div class="card" style="padding:18px 18px 10px;border-top:3px solid #a01850;">
   <div class="quiz-hdr" style="color:#701035;">📝 ④ 理解度チェック（公式問題）</div>
-  
+    <button class="retake-btn-main" id="rtk_ch05_s05" onclick="startRetake('ch05_s05')" style="display:none;">❌ 0問 再テスト</button>
+  <div class="retake-banner" id="rtk_banner_ch05_s05" style="display:none;">🔄 再テストモード ─ 誤答問題を復習中</div>
+
   <div class="quiz-block" id="qch05_s05_1" style="display:block;">
-    <div class="quiz-num">問 1 ／ 2</div>
+    <div class="quiz-num">問 1 ／ 3</div>
     <div class="quiz-question">IT部門から「請求書データをクラウドAPIに送信して情報漏洩のリスクはないのか」と指摘されました。AIエージェント・ストラテジストとしての対応で最も適切なものはどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch05_s05_1',0,1)">A　「大手クラウドベンダーのセキュリティ基準を満たしているので問題ありません」</button>
@@ -1022,7 +773,7 @@ POINT
   </div>
 
   <div class="quiz-block" id="qch05_s05_2" style="display:none;">
-    <div class="quiz-num">問 2 ／ 2</div>
+    <div class="quiz-num">問 2 ／ 3</div>
     <div class="quiz-question">経理担当者から「AIエージェントが仕訳を間違えたら、私が責任を取らされるんですか？」と聞かれました。最も適切な回答はどれですか。</div>
     <div class="choices">
       <button class="choice-btn" onclick="answer('ch05_s05_2',0,1)">A　「AIエージェントが間違えた場合の責任はAIベンダーが負うので、あなたの責任にはなりません」</button>
@@ -1036,7 +787,26 @@ POINT
     </div>
     <div class="action-btns">
       <button class="retry-btn" id="rch05_s05_2" onclick="retryQ('ch05_s05_2')">↩ もう一度</button>
-      <button class="next-btn" id="nch05_s05_2" onclick="showScore('ch05_s05',2)">結果を見る →</button>
+      <button class="next-btn" id="nch05_s05_2" onclick="showNext('ch05_s05_3')">次の問題へ →</button>
+    </div>
+  </div>
+
+  <div class="quiz-block" id="qch05_s05_3" style="display:none;">
+    <div class="quiz-num">問 3 ／ 3</div>
+    <div class="quiz-question">経理担当者から「AIエージェントが仕訳を間違えたら、私が責任を取らされるんですか？」と聞かれました。最も適切な回答はどれですか。</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer('ch05_s05_3',0,1)">A　「AIエージェントが間違えた場合の責任はAIベンダーが負うので、あなたの責任にはなりません」</button>
+      <button class="choice-btn" onclick="answer('ch05_s05_3',1,1)">B　「AIエージェントの判断をそのまま使うわけではなく、あなたが確認して承認するフローです。責任構造は今の業務と同じです」</button>
+      <button class="choice-btn" onclick="answer('ch05_s05_3',2,1)">C　「AIエージェントは間違えることはないので、責任の問題は発生しません」</button>
+      <button class="choice-btn" onclick="answer('ch05_s05_3',3,1)">D　「責任はすべて経営層にあるので、あなたが心配する必要はありません」</button>
+    </div>
+    <div class="explanation" id="ech05_s05_3">
+      <div class="ans-label">✅ 正解：B</div>
+      AIエージェントには責任を負わせることができないため、A・Cは不正確です。Dは責任を経営層に丸投げしており、担当者自身の役割が不明確なままです。BはHuman-in-the-Loopの設計により「AI エージェントが下書き、人間が最終判断」というフローを説明し、従来の業務と同じ責任構造であることを示しています。このように説明することで、「AIエージェントのせいで新しい責任を負わされる」という不安を解消できます。 349
+    </div>
+    <div class="action-btns">
+      <button class="retry-btn" id="rch05_s05_3" onclick="retryQ('ch05_s05_3')">↩ もう一度</button>
+      <button class="next-btn" id="nch05_s05_3" onclick="showScore('ch05_s05',3)">結果を見る →</button>
     </div>
   </div>
 
@@ -1082,32 +852,57 @@ function answer(qid, ci, correct) {
   var next  = document.getElementById('n' + qid);
   expl.classList.add('show');
 
+  var sid      = qid.replace(/_\d+$/, '');
+  var section  = document.getElementById(sid);
+  var isRetake = section && section.classList.contains('retake-mode');
+
   if (ci === correct) {
     if (next) next.classList.add('show');
     localStorage.removeItem('qfail_' + qid);
+    if (isRetake) localStorage.removeItem('qwrong_' + qid);
   } else {
     expl.classList.add('hint');
     if (retry) retry.classList.add('show');
     localStorage.setItem('qfail_' + qid, '1');
+    localStorage.setItem('qwrong_' + qid, '1');
   }
+  updateRetakeBtn(sid);
+}
+
+function resetQuizBlock(qid) {
+  QS[qid] = null;
+  document.querySelectorAll('#q' + qid + ' .choice-btn').forEach(function(b) {
+    b.classList.remove('correct', 'wrong', 'dimmed');
+  });
+  var expl = document.getElementById('e' + qid);
+  if (expl) expl.classList.remove('show', 'hint');
+  var retry = document.getElementById('r' + qid);
+  if (retry) retry.classList.remove('show');
+  var next = document.getElementById('n' + qid);
+  if (next) next.classList.remove('show');
 }
 
 function retryQ(qid) {
-  QS[qid] = null;
-  document.querySelectorAll('#q' + qid + ' .choice-btn').forEach(b => {
-    b.classList.remove('correct','wrong','dimmed');
-  });
-  var expl = document.getElementById('e' + qid);
-  expl.classList.remove('show','hint');
-  document.getElementById('r' + qid).classList.remove('show');
+  resetQuizBlock(qid);
 }
 
 function showNext(nqid) {
+  var sid = nqid.replace(/_\d+$/, '');
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
   var el = document.getElementById('q' + nqid);
   if (el) { el.style.display = 'block'; el.scrollIntoView({behavior:'smooth', block:'start'}); }
 }
 
 function showScore(sid, total) {
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
   var ok = 0;
   for (var i = 1; i <= total; i++) {
     var st = QS[sid + '_' + i];
@@ -1121,6 +916,106 @@ function showScore(sid, total) {
   }
 }
 
+function startRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  var wrongQids = [];
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) {
+      wrongQids.push(key.replace('qwrong_', ''));
+    }
+  }
+  if (!wrongQids.length) return;
+  wrongQids.sort(function(a, b) {
+    return parseInt(a.split('_').pop()) - parseInt(b.split('_').pop());
+  });
+
+  section.classList.add('retake-mode');
+  section.dataset.retakeQueue = JSON.stringify(wrongQids);
+  section.dataset.retakeIdx   = '0';
+
+  var score = document.getElementById('sc_' + sid);
+  if (score) score.classList.remove('show');
+
+  section.querySelectorAll('.quiz-block').forEach(function(block) {
+    block.style.display = 'none';
+  });
+  wrongQids.forEach(function(qid) { resetQuizBlock(qid); });
+
+  var first = document.getElementById('q' + wrongQids[0]);
+  if (first) { first.style.display = 'block'; first.scrollIntoView({behavior:'smooth', block:'start'}); }
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'block';
+
+  var btn = document.getElementById('rtk_' + sid);
+  if (btn) btn.style.display = 'none';
+}
+
+function retakeAdvance(sid) {
+  var section = document.getElementById(sid);
+  if (!section || !section.classList.contains('retake-mode')) return;
+  var queue = JSON.parse(section.dataset.retakeQueue || '[]');
+  var idx   = parseInt(section.dataset.retakeIdx || '0');
+
+  var cur = document.getElementById('q' + queue[idx]);
+  if (cur) cur.style.display = 'none';
+
+  idx++;
+  section.dataset.retakeIdx = String(idx);
+
+  if (idx < queue.length) {
+    var nxt = document.getElementById('q' + queue[idx]);
+    if (nxt) { nxt.style.display = 'block'; nxt.scrollIntoView({behavior:'smooth', block:'start'}); }
+  } else {
+    endRetake(sid);
+  }
+}
+
+function endRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  section.classList.remove('retake-mode');
+  delete section.dataset.retakeQueue;
+  delete section.dataset.retakeIdx;
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'none';
+
+  section.querySelectorAll('.quiz-block').forEach(function(block, i) {
+    var qid = block.id.replace(/^q/, '');
+    resetQuizBlock(qid);
+    block.style.display = (i === 0) ? 'block' : 'none';
+  });
+
+  updateRetakeBtn(sid);
+}
+
+function updateRetakeBtn(sid) {
+  var count = 0;
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) count++;
+  }
+  var btn = document.getElementById('rtk_' + sid);
+  if (!btn) return;
+  if (count > 0) {
+    btn.textContent = '❌ ' + count + '問 再テスト';
+    btn.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+function initRetakeBtns() {
+  document.querySelectorAll('section[id^="ch"]').forEach(function(sec) {
+    updateRetakeBtn(sec.id);
+  });
+}
+
 window.addEventListener('load', function() {
   document.querySelectorAll('.status-btns[data-sid]').forEach(function(wrap) {
     var v = loadStatus('s_' + wrap.dataset.sid);
@@ -1129,8 +1024,8 @@ window.addEventListener('load', function() {
       if (b) b.classList.add('active');
     }
   });
+  initRetakeBtns();
 });
 </script>
-<a href="index.html" class="float-home">📚 目次</a>
 </body>
 </html>
