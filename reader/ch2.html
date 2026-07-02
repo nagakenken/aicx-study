@@ -358,7 +358,7 @@ let activeFilter = 'all';
 let bmViewMode  = false;
 let searchMode  = false;
 
-function stKey(secS, idx) { return `s${secS}_st${idx}`; }
+function stKey(secS, idx) { return `ch${data.ch}_s${secS}_st${idx}`; }
 function getStatus(k) { return LS.get('status_' + k, ''); }
 function setStatus(k, v) { LS.set('status_' + k, v); }
 function getBm(k)   { return LS.get('bm_' + k, false); }
@@ -444,6 +444,32 @@ function renderAll() {
   const tocRoot = document.getElementById('toc-root');
   main.innerHTML = '';
   tocRoot.innerHTML = '';
+
+  // ─── チャプター横断ナビ ───
+  const CH_LIST = [
+    {n:1, title:'生成AIとAIエージェントの基礎'},
+    {n:2, title:'業務の基礎'},
+    {n:3, title:'AIデータリテラシーとマネジメント'},
+    {n:4, title:'自動化レベルとワークフロー設計'},
+    {n:5, title:'人と組織から考えるAI時代の組織設計'},
+    {n:6, title:'AIエージェントを実装するDモデル'}
+  ];
+  const chNav = document.createElement('div');
+  chNav.style.cssText = 'border-bottom:2px solid var(--border);padding-bottom:4px;margin-bottom:4px;';
+  CH_LIST.forEach(c => {
+    const a = document.createElement('a');
+    a.href = `./ch${c.n}.html`;
+    const isCurrent = (c.n === data.ch);
+    a.style.cssText = 'display:flex;align-items:center;gap:8px;padding:9px 14px;text-decoration:none;border-bottom:1px solid var(--border);font-size:13px;';
+    if (isCurrent) {
+      a.style.cssText += 'background:var(--accent-light);color:var(--accent);font-weight:700;';
+    } else {
+      a.style.cssText += 'color:var(--text2);';
+    }
+    a.innerHTML = `<span style="min-width:32px;font-size:11px;font-weight:700;color:var(--accent);">Ch${c.n}</span><span>${esc(c.title)}</span>`;
+    chNav.appendChild(a);
+  });
+  tocRoot.appendChild(chNav);
 
   data.sections.forEach(sec => {
     const tocSec    = document.createElement('div');
