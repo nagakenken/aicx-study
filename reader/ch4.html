@@ -21,7 +21,7 @@
   --point-bg: #fffbeb; --point-border: #f59e0b; --point-text: #78350f;
   --sub-bg: #f8fafc; --sub-border: #cbd5e1; --sub-title: #1e40af;
   --concept-color: #4338ca;
-  --font-size: 15px;
+  --font-size: 16px;
   --line-height: 1.85;
 }
 .dark {
@@ -80,15 +80,16 @@ body {
 
 /* ── ツールバー ── */
 #toolbar {
+  position: sticky; top: 50px; z-index: 90;
   background: var(--surface); border-bottom: 1px solid var(--border);
-  padding: 8px 12px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+  padding: 6px 12px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
 }
 .chip {
   padding: 4px 11px; border-radius: 999px; border: 1px solid var(--border);
   background: var(--surface2); color: var(--text2); font-size: 12px; cursor: pointer; white-space: nowrap;
 }
 .chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-#font-slider { width: 80px; accent-color: var(--accent); }
+#font-slider { width: 90px; accent-color: var(--accent); cursor: pointer; }
 
 /* ── 検索バー ── */
 #search-bar { display: none; background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 12px; }
@@ -155,7 +156,7 @@ body {
 
 /* 通常段落 */
 .body-para {
-  color: var(--text2); font-size: 14px; margin-bottom: 12px;
+  color: var(--text2); font-size: var(--font-size); margin-bottom: 12px;
   line-height: var(--line-height); word-break: break-word;
 }
 .body-para:last-child { margin-bottom: 0; }
@@ -169,7 +170,7 @@ body {
   font-size: 11px; font-weight: 800; color: var(--point-border);
   display: block; margin-bottom: 6px; letter-spacing: .05em;
 }
-.point-box .point-body { color: var(--point-text); font-size: 13px; line-height: 1.75; }
+.point-box .point-body { color: var(--point-text); font-size: calc(var(--font-size) - 1px); line-height: 1.75; }
 
 /* サブブロック（・テキスト生成AI、強化学習、判断N 等） */
 .sub-block {
@@ -183,11 +184,11 @@ body {
   margin-bottom: 6px; line-height: 1.4; padding-bottom: 5px;
   border-bottom: 1px solid var(--sub-border);
 }
-.sub-block-body { color: var(--text2); font-size: 13px; line-height: 1.75; }
+.sub-block-body { color: var(--text2); font-size: calc(var(--font-size) - 1px); line-height: 1.75; }
 
 /* 小見出し行（判断N 等のインライン見出し：本文より大きく、sub-blockより軽い） */
 .subhead {
-  font-size: 15px; font-weight: 700; color: var(--sub-title);
+  font-size: calc(var(--font-size) + 1px); font-weight: 700; color: var(--sub-title);
   margin: 16px 0 6px; padding: 6px 10px;
   background: var(--sub-bg); border-left: 3px solid var(--sub-border);
   border-radius: 0 4px 4px 0;
@@ -318,7 +319,7 @@ body {
 
 <div id="toolbar">
   <span style="font-size:12px;color:var(--text3)">文字:</span>
-  <input id="font-slider" type="range" min="12" max="22" value="15" step="1">
+  <input id="font-slider" type="range" min="13" max="22" value="16" step="1">
   <div id="filter-chips" style="display:flex;gap:6px;flex-wrap:wrap;">
     <button class="chip active" data-filter="all">すべて</button>
     <button class="chip" data-filter="unknown">未理解のみ</button>
@@ -353,7 +354,7 @@ const LS = {
 };
 
 let darkMode    = LS.get('dark', false);
-let fontSize    = LS.get('fontSize', 15);
+let fontSize    = LS.get('fontSize', 16);
 let activeFilter = 'all';
 let bmViewMode  = false;
 let searchMode  = false;
