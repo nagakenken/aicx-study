@@ -121,7 +121,7 @@ body {
   font-size: 11px; font-weight: 700; color: var(--accent);
   display: block; margin-bottom: 6px; letter-spacing: .05em;
 }
-.exam-focus-card p { font-size: 13px; color: var(--text2); line-height: 1.75; }
+.exam-focus-card p { font-size: calc(var(--font-size) - 2px); color: var(--text2); line-height: 1.75; }
 
 /* ブロックグループ */
 .block-group { margin: 0; }
@@ -180,7 +180,7 @@ body {
 }
 .sub-block + .sub-block { margin-top: 6px; }
 .sub-block-title {
-  font-size: 14px; font-weight: 700; color: var(--sub-title);
+  font-size: calc(var(--font-size) - 1px); font-weight: 700; color: var(--sub-title);
   margin-bottom: 6px; line-height: 1.4; padding-bottom: 5px;
   border-bottom: 1px solid var(--sub-border);
 }
@@ -194,16 +194,16 @@ body {
   border-radius: 0 4px 4px 0;
 }
 .concept-name {
-  font-size: 13px; font-weight: 700; color: var(--concept-color);
+  font-size: calc(var(--font-size) - 2px); font-weight: 700; color: var(--concept-color);
   margin: 8px 0 3px;
 }
 
 /* 理解度チェック quizカード */
 .quiz-card { border: 1px solid var(--sub-border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
-.quiz-question { background: var(--sub-bg); padding: 10px 12px; font-size: 13px; color: var(--text); line-height: 1.7; }
+.quiz-question { background: var(--sub-bg); padding: 10px 12px; font-size: calc(var(--font-size) - 2px); color: var(--text); line-height: 1.7; }
 .quiz-question::before { content: "問 "; font-weight: 700; color: var(--sub-title); }
 .quiz-choices { padding: 8px 12px; }
-.quiz-choice { display: flex; gap: 8px; padding: 5px 0; font-size: 13px; color: var(--text2); border-bottom: 1px solid var(--border); }
+.quiz-choice { display: flex; gap: 8px; padding: 5px 0; font-size: calc(var(--font-size) - 2px); color: var(--text2); border-bottom: 1px solid var(--border); }
 .quiz-choice:last-child { border-bottom: none; }
 .quiz-choice-label { font-weight: 700; color: var(--sub-title); min-width: 18px; flex-shrink: 0; }
 .quiz-answer-wrap { padding: 8px 12px; background: var(--surface2); }
@@ -212,7 +212,7 @@ body {
   border: 1px solid var(--sub-border); background: var(--sub-bg);
   color: var(--sub-title); cursor: pointer; font-weight: 700;
 }
-.quiz-answer { display: none; margin-top: 8px; font-size: 13px; line-height: 1.7; }
+.quiz-answer { display: none; margin-top: 8px; font-size: calc(var(--font-size) - 2px); line-height: 1.7; }
 .quiz-answer.open { display: block; }
 .quiz-answer-label { font-weight: 700; color: #16a34a; margin-bottom: 4px; }
 .quiz-explanation { color: var(--text2); }
