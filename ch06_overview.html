@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<script>(function(){
+  var H='a18f055ef6aed551b3885777f6582a7b11d281f4ef52542feb8b6e77a4eaca47';
+  try{
+    var a=JSON.parse(localStorage.getItem('reader_auth')||'null');
+    if(!a||a.h!==H||a.e<Date.now()){
+      try{ sessionStorage.setItem('auth_return', location.pathname + location.search + location.hash); }catch(e){}
+      location.replace('index.html');
+    }
+  }catch(e){
+    location.replace('index.html');
+  }
+})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>AICX 学習マップ</title>
+  <title>Ch.06 概要 | AIエージェントを実装する5Dモデル</title>
   <style>
 :root {
   --bg: #f0f2f5; --surface: #ffffff; --surface2: #f5f5f7; --surface3: #e9eaec;
@@ -381,258 +393,313 @@ body {
 </head>
 <body>
 
-<div class="auth-card" id="auth-panel" style="display:none;">
-  <div class="auth-icon">🔒</div>
-  <div class="auth-title">パスワードを入力してください</div>
-  <div class="auth-desc">このコンテンツはパスワードで保護されています</div>
-  <input type="password" class="auth-input" id="pw-input" placeholder="パスワード" autocomplete="current-password" />
-  <button class="auth-btn" onclick="doLogin()">ログイン</button>
-  <div class="auth-error" id="auth-error">パスワードが正しくありません</div>
-</div>
-
-<div id="content-panel" style="display:none;">
-<div class="index-header">
-  <h1>📚 AICX 学習マップ</h1>
-  <p>AIエージェント・ストラテジスト資格 ｜ 全32セクション</p>
-  <p style="margin-top:8px;font-size:12px;opacity:.6;">🟢 Done &nbsp;🔵 後で確認する &nbsp;⚪ 未確認</p>
-</div>
-
 <div class="ui-toolbar">
   <span class="ui-toolbar-label">文字サイズ</span>
   <input type="range" class="ui-font-slider" id="ui-font-slider" min="13" max="22" step="1" value="16">
   <button class="ui-dark-btn" id="ui-dark-btn">🌙</button>
 </div>
 
-  <div class="chapter-card">
-    <div class="chapter-card-header" style="background:linear-gradient(135deg,#1e3a5f,#2d6a9f);">
-      <span>Ch.01</span><span>生成AIとAIエージェントの基礎</span>
-    </div>
-      <a class="section-link" href="ch01_overview.html#ch01_s01">
-        <span class="sec-num" style="color:#2d6a9f;">S01</span>
-        <span>生成AIの基礎</span>
-        <span class="fail-badge" id="fail_ch01_s01"></span>
-        <span class="status-dot" id="dot_ch01_s01"></span>
-      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s01" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch01_overview.html#ch01_s02">
-        <span class="sec-num" style="color:#2d6a9f;">S02</span>
-        <span>AIエージェントの定義と構成要素</span>
-        <span class="fail-badge" id="fail_ch01_s02"></span>
-        <span class="status-dot" id="dot_ch01_s02"></span>
-      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s02" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch01_overview.html#ch01_s03">
-        <span class="sec-num" style="color:#2d6a9f;">S03</span>
-        <span>AIエージェントの起動タイプ</span>
-        <span class="fail-badge" id="fail_ch01_s03"></span>
-        <span class="status-dot" id="dot_ch01_s03"></span>
-      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s03" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch01_overview.html#ch01_s04">
-        <span class="sec-num" style="color:#2d6a9f;">S04</span>
-        <span>RPAとAIエージェントの違い</span>
-        <span class="fail-badge" id="fail_ch01_s04"></span>
-        <span class="status-dot" id="dot_ch01_s04"></span>
-      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s04" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch01_overview.html#ch01_s05">
-        <span class="sec-num" style="color:#2d6a9f;">S05</span>
-        <span>エージェントの接続標準 MCP</span>
-        <span class="fail-badge" id="fail_ch01_s05"></span>
-        <span class="status-dot" id="dot_ch01_s05"></span>
-      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s05" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch01_overview.html#ch01_s06">
-        <span class="sec-num" style="color:#2d6a9f;">S06</span>
-        <span>AIエージェント導入の価値</span>
-        <span class="fail-badge" id="fail_ch01_s06"></span>
-        <span class="status-dot" id="dot_ch01_s06"></span>
-      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s06" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch01_overview.html#ch01_s07">
-        <span class="sec-num" style="color:#2d6a9f;">S07</span>
-        <span>AIエージェントのリスクと対策</span>
-        <span class="fail-badge" id="fail_ch01_s07"></span>
-        <span class="status-dot" id="dot_ch01_s07"></span>
-      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s07" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch01_overview.html#ch01_s08">
-        <span class="sec-num" style="color:#2d6a9f;">S08</span>
-        <span>生成AIの発展トレンド</span>
-        <span class="fail-badge" id="fail_ch01_s08"></span>
-        <span class="status-dot" id="dot_ch01_s08"></span>
-      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s08" title="理解度チェックへ">📝</a>
+<section id="ch06_s01" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);">
+  <div class="breadcrumb">Chapter 06 ｜ AIエージェントを実装する5Dモデル</div>
+  <div class="page-title">Section 01 ｜ 5DモデルStep1 Discovery — 発見・選定</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.06-S01</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
   </div>
-  <div class="chapter-card">
-    <div class="chapter-card-header" style="background:linear-gradient(135deg,#4a3070,#6b4fa8);">
-      <span>Ch.02</span><span>業務の基礎</span>
-    </div>
-      <a class="section-link" href="ch02_overview.html#ch02_s01">
-        <span class="sec-num" style="color:#6b4fa8;">S01</span>
-        <span>業務の構造的理解</span>
-        <span class="fail-badge" id="fail_ch02_s01"></span>
-        <span class="status-dot" id="dot_ch02_s01"></span>
-      </a><a class="quiz-mini-link" href="ch02_quiz.html#ch02_s01" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch02_overview.html#ch02_s02">
-        <span class="sec-num" style="color:#6b4fa8;">S02</span>
-        <span>BPR（業務改革）の基礎</span>
-        <span class="fail-badge" id="fail_ch02_s02"></span>
-        <span class="status-dot" id="dot_ch02_s02"></span>
-      </a><a class="quiz-mini-link" href="ch02_quiz.html#ch02_s02" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch02_overview.html#ch02_s03">
-        <span class="sec-num" style="color:#6b4fa8;">S03</span>
-        <span>業務可視化の手法</span>
-        <span class="fail-badge" id="fail_ch02_s03"></span>
-        <span class="status-dot" id="dot_ch02_s03"></span>
-      </a><a class="quiz-mini-link" href="ch02_quiz.html#ch02_s03" title="理解度チェックへ">📝</a>
-  </div>
-  <div class="chapter-card">
-    <div class="chapter-card-header" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);">
-      <span>Ch.03</span><span>AIデータリテラシーとマネジメント</span>
-    </div>
-      <a class="section-link" href="ch03_overview.html#ch03_s01">
-        <span class="sec-num" style="color:#2a8a7a;">S01</span>
-        <span>ナレッジマネジメントの基礎</span>
-        <span class="fail-badge" id="fail_ch03_s01"></span>
-        <span class="status-dot" id="dot_ch03_s01"></span>
-      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s01" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch03_overview.html#ch03_s02">
-        <span class="sec-num" style="color:#2a8a7a;">S02</span>
-        <span>データの種類と特性</span>
-        <span class="fail-badge" id="fail_ch03_s02"></span>
-        <span class="status-dot" id="dot_ch03_s02"></span>
-      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s02" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch03_overview.html#ch03_s03">
-        <span class="sec-num" style="color:#2a8a7a;">S03</span>
-        <span>RAGの仕組み</span>
-        <span class="fail-badge" id="fail_ch03_s03"></span>
-        <span class="status-dot" id="dot_ch03_s03"></span>
-      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s03" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch03_overview.html#ch03_s04">
-        <span class="sec-num" style="color:#2a8a7a;">S04</span>
-        <span>AIガバナンスと法務</span>
-        <span class="fail-badge" id="fail_ch03_s04"></span>
-        <span class="status-dot" id="dot_ch03_s04"></span>
-      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s04" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch03_overview.html#ch03_s05">
-        <span class="sec-num" style="color:#2a8a7a;">S05</span>
-        <span>AIエージェントが読みやすいデータを作る</span>
-        <span class="fail-badge" id="fail_ch03_s05"></span>
-        <span class="status-dot" id="dot_ch03_s05"></span>
-      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s05" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch03_overview.html#ch03_s06">
-        <span class="sec-num" style="color:#2a8a7a;">S06</span>
-        <span>AIプロジェクトの進め方</span>
-        <span class="fail-badge" id="fail_ch03_s06"></span>
-        <span class="status-dot" id="dot_ch03_s06"></span>
-      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s06" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch03_overview.html#ch03_s07">
-        <span class="sec-num" style="color:#2a8a7a;">S07</span>
-        <span>AIプロジェクトの成功の定義：3層フレームワーク</span>
-        <span class="fail-badge" id="fail_ch03_s07"></span>
-        <span class="status-dot" id="dot_ch03_s07"></span>
-      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s07" title="理解度チェックへ">📝</a>
-  </div>
-  <div class="chapter-card">
-    <div class="chapter-card-header" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);">
-      <span>Ch.04</span><span>自動化レベルとワークフロー設計</span>
-    </div>
-      <a class="section-link" href="ch04_overview.html#ch04_s01">
-        <span class="sec-num" style="color:#c45a0a;">S01</span>
-        <span>自動化レベルの進化論と実務における最適解</span>
-        <span class="fail-badge" id="fail_ch04_s01"></span>
-        <span class="status-dot" id="dot_ch04_s01"></span>
-      </a><a class="quiz-mini-link" href="ch04_quiz.html#ch04_s01" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch04_overview.html#ch04_s02">
-        <span class="sec-num" style="color:#c45a0a;">S02</span>
-        <span>ワークフロー設計 トリガーとアクション</span>
-        <span class="fail-badge" id="fail_ch04_s02"></span>
-        <span class="status-dot" id="dot_ch04_s02"></span>
-      </a><a class="quiz-mini-link" href="ch04_quiz.html#ch04_s02" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch04_overview.html#ch04_s03">
-        <span class="sec-num" style="color:#c45a0a;">S03</span>
-        <span>ワークフロー設計 変数と条件分岐</span>
-        <span class="fail-badge" id="fail_ch04_s03"></span>
-        <span class="status-dot" id="dot_ch04_s03"></span>
-      </a><a class="quiz-mini-link" href="ch04_quiz.html#ch04_s03" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch04_overview.html#ch04_s04">
-        <span class="sec-num" style="color:#c45a0a;">S04</span>
-        <span>コンテキストエンジニアリング概論</span>
-        <span class="fail-badge" id="fail_ch04_s04"></span>
-        <span class="status-dot" id="dot_ch04_s04"></span>
-      </a><a class="quiz-mini-link" href="ch04_quiz.html#ch04_s04" title="理解度チェックへ">📝</a>
-  </div>
-  <div class="chapter-card">
-    <div class="chapter-card-header" style="background:linear-gradient(135deg,#701035,#a01850);">
-      <span>Ch.05</span><span>人と組織から考えるAI時代の組織設計</span>
-    </div>
-      <a class="section-link" href="ch05_overview.html#ch05_s01">
-        <span class="sec-num" style="color:#a01850;">S01</span>
-        <span>AIエージェント導入と組織文化の変革</span>
-        <span class="fail-badge" id="fail_ch05_s01"></span>
-        <span class="status-dot" id="dot_ch05_s01"></span>
-      </a><a class="quiz-mini-link" href="ch05_quiz.html#ch05_s01" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch05_overview.html#ch05_s02">
-        <span class="sec-num" style="color:#a01850;">S02</span>
-        <span>AIエージェント推進の組織類型</span>
-        <span class="fail-badge" id="fail_ch05_s02"></span>
-        <span class="status-dot" id="dot_ch05_s02"></span>
-      </a><a class="quiz-mini-link" href="ch05_quiz.html#ch05_s02" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch05_overview.html#ch05_s03">
-        <span class="sec-num" style="color:#a01850;">S03</span>
-        <span>人材評価と指標の再設計</span>
-        <span class="fail-badge" id="fail_ch05_s03"></span>
-        <span class="status-dot" id="dot_ch05_s03"></span>
-      </a><a class="quiz-mini-link" href="ch05_quiz.html#ch05_s03" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch05_overview.html#ch05_s04">
-        <span class="sec-num" style="color:#a01850;">S04</span>
-        <span>チェンジマネジメント</span>
-        <span class="fail-badge" id="fail_ch05_s04"></span>
-        <span class="status-dot" id="dot_ch05_s04"></span>
-      </a><a class="quiz-mini-link" href="ch05_quiz.html#ch05_s04" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch05_overview.html#ch05_s05">
-        <span class="sec-num" style="color:#a01850;">S05</span>
-        <span>AIエージェント推進者が現場で直面する5つの問いと答え方</span>
-        <span class="fail-badge" id="fail_ch05_s05"></span>
-        <span class="status-dot" id="dot_ch05_s05"></span>
-      </a><a class="quiz-mini-link" href="ch05_quiz.html#ch05_s05" title="理解度チェックへ">📝</a>
-  </div>
-  <div class="chapter-card">
-    <div class="chapter-card-header" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);">
-      <span>Ch.06</span><span>AIエージェントを実装する5Dモデル</span>
-    </div>
-      <a class="section-link" href="ch06_overview.html#ch06_s01">
-        <span class="sec-num" style="color:#2a6e3a;">S01</span>
-        <span>5DモデルStep1 Discovery — 発見・選定</span>
-        <span class="fail-badge" id="fail_ch06_s01"></span>
-        <span class="status-dot" id="dot_ch06_s01"></span>
-      </a><a class="quiz-mini-link" href="ch06_quiz.html#ch06_s01" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch06_overview.html#ch06_s02">
-        <span class="sec-num" style="color:#2a6e3a;">S02</span>
-        <span>5DモデルStep2 Definition — 定義・構造化</span>
-        <span class="fail-badge" id="fail_ch06_s02"></span>
-        <span class="status-dot" id="dot_ch06_s02"></span>
-      </a><a class="quiz-mini-link" href="ch06_quiz.html#ch06_s02" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch06_overview.html#ch06_s03">
-        <span class="sec-num" style="color:#2a6e3a;">S03</span>
-        <span>5DモデルStep3 Design — 設計・プロンプト</span>
-        <span class="fail-badge" id="fail_ch06_s03"></span>
-        <span class="status-dot" id="dot_ch06_s03"></span>
-      </a><a class="quiz-mini-link" href="ch06_quiz.html#ch06_s03" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch06_overview.html#ch06_s04">
-        <span class="sec-num" style="color:#2a6e3a;">S04</span>
-        <span>5DモデルStep4 Development &amp; PoC — 開発・検証</span>
-        <span class="fail-badge" id="fail_ch06_s04"></span>
-        <span class="status-dot" id="dot_ch06_s04"></span>
-      </a><a class="quiz-mini-link" href="ch06_quiz.html#ch06_s04" title="理解度チェックへ">📝</a>
-      <a class="section-link" href="ch06_overview.html#ch06_s05">
-        <span class="sec-num" style="color:#2a6e3a;">S05</span>
-        <span>5DモデルStep5 Deployment &amp; Scale — 展開・定着</span>
-        <span class="fail-badge" id="fail_ch06_s05"></span>
-        <span class="status-dot" id="dot_ch06_s05"></span>
-      </a><a class="quiz-mini-link" href="ch06_quiz.html#ch06_s05" title="理解度チェックへ">📝</a>
-  </div>
-<a href="reader/index.html" style="display:block;margin:16px 0;padding:14px 18px;background:linear-gradient(135deg,#1e3a5f,#2d6a9f);color:white;border-radius:12px;text-decoration:none;text-align:center;font-size:15px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.12);">
-  📖 精読ビューアを開く
-</a>
-<div style="text-align:center;padding:12px 0 4px;font-size:12px;color:#999;">
-  セクション名をタップして概要へ、📝アイコンで問題集へ
 </div>
-<button class="logout-btn" onclick="doLogout()" style="display:block;margin:8px auto 0;background:none;border:none;color:#bbb;font-size:12px;cursor:pointer;padding:4px 12px;">ログアウト</button>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#1a4a26;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionは、5Dモデルの最初のステップに当たります。ここでは、組織内のどの業務をAIエージ
+ェント導入の対象とすべきかを見極め、優先順位を定める方法を学びます。試験では、ボトルネッ
+ク分析、AI適合性診断、優先順位マトリクスという三つの手法について、それぞれの目的と使い分
+けを理解していることが求められます。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">5Dモデルの全体像</div><div class="ov-section-body">AIエージェント導入プロジェクトは5つのステップで構成されます。Discovery、Definition、Design、Development &amp;PoC、Deployment &amp; Scaleです。頭文…</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">ボトルネックの特定から始める</div><div class="ov-section-body">ボトルネックとは、プロセス全体の生産性を制約している最も弱い箇所のことです。Discoveryの出発点は、このボトルネックの特定にあります。「処理に時間がかかりすぎている」「ミスが頻発している」「特定…</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">AIエージェントに向いているかを⾒極める</div><div class="ov-section-body">ボトルネックを特定しただけでは、AI化すべきかは判断できません。次に必要なのは、その業務がAIエージェントによる解決に適しているかどうかの診断です。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">限られたリソースで最大の成果を出すには、「効果が大きく実現が容易」な業務から着手するのが合理的です。</div></div>
 </div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch06_s01">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch06_s01','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch06_s01','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#2a6e3a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#2a6e3a;background:#e0f4e6;">5Dモデルの全体像</h3>
+<p class="dd-p">AIエージェント導入プロジェクトは5つのステップで構成されます。Discovery、Definition、Design、Development &amp;PoC、Deployment &amp; Scaleです。頭文字がすべてDであることから「5Dモデル」と呼びます。</p>
+<p class="dd-p">本Sectionで扱うDiscoveryはその第1ステップにあたり、「何を自動化するか」を決める段階です。設計図を書くわけでも、プロトタイプを作るわけでもありません。組織の中で最もインパクトが大きく、かつAIエージェントに向いている業務を見つけ出すことだけに集中します。</p>
+<h3 class="dd-h3" style="border-left-color:#2a6e3a;background:#e0f4e6;">ボトルネックの特定から始める</h3>
+<p class="dd-p">ボトルネックとは、プロセス全体の生産性を制約している最も弱い箇所のことです。Discoveryの出発点は、このボトルネックの特定にあります。「処理に時間がかかりすぎている」「ミスが頻発している」「特定の担当者に依存している」</p>
+<p class="dd-p">「反復的で付加価値が低い」といった特徴を持つ業務を洗い出していきます。</p>
+<p class="dd-p">限られたリソースでAIエージェント導入を進める以上、最もインパクトの大きい箇所から着手しなければ投資対効果は出ません。この分析では、Section9〜11で学んだ業務分析手法を活用します。ただしDiscoveryでは業務の詳細な構造化までは行いません。「どこに問題があるか」の発見に集中し、詳細な分解は次のStep 2: Definitionで行います。</p>
+<h3 class="dd-h3" style="border-left-color:#2a6e3a;background:#e0f4e6;">AIエージェントに向いているかを⾒極める</h3>
+<p class="dd-p">ボトルネックを特定しただけでは、AI化すべきかは判断できません。次に必要なのは、その業務がAIエージェントによる解決に適しているかどうかの診断です。</p>
+<p class="dd-p">AIエージェントによる解決に適しているかどうかの判断基準はつあります。</p>
+<p class="dd-p">第1に「非構造化データの処理を含むか」。Section1・13で学んだ通り、メール文面、報告書、画像といった非構造化データの処理はLLMの最大の強みです。逆に、構造化データの検索や集計が中心の業務は従来のシステムで十分です。</p>
+<div class="scenario-section" style="border-left-color:#2a6e3a;"><div class="scenario-label" style="color:#1a4a26;">📋 業務シナリオ</div><p class="dd-p">あなたの組織で最もAI化のインパクトが大きい業務はどれですか？採用スクリーニングのケースで選定プロセスを追体験します。</p>
+<p class="dd-p">人事部門では年間500名の中途採用を行っており、月間2,000件の応募書類が届きます。5名の採用担当者が1件あたり20分かけて書類選考を行い、月間670時間の工数が発生しています。この業務にAIエージェントを導入するためのDiscoveryを行います。</p>
+<p class="dd-p">採用プロセスを分析すると、書類選考が最大のボトルネックです。月間2,000件×20分＝670時間が5名の担当者に集中しており、繁忙期には選考に2週間以上かかるケースも発生しています。結果として、優秀な候補者が他社に流れるという機会損失も生じています。</p>
+<p class="dd-p">書類選考業務のAI適合性を、①で学んだつの基準で診断してみましょう。</p>
+<p class="dd-p">非構造化データの処理を含むか — 職務経歴書や履歴書は自由記述のテキストであり、非構造化データの処理が業務の大半を占めます。LLMが最も強みを発揮する領域です。</p></div>
+    <a class="reader-goto-link" href="reader/ch6.html#sec-1">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#2a6e3a;color:#2a6e3a;" href="ch05_overview.html#ch05_s05">&larr; AIエージェント推進者が現場で直</a><a class="nav-btn primary" href="ch06_overview.html#ch06_s02" style="background:#2a6e3a;border-color:#2a6e3a;">5DモデルStep2 Defin &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch06_s02" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);">
+  <div class="breadcrumb">Chapter 06 ｜ AIエージェントを実装する5Dモデル</div>
+  <div class="page-title">Section 02 ｜ 5DモデルStep2 Definition — 定義・構造化</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.06-S02</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#1a4a26;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、Discoveryで選定したユースケースを、AIエージェントの設計・開発に渡せる具体
+的な形へ落とし込むステップを扱います。試験では、業務フローチャート、要件定義書、ペルソナ
+定義、合格基準という四つの成果物について、それぞれの役割と記載内容が問われます。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">要件定義書の作成</div><div class="ov-section-body">たとえば、「この業務を自動化したい」「このくらいの速度で動いてほしい」「この情報は扱えない」といった内容を整理できれば、それを出発点として、実装を担う人材と一緒に具体化していくことができます。したがっ…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">「要件定義書」と聞くと、ITエンジニアが作成する技術的で複雑な文書を想像するかもしれません。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch06_s02">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch06_s02','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch06_s02','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#2a6e3a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <p class="dd-p">業務フローチャートによる暗黙知の可視化Definitionの最初の作業は、対象業務をフローチャートとして詳細に可視化することです。Discoveryでは「この業務に問題がある」と発見しましたが、Definitionでは「その業務が具体的にどのような手順で行われているか」を書き出します。</p>
+<p class="dd-p">暗黙知のまま進めると「AIエージェントに任せる範囲」と「人間が担う範囲」の切り分けが曖昧になり、後続のDesign以降で手戻りが発生します。ここでSection11のHTAやIPOモデルの手法が本格的に活用されます。</p>
+<h3 class="dd-h3" style="border-left-color:#2a6e3a;background:#e0f4e6;">要件定義書の作成</h3>
+<div class="callout-box" style="border-left-color:#2a6e3a;background:#e0f4e6;"><span class="callout-icon">💡</span>「要件定義書」と聞くと、ITエンジニアが作成する技術的で複雑な文書を想像するかもしれません。しかし、AIエージェント・ストラテジストに求められるのは、最初から完全な要件定義書を一人で作成することではありません。重要なのは、何を実現したいのか、どの程度の品質を求めるのか、何を扱ってよくて何を扱ってはいけないのかを、叩き台として言語化できることです。</div>
+<p class="dd-p">たとえば、「この業務を自動化したい」「このくらいの速度で動いてほしい」「この情報は扱えない」といった内容を整理できれば、それを出発点として、実装を担う人材と一緒に具体化していくことができます。したがって、ストラテジストの役割は、最初から正確で完全な文書を作り切ることではなく、検討の土台となる要件を整理し、叩き台を提示することにあります。</p>
+<div class="scenario-section" style="border-left-color:#2a6e3a;"><div class="scenario-label" style="color:#1a4a26;">📋 業務シナリオ</div><p class="dd-p">Discoveryで、エンジニア職の一次スクリーニング自動化が、クイックウィン（比較的短期間で成果を示しやすい対象）</p>
+<p class="dd-p">として選定されました。Definitionでは、この業務をAIエージェントとして実現するために必要な要件を具体化していきます。</p>
+<p class="dd-p">現行の一次スクリーニング業務を詳細なフローチャートとして可視化します。業務は次の6ステップで構成されていることがわかりました。</p></div>
+    <a class="reader-goto-link" href="reader/ch6.html#sec-2">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#2a6e3a;color:#2a6e3a;" href="ch06_overview.html#ch06_s01">&larr; 5DモデルStep1 Disco</a><a class="nav-btn primary" href="ch06_overview.html#ch06_s03" style="background:#2a6e3a;border-color:#2a6e3a;">5DモデルStep3 Desig &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch06_s03" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);">
+  <div class="breadcrumb">Chapter 06 ｜ AIエージェントを実装する5Dモデル</div>
+  <div class="page-title">Section 03 ｜ 5DモデルStep3 Design — 設計・プロンプト</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.06-S03</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#1a4a26;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、Definitionで整理した要件を、具体的な技術設計へ落とし込む方法を学びます。設
+計は、コンテキスト設計、I/O設計、セキュリティ設計の3つの領域に分けて考えます。試験では、
+それぞれの領域で扱う手法や用語を正しく区別し、どの設計論点がどの領域に属するかを判断でき
+ることが求められます。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">なぜDesignが独⽴したステップとして必要か</div><div class="ov-section-body">Definitionで「何をやりたいか」が決まりました。しかし「何をやりたいか」と「どう実現するか」の間には大きなギャップがあります。「応募書類からスキルを抽出してスコアリングしたい」という要件だけで…</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">コンテキスト設計 — AIエージェントにどう指⽰するか</div><div class="ov-section-body">コンテキスト設計は、Section21で学んだコンテキストエンジニアリングの考え方を、Designステップの具体的な設計作業として実装するものです。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">入力データのマスキングはAIエージェントに何を見せるかの制限であり、アクセス制御にあたります。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch06_s03">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch06_s03','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch06_s03','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#2a6e3a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#2a6e3a;background:#e0f4e6;">なぜDesignが独⽴したステップとして必要か</h3>
+<p class="dd-p">Definitionで「何をやりたいか」が決まりました。しかし「何をやりたいか」と「どう実現するか」の間には大きなギャップがあります。「応募書類からスキルを抽出してスコアリングしたい」という要件だけでは、AIエージェントは動かせません。どんな指示を与えるか、出力をどんな形式で受け取るか、どんなデータを渡してはいけないか。</p>
+<p class="dd-p">これらを具体的に設計するのがDesignです。</p>
+<p class="dd-p">Designステップにはつの設計領域があります。コンテキスト設計、I/O設計、セキュリティ設計です。</p>
+<h3 class="dd-h3" style="border-left-color:#2a6e3a;background:#e0f4e6;">コンテキスト設計 — AIエージェントにどう指⽰するか</h3>
+<p class="dd-p">コンテキスト設計は、Section21で学んだコンテキストエンジニアリングの考え方を、Designステップの具体的な設計作業として実装するものです。</p>
+<p class="dd-p">Section21が「AIエージェントに渡す情報をどう考えるか」の原則論であるのに対し、ここでは「システムプロンプトに何を書くか」「Few-shotにどんな例を入れるか」「Chain-of-Thoughtでどう推論させるか」という具体的な手法に踏み込みます。</p>
+<p class="dd-p">システムプロンプトは、AIエージェントの役割・前提条件・制約条件を定義する最上位の指示にあたります。「あなたはエンジニア採用の一次スクリーニング担当です」のように、AIエージェントがどんな立場で何をすべきかを役割として明示します。</p>
+<p class="dd-p">このとき、AIエージェントの出⼒品質を⾼める代表的な技法がつあります。</p>
+<p class="dd-p">Few-shotプロンプトとは、入力例と出力例の組み合わせをプロンプトに含めることで、AIエージェントに期待する出力の形式や判断傾向を示す手法です。たとえば、職務経歴書に対してどのような観点でスコアを付けるべきかを示した入出力例を数件与えることで、AIエージェントの出力パターンを安定させやすくなります。</p>
+<div class="scenario-section" style="border-left-color:#2a6e3a;"><div class="scenario-label" style="color:#1a4a26;">📋 業務シナリオ</div><p class="dd-p">Definitionで要件定義書・フローチャート・ペルソナ・合格基準が整いました。Designでは、これらの要件を「どう実現するか」の技術設計に落とし込みます。</p>
+<p class="dd-p">採⽤スクリーニングAIのシステムプロンプトを設計します。</p>
+<p class="dd-p">「あなたの役割はエンジニア採用の一次スクリーニング担当として、応募者の職務経歴書から技術スキル・経験年数・プロジェクト実績を抽出し、求人要件との適合度を100点満点でスコアリングすることです。スコアの根拠をSection別に明記してください。氏名・性別・年齢・出身大学・顔写真の情報はスコアリングに使用することは禁止します。」</p>
+<p class="dd-p">ここで重要な設計判断が2つあります。 1つ目は「スコアの根拠を項目別に明記」の指示です。これはDefinitionでペルソナBとして定義したエンジニアリングマネージャーの「根拠がないスコアは信用できない」という要求から導き出された機能要件を、プロンプトで実現するものです。</p>
+<p class="dd-p">2つ目は「氏名・性別・年齢・出身大学を使用しない」という指示です。これはDefinitionの制約条件であるバイアス防止をプロンプトレベルで実装しています。ただし、プロンプトでの指示だけではバイアスを完全に排除できないため、セキュリティ設計の判断3でも対策を講じます。</p>
+<p class="dd-p">コンテキスト設計では、①で学んだ「例からルールを抽出する」アプローチを適用します。まず、ベテラン人事担当者が評価したサンプルの入出力ペアを10件、AIエージェントに渡した上で、「あなたはどういうロジックでスコアリングしているか」を言語化させます。</p>
+<p class="dd-p">AIエージェントが出力した思考ロジックの例としては「必須スキルを1つずつ照合し、完全合致なら◎、関連経験ありなら△、経験なしなら×と判定する。尚可スキル（あれば望ましいスキル）は加点のみで減点しない。総合スコアは必須スキルの◎の割合を基本とし、尚可スキルの加点を上乗せする」といったものです。</p></div>
+    <a class="reader-goto-link" href="reader/ch6.html#sec-3">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#2a6e3a;color:#2a6e3a;" href="ch06_overview.html#ch06_s02">&larr; 5DモデルStep2 Defin</a><a class="nav-btn primary" href="ch06_overview.html#ch06_s04" style="background:#2a6e3a;border-color:#2a6e3a;">5DモデルStep4 Devel &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch06_s04" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);">
+  <div class="breadcrumb">Chapter 06 ｜ AIエージェントを実装する5Dモデル</div>
+  <div class="page-title">Section 04 ｜ 5DモデルStep4 Development &amp; PoC — 開発・検証</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.06-S04</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#1a4a26;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、Designで作成した設計をもとに、実際に動作するプロトタイプを構築し、想定ど
+おりに機能するかを検証する段階を扱います。
+POINT
+試験では、プロトタイピング、サンドボックス、Human-in-the-Loop、フィードバックループとい
+う4つの概念について、それぞれの意味と役割を区別できることが求められます。特に、限定された
+環境で動作や精度を確認する段階がDevelopmentであり、本番環境へ展開し、業務への定着を図る
+段階がDeploymentである、という違いは重要な論点です。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">プロトタイピング — 「設計通りに動くか」を最速で確かめる</div><div class="ov-section-body">プロトタイピングとは、Designで作成した設計をもとに、必要最小限の機能だけを持つ試作品を作ることです。目的は、完成品を作ることではなく、設計どおりに動くか、技術的に実現できそうかを早い段階で確認す…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">AIエージェントの処理プロセスの中に人間による確認・判断・修正のステップを組み込む仕組みがHITLです。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch06_s04">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch06_s04','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch06_s04','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#2a6e3a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#2a6e3a;background:#e0f4e6;">プロトタイピング — 「設計通りに動くか」を最速で確かめる</h3>
+<p class="dd-p">プロトタイピングとは、Designで作成した設計をもとに、必要最小限の機能だけを持つ試作品を作ることです。目的は、完成品を作ることではなく、設計どおりに動くか、技術的に実現できそうかを早い段階で確認することにあります。</p>
+<p class="dd-p">ここで、似た⾔葉との違いを整理しておきます。</p>
+<p class="dd-p">プロトタイプは、設計した仕組みが技術的に動くかを確認するための試作品です。主な利用者は、開発や設計に関わるメンバーであり、「この設計で本当に動くか」を確かめるために用います。</p>
+<p class="dd-p">PoC は、その仕組みが業務上または技術上、実現可能だと示すための検証です。主な対象は、導入判断を行う意思決定者であり、「この方法で実際に効果が期待できるか」「導入に進む価値があるか」を判断する材料として用います。</p>
+<p class="dd-p">MVP は、実際の利用者に最小限の価値を提供できる状態まで作り込んだ製品です。主な利用者は実際の業務担当者や顧客であり、「最低限使える形で提供し、実際の利用を通じて改善していく」ことを目的とします。</p>
+<p class="dd-p">このように整理すると、プロトタイプは「動くかを確かめる試作品」、PoCは「実現可能性を確かめる検証」、MVPは「最小限でも価値を提供する実用品」という違いがあります。</p>
+<div class="scenario-section" style="border-left-color:#2a6e3a;"><div class="scenario-label" style="color:#1a4a26;">📋 業務シナリオ</div><p class="dd-p">Designでプロンプト設計書、I/O仕様書、セキュリティ設計書が完成しました。ここからDevelopmentに入り、実際に動くプロトタイプを構築して検証します。</p>
+<p class="dd-p">全職種を同時にプロトタイプ化すると、対象業務や評価条件が多様になり、検証すべき変数が増えすぎます。そのため、Discoveryで比較的短期間に成果を示しやすい対象として選定したエンジニア職に絞って検証します。</p>
+<p class="dd-p">ここでは、「エンジニア職の応募書類からスキルを抽出し、求人要件と照合してスコアリングする」という中核機能が、設計どおりに動作するかを確認します。ワークフロー構築ツールを使えば、プロンプト設計書に基づいたプロトタイプを短期間で構築できます。</p>
+<p class="dd-p">この段階では、画面の完成度や、発生頻度の低い特殊なケースまで最初から完全に対応することを目指すのではなく、まず主要な利用場面で期待した出力が得られるかの確認に集中します。</p></div>
+    <a class="reader-goto-link" href="reader/ch6.html#sec-4">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#2a6e3a;color:#2a6e3a;" href="ch06_overview.html#ch06_s03">&larr; 5DモデルStep3 Desig</a><a class="nav-btn primary" href="ch06_overview.html#ch06_s05" style="background:#2a6e3a;border-color:#2a6e3a;">5DモデルStep5 Deplo &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch06_s05" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);">
+  <div class="breadcrumb">Chapter 06 ｜ AIエージェントを実装する5Dモデル</div>
+  <div class="page-title">Section 05 ｜ 5DモデルStep5 Deployment &amp; Scale — 展開・定着</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.06-S05</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#1a4a26;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、5Dモデルの最終ステップとして、検証済みのAIエージェントを本番環境へ展開
+し、組織内に定着させる方法を学びます。試験では、パイロット導入からロールアウト、さらにス
+ケーリングへと進む段階的な展開プロセス、AI-SECIモデルの考え方、KPIモニタリングを通じた継
+続的改善の進め方が問われます。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a6e3a;color:#1a4a26;">パイロット導⼊とは何か</div><div class="ov-section-body">パイロット導入とは、AIエージェントを全社一斉に展開するのではなく、まず限定された部門・チーム・業務で本番稼働させることです。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">パイロットが重要なのは、本格展開の前に、実環境で使ったときの問題を小さな範囲で把握し、修正できるからです。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch06_s05">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch06_s05','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch06_s05','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#2a6e3a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#2a6e3a;background:#e0f4e6;">パイロット導⼊とは何か</h3>
+<p class="dd-p">パイロット導入とは、AIエージェントを全社一斉に展開するのではなく、まず限定された部門・チーム・業務で本番稼働させることです。</p>
+<p class="dd-p">Step4のサンドボックス検証との最大の違いは、実データと実ユーザーを対象に、本番環境で運用する点にあります。サンドボックスではテスト用データを用いるため、設計どおりに動作しているように見えても、本番環境では、実データ特有のばらつきや、想定していなかった例外的なケースが表面化することがあります。</p>
+<div class="callout-box" style="border-left-color:#2a6e3a;background:#e0f4e6;"><span class="callout-icon">💡</span>パイロットが重要なのは、本格展開の前に、実環境で使ったときの問題を小さな範囲で把握し、修正できるからです。その理由は、大きく3つあります。</div>
+<p class="dd-p">1つ目は、実環境でしか見つからない品質上の問題があるためです。テストデータでは問題なく動作していても、実データには表記の揺れ、例外的なケース、入力ミスなどが含まれるため、本番に近い環境で初めて精度上の課題が見つかることがあります。</p>
+<p class="dd-p">2つ目は、AIエージェント本体だけでなく、運用の仕組みも同時に検証する必要があるためです。たとえば、AIエージェントが判断できないケースを誰に引き継ぐのか、誤出力があった場合にどう対応するのか、といった運用手順は、実際に回してみなければ機能するか分からない場合があります。パイロットは、技術面だけでなく運用面の妥当性を確認するために必要です。</p>
+<div class="scenario-section" style="border-left-color:#2a6e3a;"><div class="scenario-label" style="color:#1a4a26;">📋 業務シナリオ</div><p class="dd-p">：採⽤スクリーニングAIでの段階展開と定着化Step 4でエンジニア職の採用スクリーニングプロトタイプがPoC合格基準をすべてクリアし、Go判断が出ました。ここからStep 5に入り、本番環境への展開と組織への定着を進めます。</p>
+<p class="dd-p">全職種・全担当者に一斉展開するのではなく、まずエンジニア職の採用を担当する人事担当者2名でパイロット導入します。期間は2週間とし、実際の応募書類をAIエージェントが処理する本番運用を行います。</p>
+<p class="dd-p">パイロットで確認すべき観点は、主につあります。</p></div>
+    <a class="reader-goto-link" href="reader/ch6.html#sec-5">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#2a6e3a;color:#2a6e3a;" href="ch06_overview.html#ch06_s04">&larr; 5DモデルStep4 Devel</a><a class="nav-btn primary" href="index.html" style="background:#2a6e3a;border-color:#2a6e3a;">学習マップへ ✓</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
 <button class="float-home" onclick="toggleTocDrawer()">☰ 目次</button>
 
 <div class="toc-overlay" id="tocOverlay" onclick="closeTocDrawer()"></div>
@@ -816,12 +883,12 @@ body {
       </div>
     </div>
     <div class="toc-ch">
-      <button class="toc-ch-btn" style="border-left:4px solid #2a6e3a;" onclick="toggleTocCh(this)">
+      <button class="toc-ch-btn open" style="border-left:4px solid #2a6e3a;" onclick="toggleTocCh(this)">
         <span>Ch.06｜AIエージェントを実装する5Dモデル</span><span class="toc-ch-arrow">▸</span>
       </button>
-      <div class="toc-ch-list">
+      <div class="toc-ch-list open">
         <div class="toc-sec-row">
-          <a class="toc-sec-title" href="ch06_overview.html#ch06_s01">S01｜5DモデルStep1 Discovery — 発見・選定</a>
+          <a class="toc-sec-title current" href="ch06_overview.html#ch06_s01">S01｜5DモデルStep1 Discovery — 発見・選定</a>
           <a class="toc-mini" href="reader/ch6.html#sec-1" title="精読ビューア">📖</a>
           <a class="toc-mini" href="ch06_quiz.html#ch06_s01" title="理解度チェック">📝</a>
         </div>
@@ -1113,87 +1180,11 @@ window.addEventListener('load', function() {
 });
 </script>
 <script>
-window.addEventListener('load', function() {
-  document.querySelectorAll('.status-dot[id]').forEach(function(dot) {
-    var sid = dot.id.replace('dot_','');
-    var v = localStorage.getItem('s_' + sid);
-    dot.className = 'status-dot' + (v ? ' ' + v : '');
-  });
-
-  // 誤答バッジ: qwrong_ch01_s01_1 形式のキーを集計（一度でも誤答した問題を永続追跡）
-  var failCounts = {};
-  for (var i = 0; i < localStorage.length; i++) {
-    var key = localStorage.key(i);
-    if (!key || !key.startsWith('qwrong_')) continue;
-    var parts = key.replace('qwrong_', '').split('_');
-    var sid = parts[0] + '_' + parts[1];
-    failCounts[sid] = (failCounts[sid] || 0) + 1;
-  }
-  Object.keys(failCounts).forEach(function(sid) {
-    var badge = document.getElementById('fail_' + sid);
-    var link  = badge && badge.closest('.section-link');
-    if (badge) {
-      badge.textContent = '\u2717 ' + failCounts[sid];
-      badge.classList.add('has-fail');
-    }
-    if (link) link.classList.add('has-fail');
-  });
-});
-</script>
-<script>
-var AUTH_HASH_JS = 'a18f055ef6aed551b3885777f6582a7b11d281f4ef52542feb8b6e77a4eaca47';
-var AUTH_EXPIRE_JS = 2592000000;
-
-async function sha256(str) {
-  var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
-}
-
-function checkAuth() {
-  try {
-    var a = JSON.parse(localStorage.getItem('reader_auth') || 'null');
-    return a && a.h === AUTH_HASH_JS && a.e > Date.now();
-  } catch(e) { return false; }
-}
-
-function showAuthedContent() {
-  document.getElementById('auth-panel').style.display = 'none';
-  document.getElementById('content-panel').style.display = 'block';
+(function() {
   var ret = null;
   try { ret = sessionStorage.getItem('auth_return'); } catch(e) {}
-  if (ret) {
-    try { sessionStorage.removeItem('auth_return'); } catch(e) {}
-    location.href = ret;
-  }
-}
-
-async function doLogin() {
-  var pw = document.getElementById('pw-input').value;
-  var h = await sha256(pw);
-  if (h === AUTH_HASH_JS) {
-    localStorage.setItem('reader_auth', JSON.stringify({h: AUTH_HASH_JS, e: Date.now() + AUTH_EXPIRE_JS}));
-    showAuthedContent();
-  } else {
-    document.getElementById('auth-error').style.display = 'block';
-  }
-}
-
-function doLogout() {
-  localStorage.removeItem('reader_auth');
-  location.reload();
-}
-
-window.addEventListener('load', function() {
-  var pwInput = document.getElementById('pw-input');
-  if (pwInput) {
-    pwInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') doLogin(); });
-  }
-  if (checkAuth()) {
-    showAuthedContent();
-  } else {
-    document.getElementById('auth-panel').style.display = 'block';
-  }
-});
+  if (ret) { try { sessionStorage.removeItem('auth_return'); } catch(e) {} }
+})();
 </script>
 </body>
 </html>

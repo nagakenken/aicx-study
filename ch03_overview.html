@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){
+  var H='a18f055ef6aed551b3885777f6582a7b11d281f4ef52542feb8b6e77a4eaca47';
+  try{
+    var a=JSON.parse(localStorage.getItem('reader_auth')||'null');
+    if(!a||a.h!==H||a.e<Date.now()){
+      try{ sessionStorage.setItem('auth_return', location.pathname + location.search + location.hash); }catch(e){}
+      location.replace('index.html');
+    }
+  }catch(e){
+    location.replace('index.html');
+  }
+})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Ch.03 概要 | AIデータリテラシーとマネジメント</title>
+  <style>
+:root {
+  --bg: #f0f2f5; --surface: #ffffff; --surface2: #f5f5f7; --surface3: #e9eaec;
+  --text: #1a1a1a; --text2: #444444; --text3: #888888;
+  --accent: #2d6a9f; --border: #e5e7eb;
+  --font-size: 16px;
+}
+.dark {
+  --bg: #111827; --surface: #1f2937; --surface2: #374151; --surface3: #4b5563;
+  --text: #f9fafb; --text2: #d1d5db; --text3: #9ca3af;
+  --border: #374151;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Helvetica Neue', sans-serif;
+  font-size: var(--font-size, 16px); line-height: 1.7; color: var(--text);
+  background: var(--bg); padding: 12px;
+  max-width: 600px; margin: 0 auto;
+}
+
+/* ── ヘッダー ───────────────────────────── */
+.page-header {
+  color: white; border-radius: 12px; padding: 16px 18px; margin-bottom: 12px;
+}
+.breadcrumb { font-size: 12px; opacity: .75; margin-bottom: 4px; }
+.page-title  { font-size: 20px; font-weight: 700; letter-spacing: -.3px; }
+.header-meta { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px;
+  border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge-ch   { background: rgba(255,255,255,.22); color: white; }
+.badge-exam { background: #ff9500; color: white; }
+
+/* ── カード ─────────────────────────────── */
+.card {
+  background: var(--surface); border-radius: 12px; padding: 18px;
+  margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.card-title {
+  font-size: calc(var(--font-size) - 2px); font-weight: 700; color: var(--text);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
+}
+.card-title::before {
+  content: ''; display: inline-block; width: 3px; height: 16px;
+  background: currentColor; border-radius: 2px; opacity: .6;
+}
+
+/* ── 試験ポイント ────────────────────────── */
+.exam-point {
+  background: #fff8e6; border-left: 3px solid #ff9500;
+  border-radius: 0 8px 8px 0; padding: 10px 12px;
+  font-size: calc(var(--font-size) - 2px); line-height: 1.75; color: #3a2c00;
+}
+.dark .exam-point { background: #422006; color: #fde68a; }
+.exam-label { font-weight: 700; color: #c67200; font-size: calc(var(--font-size) - 4px); margin-bottom: 5px; }
+.dark .exam-label { color: #fbbf24; }
+
+/* ── 概要カード: トピック概要セクション ─── */
+.ov-divider { border-top: 1px solid var(--border); margin: 14px 0 10px; }
+.ov-section { margin-bottom: 12px; }
+.ov-section-title {
+  font-size: calc(var(--font-size) - 3px); font-weight: 700;
+  border-left: 3px solid #2d6a9f;
+  padding: 4px 8px 4px 10px; border-radius: 0 4px 4px 0;
+  margin-bottom: 5px; color: var(--text);
+}
+.ov-section-body {
+  font-size: calc(var(--font-size) - 3px); line-height: 1.65; color: var(--text2);
+  padding-left: 13px;
+}
+.ov-body-p { font-size: calc(var(--font-size) - 3px); line-height: 1.65; color: var(--text); margin-bottom: 6px; }
+
+/* ── 学習ステータス ──────────────────────── */
+.status-card {
+  background: var(--surface); border-radius: 12px; padding: 14px 18px;
+  margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.status-label { font-size: calc(var(--font-size) - 2px); font-weight: 600; color: var(--text2); flex-shrink: 0; }
+.status-btns  { display: flex; gap: 8px; }
+.status-btn {
+  padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  cursor: pointer; border: 2px solid transparent; transition: all .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-done  { background: #e6f4ea; color: #1a7340; border-color: #34a853; }
+.btn-later { background: #e8f0fe; color: #1a4bae; border-color: #4285f4; }
+.btn-done.active  { background: #34a853; color: white; }
+.btn-later.active { background: #4285f4; color: white; }
+.dark .btn-done  { background: #052e16; color: #4ade80; }
+.dark .btn-later { background: #1e293b; color: #93c5fd; }
+
+/* ── 深掘りノート（アコーディオン） ────────── */
+.deepdive-wrap { margin-bottom: 12px; }
+.deepdive-btn {
+  width: 100%; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  font-size: calc(var(--font-size) - 2px); font-weight: 600; color: var(--text);
+  text-align: left; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  -webkit-tap-highlight-color: transparent;
+}
+.deepdive-btn .dd-arrow-icon { font-size: 12px; transition: transform .25s; color: #2d6a9f; }
+.deepdive-btn.open .dd-arrow-icon { transform: rotate(90deg); }
+.deepdive-content {
+  display: none; background: var(--surface);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 16px 18px;
+}
+.deepdive-content.open { display: block; }
+.reader-goto-link {
+  display: block; margin-top: 14px; padding: 11px 14px;
+  background: var(--surface2); border-radius: 8px; text-align: center;
+  font-size: calc(var(--font-size) - 3px); font-weight: 600; color: #2d6a9f; text-decoration: none;
+}
+
+/* ── 深掘りノート内 コンテンツスタイル ──────── */
+.dd-h3 {
+  font-size: calc(var(--font-size) - 3px); font-weight: 700;
+  border-left: 3px solid #2d6a9f;
+  background: var(--surface2);
+  padding: 6px 10px; border-radius: 0 6px 6px 0;
+  margin: 16px 0 8px; line-height: 1.5; color: var(--text);
+}
+.dd-h3:first-child { margin-top: 0; }
+.dd-p {
+  font-size: calc(var(--font-size) - 2px); line-height: 1.8; color: var(--text);
+  margin-bottom: 8px;
+}
+.dd-bullet {
+  font-size: calc(var(--font-size) - 2px); line-height: 1.7; color: var(--text);
+  margin-bottom: 6px;
+  display: flex; align-items: flex-start; gap: 6px;
+}
+.dd-arrow { font-size: 12px; flex-shrink: 0; margin-top: 4px; }
+
+/* ── コールアウトボックス (POINT) ──────────── */
+.callout-box {
+  border-left: 3px solid #2d6a9f;
+  border-radius: 0 8px 8px 0;
+  padding: 10px 12px;
+  font-size: calc(var(--font-size) - 2px); line-height: 1.75;
+  margin: 10px 0; font-weight: 500;
+  display: flex; gap: 8px; align-items: flex-start;
+  color: var(--text);
+}
+.callout-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+
+/* ── 業務シナリオ ────────────────────────── */
+.scenario-section {
+  border-left: 3px solid #4285f4;
+  border-radius: 0 8px 8px 0;
+  background: #f0f4ff;
+  padding: 12px 14px; margin-top: 14px; color: #1a1a2e;
+}
+.dark .scenario-section { background: #1e293b; color: #d1d5db; }
+.scenario-label { font-size: calc(var(--font-size) - 4px); font-weight: 700; color: #1a4bae; margin-bottom: 6px; }
+.dark .scenario-label { color: #93c5fd; }
+
+/* ── 記憶の鍵 ────────────────────────────── */
+.memory-key {
+  color: white; border-radius: 10px;
+  padding: 14px 16px; margin-top: 16px; text-align: center;
+}
+.memory-key-label { font-size: 11px; opacity: .75; margin-bottom: 6px; letter-spacing: .5px; }
+.memory-key-text  { font-size: calc(var(--font-size) - 2px); font-weight: 700; line-height: 1.6; }
+
+/* ── 理解度チェック ─────────────────────── */
+.quiz-hdr {
+  font-size: calc(var(--font-size) - 1px); font-weight: 700; color: var(--text);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
+}
+.quiz-block {
+  background: var(--surface); border-radius: 12px; padding: 18px;
+  margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.quiz-num      { font-size: calc(var(--font-size) - 4px); font-weight: 700; color: #2d6a9f; margin-bottom: 8px; }
+.quiz-question { font-size: calc(var(--font-size) - 1px); font-weight: 600; line-height: 1.6; margin-bottom: 14px; color: var(--text); }
+.choices { display: flex; flex-direction: column; gap: 8px; }
+.choice-btn {
+  background: var(--surface2); border: 2px solid transparent; border-radius: 10px;
+  padding: 11px 14px; font-size: calc(var(--font-size) - 2px); text-align: left;
+  cursor: pointer; line-height: 1.5; color: var(--text);
+  transition: background .15s, border-color .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.choice-btn:active  { background: var(--surface3); }
+.choice-btn.correct { background: #e6f4ea; border-color: #34a853; color: #1a7340; font-weight: 600; }
+.choice-btn.wrong   { background: #fce8e6; border-color: #ea4335; color: #b31412; }
+.choice-btn.dimmed  { opacity: .4; pointer-events: none; }
+.dark .choice-btn.correct { background: #052e16; color: #4ade80; }
+.dark .choice-btn.wrong   { background: #450a0a; color: #fca5a5; }
+.explanation {
+  display: none; background: #e6f4ea; border-radius: 8px;
+  padding: 12px 14px; margin-top: 12px; font-size: calc(var(--font-size) - 2px); line-height: 1.6;
+  border-left: 3px solid #34a853; color: #14401f;
+}
+.explanation.show { display: block; }
+.ans-label { font-weight: 700; color: #1a7340; font-size: calc(var(--font-size) - 3px); margin-bottom: 5px; }
+.explanation.hint { background: #fff8e6; border-left-color: #ff9500; }
+.explanation.hint .ans-label { color: #c67200; }
+.dark .explanation { background: #052e16; color: #d1fae5; }
+.dark .explanation .ans-label { color: #4ade80; }
+.dark .explanation.hint { background: #422006; color: #fde68a; }
+.dark .explanation.hint .ans-label { color: #fbbf24; }
+.action-btns { display: flex; gap: 8px; margin-top: 10px; }
+.retry-btn, .next-btn {
+  padding: 9px 18px; border-radius: 8px; border: none;
+  font-size: 14px; font-weight: 600; cursor: pointer; display: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.retry-btn.show, .next-btn.show { display: inline-block; }
+.retry-btn { background: var(--surface2); color: var(--text); }
+.next-btn  { background: #34a853; color: white; }
+.score-banner {
+  display: none; background: linear-gradient(135deg, #34a853, #1a7340);
+  color: white; border-radius: 10px; padding: 16px; text-align: center; margin-top: 10px;
+}
+.score-banner.show { display: block; }
+.score-main { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.retake-btn-main {
+  display: block; width: 100%; background: #fce8e6; color: #b31412;
+  border: 2px solid #ea4335; border-radius: 8px; padding: 10px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  margin-bottom: 12px; -webkit-tap-highlight-color: transparent;
+}
+.dark .retake-btn-main { background: #450a0a; color: #fca5a5; }
+.retake-banner {
+  background: #fff3e0; border: 2px solid #ff9500; border-radius: 8px;
+  padding: 10px 14px; margin-bottom: 12px;
+  font-size: 14px; font-weight: 700; color: #c67200; text-align: center;
+}
+.dark .retake-banner { background: #422006; color: #fbbf24; }
+
+/* ── ナビ ────────────────────────────────── */
+.nav-footer { display: flex; gap: 10px; margin-top: 16px; padding-bottom: 24px; }
+.nav-btn {
+  flex: 1; padding: 12px; border-radius: 10px; border: 2px solid #2d6a9f;
+  background: var(--surface); color: #2d6a9f; font-size: 14px; font-weight: 600;
+  cursor: pointer; text-align: center; text-decoration: none;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-btn.primary { background: #2d6a9f; color: white; }
+
+/* ── 索引 ────────────────────────────────── */
+.index-header {
+  background: linear-gradient(135deg, #1e3a5f, #2d6a9f); color: white;
+  border-radius: 12px; padding: 20px; margin-bottom: 16px; text-align: center;
+}
+.index-header h1 { font-size: 22px; margin-bottom: 6px; }
+.index-header p  { font-size: 13px; opacity: .8; }
+.chapter-card { background: var(--surface); border-radius: 12px; margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
+.chapter-card-header { padding: 14px 18px; font-weight: 700; font-size: 15px;
+  color: white; display: flex; align-items: center; gap: 8px; }
+.section-link { display: flex; align-items: center; gap: 10px; padding: 11px 18px;
+  border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text); font-size: calc(var(--font-size) - 2px); }
+.section-link:last-child { border-bottom: none; }
+.section-link:active { background: var(--surface2); }
+.sec-num { font-weight: 700; font-size: 12px; min-width: 28px; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; flex-shrink: 0; margin-left: auto; }
+.status-dot.done  { background: #34a853; }
+.status-dot.later { background: #4285f4; }
+.quiz-mini-link {
+  flex-shrink: 0; font-size: 15px; text-decoration: none; opacity: .5;
+  padding: 4px; margin-left: 4px;
+}
+.quiz-mini-link:active { opacity: 1; }
+
+/* ── 誤答バッジ ─────────────────────────── */
+.fail-badge {
+  display: none; margin-left: auto;
+  background: #ea4335; color: white;
+  font-size: 10px; font-weight: 700;
+  border-radius: 10px; padding: 2px 7px;
+  flex-shrink: 0; letter-spacing: .2px;
+}
+.fail-badge.has-fail { display: inline-flex; align-items: center; gap: 2px; }
+.section-link.has-fail { background: #fff5f5; }
+.dark .section-link.has-fail { background: #1a0f0f; }
+.section-link.has-fail:active { background: #fce8e6; }
+
+/* ── 認証パネル ─────────────────────────── */
+.auth-card {
+  background: var(--surface); border-radius: 12px; padding: 28px 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 12px; text-align: center;
+}
+.auth-icon { font-size: 36px; margin-bottom: 12px; }
+.auth-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.auth-desc { font-size: 13px; color: var(--text3); margin-bottom: 20px; }
+.auth-input {
+  width: 100%; padding: 12px 16px; border: 2px solid var(--border);
+  border-radius: 8px; font-size: 16px; outline: none; transition: border-color .2s;
+  background: var(--surface); color: var(--text);
+}
+.auth-input:focus { border-color: #2d6a9f; }
+.auth-btn {
+  width: 100%; margin-top: 10px; padding: 13px;
+  background: #2d6a9f; color: white; border: none;
+  border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.auth-btn:active { background: #1e3a5f; }
+.auth-error { color: #d32f2f; font-size: 13px; margin-top: 10px; display: none; }
+.dark .auth-error { color: #fca5a5; }
+
+/* ── UIツールバー（文字サイズ・ダークモード） ─── */
+.ui-toolbar {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  background: var(--surface); border-radius: 10px; padding: 8px 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.ui-toolbar-label { font-size: 12px; color: var(--text3); flex-shrink: 0; }
+.ui-font-slider { flex: 1; accent-color: #2d6a9f; }
+.ui-dark-btn {
+  flex-shrink: 0; background: var(--surface2); border: none; border-radius: 8px;
+  width: 32px; height: 32px; font-size: 15px; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── フローティングボタン（目次ドロワー起動） ──── */
+.float-home {
+  position: fixed; bottom: 22px; right: 14px; z-index: 500;
+  background: rgba(26,26,26,.88); color: white !important;
+  padding: 9px 16px; border-radius: 22px;
+  font-size: 13px; font-weight: 700; border: none; cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,.25); -webkit-tap-highlight-color: transparent;
+}
+
+/* ── 目次ドロワー（全章ツリー、①②③直接遷移） ──── */
+.toc-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 600;
+}
+.toc-overlay.open { display: block; }
+.toc-drawer {
+  position: fixed; left: -300px; top: 0; bottom: 0; width: 280px;
+  background: var(--surface); z-index: 601; overflow-y: auto;
+  transition: left .22s ease; box-shadow: 2px 0 16px rgba(0,0,0,.25);
+}
+.toc-drawer.open { left: 0; }
+.toc-drawer-header {
+  background: #2d6a9f; color: white; padding: 14px 16px;
+  font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: space-between;
+}
+.toc-drawer-close { background: none; border: none; color: white; font-size: 18px; cursor: pointer; padding: 2px 6px; }
+.toc-ch { border-bottom: 1px solid var(--border); }
+.toc-ch-btn {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 11px 14px; background: none; border: none;
+  color: var(--text); font-size: 13px; font-weight: 700; cursor: pointer; text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+.toc-ch-btn:active { background: var(--surface2); }
+.toc-ch-arrow { font-size: 11px; color: var(--text3); transition: transform .2s; flex-shrink: 0; margin-left: 6px; }
+.toc-ch-btn.open .toc-ch-arrow { transform: rotate(90deg); }
+.toc-ch-list { display: none; padding: 2px 0 8px; }
+.toc-ch-list.open { display: block; }
+.toc-sec-row { display: flex; align-items: center; gap: 4px; padding: 0 8px 0 14px; }
+.toc-sec-title {
+  flex: 1; display: block; padding: 8px 6px 8px 12px; min-width: 0;
+  color: var(--text2); font-size: 12.5px; text-decoration: none;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  -webkit-tap-highlight-color: transparent;
+}
+.toc-sec-title:active { color: #2d6a9f; }
+.toc-sec-title.current { color: #2d6a9f; font-weight: 700; }
+.toc-mini {
+  flex-shrink: 0; padding: 6px; font-size: 13px; text-decoration: none;
+  opacity: .6; border-radius: 6px;
+}
+.toc-mini:active { opacity: 1; background: var(--surface2); }
+</style>
+</head>
+<body>
+
+<div class="ui-toolbar">
+  <span class="ui-toolbar-label">文字サイズ</span>
+  <input type="range" class="ui-font-slider" id="ui-font-slider" min="13" max="22" step="1" value="16">
+  <button class="ui-dark-btn" id="ui-dark-btn">🌙</button>
+</div>
+
+<section id="ch03_s01" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);">
+  <div class="breadcrumb">Chapter 03 ｜ AIデータリテラシーとマネジメント</div>
+  <div class="page-title">Section 01 ｜ ナレッジマネジメントの基礎</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.03-S01</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、組織の中で知識がどのように存在し、どのように共有・発展していくかを理解することを目的とします。試験では、暗黙知と形式知の違いに加え、SECIモデルの4つのフェーズについて、具体的な事例に照らして正しく判別できることが求められます。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">知識とは何か組織の競争⼒の正体</div><div class="ov-section-body">知識は、情報とは異なります。情報は「事実の記述」であり、誰でも同じように参照できます。知識は「判断の根拠」であり、情報をどのように活用するかに、組織力の差が生まれます。たとえば、「顧客Aの購買データが…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">企業の競争力はどこにあるのでしょうか。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch03_s01">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch03_s01','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch03_s01','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#2a8a7a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">知識とは何か組織の競争⼒の正体</h3>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>企業の競争力はどこにあるのでしょうか。設備、資金、人材など、様々な答えがあります。しかしAIエージェントが多くの処理を代替できるようになった時代において、最も持続的な競争優位の源泉として注目されているのが「組織の知識」です。</div>
+<p class="dd-p">知識は、情報とは異なります。情報は「事実の記述」であり、誰でも同じように参照できます。知識は「判断の根拠」であり、情報をどのように活用するかに、組織力の差が生まれます。たとえば、「顧客Aの購買データがある」というのは情報です。一方で、「顧客Aは決算前に大型発注する傾向があるため、11月に提案を行うべきだ」という判断は知識に当たります。</p>
+<p class="dd-p">AIエージェントは、情報を整理したり検索したりするだけでも一定の役割を果たします。さらに価値が高まるのは、組織が蓄積してきた知識、すなわち過去の経験や判断基準を参照しながら、実務上の判断を支援できる場合です。</p>
+<p class="dd-p">しかし実際の組織では、価値の高い知識ほど、文書やルールとして整理されていないことが少なくありません。たとえば、ベテラン社員が持つ判断基準、熟練者が経験的に行っている品質の見極め、長年の実務を通じて身についた対応の勘どころなどは、明文化されないまま個人の中に蓄積されている場合があります。</p>
+<p class="dd-p">このような知識が共有されないままでいると、AIが参照できないだけでなく、後任者への引き継ぎも難しくなります。その結果、担当者の異動や退職とともに、組織として蓄積してきた知識が失われるおそれがあります。</p>
+<div class="scenario-section" style="border-left-color:#2a8a7a;"><div class="scenario-label" style="color:#1a5e52;">📋 業務シナリオ</div><p class="dd-p">ヘルプデスクAIのナレッジベース構築に向けて、ベテラン担当者の暗黙知をどのように形式知化し、AIエージェントが参照できるナレッジベースに統合するかを設計します。</p>
+<p class="dd-p">まず、ベテラン担当者が保有している暗黙知を洗い出します。たとえば、勤続10年の担当者については、次のような知識が確認されます。</p>
+<p class="dd-p">##CALLOUT##・VPNのエラーメッセージの種類から、原因をおおよそ特定できる</p>
+<p class="dd-p">##CALLOUT##・特定の部署からの問い合わせでは、ソフトウェアのライセンス切れが原因である場合が多い</p>
+<p class="dd-p">##CALLOUT##・「パソコンが遅い」という問い合わせの多くは、Windows Updateのバックグラウンド実行が原因であるこれらはいずれも、担当者の経験に基づく判断基準であり、現時点では形式知化されていません。そのため、この担当者が退職や異動によって業務を離れた場合、組織として継承されずに失われるおそれがあります。</p></div>
+    <a class="reader-goto-link" href="reader/ch3.html#sec-1">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#2a8a7a;color:#2a8a7a;" href="ch02_overview.html#ch02_s03">&larr; 業務可視化の手法</a><a class="nav-btn primary" href="ch03_overview.html#ch03_s02" style="background:#2a8a7a;border-color:#2a8a7a;">データの種類と特性 &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch03_s02" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);">
+  <div class="breadcrumb">Chapter 03 ｜ AIデータリテラシーとマネジメント</div>
+  <div class="page-title">Section 02 ｜ データの種類と特性</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.03-S02</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIエージェントが扱いやすいデータと、従来のITシステムが扱いやすいデータの
+違いを整理します。試験では、構造化データ、非構造化データ、半構造化データの定義と具体例、
+メタデータの役割、ならびにAIエージェント活用における各データ種類の特性が問われます。な
+お、本項目ではデータの種類と特徴の理解に焦点を当て、具体的な活用方法はSection14で扱いま
+す。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">なぜデータの種類を区別する必要があるのか</div><div class="ov-section-body">AIエージェントを設計するとき、避けて通れない「このデータは、誰が（何が）処理すべきか」という問いがあります。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">従来のITシステムは構造化データの処理を得意としていましたが、メールや文書などの非構造化データの「意味の理解」は困難でした。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch03_s02">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch03_s02','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch03_s02','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#2a8a7a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">なぜデータの種類を区別する必要があるのか</h3>
+<p class="dd-p">AIエージェントを設計するとき、避けて通れない「このデータは、誰が（何が）処理すべきか」という問いがあります。</p>
+<p class="dd-p">売上データや顧客リストのような数値・項目の集合と、メールの文面や会議の議事録のような自然言語の文章では、適した処理方法が異なります。前者は従来のデータベースやシステムが得意とする領域であり、後者はLLMが真価を発揮する領域です。</p>
+<p class="dd-p">この区別を持たないまま設計すると、「LLMに向いていない処理までLLMに任せてコストを無駄にする」「従来のシステムでは扱えないデータを活かせないまま放置する」という判断ミスが起きます。</p>
+<p class="dd-p">データを正しく分類し、それぞれの処理に最適な担い手を割り当てる。この発想がAIエージェント設計の根幹を成します。</p>
+<p class="dd-p">データの分類構造化‧⾮構造化‧半構造化構造化データとは、データベースのテーブルやExcelスプレッドシートのように、行と列の明確な構造を持つデータです。受注管理システムの受注履歴、人事システムの社員情報、会計システムの仕訳データなどが該当します。各フィールドのデータ型が定まっているため、検索・集計・比較が容易であり、従来のITシステムが最も得意とする領域です。</p>
+<p class="dd-p">非構造化データとは、明確な構造を持たないデータです。メール、チャットメッセージ、Word文書、PDF、画像、音声、動画などが該当します。企業が保有するデータの約80%は非構造化データと言われており、この膨大な情報をどう活かすかが長年の課題でした。</p>
+<p class="dd-p">従来のITシステムでは「メールの文面から問い合わせの意図を理解する」ことは困難でしたが、LLMはこれを得意とします。非構造化データの処理こそが生成AIの最大の強みであり、企業がAIエージェントを導入する動機の中核です。</p>
+<div class="scenario-section" style="border-left-color:#2a8a7a;"><div class="scenario-label" style="color:#1a5e52;">📋 業務シナリオ</div><p class="dd-p">ヘルプデスクAIが扱うデータを分類で整理し、各データの処理⽅針を検討します。</p>
+<p class="dd-p">構造化データに該当するのは、チケットシステムの対応履歴やデータベース内の社員情報です。</p>
+<p class="dd-p">非構造化データに該当するのは、社員からの問い合わせメール本文、ITマニュアル、FAQ集、過去の回答メール本文です。こうしたテキストデータは、企業が日々の業務で蓄積してきた独自の知識資産であり、AIエージェントに活用されることで初めてその価値が引き出されます。</p>
+<p class="dd-p">半構造化データに該当するのは、AIの出⼒仕様やWebhookの通知データです。いずれもJSON形式です。</p>
+<p class="dd-p">⾮構造化データをAIエージェントに参照させるには、前処理が⽋かせません。</p>
+<p class="dd-p">ITマニュアルの場合、PDFからテキストを抽出し、章立てごとに分割します。この「長い文書を意味のあるまとまりごとに区切る」処理をチャンキングと呼び、区切られた各単位をチャンク（塊）と呼びます。</p>
+<p class="dd-p">たとえば、100ページのITマニュアルを「VPN設定」「メール設定」「プリンタ設定」のように章や節ごとのチャンクに分割し、各チャンクにカテゴリタグをメタデータとして付与します。チャンクの大きさや分割の方法はRAG（検索拡張生成）の精度に直結する重要な設計判断であり、詳細はSection14で学びます。</p>
+<p class="dd-p">FAQ集の場合、質問と回答のペアを1件ずつ分離し、各ペアにカテゴリと対応OSのメタデータを付与することで、検索精度が高まります。</p></div>
+    <a class="reader-goto-link" href="reader/ch3.html#sec-2">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#2a8a7a;color:#2a8a7a;" href="ch03_overview.html#ch03_s01">&larr; ナレッジマネジメントの基礎</a><a class="nav-btn primary" href="ch03_overview.html#ch03_s03" style="background:#2a8a7a;border-color:#2a8a7a;">RAGの仕組み &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch03_s03" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);">
+  <div class="breadcrumb">Chapter 03 ｜ AIデータリテラシーとマネジメント</div>
+  <div class="page-title">Section 03 ｜ RAGの仕組み</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.03-S03</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIエージェントに社内固有の知識を教える標準技術「RAG」の基本メカニズムと構成要素を理解します。試験では、RAGの2フェーズの流れ、チャンク分割の設計判断、意味の近さで検索する仕組みの理解が問われます。Section12のナレッジマネジメントとSection13のデータ分類の知識がここで合流します。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">なぜRAGが必要なのか</div><div class="ov-section-body">LLMは事前学習によって膨大な知識を持っています。しかしその知識は、インターネット上に公開された一般的な情報を中心としたものです。自社の業務マニュアル、社内規程、製品仕様、過去の対応履歴といったような…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">前のセクションで述べた通り、ナレッジベースに蓄積された組織の知識は他社には複製できない競争優位の源泉です。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch03_s03">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch03_s03','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch03_s03','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#2a8a7a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">なぜRAGが必要なのか</h3>
+<p class="dd-p">LLMは事前学習によって膨大な知識を持っています。しかしその知識は、インターネット上に公開された一般的な情報を中心としたものです。自社の業務マニュアル、社内規程、製品仕様、過去の対応履歴といったような組織固有の情報はLLMの学習データには含まれておらず、仕組みを設けなければAIエージェントはそれらを参照できません。</p>
+<p class="dd-p">この問題を解決するのがRAG（Retrieval-Augmented Generation：検索拡張生成）です。RAGとは、「LLMが知らない情報を、必要なときに検索して与える」仕組みです。社内のナレッジベースをリアルタイムで検索し、その結果をLLMのプロンプトに組み込んで回答を生成することで、汎用モデルが自社固有の文脈で機能するようになります。</p>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>前のセクションで述べた通り、ナレッジベースに蓄積された組織の知識は他社には複製できない競争優位の源泉です。RAGはその知識をAIエージェントが活用するための技術的な橋渡しであり、ナレッジマネジメントとRAGは表裏一体の関係にあります。</div>
+<p class="dd-p">RAGのフェーズ「準備」と「検索‧⽣成」</p>
+<p class="dd-p">RAGは大きく2つのフェーズで動作します。事前にナレッジベースを構築する「保存フェーズ」と、ユーザーの質問に対してリアルタイムで動作する「検索・生成フェーズ」です。</p>
+<div class="scenario-section" style="border-left-color:#2a8a7a;"><div class="scenario-label" style="color:#1a5e52;">📋 業務シナリオ</div><p class="dd-p">Section12〜13でナレッジマネジメントとデータ分類を学びました。ここでは、それらの知識を実際のRAG構築に適用します。</p>
+<p class="dd-p">ITマニュアル約50ページ、約75,000トークンをRAGのナレッジベースに取り込みます。</p>
+<p class="dd-p">チャンク方針として、セクション単位で分割します。「VPN接続手順 — Windows 11版」「VPN接続手順 — Mac版」「パスワードリセット手順」のように、1つのトピックが1つのチャンクに収まるようにします。</p>
+<p class="dd-p">各チャンクにはカテゴリ、対応OS、最終更新日のメタデータを付与します。これにより、問い合わせた社員のOS環境に合ったチャンクを優先的に検索できるようになります。</p>
+<p class="dd-p">社員が「VPNが繋がりません。Windows を使っています」と問い合わせた場合の流れです。</p>
+<p class="dd-p">質問テキストをベクトル化し、類似チャンクを検索します。メタデータでOS＝Windows 11のチャンクを優先してフィルタリングし、上位3件を選択します。選択されたチャンクをプロンプトに含め、「以下のITマニュアルの情報に基づいて回答してください」と指示してLLMが回答を生成します。</p></div>
+    <a class="reader-goto-link" href="reader/ch3.html#sec-3">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#2a8a7a;color:#2a8a7a;" href="ch03_overview.html#ch03_s02">&larr; データの種類と特性</a><a class="nav-btn primary" href="ch03_overview.html#ch03_s04" style="background:#2a8a7a;border-color:#2a8a7a;">AIガバナンスと法務 &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch03_s04" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);">
+  <div class="breadcrumb">Chapter 03 ｜ AIデータリテラシーとマネジメント</div>
+  <div class="page-title">Section 04 ｜ AIガバナンスと法務</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.03-S04</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIエージェント導入に伴う法的リスクを理解し、法務部門やセキュリティ部門と
+適切に連携できるようになることを目的とします。試験では、AIポリシーの主な構成要素、著作権
+侵害リスクや個人情報保護法の基本的な考え方、さらに法務・セキュリティ部門と事業部門の橋渡
+し役としてのAIエージェント・ストラテジストの役割が問われます。技術と法務の両方を理解し、
+関係者に伝わる形で整理して説明できることが重要です。</div>
+<div class="ov-divider"></div>
+<p class="ov-body-p">AIガバナンスとは何か「動かせる」からこそ「管理する」</p>
+<p class="ov-body-p">AIガバナンスとは、組織としてAIエージェントをどのように利用し、管理し、監督するかを定めた体制・ルール・プロセスの総称です。</p>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">Bは技術的に正確で、かつ法務部門が法的リスクを評価できる翻訳です。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch03_s04">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch03_s04','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch03_s04','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#2a8a7a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <p class="dd-p">AIガバナンスとは何か「動かせる」からこそ「管理する」</p>
+<p class="dd-p">AIガバナンスとは、組織としてAIエージェントをどのように利用し、管理し、監督するかを定めた体制・ルール・プロセスの総称です。</p>
+<p class="dd-p">なぜガバナンスが必要なのか。その答えは、AIエージェントの本質的な特性にあります。従来の「ツールとしてAIエージェントを活用する場面」では、人間が都度操作するため、何が起きているかは比較的把握しやすかったのですが、「エージェントとしてAIを活用する場面」では、AIエージェントが人間の指示なしに判断・行動する部分があります。</p>
+<p class="dd-p">複数のエージェントが連携し、外部システムに接続し、自律的にタスクを実行する環境では、「誰が、どこで、何のために動かしているか」を組織として把握しておかなければ、問題が起きたときに原因を特定できません。</p>
+<p class="dd-p">ガバナンスなしに導入を進めることは、ブレーキのない車を走らせることに等しいです。AIエージェントの自律性が高まるほど、ガバナンスの設計はツール選定や業務設計と同等の重みを持ちます。</p>
+<div class="scenario-section" style="border-left-color:#2a8a7a;"><div class="scenario-label" style="color:#1a5e52;">📋 業務シナリオ</div><p class="dd-p">ヘルプデスクAIの導⼊にあたり、AIポリシーの策定と法務部⾨との連携を⾏います。</p>
+<p class="dd-p">IT部門とセキュリティ部門、法務部門の3者で協議し、自社の業務内容とリスク許容度に基づいて入力許可データと禁止データを定義します。</p>
+<p class="dd-p">入力許可データの例：問い合わせ内容のテキスト（個人情報マスキング後）、ITマニュアル・FAQ、チケットの対応履歴（個人名を匿名化した状態）。</p>
+<p class="dd-p">禁止データの例：社員の個人情報（マスキング前の生データ）、人事評価データ、給与データ、未公開の経営情報、サーバーのルートパスワード。</p>
+<p class="dd-p">これはあくまでこの企業の判断です。たとえばオンプレミスでLLMを運用する企業であれば、データが外部に送信されないため許可データの範囲が広くなる可能性があります。</p>
+<p class="dd-p">ストラテジストがリスクを整理し、法務部⾨との協議に臨みます。</p>
+<p class="dd-p">技術側の説明：「RAGで社内文書を参照する際、文書の一部がLLMに入力されます」法務向け翻訳：「社内文書のテキストが外部のAIサービスに送信されます。文書に個人情報や営業秘密が含まれる場合、個人情報保護法や不正競争防止法への対応が必要です」</p></div>
+    <a class="reader-goto-link" href="reader/ch3.html#sec-4">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#2a8a7a;color:#2a8a7a;" href="ch03_overview.html#ch03_s03">&larr; RAGの仕組み</a><a class="nav-btn primary" href="ch03_overview.html#ch03_s05" style="background:#2a8a7a;border-color:#2a8a7a;">AIエージェントが読みやすいデー &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch03_s05" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);">
+  <div class="breadcrumb">Chapter 03 ｜ AIデータリテラシーとマネジメント</div>
+  <div class="page-title">Section 05 ｜ AIエージェントが読みやすいデータを作る</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.03-S05</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本項目では、RAGをはじめとする生成AI活用において、AIエージェントが参照しやすいデータとは
+何かを理解することを目的とします。人にとって読みやすい文書やデータであっても、そのままAI
+エージェントにとって扱いやすいとは限りません。AIエージェントは、情報の区切り方、表記の一
+貫性、検索しやすさなどの影響を強く受けるためです。試験では、AIエージェントにとって扱いや
+すいデータと扱いにくいデータの特徴、データ品質を高めるための実務上の工夫、AI Readyデータ
+の考え方と基本的な整理方法、ナレッジベースの更新管理、既存データをどこまで整形すべきかの
+判断が問われます。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">⼈間にとっての読みやすさとAIエージェントにとっての読みやすさは違う</div><div class="ov-section-body">Excelでセルを結合して見出しを中央揃えにした表。人間が画面で見るぶんには整然として見やすい。しかしAIエージェントがこの表を読み取ろうとすると、セル結合によって行と列の対応が崩れ、どの値がどの項目…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">ITマニュアルとFAQ集は量が限定的で短期間に整形でき、RAGの検索対象として高頻度で使われます。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch03_s05">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch03_s05','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch03_s05','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#2a8a7a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">⼈間にとっての読みやすさとAIエージェントにとっての読みやすさは違う</h3>
+<p class="dd-p">Excelでセルを結合して見出しを中央揃えにした表。人間が画面で見るぶんには整然として見やすい。しかしAIエージェントがこの表を読み取ろうとすると、セル結合によって行と列の対応が崩れ、どの値がどの項目に属するかを正しく判定できなくなります。</p>
+<p class="dd-p">たとえば、議事録に「例の件、確認済み。OKとのこと」とだけ書かれていても、AIエージェントには「例の件」が何を指すのか分かりません。その場にいた人には通じる表現でも、主語や対象、判断内容が明示されていなければ、AIエージェントは正しく理解できず、検索にも活用しにくくなります。</p>
+<p class="dd-p">このような曖昧な記述は、「ナレッジベースにデータを入れているのに、RAGの精度が上がらない」原因になります。</p>
+<p class="dd-p">RAGの検索精度は、ナレッジベースの品質に大きく左右されるためです。</p>
+<p class="dd-p">AIエージェントが扱いやすいデータとは、その記述だけで意味が分かること、1つの項目に1つの情報だけが入っていること、情報の構造が文字として明示されていることを満たすデータです。逆に、前提知識がなければ理解できないデータ、複数の情報が混在したデータ、見た目だけで意味を表しているデータは、AIエージェントにとって扱いにくいデータだといえます。</p>
+<p class="dd-p">ここで重要な原則を押さえます。「AIエージェントが見えないものは、存在しないのと同じ」。どれだけ価値がある情報でも、テキストとして明文化されていなければAIエージェントはそのデータを活用できません。この原則を踏まえ、以下では、個人が実践できる7つの習慣と、組織として必要となるデータ戦略を整理します。</p>
+<div class="scenario-section" style="border-left-color:#2a8a7a;"><div class="scenario-label" style="color:#1a5e52;">📋 業務シナリオ</div><p class="dd-p">Section14でヘルプデスクAIのRAGを構築しました。しかし試験運用を始めたところ、検索精度に問題が出ています。原因を調べると、ナレッジベースに投入したデータの品質に問題がありました。</p>
+<p class="dd-p">試験運⽤で発覚した問題をつ挙げます。</p>
+<p class="dd-p">ITマニュアルの手順書に「上記の手順と同様に設定する」と記載されている場合、人であれば直前の説明を見返して意味を補えますが、RAGでは文書がチャンク単位で検索されるため、「上記」が何を指しているのか分からず、十分な根拠として利用できないことがあります。</p>
+<p class="dd-p">このような場合は、「VPN接続手順 ― Windows 11版のステップ3と同様に設定する」のように、参照先を固有名詞で明示して書き直すことが有効です。これは、前提知識がなくても意味が分かるようにする習慣の適用例です。</p>
+<p class="dd-p">また、過去の対応履歴に「いつもの対応で解決」とだけ記録されている場合も問題になります。この表現は、ベテラン担当者には意味が通じても、AIエージェントや新人担当者には具体的な対応内容が分かりません。そのため、対応履歴の入力様式に「実施した対応手順」の項目を設け、具体的な手順を必ず記録するようにします。</p>
+<p class="dd-p">これは、内容を明⽰することと、必要な情報を項⽬として分けて記録することを組み合わせた改善例です。</p></div>
+    <a class="reader-goto-link" href="reader/ch3.html#sec-5">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#2a8a7a;color:#2a8a7a;" href="ch03_overview.html#ch03_s04">&larr; AIガバナンスと法務</a><a class="nav-btn primary" href="ch03_overview.html#ch03_s06" style="background:#2a8a7a;border-color:#2a8a7a;">AIプロジェクトの進め方 &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch03_s06" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);">
+  <div class="breadcrumb">Chapter 03 ｜ AIデータリテラシーとマネジメント</div>
+  <div class="page-title">Section 06 ｜ AIプロジェクトの進め方</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.03-S06</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIプロジェクトが通常のITプロジェクトと異なる点を理解し、PoC（概念実証）
+を中心とした導入初期の進め方を設計できるようになることを目指します。試験では、各ステップ
+の目的と判断のポイント、業務分析や現場確認の進め方、効果検証の設計方法が問われます。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">AIプロジェクトはなぜ「普通のプロジェクト」と違うのか</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">不確実性の種類が違う</div><div class="ov-section-body">ソフトウェア開発プロジェクトには不確実性がつきものです。しかしAIプロジェクトが抱える不確実性は、通常の開発プロジェクトとは種類が異なります。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">業務分析・現場視察の目的は「現状を正確に把握すること」です。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch03_s06">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch03_s06','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch03_s06','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#2a8a7a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">AIプロジェクトはなぜ「普通のプロジェクト」と違うのか</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">不確実性の種類が違う</h3>
+<p class="dd-p">ソフトウェア開発プロジェクトには不確実性がつきものです。しかしAIプロジェクトが抱える不確実性は、通常の開発プロジェクトとは種類が異なります。</p>
+<p class="dd-p">通常のシステム開発では「何を作るか」は概ね決まっており、「どう実装するか」「どれくらいの工数がかかるか」が不確実です。しかしAIプロジェクトでは、もっと根本的な問いが未解決のまま始まります。</p>
+<p class="dd-p">「そもそもAIエージェントはこの課題を解けるのか」</p>
+<p class="dd-p">これが答えられない状態で本番開発に突入すると、数百万円の開発費をかけた後に「精度が出ない」「現場に使ってもらえない」という結末を迎えます。この失敗は珍しくありません。</p>
+<p class="dd-p">AIプロジェクトには、少なくとも種類の不確実性が重なっています。</p>
+<p class="dd-p">技術面の不確実性 AIモデルが、その業務課題に対して必要な精度を実際に満たせるかどうかは、事前の想定だけでは判断できません。自然言語処理や画像認識といった技術が一般に有効とされていても、自社で扱うデータの質、量、表現のばらつきによって、期待した精度が得られない場合があります。</p>
+<p class="dd-p">業務適合性の不確実性 AIエージェントが技術的に動作したとしても、それが実際の業務フローの中で無理なく使われ、現場担当者に受け入れられるとは限りません。操作が分かりにくい、回答を信頼しにくい、既存業務とかみ合わないといった理由により、導入後に十分に使われなくなる可能性があります。</p>
+<p class="dd-p">効果面の不確実性 AIエージェントを導入しても、業務効率の向上や利用者満足度の改善といった効果が、想定どおりに現れるとは限りません。実際の効果は、導入後の利用状況や運用方法に左右されるため、稼働前に完全に確定することはできず、実測による確認が必要になります。</p>
+<div class="scenario-section" style="border-left-color:#2a8a7a;"><div class="scenario-label" style="color:#1a5e52;">📋 業務シナリオ</div><p class="dd-p">ある企業がヘルプデスク業務の効率化を目的としたAIエージェントの導入を検討しています。AIエージェント・ストラテジストとして、どのようにプロジェクトを進めるかを設計します。</p>
+<p class="dd-p">IT部門マネージャーから「問い合わせ対応の工数を減らしたい」という要望が上がりました。ただし「チャットボットを作ってほしい」という形で要望が来た場合、まずここを課題に変換します。</p>
+<p class="dd-p">「何が一番困っているか」を深掘りすると「ベテラン担当者が離席中に問い合わせが滞留し、他のメンバーでは対応できない」という具体的な課題が見えてきました。課題の輪郭が見えたため、業務分析・現場視察に進む判断をします。</p>
+<p class="dd-p">ヒアリングと現場観察の結果、次の点が明らかになりました。</p></div>
+    <a class="reader-goto-link" href="reader/ch3.html#sec-6">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#2a8a7a;color:#2a8a7a;" href="ch03_overview.html#ch03_s05">&larr; AIエージェントが読みやすいデー</a><a class="nav-btn primary" href="ch03_overview.html#ch03_s07" style="background:#2a8a7a;border-color:#2a8a7a;">AIプロジェクトの成功の定義：3 &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch03_s07" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);">
+  <div class="breadcrumb">Chapter 03 ｜ AIデータリテラシーとマネジメント</div>
+  <div class="page-title">Section 07 ｜ AIプロジェクトの成功の定義：3層フレームワーク</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.03-S07</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#1a5e52;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、AIプロジェクトの成功定義が難しい本質的な理由と、それを解決する3層フレーム
+ワークの構造を理解します。特に「定義はトップダウン（効果層→定着層→精度層の順で逆算す
+る）、達成はボトムアップ（精度→定着→効果の順で積み上がる）」という二重構造が核心です。
+試験では、与えられた状況に対して「どの層に問題があるか」を診断し、「次に取るべき打ち手」
+を判断する力が問われます。また、定着層の測定をPoC中は定性・本運用後は定量と使い分ける理
+由についても理解する必要があります。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">なぜ「成功の定義」はこれほど難しいのか</div><div class="ov-section-body">AIプロジェクトの現場で最も頻繁に起きるトラブルのひとつが、プロジェクト終了後に「これは成功だったのか、失敗だったのか」について関係者の意見が割れることです。</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">3層の成功定義フレームワーク</div><div class="ov-section-body">AIプロジェクトの成功は、以下の3層で構成されます。</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">┌ ┐│ 第1層：効果層ビジネスに効果が出ているか？ │ ← まずここを定義する</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">├ ┤│ 第2層：定着層現場の⼈が使っているか？ │ ← 効果から逆算して定義</div><div class="ov-section-body">├ ┤│ 第3層：精度層 AIが正しく答えられるか？ │ ← 定着から逆算して定義└ ┘この3層には、理解しておくべき重要な⼆重構造があります。</div></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#2a8a7a;color:#1a5e52;">【定義の順序】トップダウン【達成の順序】ボトムアップ</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">効果層で最も起こりやすいミスの一つは、導入前のベースライン、すなわち改善前の基準となる数値を測定していないことです。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch03_s07">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch03_s07','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch03_s07','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#2a8a7a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">なぜ「成功の定義」はこれほど難しいのか</h3>
+<p class="dd-p">AIプロジェクトの現場で最も頻繁に起きるトラブルのひとつが、プロジェクト終了後に「これは成功だったのか、失敗だったのか」について関係者の意見が割れることです。</p>
+<p class="dd-p">その原因は明らかで、関係者それぞれが異なる成功を頭に描いているからです。</p>
+<p class="dd-p">AIエンジニアは「正答率が85％を超えた」と評価し、現場担当者は「使いにくく、実務では活用しにくい」と感じ、経営層は「コスト削減効果がどの程度あるのか」を重視します。いずれも正当な観点ですが、評価している対象が異なるため、そのままでは議論がかみ合いません。</p>
+<p class="dd-p">この混乱を防ぐ唯⼀の⽅法は、PoCが始まる前に、3つの層すべてで成功の定義を合意しておくことです。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">3層の成功定義フレームワーク</h3>
+<p class="dd-p">AIプロジェクトの成功は、以下の3層で構成されます。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">┌ ┐│ 第1層：効果層ビジネスに効果が出ているか？ │ ← まずここを定義する</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">├ ┤│ 第2層：定着層現場の⼈が使っているか？ │ ← 効果から逆算して定義</h3>
+<p class="dd-p">├ ┤│ 第3層：精度層 AIが正しく答えられるか？ │ ← 定着から逆算して定義└ ┘この3層には、理解しておくべき重要な⼆重構造があります。</p>
+<p class="dd-p">定義する順序はトップダウンです。「どんな業務効果を出したいか」が決まって初めて、「そのために定着率はどこまで必要か」「そのために精度はどこまで必要か」が逆算できます。効果層が決まっていない状態で精度の目標値を設定しても、それは根拠のない数字です。</p>
+<p class="dd-p">達成される順序はボトムアップです。精度が出なければ使われず、使われなければ効果が出ない。上の層は下の層の上に成立します。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">【定義の順序】トップダウン【達成の順序】ボトムアップ</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">効果層 ← まず定義精度層 → 達成</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">↓ ↓定着層 ← 逆算定着層 → 達成</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">↓ ↓精度層 ← 逆算効果層 → 達成</h3>
+<p class="dd-p">この二重構造を理解していないプロジェクトは、精度層だけを定義して「正答率80%達成＝成功」と判断し、後から「使われていない」「効果が出ていない」という問題に直面します。</p>
+<p class="dd-p">第1層：効果層 ⸺「ビジネスに効果が出ているか」</p>
+<p class="dd-p">最初にここを定義する。これがプロジェクト全体のゴールです。</p>
+<p class="dd-p">効果層は、AIエージェントの導入が実際に業務やビジネスを改善したかを測ります。経営層が最も関心を持つ層であり、本運用フェーズへの投資判断の根拠になります。そしてここから逆算することで、定着層・精度層の目標値に根拠が生まれます。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">代表的な測定指標</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">ベースライン測定の重要性</h3>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>効果層で最も起こりやすいミスの一つは、導入前のベースライン、すなわち改善前の基準となる数値を測定していないことです。ベースラインがなければ、導入後に業務がどの程度改善したのかを客観的に示すことができません。したがって、PoCを開始する前には、現状の業務状況を数値で記録しておく必要があります。</div>
+<p class="dd-p">主な測定項目としては、対象業務の平均処理時間、一定期間あたりの対応件数、担当者数やコスト、品質に関する現状指標（クレーム件数、エラー率など）が挙げられます。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">逆算の使い⽅</h3>
+<p class="dd-p">効果層の目標が決まったら、それを達成するために定着層はどこまで必要かを問います。「問い合わせ対応時間を30%削減したい」のであれば、「AIエージェントの回答を担当者が採用する割合が60%以上でなければ時間削減にならない」という形で定着層の目標値が逆算できます。</p>
+<p class="dd-p">第2層：定着層 ⸺「現場の⼈が使っているか」</p>
+<p class="dd-p">定着層は、AIエージェントが現場に受け入れられているかを測ります。技術的に完成したシステムが使われない理由のほとんどは、この層の問題に起因します。効果層のゴールを達成するための「中間条件」として定義します。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">代表的な測定指標</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">PoCと本運⽤で測定⽅法を変える</h3>
+<p class="dd-p">定着層には、実務上の重要な注意点があります。PoC期間中（数週間〜数ヶ月）に定量的な定着指標を測定しても、解釈が難しいという現実です。</p>
+<p class="dd-p">利用率が50%だったとき、それは「UIが使いにくいから」なのか「まだ慣れていないだけ」なのかが判別できません。</p>
+<p class="dd-p">短期間のデータでは、定量指標の数値が意味を持ちにくいのです。</p>
+<p class="dd-p">そこでPoC期間中は、定性的な代理指標で定着の⾒通しを評価します。</p>
+<p class="dd-p">PoCでは「この人たちは本番でも使ってくれそうか」という見通しを定性的に掴み、定量的な検証は本運用フェーズで行うという割り切りが現実的です。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">「使いたくない」理由の分類</h3>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>定性評価で「使いたくない」という反応が出たとき、その理由を特定することが次のアクションを決める鍵です。理由は大きく4種類に分類できます。</div>
+<p class="dd-p">精度への不信感：「回答が間違っていることがあるから信頼できない」→ 第3層（精度層）の問題にフィードバック</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">UXの問題：「画⾯が使いにくい」「回答が⻑すぎる」→ インターフェース改善</h3>
+<p class="dd-p">業務フローへの不適合：「このタイミングでAIエージェントに聞く余裕がない」→ 業務設計の⾒直し⼼理的抵抗：「AIに頼ると⾃分のスキルが落ちる気がする」→ 変⾰管理（Change Management）の問題理由を特定せずに「もっと精度を上げれば使われる」と判断するのは、原因を誤診した対処です。</p>
+<p class="dd-p">第3層：精度層 ⸺「AIエージェントが正しく答えられるか」</p>
+<p class="dd-p">精度層は、AIエージェントが技術的に課題を解けているかを測ります。最も定義しやすい層ですが、「これだけ定義して満足してしまうこと」が最大の罠です。精度層は定着層・効果層から逆算して設定するものであり、それ単体で目標値を決めるべきものではありません。</p>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">代表的な測定指標</h3>
+<h3 class="dd-h3" style="border-left-color:#2a8a7a;background:#e0f5f0;">⽬標値は逆算で決める</h3>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>AIエージェントの目標値を設定する際に、「とりあえず正答率80%以上を目指す」といった形で、根拠なく数値を置くことは適切ではありません。目標値は、現状の実力、現場で受け入れられる水準、業務上許容できるリスクを踏まえて逆算する必要があります。</div>
+<p class="dd-p">主な観点は、次の3つです。</p>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>・現在、人間がどの程度の精度で対応できているかこれは、導入前の基準値として把握しておくべき数値です。</div>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>・どの程度の精度であれば、現場担当者が実務で使えると判断するかこれは、定着の可否に関わる観点です。</div>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>・どの程度の精度であれば、本番運用時のリスクが許容範囲に収まるかこれは、業務の重要性や誤判断時の影響を踏まえて決める必要があります。</div>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>たとえば、ヘルプデスク業務において、ベテラン担当者の正答率が95%である場合、AIにも直ちに同水準を求めることは現実的ではありません。そのため、「頻度の高い問い合わせ上位10種類については正答率90%以上を目標とし、それ以外は担当者へ引き継ぐ」といった形で、対象範囲と目標水準をあわせて設計することが現実的です。このような数値は、効果面だけでなく、現場で使われるかどうか、誤回答のリスクをどこまで許容できるかといった観点から逆算して決める必要があります。</div>
+<div class="callout-box" style="border-left-color:#2a8a7a;background:#e0f5f0;"><span class="callout-icon">💡</span>また、同じ「精度」を評価する場合でも、業務によって重視すべき観点は異なります。たとえば、品質検査AIエージェントでは、不良品を見逃さないことが重要であるため、見逃しの少なさを重視する必要があります。一方、スパムフィルタでは、正常なメールを誤って除外しないことが重要であるため、誤検知の少なさを重視する必要があります。したがって、精度の目標値は、単に高ければよいというものではなく、現状の水準、現場での受容性、業務上のリスク特性を踏まえて設定することが重要です。</div>
+<div class="scenario-section" style="border-left-color:#2a8a7a;"><div class="scenario-label" style="color:#1a5e52;">📋 業務シナリオ</div><p class="dd-p">3層の定義を業務分析・現場視察のステップで関係者全員と合意するためのツールです。このシートをPoC開始前に埋めることが、後の混乱を防ぐ最も効果的な手段です。</p>
+<p class="dd-p">■ 解くべき課題（例：VPN接続トラブルに対するヘルプデスク担当者の負担を削減する）</p>
+<p class="dd-p">【STEP1】第1層：効果層（最初に定義する）</p>
+<p class="dd-p">【STEP2】第2層：定着層（効果層から逆算して定義する）</p>
+<p class="dd-p">【STEP3】第3層：精度層（定着層から逆算して定義する）</p></div>
+    <a class="reader-goto-link" href="reader/ch3.html#sec-7">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#2a8a7a;color:#2a8a7a;" href="ch03_overview.html#ch03_s06">&larr; AIプロジェクトの進め方</a><a class="nav-btn primary" href="ch04_overview.html#ch04_s01" style="background:#2a8a7a;border-color:#2a8a7a;">自動化レベルの進化論と実務におけ &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<button class="float-home" onclick="toggleTocDrawer()">☰ 目次</button>
+
+<div class="toc-overlay" id="tocOverlay" onclick="closeTocDrawer()"></div>
+<nav class="toc-drawer" id="tocDrawer">
+  <div class="toc-drawer-header">
+    <span>📚 目次</span>
+    <button class="toc-drawer-close" onclick="closeTocDrawer()">✕</button>
+  </div>
+  <div style="padding:8px 14px;border-bottom:1px solid var(--border);">
+    <a href="index.html" style="display:block;color:var(--text2);font-size:13px;text-decoration:none;padding:6px 0;">🏠 学習マップ（全体トップ）</a>
+  </div>
+  
+    <div class="toc-ch">
+      <button class="toc-ch-btn" style="border-left:4px solid #2d6a9f;" onclick="toggleTocCh(this)">
+        <span>Ch.01｜生成AIとAIエージェントの基礎</span><span class="toc-ch-arrow">▸</span>
+      </button>
+      <div class="toc-ch-list">
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch01_overview.html#ch01_s01">S01｜生成AIの基礎</a>
+          <a class="toc-mini" href="reader/ch1.html#sec-1" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch01_quiz.html#ch01_s01" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch01_overview.html#ch01_s02">S02｜AIエージェントの定義と構成要素</a>
+          <a class="toc-mini" href="reader/ch1.html#sec-2" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch01_quiz.html#ch01_s02" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch01_overview.html#ch01_s03">S03｜AIエージェントの起動タイプ</a>
+          <a class="toc-mini" href="reader/ch1.html#sec-3" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch01_quiz.html#ch01_s03" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch01_overview.html#ch01_s04">S04｜RPAとAIエージェントの違い</a>
+          <a class="toc-mini" href="reader/ch1.html#sec-4" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch01_quiz.html#ch01_s04" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch01_overview.html#ch01_s05">S05｜エージェントの接続標準 MCP</a>
+          <a class="toc-mini" href="reader/ch1.html#sec-5" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch01_quiz.html#ch01_s05" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch01_overview.html#ch01_s06">S06｜AIエージェント導入の価値</a>
+          <a class="toc-mini" href="reader/ch1.html#sec-6" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch01_quiz.html#ch01_s06" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch01_overview.html#ch01_s07">S07｜AIエージェントのリスクと対策</a>
+          <a class="toc-mini" href="reader/ch1.html#sec-7" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch01_quiz.html#ch01_s07" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch01_overview.html#ch01_s08">S08｜生成AIの発展トレンド</a>
+          <a class="toc-mini" href="reader/ch1.html#sec-8" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch01_quiz.html#ch01_s08" title="理解度チェック">📝</a>
+        </div>
+      </div>
+    </div>
+    <div class="toc-ch">
+      <button class="toc-ch-btn" style="border-left:4px solid #6b4fa8;" onclick="toggleTocCh(this)">
+        <span>Ch.02｜業務の基礎</span><span class="toc-ch-arrow">▸</span>
+      </button>
+      <div class="toc-ch-list">
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch02_overview.html#ch02_s01">S01｜業務の構造的理解</a>
+          <a class="toc-mini" href="reader/ch2.html#sec-1" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch02_quiz.html#ch02_s01" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch02_overview.html#ch02_s02">S02｜BPR（業務改革）の基礎</a>
+          <a class="toc-mini" href="reader/ch2.html#sec-2" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch02_quiz.html#ch02_s02" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch02_overview.html#ch02_s03">S03｜業務可視化の手法</a>
+          <a class="toc-mini" href="reader/ch2.html#sec-3" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch02_quiz.html#ch02_s03" title="理解度チェック">📝</a>
+        </div>
+      </div>
+    </div>
+    <div class="toc-ch">
+      <button class="toc-ch-btn open" style="border-left:4px solid #2a8a7a;" onclick="toggleTocCh(this)">
+        <span>Ch.03｜AIデータリテラシーとマネジメント</span><span class="toc-ch-arrow">▸</span>
+      </button>
+      <div class="toc-ch-list open">
+        <div class="toc-sec-row">
+          <a class="toc-sec-title current" href="ch03_overview.html#ch03_s01">S01｜ナレッジマネジメントの基礎</a>
+          <a class="toc-mini" href="reader/ch3.html#sec-1" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch03_quiz.html#ch03_s01" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch03_overview.html#ch03_s02">S02｜データの種類と特性</a>
+          <a class="toc-mini" href="reader/ch3.html#sec-2" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch03_quiz.html#ch03_s02" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch03_overview.html#ch03_s03">S03｜RAGの仕組み</a>
+          <a class="toc-mini" href="reader/ch3.html#sec-3" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch03_quiz.html#ch03_s03" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch03_overview.html#ch03_s04">S04｜AIガバナンスと法務</a>
+          <a class="toc-mini" href="reader/ch3.html#sec-4" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch03_quiz.html#ch03_s04" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch03_overview.html#ch03_s05">S05｜AIエージェントが読みやすいデータを作る</a>
+          <a class="toc-mini" href="reader/ch3.html#sec-5" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch03_quiz.html#ch03_s05" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch03_overview.html#ch03_s06">S06｜AIプロジェクトの進め方</a>
+          <a class="toc-mini" href="reader/ch3.html#sec-6" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch03_quiz.html#ch03_s06" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch03_overview.html#ch03_s07">S07｜AIプロジェクトの成功の定義：3層フレームワーク</a>
+          <a class="toc-mini" href="reader/ch3.html#sec-7" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch03_quiz.html#ch03_s07" title="理解度チェック">📝</a>
+        </div>
+      </div>
+    </div>
+    <div class="toc-ch">
+      <button class="toc-ch-btn" style="border-left:4px solid #c45a0a;" onclick="toggleTocCh(this)">
+        <span>Ch.04｜自動化レベルとワークフロー設計</span><span class="toc-ch-arrow">▸</span>
+      </button>
+      <div class="toc-ch-list">
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch04_overview.html#ch04_s01">S01｜自動化レベルの進化論と実務における最適解</a>
+          <a class="toc-mini" href="reader/ch4.html#sec-1" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch04_quiz.html#ch04_s01" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch04_overview.html#ch04_s02">S02｜ワークフロー設計 トリガーとアクション</a>
+          <a class="toc-mini" href="reader/ch4.html#sec-2" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch04_quiz.html#ch04_s02" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch04_overview.html#ch04_s03">S03｜ワークフロー設計 変数と条件分岐</a>
+          <a class="toc-mini" href="reader/ch4.html#sec-3" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch04_quiz.html#ch04_s03" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch04_overview.html#ch04_s04">S04｜コンテキストエンジニアリング概論</a>
+          <a class="toc-mini" href="reader/ch4.html#sec-4" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch04_quiz.html#ch04_s04" title="理解度チェック">📝</a>
+        </div>
+      </div>
+    </div>
+    <div class="toc-ch">
+      <button class="toc-ch-btn" style="border-left:4px solid #a01850;" onclick="toggleTocCh(this)">
+        <span>Ch.05｜人と組織から考えるAI時代の組織設計</span><span class="toc-ch-arrow">▸</span>
+      </button>
+      <div class="toc-ch-list">
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch05_overview.html#ch05_s01">S01｜AIエージェント導入と組織文化の変革</a>
+          <a class="toc-mini" href="reader/ch5.html#sec-1" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch05_quiz.html#ch05_s01" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch05_overview.html#ch05_s02">S02｜AIエージェント推進の組織類型</a>
+          <a class="toc-mini" href="reader/ch5.html#sec-2" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch05_quiz.html#ch05_s02" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch05_overview.html#ch05_s03">S03｜人材評価と指標の再設計</a>
+          <a class="toc-mini" href="reader/ch5.html#sec-3" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch05_quiz.html#ch05_s03" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch05_overview.html#ch05_s04">S04｜チェンジマネジメント</a>
+          <a class="toc-mini" href="reader/ch5.html#sec-4" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch05_quiz.html#ch05_s04" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch05_overview.html#ch05_s05">S05｜AIエージェント推進者が現場で直面する5つの問いと答え方</a>
+          <a class="toc-mini" href="reader/ch5.html#sec-5" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch05_quiz.html#ch05_s05" title="理解度チェック">📝</a>
+        </div>
+      </div>
+    </div>
+    <div class="toc-ch">
+      <button class="toc-ch-btn" style="border-left:4px solid #2a6e3a;" onclick="toggleTocCh(this)">
+        <span>Ch.06｜AIエージェントを実装する5Dモデル</span><span class="toc-ch-arrow">▸</span>
+      </button>
+      <div class="toc-ch-list">
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch06_overview.html#ch06_s01">S01｜5DモデルStep1 Discovery — 発見・選定</a>
+          <a class="toc-mini" href="reader/ch6.html#sec-1" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch06_quiz.html#ch06_s01" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch06_overview.html#ch06_s02">S02｜5DモデルStep2 Definition — 定義・構造化</a>
+          <a class="toc-mini" href="reader/ch6.html#sec-2" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch06_quiz.html#ch06_s02" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch06_overview.html#ch06_s03">S03｜5DモデルStep3 Design — 設計・プロンプト</a>
+          <a class="toc-mini" href="reader/ch6.html#sec-3" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch06_quiz.html#ch06_s03" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch06_overview.html#ch06_s04">S04｜5DモデルStep4 Development &amp; PoC — 開発・検証</a>
+          <a class="toc-mini" href="reader/ch6.html#sec-4" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch06_quiz.html#ch06_s04" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-sec-row">
+          <a class="toc-sec-title" href="ch06_overview.html#ch06_s05">S05｜5DモデルStep5 Deployment &amp; Scale — 展開・定着</a>
+          <a class="toc-mini" href="reader/ch6.html#sec-5" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="ch06_quiz.html#ch06_s05" title="理解度チェック">📝</a>
+        </div>
+      </div>
+    </div>
+</nav>
+<script>
+function saveStatus(k, v) { localStorage.setItem(k, v); }
+function loadStatus(k) { return localStorage.getItem(k); }
+
+function setStatus(sid, val, btn) {
+  saveStatus('s_' + sid, val);
+  btn.closest('.status-btns').querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function toggleDeepDive(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+var QS = {};
+
+function answer(qid, ci, correct) {
+  if (QS[qid] && QS[qid].done) return;
+  QS[qid] = { done: true, ok: ci === correct };
+
+  var btns = document.querySelectorAll('#q' + qid + ' .choice-btn');
+  btns.forEach(function(b, i) {
+    if (i === ci)      b.classList.add(i === correct ? 'correct' : 'wrong');
+    else if (i !== correct) b.classList.add('dimmed');
+  });
+
+  var expl  = document.getElementById('e' + qid);
+  var retry = document.getElementById('r' + qid);
+  var next  = document.getElementById('n' + qid);
+  expl.classList.add('show');
+
+  var sid      = qid.replace(/_\d+$/, '');
+  var section  = document.getElementById(sid);
+  var isRetake = section && section.classList.contains('retake-mode');
+
+  if (ci === correct) {
+    if (next) next.classList.add('show');
+    localStorage.removeItem('qfail_' + qid);
+    if (isRetake) localStorage.removeItem('qwrong_' + qid);
+  } else {
+    expl.classList.add('hint');
+    if (retry) retry.classList.add('show');
+    localStorage.setItem('qfail_' + qid, '1');
+    localStorage.setItem('qwrong_' + qid, '1');
+  }
+  updateRetakeBtn(sid);
+}
+
+function resetQuizBlock(qid) {
+  QS[qid] = null;
+  document.querySelectorAll('#q' + qid + ' .choice-btn').forEach(function(b) {
+    b.classList.remove('correct', 'wrong', 'dimmed');
+  });
+  var expl = document.getElementById('e' + qid);
+  if (expl) expl.classList.remove('show', 'hint');
+  var retry = document.getElementById('r' + qid);
+  if (retry) retry.classList.remove('show');
+  var next = document.getElementById('n' + qid);
+  if (next) next.classList.remove('show');
+}
+
+function retryQ(qid) {
+  resetQuizBlock(qid);
+}
+
+function showNext(nqid) {
+  var sid = nqid.replace(/_\d+$/, '');
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
+  var el = document.getElementById('q' + nqid);
+  if (el) { el.style.display = 'block'; el.scrollIntoView({behavior:'smooth', block:'start'}); }
+}
+
+function showScore(sid, total) {
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
+  var ok = 0;
+  for (var i = 1; i <= total; i++) {
+    var st = QS[sid + '_' + i];
+    if (st && st.ok) ok++;
+  }
+  var banner = document.getElementById('sc_' + sid);
+  if (banner) {
+    banner.querySelector('.score-main').textContent = ok + ' / ' + total + ' 問 正解';
+    banner.classList.add('show');
+    banner.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+function startRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  var wrongQids = [];
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) {
+      wrongQids.push(key.replace('qwrong_', ''));
+    }
+  }
+  if (!wrongQids.length) return;
+  wrongQids.sort(function(a, b) {
+    return parseInt(a.split('_').pop()) - parseInt(b.split('_').pop());
+  });
+
+  section.classList.add('retake-mode');
+  section.dataset.retakeQueue = JSON.stringify(wrongQids);
+  section.dataset.retakeIdx   = '0';
+
+  var score = document.getElementById('sc_' + sid);
+  if (score) score.classList.remove('show');
+
+  section.querySelectorAll('.quiz-block').forEach(function(block) {
+    block.style.display = 'none';
+  });
+  wrongQids.forEach(function(qid) { resetQuizBlock(qid); });
+
+  var first = document.getElementById('q' + wrongQids[0]);
+  if (first) { first.style.display = 'block'; first.scrollIntoView({behavior:'smooth', block:'start'}); }
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'block';
+
+  var btn = document.getElementById('rtk_' + sid);
+  if (btn) btn.style.display = 'none';
+}
+
+function retakeAdvance(sid) {
+  var section = document.getElementById(sid);
+  if (!section || !section.classList.contains('retake-mode')) return;
+  var queue = JSON.parse(section.dataset.retakeQueue || '[]');
+  var idx   = parseInt(section.dataset.retakeIdx || '0');
+
+  var cur = document.getElementById('q' + queue[idx]);
+  if (cur) cur.style.display = 'none';
+
+  idx++;
+  section.dataset.retakeIdx = String(idx);
+
+  if (idx < queue.length) {
+    var nxt = document.getElementById('q' + queue[idx]);
+    if (nxt) { nxt.style.display = 'block'; nxt.scrollIntoView({behavior:'smooth', block:'start'}); }
+  } else {
+    endRetake(sid);
+  }
+}
+
+function endRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  section.classList.remove('retake-mode');
+  delete section.dataset.retakeQueue;
+  delete section.dataset.retakeIdx;
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'none';
+
+  section.querySelectorAll('.quiz-block').forEach(function(block, i) {
+    var qid = block.id.replace(/^q/, '');
+    resetQuizBlock(qid);
+    block.style.display = (i === 0) ? 'block' : 'none';
+  });
+
+  updateRetakeBtn(sid);
+}
+
+function updateRetakeBtn(sid) {
+  var count = 0;
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) count++;
+  }
+  var btn = document.getElementById('rtk_' + sid);
+  if (!btn) return;
+  if (count > 0) {
+    btn.textContent = '❌ ' + count + '問 再テスト';
+    btn.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+function initRetakeBtns() {
+  document.querySelectorAll('section[id^="ch"]').forEach(function(sec) {
+    updateRetakeBtn(sec.id);
+  });
+}
+
+/* ── 文字サイズ・ダークモード（readerと共通のlocalStorageキー） ───── */
+function applyFontSize(px) {
+  document.documentElement.style.setProperty('--font-size', px + 'px');
+}
+
+function applyDark(on) {
+  document.body.classList.toggle('dark', on);
+  var btn = document.getElementById('ui-dark-btn');
+  if (btn) btn.textContent = on ? '☀️' : '🌙';
+}
+
+function initThemeControls() {
+  var fontSize = parseInt(localStorage.getItem('reader_fontSize') || '16', 10);
+  var darkMode = localStorage.getItem('reader_dark') === 'true';
+  applyFontSize(fontSize);
+  applyDark(darkMode);
+
+  var slider = document.getElementById('ui-font-slider');
+  if (slider) {
+    slider.value = fontSize;
+    slider.oninput = function() {
+      fontSize = +slider.value;
+      applyFontSize(fontSize);
+      localStorage.setItem('reader_fontSize', fontSize);
+    };
+  }
+  var darkBtn = document.getElementById('ui-dark-btn');
+  if (darkBtn) {
+    darkBtn.onclick = function() {
+      darkMode = !darkMode;
+      applyDark(darkMode);
+      localStorage.setItem('reader_dark', darkMode);
+    };
+  }
+}
+
+/* ── 目次ドロワー（フローティングボタンから起動） ───────────── */
+function toggleTocDrawer() {
+  var d = document.getElementById('tocDrawer');
+  var o = document.getElementById('tocOverlay');
+  if (d) d.classList.toggle('open');
+  if (o) o.classList.toggle('open');
+}
+
+function closeTocDrawer() {
+  var d = document.getElementById('tocDrawer');
+  var o = document.getElementById('tocOverlay');
+  if (d) d.classList.remove('open');
+  if (o) o.classList.remove('open');
+}
+
+function toggleTocCh(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+window.addEventListener('load', function() {
+  document.querySelectorAll('.status-btns[data-sid]').forEach(function(wrap) {
+    var v = loadStatus('s_' + wrap.dataset.sid);
+    if (v) {
+      var b = wrap.querySelector('[data-val="' + v + '"]');
+      if (b) b.classList.add('active');
+    }
+  });
+  initRetakeBtns();
+  initThemeControls();
+});
+</script>
+<script>
+(function() {
+  var ret = null;
+  try { ret = sessionStorage.getItem('auth_return'); } catch(e) {}
+  if (ret) { try { sessionStorage.removeItem('auth_return'); } catch(e) {} }
+})();
+</script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head><script>
-(function(){var H='a18f055ef6aed551b3885777f6582a7b11d281f4ef52542feb8b6e77a4eaca47';try{var a=JSON.parse(localStorage.getItem('reader_auth')||'null');if(!a||a.h!==H||a.e<Date.now()){location.replace('./index.html');}}catch(e){location.replace('./index.html');}})();
+(function(){var H='a18f055ef6aed551b3885777f6582a7b11d281f4ef52542feb8b6e77a4eaca47';try{var a=JSON.parse(localStorage.getItem('reader_auth')||'null');if(!a||a.h!==H||a.e<Date.now()){try{sessionStorage.setItem('auth_return', location.pathname + location.search + location.hash);}catch(e){}location.replace('../index.html');}}catch(e){location.replace('../index.html');}})();
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -299,8 +299,233 @@ body {
 <nav id="drawer">
   <div id="drawer-header">📖 目次</div>
   <div style="padding:10px 14px;border-bottom:1px solid var(--border);">
-    <a href="./index.html" style="display:block;color:var(--text2);font-size:13px;text-decoration:none;padding:7px 0;border-bottom:1px solid var(--border);">← 精読ビューア 目次へ</a>
-    <a href="../index.html" style="display:block;color:var(--text2);font-size:13px;text-decoration:none;padding:7px 0 0;">← 問題集に戻る</a>
+<style>
+.toc-full-ch { border-bottom: 1px solid var(--border); }
+.toc-full-ch-btn {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 11px 14px; background: none; border: none;
+  color: var(--text); font-size: 13px; font-weight: 700; cursor: pointer; text-align: left;
+}
+.toc-full-ch-btn:active { background: var(--surface2); }
+.toc-full-ch-arrow { font-size: 11px; color: var(--text3); transition: transform .2s; flex-shrink: 0; margin-left: 6px; }
+.toc-full-ch-btn.open .toc-full-ch-arrow { transform: rotate(90deg); }
+.toc-full-ch-list { display: none; padding: 2px 0 8px; }
+.toc-full-ch-list.open { display: block; }
+.toc-full-sec-row { display: flex; align-items: center; gap: 4px; padding: 0 8px 0 14px; }
+.toc-full-sec-title {
+  flex: 1; display: block; padding: 8px 6px 8px 12px; min-width: 0;
+  color: var(--text2); font-size: 12.5px; text-decoration: none;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.toc-full-sec-title:active { color: var(--accent); }
+.toc-full-sec-title.current { color: var(--accent); font-weight: 700; }
+.toc-full-mini { flex-shrink: 0; padding: 6px; font-size: 13px; text-decoration: none; opacity: .6; border-radius: 6px; }
+.toc-full-mini:active { opacity: 1; background: var(--surface2); }
+.toc-full-label { font-size: 11px; color: var(--text3); padding: 10px 14px 2px; }
+</style>
+<div class="toc-full-label">全章から探す</div>
+    <div class="toc-full-ch">
+      <button class="toc-full-ch-btn" style="border-left:4px solid #2d6a9f;" onclick="toggleTocFullCh(this)">
+        <span>Ch.01｜生成AIとAIエージェントの基礎</span><span class="toc-full-ch-arrow">▸</span>
+      </button>
+      <div class="toc-full-ch-list">
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch01_overview.html#ch01_s01">S01｜生成AIの基礎</a>
+          <a class="toc-full-mini" href="../reader/ch1.html#sec-1" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch01_quiz.html#ch01_s01" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch01_overview.html#ch01_s02">S02｜AIエージェントの定義と構成要素</a>
+          <a class="toc-full-mini" href="../reader/ch1.html#sec-2" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch01_quiz.html#ch01_s02" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch01_overview.html#ch01_s03">S03｜AIエージェントの起動タイプ</a>
+          <a class="toc-full-mini" href="../reader/ch1.html#sec-3" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch01_quiz.html#ch01_s03" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch01_overview.html#ch01_s04">S04｜RPAとAIエージェントの違い</a>
+          <a class="toc-full-mini" href="../reader/ch1.html#sec-4" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch01_quiz.html#ch01_s04" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch01_overview.html#ch01_s05">S05｜エージェントの接続標準 MCP</a>
+          <a class="toc-full-mini" href="../reader/ch1.html#sec-5" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch01_quiz.html#ch01_s05" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch01_overview.html#ch01_s06">S06｜AIエージェント導入の価値</a>
+          <a class="toc-full-mini" href="../reader/ch1.html#sec-6" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch01_quiz.html#ch01_s06" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch01_overview.html#ch01_s07">S07｜AIエージェントのリスクと対策</a>
+          <a class="toc-full-mini" href="../reader/ch1.html#sec-7" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch01_quiz.html#ch01_s07" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch01_overview.html#ch01_s08">S08｜生成AIの発展トレンド</a>
+          <a class="toc-full-mini" href="../reader/ch1.html#sec-8" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch01_quiz.html#ch01_s08" title="理解度チェック">📝</a>
+        </div>
+      </div>
+    </div>
+    <div class="toc-full-ch">
+      <button class="toc-full-ch-btn" style="border-left:4px solid #6b4fa8;" onclick="toggleTocFullCh(this)">
+        <span>Ch.02｜業務の基礎</span><span class="toc-full-ch-arrow">▸</span>
+      </button>
+      <div class="toc-full-ch-list">
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch02_overview.html#ch02_s01">S01｜業務の構造的理解</a>
+          <a class="toc-full-mini" href="../reader/ch2.html#sec-1" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch02_quiz.html#ch02_s01" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch02_overview.html#ch02_s02">S02｜BPR（業務改革）の基礎</a>
+          <a class="toc-full-mini" href="../reader/ch2.html#sec-2" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch02_quiz.html#ch02_s02" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch02_overview.html#ch02_s03">S03｜業務可視化の手法</a>
+          <a class="toc-full-mini" href="../reader/ch2.html#sec-3" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch02_quiz.html#ch02_s03" title="理解度チェック">📝</a>
+        </div>
+      </div>
+    </div>
+    <div class="toc-full-ch">
+      <button class="toc-full-ch-btn" style="border-left:4px solid #2a8a7a;" onclick="toggleTocFullCh(this)">
+        <span>Ch.03｜AIデータリテラシーとマネジメント</span><span class="toc-full-ch-arrow">▸</span>
+      </button>
+      <div class="toc-full-ch-list">
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch03_overview.html#ch03_s01">S01｜ナレッジマネジメントの基礎</a>
+          <a class="toc-full-mini" href="../reader/ch3.html#sec-1" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch03_quiz.html#ch03_s01" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch03_overview.html#ch03_s02">S02｜データの種類と特性</a>
+          <a class="toc-full-mini" href="../reader/ch3.html#sec-2" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch03_quiz.html#ch03_s02" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch03_overview.html#ch03_s03">S03｜RAGの仕組み</a>
+          <a class="toc-full-mini" href="../reader/ch3.html#sec-3" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch03_quiz.html#ch03_s03" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch03_overview.html#ch03_s04">S04｜AIガバナンスと法務</a>
+          <a class="toc-full-mini" href="../reader/ch3.html#sec-4" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch03_quiz.html#ch03_s04" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch03_overview.html#ch03_s05">S05｜AIエージェントが読みやすいデータを作る</a>
+          <a class="toc-full-mini" href="../reader/ch3.html#sec-5" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch03_quiz.html#ch03_s05" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch03_overview.html#ch03_s06">S06｜AIプロジェクトの進め方</a>
+          <a class="toc-full-mini" href="../reader/ch3.html#sec-6" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch03_quiz.html#ch03_s06" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch03_overview.html#ch03_s07">S07｜AIプロジェクトの成功の定義：3層フレームワーク</a>
+          <a class="toc-full-mini" href="../reader/ch3.html#sec-7" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch03_quiz.html#ch03_s07" title="理解度チェック">📝</a>
+        </div>
+      </div>
+    </div>
+    <div class="toc-full-ch">
+      <button class="toc-full-ch-btn" style="border-left:4px solid #c45a0a;" onclick="toggleTocFullCh(this)">
+        <span>Ch.04｜自動化レベルとワークフロー設計</span><span class="toc-full-ch-arrow">▸</span>
+      </button>
+      <div class="toc-full-ch-list">
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch04_overview.html#ch04_s01">S01｜自動化レベルの進化論と実務における最適解</a>
+          <a class="toc-full-mini" href="../reader/ch4.html#sec-1" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch04_quiz.html#ch04_s01" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch04_overview.html#ch04_s02">S02｜ワークフロー設計 トリガーとアクション</a>
+          <a class="toc-full-mini" href="../reader/ch4.html#sec-2" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch04_quiz.html#ch04_s02" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch04_overview.html#ch04_s03">S03｜ワークフロー設計 変数と条件分岐</a>
+          <a class="toc-full-mini" href="../reader/ch4.html#sec-3" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch04_quiz.html#ch04_s03" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch04_overview.html#ch04_s04">S04｜コンテキストエンジニアリング概論</a>
+          <a class="toc-full-mini" href="../reader/ch4.html#sec-4" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch04_quiz.html#ch04_s04" title="理解度チェック">📝</a>
+        </div>
+      </div>
+    </div>
+    <div class="toc-full-ch">
+      <button class="toc-full-ch-btn" style="border-left:4px solid #a01850;" onclick="toggleTocFullCh(this)">
+        <span>Ch.05｜人と組織から考えるAI時代の組織設計</span><span class="toc-full-ch-arrow">▸</span>
+      </button>
+      <div class="toc-full-ch-list">
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch05_overview.html#ch05_s01">S01｜AIエージェント導入と組織文化の変革</a>
+          <a class="toc-full-mini" href="../reader/ch5.html#sec-1" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch05_quiz.html#ch05_s01" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch05_overview.html#ch05_s02">S02｜AIエージェント推進の組織類型</a>
+          <a class="toc-full-mini" href="../reader/ch5.html#sec-2" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch05_quiz.html#ch05_s02" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch05_overview.html#ch05_s03">S03｜人材評価と指標の再設計</a>
+          <a class="toc-full-mini" href="../reader/ch5.html#sec-3" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch05_quiz.html#ch05_s03" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch05_overview.html#ch05_s04">S04｜チェンジマネジメント</a>
+          <a class="toc-full-mini" href="../reader/ch5.html#sec-4" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch05_quiz.html#ch05_s04" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch05_overview.html#ch05_s05">S05｜AIエージェント推進者が現場で直面する5つの問いと答え方</a>
+          <a class="toc-full-mini" href="../reader/ch5.html#sec-5" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch05_quiz.html#ch05_s05" title="理解度チェック">📝</a>
+        </div>
+      </div>
+    </div>
+    <div class="toc-full-ch">
+      <button class="toc-full-ch-btn open" style="border-left:4px solid #2a6e3a;" onclick="toggleTocFullCh(this)">
+        <span>Ch.06｜AIエージェントを実装する5Dモデル</span><span class="toc-full-ch-arrow">▸</span>
+      </button>
+      <div class="toc-full-ch-list open">
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title current" href="../ch06_overview.html#ch06_s01">S01｜5DモデルStep1 Discovery — 発見・選定</a>
+          <a class="toc-full-mini" href="../reader/ch6.html#sec-1" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch06_quiz.html#ch06_s01" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch06_overview.html#ch06_s02">S02｜5DモデルStep2 Definition — 定義・構造化</a>
+          <a class="toc-full-mini" href="../reader/ch6.html#sec-2" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch06_quiz.html#ch06_s02" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch06_overview.html#ch06_s03">S03｜5DモデルStep3 Design — 設計・プロンプト</a>
+          <a class="toc-full-mini" href="../reader/ch6.html#sec-3" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch06_quiz.html#ch06_s03" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch06_overview.html#ch06_s04">S04｜5DモデルStep4 Development &amp; PoC — 開発・検証</a>
+          <a class="toc-full-mini" href="../reader/ch6.html#sec-4" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch06_quiz.html#ch06_s04" title="理解度チェック">📝</a>
+        </div>
+        <div class="toc-full-sec-row">
+          <a class="toc-full-sec-title" href="../ch06_overview.html#ch06_s05">S05｜5DモデルStep5 Deployment &amp; Scale — 展開・定着</a>
+          <a class="toc-full-mini" href="../reader/ch6.html#sec-5" title="精読ビューア">📖</a>
+          <a class="toc-full-mini" href="../ch06_quiz.html#ch06_s05" title="理解度チェック">📝</a>
+        </div>
+      </div>
+    </div>
   </div>
   <div id="toc-root"></div>
 </nav>
@@ -709,6 +934,11 @@ document.getElementById('img-modal').onclick = function(e) {
     this.classList.remove('open');
 };
 
+function toggleTocFullCh(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
 function closeDrawer() {
   document.getElementById('drawer').classList.remove('open');
   document.getElementById('overlay').classList.remove('open');
@@ -743,7 +973,13 @@ renderAll();
 applyFilter();
 document.querySelectorAll('.section-block').forEach(el => observer.observe(el));
 
+if (location.hash) {
+  var __target = document.querySelector(location.hash);
+  if (__target) setTimeout(function() { __target.scrollIntoView({behavior:'instant', block:'start'}); }, 50);
+}
+
 })();
 </script>
+
 </body>
 </html>
