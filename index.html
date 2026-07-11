@@ -5,11 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>AICX 学習マップ</title>
   <style>
+:root {
+  --bg: #f0f2f5; --surface: #ffffff; --surface2: #f5f5f7; --surface3: #e9eaec;
+  --text: #1a1a1a; --text2: #444444; --text3: #888888;
+  --accent: #2d6a9f; --border: #e5e7eb;
+  --font-size: 16px;
+}
+.dark {
+  --bg: #111827; --surface: #1f2937; --surface2: #374151; --surface3: #4b5563;
+  --text: #f9fafb; --text2: #d1d5db; --text3: #9ca3af;
+  --border: #374151;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Helvetica Neue', sans-serif;
-  font-size: 16px; line-height: 1.7; color: #1a1a1a;
-  background: #f0f2f5; padding: 12px;
+  font-size: var(--font-size, 16px); line-height: 1.7; color: var(--text);
+  background: var(--bg); padding: 12px;
   max-width: 600px; margin: 0 auto;
 }
 
@@ -27,11 +39,11 @@ body {
 
 /* ── カード ─────────────────────────────── */
 .card {
-  background: white; border-radius: 12px; padding: 18px;
+  background: var(--surface); border-radius: 12px; padding: 18px;
   margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
 }
 .card-title {
-  font-size: 14px; font-weight: 700; color: #1e3a5f;
+  font-size: 14px; font-weight: 700; color: var(--text);
   margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
 }
 .card-title::before {
@@ -43,32 +55,34 @@ body {
 .exam-point {
   background: #fff8e6; border-left: 3px solid #ff9500;
   border-radius: 0 8px 8px 0; padding: 10px 12px;
-  font-size: 14px; line-height: 1.75;
+  font-size: 14px; line-height: 1.75; color: #3a2c00;
 }
+.dark .exam-point { background: #422006; color: #fde68a; }
 .exam-label { font-weight: 700; color: #c67200; font-size: 12px; margin-bottom: 5px; }
+.dark .exam-label { color: #fbbf24; }
 
 /* ── 概要カード: トピック概要セクション ─── */
-.ov-divider { border-top: 1px solid #e8e8e8; margin: 14px 0 10px; }
+.ov-divider { border-top: 1px solid var(--border); margin: 14px 0 10px; }
 .ov-section { margin-bottom: 12px; }
 .ov-section-title {
   font-size: 13px; font-weight: 700;
   border-left: 3px solid #2d6a9f;
   padding: 4px 8px 4px 10px; border-radius: 0 4px 4px 0;
-  margin-bottom: 5px;
+  margin-bottom: 5px; color: var(--text);
 }
 .ov-section-body {
-  font-size: 13px; line-height: 1.65; color: #555;
+  font-size: 13px; line-height: 1.65; color: var(--text2);
   padding-left: 13px;
 }
-.ov-body-p { font-size: 13px; line-height: 1.65; color: #333; margin-bottom: 6px; }
+.ov-body-p { font-size: 13px; line-height: 1.65; color: var(--text); margin-bottom: 6px; }
 
 /* ── 学習ステータス ──────────────────────── */
 .status-card {
-  background: white; border-radius: 12px; padding: 14px 18px;
+  background: var(--surface); border-radius: 12px; padding: 14px 18px;
   margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
   display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
 }
-.status-label { font-size: 14px; font-weight: 600; color: #555; flex-shrink: 0; }
+.status-label { font-size: 14px; font-weight: 600; color: var(--text2); flex-shrink: 0; }
 .status-btns  { display: flex; gap: 8px; }
 .status-btn {
   padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 600;
@@ -79,13 +93,15 @@ body {
 .btn-later { background: #e8f0fe; color: #1a4bae; border-color: #4285f4; }
 .btn-done.active  { background: #34a853; color: white; }
 .btn-later.active { background: #4285f4; color: white; }
+.dark .btn-done  { background: #052e16; color: #4ade80; }
+.dark .btn-later { background: #1e293b; color: #93c5fd; }
 
 /* ── 深掘りノート（アコーディオン） ────────── */
 .deepdive-wrap { margin-bottom: 12px; }
 .deepdive-btn {
-  width: 100%; background: white; border: 1px solid #d0d7de;
+  width: 100%; background: var(--surface); border: 1px solid var(--border);
   border-radius: 10px; padding: 13px 16px;
-  font-size: 14px; font-weight: 600; color: #1e3a5f;
+  font-size: 14px; font-weight: 600; color: var(--text);
   text-align: left; cursor: pointer;
   display: flex; justify-content: space-between; align-items: center;
   box-shadow: 0 1px 3px rgba(0,0,0,.06);
@@ -94,28 +110,33 @@ body {
 .deepdive-btn .dd-arrow-icon { font-size: 12px; transition: transform .25s; color: #2d6a9f; }
 .deepdive-btn.open .dd-arrow-icon { transform: rotate(90deg); }
 .deepdive-content {
-  display: none; background: white;
-  border: 1px solid #d0d7de; border-top: none;
+  display: none; background: var(--surface);
+  border: 1px solid var(--border); border-top: none;
   border-radius: 0 0 10px 10px;
   padding: 16px 18px;
 }
 .deepdive-content.open { display: block; }
+.reader-goto-link {
+  display: block; margin-top: 14px; padding: 11px 14px;
+  background: var(--surface2); border-radius: 8px; text-align: center;
+  font-size: 13px; font-weight: 600; color: #2d6a9f; text-decoration: none;
+}
 
 /* ── 深掘りノート内 コンテンツスタイル ──────── */
 .dd-h3 {
   font-size: 13px; font-weight: 700;
   border-left: 3px solid #2d6a9f;
-  background: #e8f0fe;
+  background: var(--surface2);
   padding: 6px 10px; border-radius: 0 6px 6px 0;
-  margin: 16px 0 8px; line-height: 1.5;
+  margin: 16px 0 8px; line-height: 1.5; color: var(--text);
 }
 .dd-h3:first-child { margin-top: 0; }
 .dd-p {
-  font-size: 14px; line-height: 1.8; color: #333;
+  font-size: 14px; line-height: 1.8; color: var(--text);
   margin-bottom: 8px;
 }
 .dd-bullet {
-  font-size: 14px; line-height: 1.7; color: #333;
+  font-size: 14px; line-height: 1.7; color: var(--text);
   margin-bottom: 6px;
   display: flex; align-items: flex-start; gap: 6px;
 }
@@ -129,6 +150,7 @@ body {
   font-size: 14px; line-height: 1.75;
   margin: 10px 0; font-weight: 500;
   display: flex; gap: 8px; align-items: flex-start;
+  color: var(--text);
 }
 .callout-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
 
@@ -137,9 +159,11 @@ body {
   border-left: 3px solid #4285f4;
   border-radius: 0 8px 8px 0;
   background: #f0f4ff;
-  padding: 12px 14px; margin-top: 14px;
+  padding: 12px 14px; margin-top: 14px; color: #1a1a2e;
 }
+.dark .scenario-section { background: #1e293b; color: #d1d5db; }
 .scenario-label { font-size: 12px; font-weight: 700; color: #1a4bae; margin-bottom: 6px; }
+.dark .scenario-label { color: #93c5fd; }
 
 /* ── 記憶の鍵 ────────────────────────────── */
 .memory-key {
@@ -151,36 +175,42 @@ body {
 
 /* ── 理解度チェック ─────────────────────── */
 .quiz-hdr {
-  font-size: 15px; font-weight: 700; color: #1e3a5f;
+  font-size: 15px; font-weight: 700; color: var(--text);
   margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
 }
 .quiz-block {
-  background: white; border-radius: 12px; padding: 18px;
+  background: var(--surface); border-radius: 12px; padding: 18px;
   margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
 }
 .quiz-num      { font-size: 12px; font-weight: 700; color: #2d6a9f; margin-bottom: 8px; }
-.quiz-question { font-size: 15px; font-weight: 600; line-height: 1.6; margin-bottom: 14px; }
+.quiz-question { font-size: 15px; font-weight: 600; line-height: 1.6; margin-bottom: 14px; color: var(--text); }
 .choices { display: flex; flex-direction: column; gap: 8px; }
 .choice-btn {
-  background: #f5f5f7; border: 2px solid transparent; border-radius: 10px;
+  background: var(--surface2); border: 2px solid transparent; border-radius: 10px;
   padding: 11px 14px; font-size: 14px; text-align: left;
-  cursor: pointer; line-height: 1.5; color: #1a1a1a;
+  cursor: pointer; line-height: 1.5; color: var(--text);
   transition: background .15s, border-color .15s;
   -webkit-tap-highlight-color: transparent;
 }
-.choice-btn:active  { background: #e8f0fe; }
+.choice-btn:active  { background: var(--surface3); }
 .choice-btn.correct { background: #e6f4ea; border-color: #34a853; color: #1a7340; font-weight: 600; }
 .choice-btn.wrong   { background: #fce8e6; border-color: #ea4335; color: #b31412; }
 .choice-btn.dimmed  { opacity: .4; pointer-events: none; }
+.dark .choice-btn.correct { background: #052e16; color: #4ade80; }
+.dark .choice-btn.wrong   { background: #450a0a; color: #fca5a5; }
 .explanation {
   display: none; background: #e6f4ea; border-radius: 8px;
   padding: 12px 14px; margin-top: 12px; font-size: 14px; line-height: 1.6;
-  border-left: 3px solid #34a853;
+  border-left: 3px solid #34a853; color: #14401f;
 }
 .explanation.show { display: block; }
 .ans-label { font-weight: 700; color: #1a7340; font-size: 13px; margin-bottom: 5px; }
 .explanation.hint { background: #fff8e6; border-left-color: #ff9500; }
 .explanation.hint .ans-label { color: #c67200; }
+.dark .explanation { background: #052e16; color: #d1fae5; }
+.dark .explanation .ans-label { color: #4ade80; }
+.dark .explanation.hint { background: #422006; color: #fde68a; }
+.dark .explanation.hint .ans-label { color: #fbbf24; }
 .action-btns { display: flex; gap: 8px; margin-top: 10px; }
 .retry-btn, .next-btn {
   padding: 9px 18px; border-radius: 8px; border: none;
@@ -188,7 +218,7 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 .retry-btn.show, .next-btn.show { display: inline-block; }
-.retry-btn { background: #f0f0f0; color: #333; }
+.retry-btn { background: var(--surface2); color: var(--text); }
 .next-btn  { background: #34a853; color: white; }
 .score-banner {
   display: none; background: linear-gradient(135deg, #34a853, #1a7340);
@@ -202,17 +232,19 @@ body {
   font-size: 14px; font-weight: 700; cursor: pointer;
   margin-bottom: 12px; -webkit-tap-highlight-color: transparent;
 }
+.dark .retake-btn-main { background: #450a0a; color: #fca5a5; }
 .retake-banner {
   background: #fff3e0; border: 2px solid #ff9500; border-radius: 8px;
   padding: 10px 14px; margin-bottom: 12px;
   font-size: 14px; font-weight: 700; color: #c67200; text-align: center;
 }
+.dark .retake-banner { background: #422006; color: #fbbf24; }
 
 /* ── ナビ ────────────────────────────────── */
 .nav-footer { display: flex; gap: 10px; margin-top: 16px; padding-bottom: 24px; }
 .nav-btn {
   flex: 1; padding: 12px; border-radius: 10px; border: 2px solid #2d6a9f;
-  background: white; color: #2d6a9f; font-size: 14px; font-weight: 600;
+  background: var(--surface); color: #2d6a9f; font-size: 14px; font-weight: 600;
   cursor: pointer; text-align: center; text-decoration: none;
   display: flex; align-items: center; justify-content: center;
 }
@@ -225,223 +257,353 @@ body {
 }
 .index-header h1 { font-size: 22px; margin-bottom: 6px; }
 .index-header p  { font-size: 13px; opacity: .8; }
-.chapter-card { background: white; border-radius: 12px; margin-bottom: 12px;
+.chapter-card { background: var(--surface); border-radius: 12px; margin-bottom: 12px;
   box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
 .chapter-card-header { padding: 14px 18px; font-weight: 700; font-size: 15px;
   color: white; display: flex; align-items: center; gap: 8px; }
 .section-link { display: flex; align-items: center; gap: 10px; padding: 11px 18px;
-  border-bottom: 1px solid #f0f0f0; text-decoration: none; color: #1a1a1a; font-size: 14px; }
+  border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text); font-size: 14px; }
 .section-link:last-child { border-bottom: none; }
-.section-link:active { background: #f5f5f7; }
+.section-link:active { background: var(--surface2); }
 .sec-num { font-weight: 700; font-size: 12px; min-width: 28px; }
 .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; flex-shrink: 0; margin-left: auto; }
 .status-dot.done  { background: #34a853; }
 .status-dot.later { background: #4285f4; }
+.quiz-mini-link {
+  flex-shrink: 0; font-size: 15px; text-decoration: none; opacity: .5;
+  padding: 4px; margin-left: 4px;
+}
+.quiz-mini-link:active { opacity: 1; }
+
+/* ── 誤答バッジ ─────────────────────────── */
+.fail-badge {
+  display: none; margin-left: auto;
+  background: #ea4335; color: white;
+  font-size: 10px; font-weight: 700;
+  border-radius: 10px; padding: 2px 7px;
+  flex-shrink: 0; letter-spacing: .2px;
+}
+.fail-badge.has-fail { display: inline-flex; align-items: center; gap: 2px; }
+.section-link.has-fail { background: #fff5f5; }
+.dark .section-link.has-fail { background: #1a0f0f; }
+.section-link.has-fail:active { background: #fce8e6; }
+
+/* ── 認証パネル ─────────────────────────── */
+.auth-card {
+  background: var(--surface); border-radius: 12px; padding: 28px 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 12px; text-align: center;
+}
+.auth-icon { font-size: 36px; margin-bottom: 12px; }
+.auth-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.auth-desc { font-size: 13px; color: var(--text3); margin-bottom: 20px; }
+.auth-input {
+  width: 100%; padding: 12px 16px; border: 2px solid var(--border);
+  border-radius: 8px; font-size: 16px; outline: none; transition: border-color .2s;
+  background: var(--surface); color: var(--text);
+}
+.auth-input:focus { border-color: #2d6a9f; }
+.auth-btn {
+  width: 100%; margin-top: 10px; padding: 13px;
+  background: #2d6a9f; color: white; border: none;
+  border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.auth-btn:active { background: #1e3a5f; }
+.auth-error { color: #d32f2f; font-size: 13px; margin-top: 10px; display: none; }
+.dark .auth-error { color: #fca5a5; }
+
+/* ── UIツールバー（文字サイズ・ダークモード） ─── */
+.ui-toolbar {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  background: var(--surface); border-radius: 10px; padding: 8px 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.ui-toolbar-label { font-size: 12px; color: var(--text3); flex-shrink: 0; }
+.ui-font-slider { flex: 1; accent-color: #2d6a9f; }
+.ui-dark-btn {
+  flex-shrink: 0; background: var(--surface2); border: none; border-radius: 8px;
+  width: 32px; height: 32px; font-size: 15px; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── フローティングナビメニュー ─────────────── */
+.float-nav-wrap { position: fixed; bottom: 22px; right: 14px; z-index: 500; }
+.float-home {
+  background: rgba(26,26,26,.88); color: white !important;
+  padding: 9px 16px; border-radius: 22px;
+  font-size: 13px; font-weight: 700; border: none; cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,.25); -webkit-tap-highlight-color: transparent;
+}
+.float-nav-menu {
+  display: none; position: absolute; bottom: 46px; right: 0;
+  background: var(--surface); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.25);
+  padding: 8px; min-width: 210px;
+}
+.float-nav-menu.open { display: block; }
+.fnav-sec-label { font-size: 11px; color: var(--text3); padding: 6px 14px 2px; }
+.fnav-item {
+  display: block; padding: 10px 14px; font-size: 14px; color: var(--text);
+  text-decoration: none; border-radius: 8px;
+}
+.fnav-item:active { background: var(--surface2); }
+.fnav-item.current { color: #2d6a9f; font-weight: 700; }
+.fnav-divider { border-top: 1px solid var(--border); margin: 6px 4px; }
 </style>
 </head>
 <body>
+
+<div class="auth-card" id="auth-panel" style="display:none;">
+  <div class="auth-icon">🔒</div>
+  <div class="auth-title">パスワードを入力してください</div>
+  <div class="auth-desc">このコンテンツはパスワードで保護されています</div>
+  <input type="password" class="auth-input" id="pw-input" placeholder="パスワード" autocomplete="current-password" />
+  <button class="auth-btn" onclick="doLogin()">ログイン</button>
+  <div class="auth-error" id="auth-error">パスワードが正しくありません</div>
+</div>
+
+<div id="content-panel" style="display:none;">
 <div class="index-header">
   <h1>📚 AICX 学習マップ</h1>
   <p>AIエージェント・ストラテジスト資格 ｜ 全32セクション</p>
   <p style="margin-top:8px;font-size:12px;opacity:.6;">🟢 Done &nbsp;🔵 後で確認する &nbsp;⚪ 未確認</p>
 </div>
 
+<div class="ui-toolbar">
+  <span class="ui-toolbar-label">文字サイズ</span>
+  <input type="range" class="ui-font-slider" id="ui-font-slider" min="13" max="22" step="1" value="16">
+  <button class="ui-dark-btn" id="ui-dark-btn">🌙</button>
+</div>
+
   <div class="chapter-card">
     <div class="chapter-card-header" style="background:linear-gradient(135deg,#1e3a5f,#2d6a9f);">
       <span>Ch.01</span><span>生成AIとAIエージェントの基礎</span>
     </div>
-      <a class="section-link" href="ch01.html#ch01_s01">
+      <a class="section-link" href="ch01_overview.html#ch01_s01">
         <span class="sec-num" style="color:#2d6a9f;">S01</span>
         <span>生成AIの基礎</span>
+        <span class="fail-badge" id="fail_ch01_s01"></span>
         <span class="status-dot" id="dot_ch01_s01"></span>
-      </a>
-      <a class="section-link" href="ch01.html#ch01_s02">
+      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s01" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch01_overview.html#ch01_s02">
         <span class="sec-num" style="color:#2d6a9f;">S02</span>
         <span>AIエージェントの定義と構成要素</span>
+        <span class="fail-badge" id="fail_ch01_s02"></span>
         <span class="status-dot" id="dot_ch01_s02"></span>
-      </a>
-      <a class="section-link" href="ch01.html#ch01_s03">
+      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s02" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch01_overview.html#ch01_s03">
         <span class="sec-num" style="color:#2d6a9f;">S03</span>
         <span>AIエージェントの起動タイプ</span>
+        <span class="fail-badge" id="fail_ch01_s03"></span>
         <span class="status-dot" id="dot_ch01_s03"></span>
-      </a>
-      <a class="section-link" href="ch01.html#ch01_s04">
+      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s03" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch01_overview.html#ch01_s04">
         <span class="sec-num" style="color:#2d6a9f;">S04</span>
         <span>RPAとAIエージェントの違い</span>
+        <span class="fail-badge" id="fail_ch01_s04"></span>
         <span class="status-dot" id="dot_ch01_s04"></span>
-      </a>
-      <a class="section-link" href="ch01.html#ch01_s05">
+      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s04" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch01_overview.html#ch01_s05">
         <span class="sec-num" style="color:#2d6a9f;">S05</span>
         <span>エージェントの接続標準 MCP</span>
+        <span class="fail-badge" id="fail_ch01_s05"></span>
         <span class="status-dot" id="dot_ch01_s05"></span>
-      </a>
-      <a class="section-link" href="ch01.html#ch01_s06">
+      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s05" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch01_overview.html#ch01_s06">
         <span class="sec-num" style="color:#2d6a9f;">S06</span>
         <span>AIエージェント導入の価値</span>
+        <span class="fail-badge" id="fail_ch01_s06"></span>
         <span class="status-dot" id="dot_ch01_s06"></span>
-      </a>
-      <a class="section-link" href="ch01.html#ch01_s07">
+      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s06" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch01_overview.html#ch01_s07">
         <span class="sec-num" style="color:#2d6a9f;">S07</span>
         <span>AIエージェントのリスクと対策</span>
+        <span class="fail-badge" id="fail_ch01_s07"></span>
         <span class="status-dot" id="dot_ch01_s07"></span>
-      </a>
-      <a class="section-link" href="ch01.html#ch01_s08">
+      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s07" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch01_overview.html#ch01_s08">
         <span class="sec-num" style="color:#2d6a9f;">S08</span>
         <span>生成AIの発展トレンド</span>
+        <span class="fail-badge" id="fail_ch01_s08"></span>
         <span class="status-dot" id="dot_ch01_s08"></span>
-      </a>
+      </a><a class="quiz-mini-link" href="ch01_quiz.html#ch01_s08" title="理解度チェックへ">📝</a>
   </div>
   <div class="chapter-card">
     <div class="chapter-card-header" style="background:linear-gradient(135deg,#4a3070,#6b4fa8);">
       <span>Ch.02</span><span>業務の基礎</span>
     </div>
-      <a class="section-link" href="ch02.html#ch02_s01">
+      <a class="section-link" href="ch02_overview.html#ch02_s01">
         <span class="sec-num" style="color:#6b4fa8;">S01</span>
         <span>業務の構造的理解</span>
+        <span class="fail-badge" id="fail_ch02_s01"></span>
         <span class="status-dot" id="dot_ch02_s01"></span>
-      </a>
-      <a class="section-link" href="ch02.html#ch02_s02">
+      </a><a class="quiz-mini-link" href="ch02_quiz.html#ch02_s01" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch02_overview.html#ch02_s02">
         <span class="sec-num" style="color:#6b4fa8;">S02</span>
         <span>BPR（業務改革）の基礎</span>
+        <span class="fail-badge" id="fail_ch02_s02"></span>
         <span class="status-dot" id="dot_ch02_s02"></span>
-      </a>
-      <a class="section-link" href="ch02.html#ch02_s03">
+      </a><a class="quiz-mini-link" href="ch02_quiz.html#ch02_s02" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch02_overview.html#ch02_s03">
         <span class="sec-num" style="color:#6b4fa8;">S03</span>
         <span>業務可視化の手法</span>
+        <span class="fail-badge" id="fail_ch02_s03"></span>
         <span class="status-dot" id="dot_ch02_s03"></span>
-      </a>
+      </a><a class="quiz-mini-link" href="ch02_quiz.html#ch02_s03" title="理解度チェックへ">📝</a>
   </div>
   <div class="chapter-card">
     <div class="chapter-card-header" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);">
       <span>Ch.03</span><span>AIデータリテラシーとマネジメント</span>
     </div>
-      <a class="section-link" href="ch03.html#ch03_s01">
+      <a class="section-link" href="ch03_overview.html#ch03_s01">
         <span class="sec-num" style="color:#2a8a7a;">S01</span>
         <span>ナレッジマネジメントの基礎</span>
+        <span class="fail-badge" id="fail_ch03_s01"></span>
         <span class="status-dot" id="dot_ch03_s01"></span>
-      </a>
-      <a class="section-link" href="ch03.html#ch03_s02">
+      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s01" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch03_overview.html#ch03_s02">
         <span class="sec-num" style="color:#2a8a7a;">S02</span>
         <span>データの種類と特性</span>
+        <span class="fail-badge" id="fail_ch03_s02"></span>
         <span class="status-dot" id="dot_ch03_s02"></span>
-      </a>
-      <a class="section-link" href="ch03.html#ch03_s03">
+      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s02" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch03_overview.html#ch03_s03">
         <span class="sec-num" style="color:#2a8a7a;">S03</span>
         <span>RAGの仕組み</span>
+        <span class="fail-badge" id="fail_ch03_s03"></span>
         <span class="status-dot" id="dot_ch03_s03"></span>
-      </a>
-      <a class="section-link" href="ch03.html#ch03_s04">
+      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s03" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch03_overview.html#ch03_s04">
         <span class="sec-num" style="color:#2a8a7a;">S04</span>
         <span>AIガバナンスと法務</span>
+        <span class="fail-badge" id="fail_ch03_s04"></span>
         <span class="status-dot" id="dot_ch03_s04"></span>
-      </a>
-      <a class="section-link" href="ch03.html#ch03_s05">
+      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s04" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch03_overview.html#ch03_s05">
         <span class="sec-num" style="color:#2a8a7a;">S05</span>
         <span>AIエージェントが読みやすいデータを作る</span>
+        <span class="fail-badge" id="fail_ch03_s05"></span>
         <span class="status-dot" id="dot_ch03_s05"></span>
-      </a>
-      <a class="section-link" href="ch03.html#ch03_s06">
+      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s05" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch03_overview.html#ch03_s06">
         <span class="sec-num" style="color:#2a8a7a;">S06</span>
         <span>AIプロジェクトの進め方</span>
+        <span class="fail-badge" id="fail_ch03_s06"></span>
         <span class="status-dot" id="dot_ch03_s06"></span>
-      </a>
-      <a class="section-link" href="ch03.html#ch03_s07">
+      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s06" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch03_overview.html#ch03_s07">
         <span class="sec-num" style="color:#2a8a7a;">S07</span>
         <span>AIプロジェクトの成功の定義：3層フレームワーク</span>
+        <span class="fail-badge" id="fail_ch03_s07"></span>
         <span class="status-dot" id="dot_ch03_s07"></span>
-      </a>
+      </a><a class="quiz-mini-link" href="ch03_quiz.html#ch03_s07" title="理解度チェックへ">📝</a>
   </div>
   <div class="chapter-card">
     <div class="chapter-card-header" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);">
       <span>Ch.04</span><span>自動化レベルとワークフロー設計</span>
     </div>
-      <a class="section-link" href="ch04.html#ch04_s01">
+      <a class="section-link" href="ch04_overview.html#ch04_s01">
         <span class="sec-num" style="color:#c45a0a;">S01</span>
         <span>自動化レベルの進化論と実務における最適解</span>
+        <span class="fail-badge" id="fail_ch04_s01"></span>
         <span class="status-dot" id="dot_ch04_s01"></span>
-      </a>
-      <a class="section-link" href="ch04.html#ch04_s02">
+      </a><a class="quiz-mini-link" href="ch04_quiz.html#ch04_s01" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch04_overview.html#ch04_s02">
         <span class="sec-num" style="color:#c45a0a;">S02</span>
         <span>ワークフロー設計 トリガーとアクション</span>
+        <span class="fail-badge" id="fail_ch04_s02"></span>
         <span class="status-dot" id="dot_ch04_s02"></span>
-      </a>
-      <a class="section-link" href="ch04.html#ch04_s03">
+      </a><a class="quiz-mini-link" href="ch04_quiz.html#ch04_s02" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch04_overview.html#ch04_s03">
         <span class="sec-num" style="color:#c45a0a;">S03</span>
         <span>ワークフロー設計 変数と条件分岐</span>
+        <span class="fail-badge" id="fail_ch04_s03"></span>
         <span class="status-dot" id="dot_ch04_s03"></span>
-      </a>
-      <a class="section-link" href="ch04.html#ch04_s04">
+      </a><a class="quiz-mini-link" href="ch04_quiz.html#ch04_s03" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch04_overview.html#ch04_s04">
         <span class="sec-num" style="color:#c45a0a;">S04</span>
         <span>コンテキストエンジニアリング概論</span>
+        <span class="fail-badge" id="fail_ch04_s04"></span>
         <span class="status-dot" id="dot_ch04_s04"></span>
-      </a>
+      </a><a class="quiz-mini-link" href="ch04_quiz.html#ch04_s04" title="理解度チェックへ">📝</a>
   </div>
   <div class="chapter-card">
     <div class="chapter-card-header" style="background:linear-gradient(135deg,#701035,#a01850);">
       <span>Ch.05</span><span>人と組織から考えるAI時代の組織設計</span>
     </div>
-      <a class="section-link" href="ch05.html#ch05_s01">
+      <a class="section-link" href="ch05_overview.html#ch05_s01">
         <span class="sec-num" style="color:#a01850;">S01</span>
         <span>AIエージェント導入と組織文化の変革</span>
+        <span class="fail-badge" id="fail_ch05_s01"></span>
         <span class="status-dot" id="dot_ch05_s01"></span>
-      </a>
-      <a class="section-link" href="ch05.html#ch05_s02">
+      </a><a class="quiz-mini-link" href="ch05_quiz.html#ch05_s01" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch05_overview.html#ch05_s02">
         <span class="sec-num" style="color:#a01850;">S02</span>
         <span>AIエージェント推進の組織類型</span>
+        <span class="fail-badge" id="fail_ch05_s02"></span>
         <span class="status-dot" id="dot_ch05_s02"></span>
-      </a>
-      <a class="section-link" href="ch05.html#ch05_s03">
+      </a><a class="quiz-mini-link" href="ch05_quiz.html#ch05_s02" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch05_overview.html#ch05_s03">
         <span class="sec-num" style="color:#a01850;">S03</span>
         <span>人材評価と指標の再設計</span>
+        <span class="fail-badge" id="fail_ch05_s03"></span>
         <span class="status-dot" id="dot_ch05_s03"></span>
-      </a>
-      <a class="section-link" href="ch05.html#ch05_s04">
+      </a><a class="quiz-mini-link" href="ch05_quiz.html#ch05_s03" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch05_overview.html#ch05_s04">
         <span class="sec-num" style="color:#a01850;">S04</span>
         <span>チェンジマネジメント</span>
+        <span class="fail-badge" id="fail_ch05_s04"></span>
         <span class="status-dot" id="dot_ch05_s04"></span>
-      </a>
-      <a class="section-link" href="ch05.html#ch05_s05">
+      </a><a class="quiz-mini-link" href="ch05_quiz.html#ch05_s04" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch05_overview.html#ch05_s05">
         <span class="sec-num" style="color:#a01850;">S05</span>
         <span>AIエージェント推進者が現場で直面する5つの問いと答え方</span>
+        <span class="fail-badge" id="fail_ch05_s05"></span>
         <span class="status-dot" id="dot_ch05_s05"></span>
-      </a>
+      </a><a class="quiz-mini-link" href="ch05_quiz.html#ch05_s05" title="理解度チェックへ">📝</a>
   </div>
   <div class="chapter-card">
     <div class="chapter-card-header" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);">
       <span>Ch.06</span><span>AIエージェントを実装する5Dモデル</span>
     </div>
-      <a class="section-link" href="ch06.html#ch06_s01">
+      <a class="section-link" href="ch06_overview.html#ch06_s01">
         <span class="sec-num" style="color:#2a6e3a;">S01</span>
         <span>5DモデルStep1 Discovery — 発見・選定</span>
+        <span class="fail-badge" id="fail_ch06_s01"></span>
         <span class="status-dot" id="dot_ch06_s01"></span>
-      </a>
-      <a class="section-link" href="ch06.html#ch06_s02">
+      </a><a class="quiz-mini-link" href="ch06_quiz.html#ch06_s01" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch06_overview.html#ch06_s02">
         <span class="sec-num" style="color:#2a6e3a;">S02</span>
         <span>5DモデルStep2 Definition — 定義・構造化</span>
+        <span class="fail-badge" id="fail_ch06_s02"></span>
         <span class="status-dot" id="dot_ch06_s02"></span>
-      </a>
-      <a class="section-link" href="ch06.html#ch06_s03">
+      </a><a class="quiz-mini-link" href="ch06_quiz.html#ch06_s02" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch06_overview.html#ch06_s03">
         <span class="sec-num" style="color:#2a6e3a;">S03</span>
         <span>5DモデルStep3 Design — 設計・プロンプト</span>
+        <span class="fail-badge" id="fail_ch06_s03"></span>
         <span class="status-dot" id="dot_ch06_s03"></span>
-      </a>
-      <a class="section-link" href="ch06.html#ch06_s04">
+      </a><a class="quiz-mini-link" href="ch06_quiz.html#ch06_s03" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch06_overview.html#ch06_s04">
         <span class="sec-num" style="color:#2a6e3a;">S04</span>
         <span>5DモデルStep4 Development &amp; PoC — 開発・検証</span>
+        <span class="fail-badge" id="fail_ch06_s04"></span>
         <span class="status-dot" id="dot_ch06_s04"></span>
-      </a>
-      <a class="section-link" href="ch06.html#ch06_s05">
+      </a><a class="quiz-mini-link" href="ch06_quiz.html#ch06_s04" title="理解度チェックへ">📝</a>
+      <a class="section-link" href="ch06_overview.html#ch06_s05">
         <span class="sec-num" style="color:#2a6e3a;">S05</span>
         <span>5DモデルStep5 Deployment &amp; Scale — 展開・定着</span>
+        <span class="fail-badge" id="fail_ch06_s05"></span>
         <span class="status-dot" id="dot_ch06_s05"></span>
-      </a>
+      </a><a class="quiz-mini-link" href="ch06_quiz.html#ch06_s05" title="理解度チェックへ">📝</a>
   </div>
-<div style="text-align:center;padding:12px 0 4px;font-size:12px;color:#999;">
-  セクション名をタップして学習を開始
-</div>
-<a href="./reader/" style="display:block;margin:0 0 16px;padding:14px 18px;background:linear-gradient(135deg,#1e3a5f,#2d6a9f);color:white;border-radius:12px;text-decoration:none;text-align:center;font-size:15px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.12);">
+<a href="reader/index.html" style="display:block;margin:16px 0;padding:14px 18px;background:linear-gradient(135deg,#1e3a5f,#2d6a9f);color:white;border-radius:12px;text-decoration:none;text-align:center;font-size:15px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.12);">
   📖 精読ビューアを開く
 </a>
+<div style="text-align:center;padding:12px 0 4px;font-size:12px;color:#999;">
+  セクション名をタップして概要へ、📝アイコンで問題集へ
+</div>
+<button class="logout-btn" onclick="doLogout()" style="display:block;margin:8px auto 0;background:none;border:none;color:#bbb;font-size:12px;cursor:pointer;padding:4px 12px;">ログアウト</button>
+</div>
 <script>
 window.addEventListener('load', function() {
   document.querySelectorAll('.status-dot[id]').forEach(function(dot) {
@@ -449,6 +611,80 @@ window.addEventListener('load', function() {
     var v = localStorage.getItem('s_' + sid);
     dot.className = 'status-dot' + (v ? ' ' + v : '');
   });
+
+  // 誤答バッジ: qwrong_ch01_s01_1 形式のキーを集計（一度でも誤答した問題を永続追跡）
+  var failCounts = {};
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (!key || !key.startsWith('qwrong_')) continue;
+    var parts = key.replace('qwrong_', '').split('_');
+    var sid = parts[0] + '_' + parts[1];
+    failCounts[sid] = (failCounts[sid] || 0) + 1;
+  }
+  Object.keys(failCounts).forEach(function(sid) {
+    var badge = document.getElementById('fail_' + sid);
+    var link  = badge && badge.closest('.section-link');
+    if (badge) {
+      badge.textContent = '\u2717 ' + failCounts[sid];
+      badge.classList.add('has-fail');
+    }
+    if (link) link.classList.add('has-fail');
+  });
+});
+</script>
+<script>
+var AUTH_HASH_JS = 'a18f055ef6aed551b3885777f6582a7b11d281f4ef52542feb8b6e77a4eaca47';
+var AUTH_EXPIRE_JS = 2592000000;
+
+async function sha256(str) {
+  var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+}
+
+function checkAuth() {
+  try {
+    var a = JSON.parse(localStorage.getItem('reader_auth') || 'null');
+    return a && a.h === AUTH_HASH_JS && a.e > Date.now();
+  } catch(e) { return false; }
+}
+
+function showAuthedContent() {
+  document.getElementById('auth-panel').style.display = 'none';
+  document.getElementById('content-panel').style.display = 'block';
+  var ret = null;
+  try { ret = sessionStorage.getItem('auth_return'); } catch(e) {}
+  if (ret) {
+    try { sessionStorage.removeItem('auth_return'); } catch(e) {}
+    location.href = ret;
+  }
+}
+
+async function doLogin() {
+  var pw = document.getElementById('pw-input').value;
+  var h = await sha256(pw);
+  if (h === AUTH_HASH_JS) {
+    localStorage.setItem('reader_auth', JSON.stringify({h: AUTH_HASH_JS, e: Date.now() + AUTH_EXPIRE_JS}));
+    showAuthedContent();
+  } else {
+    document.getElementById('auth-error').style.display = 'block';
+  }
+}
+
+function doLogout() {
+  localStorage.removeItem('reader_auth');
+  location.reload();
+}
+
+window.addEventListener('load', function() {
+  var pwInput = document.getElementById('pw-input');
+  if (pwInput) {
+    pwInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') doLogin(); });
+  }
+  if (checkAuth()) {
+    showAuthedContent();
+  } else {
+    document.getElementById('auth-panel').style.display = 'block';
+  }
 });
 </script>
 </body>

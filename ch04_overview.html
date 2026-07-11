@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){
+  var H='a18f055ef6aed551b3885777f6582a7b11d281f4ef52542feb8b6e77a4eaca47';
+  try{
+    var a=JSON.parse(localStorage.getItem('reader_auth')||'null');
+    if(!a||a.h!==H||a.e<Date.now()){
+      try{ sessionStorage.setItem('auth_return', location.pathname + location.search + location.hash); }catch(e){}
+      location.replace('index.html');
+    }
+  }catch(e){
+    location.replace('index.html');
+  }
+})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Ch.04 概要 | 自動化レベルとワークフロー設計</title>
+  <style>
+:root {
+  --bg: #f0f2f5; --surface: #ffffff; --surface2: #f5f5f7; --surface3: #e9eaec;
+  --text: #1a1a1a; --text2: #444444; --text3: #888888;
+  --accent: #2d6a9f; --border: #e5e7eb;
+  --font-size: 16px;
+}
+.dark {
+  --bg: #111827; --surface: #1f2937; --surface2: #374151; --surface3: #4b5563;
+  --text: #f9fafb; --text2: #d1d5db; --text3: #9ca3af;
+  --border: #374151;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Helvetica Neue', sans-serif;
+  font-size: var(--font-size, 16px); line-height: 1.7; color: var(--text);
+  background: var(--bg); padding: 12px;
+  max-width: 600px; margin: 0 auto;
+}
+
+/* ── ヘッダー ───────────────────────────── */
+.page-header {
+  color: white; border-radius: 12px; padding: 16px 18px; margin-bottom: 12px;
+}
+.breadcrumb { font-size: 12px; opacity: .75; margin-bottom: 4px; }
+.page-title  { font-size: 20px; font-weight: 700; letter-spacing: -.3px; }
+.header-meta { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px;
+  border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge-ch   { background: rgba(255,255,255,.22); color: white; }
+.badge-exam { background: #ff9500; color: white; }
+
+/* ── カード ─────────────────────────────── */
+.card {
+  background: var(--surface); border-radius: 12px; padding: 18px;
+  margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.card-title {
+  font-size: 14px; font-weight: 700; color: var(--text);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
+}
+.card-title::before {
+  content: ''; display: inline-block; width: 3px; height: 16px;
+  background: currentColor; border-radius: 2px; opacity: .6;
+}
+
+/* ── 試験ポイント ────────────────────────── */
+.exam-point {
+  background: #fff8e6; border-left: 3px solid #ff9500;
+  border-radius: 0 8px 8px 0; padding: 10px 12px;
+  font-size: 14px; line-height: 1.75; color: #3a2c00;
+}
+.dark .exam-point { background: #422006; color: #fde68a; }
+.exam-label { font-weight: 700; color: #c67200; font-size: 12px; margin-bottom: 5px; }
+.dark .exam-label { color: #fbbf24; }
+
+/* ── 概要カード: トピック概要セクション ─── */
+.ov-divider { border-top: 1px solid var(--border); margin: 14px 0 10px; }
+.ov-section { margin-bottom: 12px; }
+.ov-section-title {
+  font-size: 13px; font-weight: 700;
+  border-left: 3px solid #2d6a9f;
+  padding: 4px 8px 4px 10px; border-radius: 0 4px 4px 0;
+  margin-bottom: 5px; color: var(--text);
+}
+.ov-section-body {
+  font-size: 13px; line-height: 1.65; color: var(--text2);
+  padding-left: 13px;
+}
+.ov-body-p { font-size: 13px; line-height: 1.65; color: var(--text); margin-bottom: 6px; }
+
+/* ── 学習ステータス ──────────────────────── */
+.status-card {
+  background: var(--surface); border-radius: 12px; padding: 14px 18px;
+  margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.status-label { font-size: 14px; font-weight: 600; color: var(--text2); flex-shrink: 0; }
+.status-btns  { display: flex; gap: 8px; }
+.status-btn {
+  padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  cursor: pointer; border: 2px solid transparent; transition: all .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-done  { background: #e6f4ea; color: #1a7340; border-color: #34a853; }
+.btn-later { background: #e8f0fe; color: #1a4bae; border-color: #4285f4; }
+.btn-done.active  { background: #34a853; color: white; }
+.btn-later.active { background: #4285f4; color: white; }
+.dark .btn-done  { background: #052e16; color: #4ade80; }
+.dark .btn-later { background: #1e293b; color: #93c5fd; }
+
+/* ── 深掘りノート（アコーディオン） ────────── */
+.deepdive-wrap { margin-bottom: 12px; }
+.deepdive-btn {
+  width: 100%; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  font-size: 14px; font-weight: 600; color: var(--text);
+  text-align: left; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  -webkit-tap-highlight-color: transparent;
+}
+.deepdive-btn .dd-arrow-icon { font-size: 12px; transition: transform .25s; color: #2d6a9f; }
+.deepdive-btn.open .dd-arrow-icon { transform: rotate(90deg); }
+.deepdive-content {
+  display: none; background: var(--surface);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 16px 18px;
+}
+.deepdive-content.open { display: block; }
+.reader-goto-link {
+  display: block; margin-top: 14px; padding: 11px 14px;
+  background: var(--surface2); border-radius: 8px; text-align: center;
+  font-size: 13px; font-weight: 600; color: #2d6a9f; text-decoration: none;
+}
+
+/* ── 深掘りノート内 コンテンツスタイル ──────── */
+.dd-h3 {
+  font-size: 13px; font-weight: 700;
+  border-left: 3px solid #2d6a9f;
+  background: var(--surface2);
+  padding: 6px 10px; border-radius: 0 6px 6px 0;
+  margin: 16px 0 8px; line-height: 1.5; color: var(--text);
+}
+.dd-h3:first-child { margin-top: 0; }
+.dd-p {
+  font-size: 14px; line-height: 1.8; color: var(--text);
+  margin-bottom: 8px;
+}
+.dd-bullet {
+  font-size: 14px; line-height: 1.7; color: var(--text);
+  margin-bottom: 6px;
+  display: flex; align-items: flex-start; gap: 6px;
+}
+.dd-arrow { font-size: 12px; flex-shrink: 0; margin-top: 4px; }
+
+/* ── コールアウトボックス (POINT) ──────────── */
+.callout-box {
+  border-left: 3px solid #2d6a9f;
+  border-radius: 0 8px 8px 0;
+  padding: 10px 12px;
+  font-size: 14px; line-height: 1.75;
+  margin: 10px 0; font-weight: 500;
+  display: flex; gap: 8px; align-items: flex-start;
+  color: var(--text);
+}
+.callout-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+
+/* ── 業務シナリオ ────────────────────────── */
+.scenario-section {
+  border-left: 3px solid #4285f4;
+  border-radius: 0 8px 8px 0;
+  background: #f0f4ff;
+  padding: 12px 14px; margin-top: 14px; color: #1a1a2e;
+}
+.dark .scenario-section { background: #1e293b; color: #d1d5db; }
+.scenario-label { font-size: 12px; font-weight: 700; color: #1a4bae; margin-bottom: 6px; }
+.dark .scenario-label { color: #93c5fd; }
+
+/* ── 記憶の鍵 ────────────────────────────── */
+.memory-key {
+  color: white; border-radius: 10px;
+  padding: 14px 16px; margin-top: 16px; text-align: center;
+}
+.memory-key-label { font-size: 11px; opacity: .75; margin-bottom: 6px; letter-spacing: .5px; }
+.memory-key-text  { font-size: 14px; font-weight: 700; line-height: 1.6; }
+
+/* ── 理解度チェック ─────────────────────── */
+.quiz-hdr {
+  font-size: 15px; font-weight: 700; color: var(--text);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
+}
+.quiz-block {
+  background: var(--surface); border-radius: 12px; padding: 18px;
+  margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.quiz-num      { font-size: 12px; font-weight: 700; color: #2d6a9f; margin-bottom: 8px; }
+.quiz-question { font-size: 15px; font-weight: 600; line-height: 1.6; margin-bottom: 14px; color: var(--text); }
+.choices { display: flex; flex-direction: column; gap: 8px; }
+.choice-btn {
+  background: var(--surface2); border: 2px solid transparent; border-radius: 10px;
+  padding: 11px 14px; font-size: 14px; text-align: left;
+  cursor: pointer; line-height: 1.5; color: var(--text);
+  transition: background .15s, border-color .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.choice-btn:active  { background: var(--surface3); }
+.choice-btn.correct { background: #e6f4ea; border-color: #34a853; color: #1a7340; font-weight: 600; }
+.choice-btn.wrong   { background: #fce8e6; border-color: #ea4335; color: #b31412; }
+.choice-btn.dimmed  { opacity: .4; pointer-events: none; }
+.dark .choice-btn.correct { background: #052e16; color: #4ade80; }
+.dark .choice-btn.wrong   { background: #450a0a; color: #fca5a5; }
+.explanation {
+  display: none; background: #e6f4ea; border-radius: 8px;
+  padding: 12px 14px; margin-top: 12px; font-size: 14px; line-height: 1.6;
+  border-left: 3px solid #34a853; color: #14401f;
+}
+.explanation.show { display: block; }
+.ans-label { font-weight: 700; color: #1a7340; font-size: 13px; margin-bottom: 5px; }
+.explanation.hint { background: #fff8e6; border-left-color: #ff9500; }
+.explanation.hint .ans-label { color: #c67200; }
+.dark .explanation { background: #052e16; color: #d1fae5; }
+.dark .explanation .ans-label { color: #4ade80; }
+.dark .explanation.hint { background: #422006; color: #fde68a; }
+.dark .explanation.hint .ans-label { color: #fbbf24; }
+.action-btns { display: flex; gap: 8px; margin-top: 10px; }
+.retry-btn, .next-btn {
+  padding: 9px 18px; border-radius: 8px; border: none;
+  font-size: 14px; font-weight: 600; cursor: pointer; display: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.retry-btn.show, .next-btn.show { display: inline-block; }
+.retry-btn { background: var(--surface2); color: var(--text); }
+.next-btn  { background: #34a853; color: white; }
+.score-banner {
+  display: none; background: linear-gradient(135deg, #34a853, #1a7340);
+  color: white; border-radius: 10px; padding: 16px; text-align: center; margin-top: 10px;
+}
+.score-banner.show { display: block; }
+.score-main { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.retake-btn-main {
+  display: block; width: 100%; background: #fce8e6; color: #b31412;
+  border: 2px solid #ea4335; border-radius: 8px; padding: 10px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  margin-bottom: 12px; -webkit-tap-highlight-color: transparent;
+}
+.dark .retake-btn-main { background: #450a0a; color: #fca5a5; }
+.retake-banner {
+  background: #fff3e0; border: 2px solid #ff9500; border-radius: 8px;
+  padding: 10px 14px; margin-bottom: 12px;
+  font-size: 14px; font-weight: 700; color: #c67200; text-align: center;
+}
+.dark .retake-banner { background: #422006; color: #fbbf24; }
+
+/* ── ナビ ────────────────────────────────── */
+.nav-footer { display: flex; gap: 10px; margin-top: 16px; padding-bottom: 24px; }
+.nav-btn {
+  flex: 1; padding: 12px; border-radius: 10px; border: 2px solid #2d6a9f;
+  background: var(--surface); color: #2d6a9f; font-size: 14px; font-weight: 600;
+  cursor: pointer; text-align: center; text-decoration: none;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-btn.primary { background: #2d6a9f; color: white; }
+
+/* ── 索引 ────────────────────────────────── */
+.index-header {
+  background: linear-gradient(135deg, #1e3a5f, #2d6a9f); color: white;
+  border-radius: 12px; padding: 20px; margin-bottom: 16px; text-align: center;
+}
+.index-header h1 { font-size: 22px; margin-bottom: 6px; }
+.index-header p  { font-size: 13px; opacity: .8; }
+.chapter-card { background: var(--surface); border-radius: 12px; margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
+.chapter-card-header { padding: 14px 18px; font-weight: 700; font-size: 15px;
+  color: white; display: flex; align-items: center; gap: 8px; }
+.section-link { display: flex; align-items: center; gap: 10px; padding: 11px 18px;
+  border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text); font-size: 14px; }
+.section-link:last-child { border-bottom: none; }
+.section-link:active { background: var(--surface2); }
+.sec-num { font-weight: 700; font-size: 12px; min-width: 28px; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; flex-shrink: 0; margin-left: auto; }
+.status-dot.done  { background: #34a853; }
+.status-dot.later { background: #4285f4; }
+.quiz-mini-link {
+  flex-shrink: 0; font-size: 15px; text-decoration: none; opacity: .5;
+  padding: 4px; margin-left: 4px;
+}
+.quiz-mini-link:active { opacity: 1; }
+
+/* ── 誤答バッジ ─────────────────────────── */
+.fail-badge {
+  display: none; margin-left: auto;
+  background: #ea4335; color: white;
+  font-size: 10px; font-weight: 700;
+  border-radius: 10px; padding: 2px 7px;
+  flex-shrink: 0; letter-spacing: .2px;
+}
+.fail-badge.has-fail { display: inline-flex; align-items: center; gap: 2px; }
+.section-link.has-fail { background: #fff5f5; }
+.dark .section-link.has-fail { background: #1a0f0f; }
+.section-link.has-fail:active { background: #fce8e6; }
+
+/* ── 認証パネル ─────────────────────────── */
+.auth-card {
+  background: var(--surface); border-radius: 12px; padding: 28px 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 12px; text-align: center;
+}
+.auth-icon { font-size: 36px; margin-bottom: 12px; }
+.auth-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.auth-desc { font-size: 13px; color: var(--text3); margin-bottom: 20px; }
+.auth-input {
+  width: 100%; padding: 12px 16px; border: 2px solid var(--border);
+  border-radius: 8px; font-size: 16px; outline: none; transition: border-color .2s;
+  background: var(--surface); color: var(--text);
+}
+.auth-input:focus { border-color: #2d6a9f; }
+.auth-btn {
+  width: 100%; margin-top: 10px; padding: 13px;
+  background: #2d6a9f; color: white; border: none;
+  border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.auth-btn:active { background: #1e3a5f; }
+.auth-error { color: #d32f2f; font-size: 13px; margin-top: 10px; display: none; }
+.dark .auth-error { color: #fca5a5; }
+
+/* ── UIツールバー（文字サイズ・ダークモード） ─── */
+.ui-toolbar {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  background: var(--surface); border-radius: 10px; padding: 8px 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.ui-toolbar-label { font-size: 12px; color: var(--text3); flex-shrink: 0; }
+.ui-font-slider { flex: 1; accent-color: #2d6a9f; }
+.ui-dark-btn {
+  flex-shrink: 0; background: var(--surface2); border: none; border-radius: 8px;
+  width: 32px; height: 32px; font-size: 15px; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── フローティングナビメニュー ─────────────── */
+.float-nav-wrap { position: fixed; bottom: 22px; right: 14px; z-index: 500; }
+.float-home {
+  background: rgba(26,26,26,.88); color: white !important;
+  padding: 9px 16px; border-radius: 22px;
+  font-size: 13px; font-weight: 700; border: none; cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,.25); -webkit-tap-highlight-color: transparent;
+}
+.float-nav-menu {
+  display: none; position: absolute; bottom: 46px; right: 0;
+  background: var(--surface); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.25);
+  padding: 8px; min-width: 210px;
+}
+.float-nav-menu.open { display: block; }
+.fnav-sec-label { font-size: 11px; color: var(--text3); padding: 6px 14px 2px; }
+.fnav-item {
+  display: block; padding: 10px 14px; font-size: 14px; color: var(--text);
+  text-decoration: none; border-radius: 8px;
+}
+.fnav-item:active { background: var(--surface2); }
+.fnav-item.current { color: #2d6a9f; font-weight: 700; }
+.fnav-divider { border-top: 1px solid var(--border); margin: 6px 4px; }
+</style>
+</head>
+<body>
+
+<div class="ui-toolbar">
+  <span class="ui-toolbar-label">文字サイズ</span>
+  <input type="range" class="ui-font-slider" id="ui-font-slider" min="13" max="22" step="1" value="16">
+  <button class="ui-dark-btn" id="ui-dark-btn">🌙</button>
+</div>
+
+<section id="ch04_s01" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);">
+  <div class="breadcrumb">Chapter 04 ｜ 自動化レベルとワークフロー設計</div>
+  <div class="page-title">Section 01 ｜ 自動化レベルの進化論と実務における最適解</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.04-S01</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#8a3e06;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、自動化の4段階を理解し、業務の性質やリスクに応じて適切な自動化レベルを選べるようになることを目的とします。試験では、具体的な業務シナリオに対して、どの自動化レベルが適切かを判断する力が問われます。特に、あらかじめ定めた手順に沿って処理を進めるLv.3のワークフロー型と、状況に応じて自律的に判断・実行するLv.4の自律型エージェントの違いは重要な論点です。あわせて、最初から大規模導入を目指すのではなく、最小限の範囲で価値を検証しながら進めるMVPの考え方も理解しておく必要があります。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#c45a0a;color:#8a3e06;">なぜ「段階的に進める」必要があるのか</div><div class="ov-section-body">AIエージェントの導入を検討するとき、「せっかくやるなら最初から全自動にしよう」と考えたくなります。しかしこの発想が、多くのプロジェクトを失敗に導いています。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">前者はトリガーから各ステップが事前設計されたフローで連鎖しており、Lv.3です。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch04_s01">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch04_s01','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch04_s01','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#c45a0a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#c45a0a;background:#fff0e0;">なぜ「段階的に進める」必要があるのか</h3>
+<p class="dd-p">AIエージェントの導入を検討するとき、「せっかくやるなら最初から全自動にしよう」と考えたくなります。しかしこの発想が、多くのプロジェクトを失敗に導いています。</p>
+<p class="dd-p">いきなり全自動を目指すプロジェクトは、構築に時間がかかりすぎて成果が出る前に社内の期待値が下がり、途中で頓挫します。AIエージェントに限らず、あらゆる変革において「大きく始めて失敗する」より「小さく始めて改善し続ける」ほうが、最終的に到達できる地点は高い。これはソフトウェア開発の世界でアジャイル開発が普及した理由と本質的には同じです。</p>
+<p class="dd-p">段階的導入が有効な理由はもう1つあります。AIエージェントの導入は、技術の問題であると同時に組織の信頼の問題でもあるからです。現場がAIエージェントを信頼していない段階でいきなり全自動化を進めれば、一度の失敗が「やはりAIエージェントは使えない」という印象を組織に植えつけます。</p>
+<p class="dd-p">小さく始めて早期に価値を実感し、信頼を積み上げてから範囲を広げる。この段階的アプローチが、AIエージェント導入を組織に根づかせる最も現実的な道筋です。</p>
+<div class="scenario-section" style="border-left-color:#c45a0a;"><div class="scenario-label" style="color:#8a3e06;">📋 業務シナリオ</div><p class="dd-p">ここからは、章頭で紹介した提案書AIのケースを使って、まず適切な自動化レベルを見極めます。営業部門では、30名の営業担当者が月間平均8件の提案書を作成し、1件あたり6時間を要しています。CRMの顧客情報、過去の受注提案書、製品カタログ、競合分析レポートを参照して提案書ドラフトを自動生成するAIエージェントを導入する計画です。</p>
+<p class="dd-p">①で学んだ⾃動化レベルの概念を使って判断していきます。</p>
+<p class="dd-p">Lv.1は手動利用の段階です。営業担当者がChatGPTを開き、「○○業界の△△社向けに、当社の□□製品の提案書を作って」と都度入力します。仕組み化されておらず、プロンプトの書き方が人によってバラバラなため、出力品質も不安定です。</p>
+<p class="dd-p">##CALLOUT##Lv.2はテンプレート活用の段階です。システムプロンプトとナレッジベースを設定したカスタムチャットボットを構築します。営業担当者が顧客名や案件概要を入力すれば、一定のフォーマットで提案書ドラフトが出力されます。ただしSalesforceとの連携はなく、顧客情報は手動でコピペする必要があります。</p>
+<p class="dd-p">Lv.3はワークフロー自動化の段階です。Salesforceの案件ステージが「提案準備」に変更されたことをトリガーに、顧客情報の取得、業界に合った過去提案書の検索、ドラフト生成、営業担当者への通知が自動で連鎖します。各ステップの順序とロジックは人間が事前に設計しており、AIエージェントはドラフト生成の部分で判断を担います。</p>
+<p class="dd-p">Lv.4は自律型の段階です。AIエージェントがSalesforceの商談進捗を自律的に監視し、「この商談はそろそろ提案書を出すべきタイミングだ」と自ら判断します。そこから顧客の課題分析、競合との差別化ポイント抽出、最適な構成の提案書を計画・作成、上長レビュー依頼、顧客への送付までを自律的に遂行します。</p>
+<p class="dd-p">何をどの順序で⾏うかをAIエージェント⾃⾝が計画している点が、Lv.3との決定的な違いです。</p>
+<p class="dd-p">いきなりLv.4を⽬指すことは現実的ではありません。MVPアプローチで段階的に引き上げます。</p>
+<p class="dd-p">最初はLv.2での価値検証です。カスタムチャットボットで提案書アシスタントを構築し、営業担当者5名に先行利用してもらいます。この段階で検証するのは「AIエージェントが生成する提案書ドラフトは実際に使える品質か」「どの業界・製品カテゴリのドラフト品質が高いか」の2点です。</p></div>
+    <a class="reader-goto-link" href="reader/ch4.html#sec-1">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#c45a0a;color:#c45a0a;" href="ch03_overview.html#ch03_s07">&larr; AIプロジェクトの成功の定義：3</a><a class="nav-btn primary" href="ch04_overview.html#ch04_s02" style="background:#c45a0a;border-color:#c45a0a;">ワークフロー設計 トリガーとアク &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch04_s02" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);">
+  <div class="breadcrumb">Chapter 04 ｜ 自動化レベルとワークフロー設計</div>
+  <div class="page-title">Section 02 ｜ ワークフロー設計 トリガーとアクション</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.04-S02</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#8a3e06;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、ワークフロー型の自動化を構成する基本要素である「トリガー」と「アクショ
+ン」の設計を学びます。トリガーは処理を開始するきっかけであり、アクションは実際に実行され
+る処理です。試験では、トリガーの3つの種類の違いと、アクションの主要な3種類の役割や位置づ
+けが問われます。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#c45a0a;color:#8a3e06;">すべての業務には「きっかけ」がある</div><div class="ov-section-body">少し立ち止まって、自分の日常業務を振り返ってみてください。あなたが業務を開始するとき、そこには必ず何らかの「きっかけ」があるはずです。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">Salesforceの案件ステージという「システム内の状態変化」を検知してワークフローが起動しているため、イベントトリガーです。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch04_s02">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch04_s02','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch04_s02','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#c45a0a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#c45a0a;background:#fff0e0;">すべての業務には「きっかけ」がある</h3>
+<p class="dd-p">少し立ち止まって、自分の日常業務を振り返ってみてください。あなたが業務を開始するとき、そこには必ず何らかの「きっかけ」があるはずです。</p>
+<p class="dd-p">たとえば、上司や顧客から「これを対応してほしい」と依頼されて始まる業務があります。また、毎週月曜日の朝に実施すると決まっている週次レポートの作成のように、あらかじめ時期が決まっている業務もあります。さらに、「エラーが発生したら対応する」「在庫が一定量を下回ったら発注する」といったように、特定の条件が満たされたときに開始される業務もあります。</p>
+<p class="dd-p">これらはそれぞれ、指示型・定時型・条件型という3つの起動パターンに分類できます。実はこれは人間の仕事だけでなく、AIエージェントのワークフロー設計にもそのまま当てはまります。</p>
+<p class="dd-p">前のSectionでLv.3ワークフローを「決められたレールの上を走る電車」と表現しましたが、その電車を「何をきっかけに発車させるか」がトリガーの設計であり、「発車してからどこへ向かうか」がアクションの設計です。</p>
+<p class="dd-p">トリガー設計「何をきっかけに動くか」</p>
+<p class="dd-p">ワークフローにおけるトリガーは、業務がどのようなきっかけで開始されるかという観点から整理できます。基本的には3つの大きな分類があり、それぞれの分類の中に、実装上の具体的な種類が含まれます。</p>
+<div class="scenario-section" style="border-left-color:#c45a0a;"><div class="scenario-label" style="color:#8a3e06;">📋 業務シナリオ</div><p class="dd-p">Section19でLv.3ワークフローが提案書AI導入の現実的な到達点であると判断しました。次は「具体的にどうワークフローを設計するか」を、トリガーとアクションの観点で考えていきます。</p>
+<p class="dd-p">提案書AIのワークフローは「何をきっかけに起動すべきか」を検討します。</p>
+<p class="dd-p">選択肢A（スケジュールトリガー）は、毎朝9時にSalesforceの全案件をスキャンし、「提案準備」ステージにある案件を対象にドラフト生成を実行する方式です。設計はシンプルですが、最大24時間のタイムラグが発生します。</p>
+<p class="dd-p">選択肢B（イベントトリガー）は、Salesforce上で営業担当者が案件ステージを「提案準備」に変更した瞬間を検知し、ワークフローが起動する方式です。リアルタイム性が高く、不要な起動も起きにくい利点があります。</p>
+<p class="dd-p">選択肢C（フォーム送信トリガー）は、営業担当者が専用フォームに顧客名・案件概要を入力して送信する方式です。意図は明確ですが、Salesforceにすでにある情報をフォームに再入力する二重入力の手間が発生します。</p>
+<p class="dd-p">Salesforceにすでに案件情報が蓄積されている環境では選択肢Bが最適です。既存の業務フローに自然に組み込まれ、営業担当者に追加の操作を求めません。Section3で学んだ「現場に負荷をかけずにAIエージェントを業務に溶け込ませる」</p>
+<p class="dd-p">設計の実践です。</p>
+<p class="dd-p">トリガーが決まったら、次は「何をするか」をアクションとして設計します。</p>
+<p class="dd-p">ステップはAPIコールです。Salesforceの案件IDをもとに、顧客名‧業界‧案件規模‧商談履歴を取得します。</p></div>
+    <a class="reader-goto-link" href="reader/ch4.html#sec-2">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#c45a0a;color:#c45a0a;" href="ch04_overview.html#ch04_s01">&larr; 自動化レベルの進化論と実務におけ</a><a class="nav-btn primary" href="ch04_overview.html#ch04_s03" style="background:#c45a0a;border-color:#c45a0a;">ワークフロー設計 変数と条件分岐 &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch04_s03" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);">
+  <div class="breadcrumb">Chapter 04 ｜ 自動化レベルとワークフロー設計</div>
+  <div class="page-title">Section 03 ｜ ワークフロー設計 変数と条件分岐</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.04-S03</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#8a3e06;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、ワークフローを柔軟に制御するための基本要素である「変数」と「条件分岐」を学びます。試験では、条件分岐の3つの型、すなわちIf/Else、ルーティング、フィルタリングの違いを理解していることが求められます。最終的には、具体的な業務シナリオに対して、どの条件分岐を用いるべきかを判断できるようになることが目標です。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#c45a0a;color:#8a3e06;">なぜ条件分岐が必要か同じ処理をすべての案件に当てはめてはいけない</div><div class="ov-section-body">Section18で学んだワークフローは、トリガーからアクションへの流れで動く仕組みでした。しかし実際の業務を思い浮かべると、すべての案件をまったく同じように処理できる場面はほとんどありません。</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">エラーハンドリングはIf/Elseの応用であり、「正常系」と「異常系」で分岐させます。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch04_s03">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch04_s03','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch04_s03','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#c45a0a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#c45a0a;background:#fff0e0;">なぜ条件分岐が必要か同じ処理をすべての案件に当てはめてはいけない</h3>
+<p class="dd-p">Section18で学んだワークフローは、トリガーからアクションへの流れで動く仕組みでした。しかし実際の業務を思い浮かべると、すべての案件をまったく同じように処理できる場面はほとんどありません。</p>
+<p class="dd-p">たとえば、提案書を自動生成するワークフローを作ったとします。製造業の顧客にも金融業の顧客にも、まったく同じテンプレートで提案書を送ったらどうなるか。製造業の顧客に、セキュリティや規制対応を前面に押し出した金融向けの構成の提案書が届くことになります。自動化の恩恵を受けるどころか、顧客の信頼を損なう結果になりかねません。</p>
+<p class="dd-p">「顧客の業界に応じてテンプレートを切り替える」「金額の大きさに応じて承認ルートを変える」「エラーが出たときだけ担当者に通知する」──こうした「状況に応じて処理を変える」設計が条件分岐です。条件分岐を組み込むことで、ワークフローは単純な「直線」から、現実の業務の複雑さに対応できる「分岐する経路」へと進化します。</p>
+<div class="scenario-section" style="border-left-color:#c45a0a;"><div class="scenario-label" style="color:#8a3e06;">📋 業務シナリオ</div><p class="dd-p">Section20でトリガーとアクションの連鎖を設計しました。次は「顧客や案件の特性に応じて処理を柔軟に変える」ための変数と条件分岐を組み込みます。</p>
+<p class="dd-p">提案書生成ワークフローでは、Salesforceから取得した案件情報を変数として管理し、その値に応じて条件分岐を設計します。</p>
+<p class="dd-p">業界別ルーティングでは、industry変数の値に基づいて提案書テンプレートを振り分けます。製造業ならコスト削減・生産性向上を強調したテンプレート、金融ならコンプライアンス・セキュリティを強調したテンプレート、小売なら顧客体験を強調したテンプレート、それ以外は汎用テンプレートを選択します。分岐先が4つあるため、これはルーティングです。</p>
+<p class="dd-p">案件規模によるIf/Elseでは、deal_size変数の値に基づいて分岐させます。案件規模が1,000万円以上なら、詳細版テンプレートを使用し部長レビューを必須とします。1,000万円未満なら、簡易版テンプレートを使用しチームリーダーレビューで可とします。経路が2つなのでIf/Elseです。</p>
+<p class="dd-p">フィルタリングの活用として、過去提案書の検索結果から「受注に至った提案書のみ」を通過させ、失注した提案書は参考対象から除外します。</p>
+<p class="dd-p">##CALLOUT##条件分岐の設計で最も重要なのは「どの変数で、どの粒度で分岐させるか」です。</p>
+<p class="dd-p">すべてを細かく分岐させるとメンテナンスが大変になり、新しい業界が加わるたびに設計変更が必要になります。逆に一切分岐しないと、業界の異なる顧客に同じ構成の提案書が届いてしまいます。</p>
+<p class="dd-p">AIエージェント・ストラテジストに求められるのは、提案の成否に最も影響する変数に絞って条件分岐を設計することです。この例では業界と案件規模の2つが最重要変数であり、この2つで分岐させれば品質と保守性のバランスが取れます。</p></div>
+    <a class="reader-goto-link" href="reader/ch4.html#sec-3">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#c45a0a;color:#c45a0a;" href="ch04_overview.html#ch04_s02">&larr; ワークフロー設計 トリガーとアク</a><a class="nav-btn primary" href="ch04_overview.html#ch04_s04" style="background:#c45a0a;border-color:#c45a0a;">コンテキストエンジニアリング概論 &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+<section id="ch04_s04" style="scroll-margin-top:12px;">
+
+<div class="page-header" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);">
+  <div class="breadcrumb">Chapter 04 ｜ 自動化レベルとワークフロー設計</div>
+  <div class="page-title">Section 04 ｜ コンテキストエンジニアリング概論</div>
+  <div class="header-meta">
+    <span class="badge badge-ch">Ch.04-S04</span>
+    <span class="badge badge-exam">⚠ 試験頻出</span>
+  </div>
+</div>
+
+<!-- ① 概要カード -->
+<div class="card">
+  <div class="card-title" style="color:#8a3e06;">① 概要カード</div>
+  <div class="exam-point"><div class="exam-label">⚠ 試験で問われるポイント</div>本Sectionでは、LLMに適切な文脈情報を与え、望ましい出力を得るための考え方である「コンテ
+キストエンジニアリング」を理解します。試験では、プロンプトエンジニアリングとの違い、LLM
+に与える情報の種類とその選び方、さらに「出力品質の問題はコンテキスト設計の問題として捉え
+る必要がある」という考え方が問われます。</div>
+<div class="ov-divider"></div>
+<div class="ov-section"><div class="ov-section-title" style="border-left-color:#c45a0a;color:#8a3e06;">コンテキストエンジニアリングとは何か</div><div class="ov-section-body">AIエージェントの出力品質に問題が生じたとき、多くの組織では、まずモデルの性能に原因があると考えがちです。しかし、実務では、モデルを変更しても期待した改善が得られない場合が少なくありません。その理由は…</div></div>
+<div class="memory-key" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);"><div class="memory-key-label">🔑 記憶の鍵</div><div class="memory-key-text">プロンプトエンジニアリングはLLMへの指示の書き方を工夫する技術であり、コンテキストエンジニアリングの一部です。</div></div>
+</div>
+
+<!-- ② 学習ステータス -->
+<div class="status-card">
+  <span class="status-label">② 学習ステータス</span>
+  <div class="status-btns" data-sid="ch04_s04">
+    <button class="status-btn btn-done"  data-val="done"  onclick="setStatus('ch04_s04','done',this)">✓ Done</button>
+    <button class="status-btn btn-later" data-val="later" onclick="setStatus('ch04_s04','later',this)">⏱ 後で確認する</button>
+  </div>
+</div>
+
+<!-- ③ 深掘りノート -->
+<div class="deepdive-wrap">
+  <button class="deepdive-btn" onclick="toggleDeepDive(this)">
+    <span>📖 ③ 詳細を確認する（深掘りノート）</span>
+    <span class="dd-arrow-icon" style="color:#c45a0a;">▶</span>
+  </button>
+  <div class="deepdive-content">
+    <h3 class="dd-h3" style="border-left-color:#c45a0a;background:#fff0e0;">コンテキストエンジニアリングとは何か</h3>
+<p class="dd-p">AIエージェントの出力品質に問題が生じたとき、多くの組織では、まずモデルの性能に原因があると考えがちです。しかし、実務では、モデルを変更しても期待した改善が得られない場合が少なくありません。その理由は、問題の中心がモデルそのものの性能ではなく、モデルにどのような情報を与え、どのような条件で回答させているかという設計にあることが多いためです。</p>
+<p class="dd-p">LLMは「与えられたコンテキストの範囲内で」回答を生成します。どれほど高性能なモデルを使っても、渡す情報が不十分であれば的外れな出力になります。情報が過剰であればノイズに埋もれて要点を見失います。情報の順序が悪ければ、重要な前提を見落とします。</p>
+<p class="dd-p">コンテキストエンジニアリングとは、LLMに渡す文脈情報を体系的に設計・管理する技術です。「何を、どのフォーマットで、どのタイミングで、どの順序で渡すか」を設計することが、LLMの能力を引き出す鍵であり、AIエージェント導入の成否を分ける最重要の技術領域です。</p>
+<p class="dd-p">この概念を広く知らしめたのは、元OpenAI研究者のAndrej Karpathy氏による発言です。同氏はLLMを新しい種類のオペレーティングシステム（OS）に例え、コンテキストウィンドウをCPUに対するRAM（作業メモリ）と位置づけました。</p>
+<p class="dd-p">OSがRAMに載せるデータを管理するように、開発者がコンテキストウィンドウに載せる情報を設計・管理する行為こそがコンテキストエンジニアリングである、という考え方です。この比喩は「プロンプトの書き方」ではなく「何をメモリに載せるか」という問いに設計の本質があることを鮮やかに示し、多くの開発者・実務者の認識を塗り替えました。</p>
+<p class="dd-p">なお、この発言と時を同じくしてShopify CEOのTobias Lütke氏も「プロンプトエンジニアリングよりもコンテキストエンジニアリングという言葉のほうがコアスキルを的確に表している」と発信しており、二つの声が重なる形でこの概念の認知が一気に広がりました。</p>
+<p class="dd-p">前のSectionで繰り返し登場した「AIエージェントにとって見えないものは、存在しないのと同じ」という原則は、コンテキストエンジニアリングの核心をそのまま表しています。</p>
+<div class="scenario-section" style="border-left-color:#c45a0a;"><div class="scenario-label" style="color:#8a3e06;">📋 業務シナリオ</div><p class="dd-p">提案書自動生成AIエージェントでは、「営業担当者が顧客名と要件を入力するだけで、高品質な提案書ドラフトが生成される」ことを目指します。LLMに渡す情報をどう設計するかが、出力品質を直接左右します。</p>
+<p class="dd-p">まず、すべての提案書⽣成に共通する情報を設計します。</p>
+<p class="dd-p">システムプロンプトに「あなたの役割は提案書のプロとしてクライアントの課題に寄り添い、具体的な解決策を提示することにあります。トーンは信頼感のあるビジネス文書として、断定的かつ前向きな表現を使ってください」と記述します。これがなければ、LLMは汎用的な文章スタイルで出力してしまいます。</p>
+<p class="dd-p">次に、顧客や案件ごとに変わる情報の設計です。ここが出⼒品質の差を⽣むポイントです。</p>
+<p class="dd-p">Salesforceから取得した顧客情報をコンテキストに含めます。さらに、Section19で設計した業界別ルーティングを適用し、製造業の顧客には「生産効率・品質管理・サプライチェーンの観点を重視してください」、金融業の顧客には「コンプライアンス・リスク管理・規制対応の観点を重視してください」といった業界固有の指示を自動で差し替えます。</p>
+<p class="dd-p">RAGを通じて、社内ナレッジベースから類似業界・類似規模の過去受注提案書を検索し、コンテキストに追加します。過去の商談で顧客が示した予算上限や優先課題が記憶されていれば、それも参照して提案内容を調整します。</p></div>
+    <a class="reader-goto-link" href="reader/ch4.html#sec-4">📖 精読ビューアでさらに詳しく読む →</a>
+  </div>
+</div>
+
+<div class="nav-footer"><a class="nav-btn" style="border-color:#c45a0a;color:#c45a0a;" href="ch04_overview.html#ch04_s03">&larr; ワークフロー設計 変数と条件分岐</a><a class="nav-btn primary" href="ch05_overview.html#ch05_s01" style="background:#c45a0a;border-color:#c45a0a;">AIエージェント導入と組織文化の &rarr;</a></div>
+<hr style="border:none;margin:8px 0 20px;">
+</section>
+
+
+<div class="float-nav-wrap">
+  <button class="float-home" onclick="toggleFloatNav()">📚 目次 ▾</button>
+  <div class="float-nav-menu" id="floatNavMenu">
+    <div class="fnav-sec-label" id="fnavSecLabel"></div>
+    <a class="fnav-item current" id="fnavOverview" href="#">① 概要解説</a>
+    <a class="fnav-item" id="fnavReader" href="#">② 精読ビューア</a>
+    <a class="fnav-item" id="fnavQuiz" href="#">③ 理解度チェック</a>
+    <div class="fnav-divider"></div>
+    <a class="fnav-item" href="index.html">📚 学習マップ（全章目次）</a>
+  </div>
+</div>
+<script>
+function saveStatus(k, v) { localStorage.setItem(k, v); }
+function loadStatus(k) { return localStorage.getItem(k); }
+
+function setStatus(sid, val, btn) {
+  saveStatus('s_' + sid, val);
+  btn.closest('.status-btns').querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function toggleDeepDive(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+var QS = {};
+
+function answer(qid, ci, correct) {
+  if (QS[qid] && QS[qid].done) return;
+  QS[qid] = { done: true, ok: ci === correct };
+
+  var btns = document.querySelectorAll('#q' + qid + ' .choice-btn');
+  btns.forEach(function(b, i) {
+    if (i === ci)      b.classList.add(i === correct ? 'correct' : 'wrong');
+    else if (i !== correct) b.classList.add('dimmed');
+  });
+
+  var expl  = document.getElementById('e' + qid);
+  var retry = document.getElementById('r' + qid);
+  var next  = document.getElementById('n' + qid);
+  expl.classList.add('show');
+
+  var sid      = qid.replace(/_\d+$/, '');
+  var section  = document.getElementById(sid);
+  var isRetake = section && section.classList.contains('retake-mode');
+
+  if (ci === correct) {
+    if (next) next.classList.add('show');
+    localStorage.removeItem('qfail_' + qid);
+    if (isRetake) localStorage.removeItem('qwrong_' + qid);
+  } else {
+    expl.classList.add('hint');
+    if (retry) retry.classList.add('show');
+    localStorage.setItem('qfail_' + qid, '1');
+    localStorage.setItem('qwrong_' + qid, '1');
+  }
+  updateRetakeBtn(sid);
+}
+
+function resetQuizBlock(qid) {
+  QS[qid] = null;
+  document.querySelectorAll('#q' + qid + ' .choice-btn').forEach(function(b) {
+    b.classList.remove('correct', 'wrong', 'dimmed');
+  });
+  var expl = document.getElementById('e' + qid);
+  if (expl) expl.classList.remove('show', 'hint');
+  var retry = document.getElementById('r' + qid);
+  if (retry) retry.classList.remove('show');
+  var next = document.getElementById('n' + qid);
+  if (next) next.classList.remove('show');
+}
+
+function retryQ(qid) {
+  resetQuizBlock(qid);
+}
+
+function showNext(nqid) {
+  var sid = nqid.replace(/_\d+$/, '');
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
+  var el = document.getElementById('q' + nqid);
+  if (el) { el.style.display = 'block'; el.scrollIntoView({behavior:'smooth', block:'start'}); }
+}
+
+function showScore(sid, total) {
+  var section = document.getElementById(sid);
+  if (section && section.classList.contains('retake-mode')) {
+    retakeAdvance(sid);
+    return;
+  }
+  var ok = 0;
+  for (var i = 1; i <= total; i++) {
+    var st = QS[sid + '_' + i];
+    if (st && st.ok) ok++;
+  }
+  var banner = document.getElementById('sc_' + sid);
+  if (banner) {
+    banner.querySelector('.score-main').textContent = ok + ' / ' + total + ' 問 正解';
+    banner.classList.add('show');
+    banner.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+function startRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  var wrongQids = [];
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) {
+      wrongQids.push(key.replace('qwrong_', ''));
+    }
+  }
+  if (!wrongQids.length) return;
+  wrongQids.sort(function(a, b) {
+    return parseInt(a.split('_').pop()) - parseInt(b.split('_').pop());
+  });
+
+  section.classList.add('retake-mode');
+  section.dataset.retakeQueue = JSON.stringify(wrongQids);
+  section.dataset.retakeIdx   = '0';
+
+  var score = document.getElementById('sc_' + sid);
+  if (score) score.classList.remove('show');
+
+  section.querySelectorAll('.quiz-block').forEach(function(block) {
+    block.style.display = 'none';
+  });
+  wrongQids.forEach(function(qid) { resetQuizBlock(qid); });
+
+  var first = document.getElementById('q' + wrongQids[0]);
+  if (first) { first.style.display = 'block'; first.scrollIntoView({behavior:'smooth', block:'start'}); }
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'block';
+
+  var btn = document.getElementById('rtk_' + sid);
+  if (btn) btn.style.display = 'none';
+}
+
+function retakeAdvance(sid) {
+  var section = document.getElementById(sid);
+  if (!section || !section.classList.contains('retake-mode')) return;
+  var queue = JSON.parse(section.dataset.retakeQueue || '[]');
+  var idx   = parseInt(section.dataset.retakeIdx || '0');
+
+  var cur = document.getElementById('q' + queue[idx]);
+  if (cur) cur.style.display = 'none';
+
+  idx++;
+  section.dataset.retakeIdx = String(idx);
+
+  if (idx < queue.length) {
+    var nxt = document.getElementById('q' + queue[idx]);
+    if (nxt) { nxt.style.display = 'block'; nxt.scrollIntoView({behavior:'smooth', block:'start'}); }
+  } else {
+    endRetake(sid);
+  }
+}
+
+function endRetake(sid) {
+  var section = document.getElementById(sid);
+  if (!section) return;
+
+  section.classList.remove('retake-mode');
+  delete section.dataset.retakeQueue;
+  delete section.dataset.retakeIdx;
+
+  var banner = document.getElementById('rtk_banner_' + sid);
+  if (banner) banner.style.display = 'none';
+
+  section.querySelectorAll('.quiz-block').forEach(function(block, i) {
+    var qid = block.id.replace(/^q/, '');
+    resetQuizBlock(qid);
+    block.style.display = (i === 0) ? 'block' : 'none';
+  });
+
+  updateRetakeBtn(sid);
+}
+
+function updateRetakeBtn(sid) {
+  var count = 0;
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key && key.startsWith('qwrong_' + sid + '_')) count++;
+  }
+  var btn = document.getElementById('rtk_' + sid);
+  if (!btn) return;
+  if (count > 0) {
+    btn.textContent = '❌ ' + count + '問 再テスト';
+    btn.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+function initRetakeBtns() {
+  document.querySelectorAll('section[id^="ch"]').forEach(function(sec) {
+    updateRetakeBtn(sec.id);
+  });
+}
+
+/* ── 文字サイズ・ダークモード（readerと共通のlocalStorageキー） ───── */
+function applyFontSize(px) {
+  document.documentElement.style.setProperty('--font-size', px + 'px');
+}
+
+function applyDark(on) {
+  document.body.classList.toggle('dark', on);
+  var btn = document.getElementById('ui-dark-btn');
+  if (btn) btn.textContent = on ? '☀️' : '🌙';
+}
+
+function initThemeControls() {
+  var fontSize = parseInt(localStorage.getItem('reader_fontSize') || '16', 10);
+  var darkMode = localStorage.getItem('reader_dark') === 'true';
+  applyFontSize(fontSize);
+  applyDark(darkMode);
+
+  var slider = document.getElementById('ui-font-slider');
+  if (slider) {
+    slider.value = fontSize;
+    slider.oninput = function() {
+      fontSize = +slider.value;
+      applyFontSize(fontSize);
+      localStorage.setItem('reader_fontSize', fontSize);
+    };
+  }
+  var darkBtn = document.getElementById('ui-dark-btn');
+  if (darkBtn) {
+    darkBtn.onclick = function() {
+      darkMode = !darkMode;
+      applyDark(darkMode);
+      localStorage.setItem('reader_dark', darkMode);
+    };
+  }
+}
+
+/* ── フローティングナビメニュー ─────────────────────────────── */
+function toggleFloatNav() {
+  var menu = document.getElementById('floatNavMenu');
+  if (menu) menu.classList.toggle('open');
+}
+
+function updateFloatNavLinks(sid) {
+  var m = sid.match(/^ch(\d+)_s(\d+)$/);
+  if (!m) return;
+  var ch = m[1], s = parseInt(m[2], 10);
+  var overviewEl = document.getElementById('fnavOverview');
+  var readerEl   = document.getElementById('fnavReader');
+  var quizEl     = document.getElementById('fnavQuiz');
+  var labelEl    = document.getElementById('fnavSecLabel');
+  if (overviewEl) overviewEl.href = 'ch' + ch + '_overview.html#' + sid;
+  if (readerEl)   readerEl.href   = 'reader/ch' + parseInt(ch, 10) + '.html#sec-' + s;
+  if (quizEl)     quizEl.href     = 'ch' + ch + '_quiz.html#' + sid;
+  if (labelEl)    labelEl.textContent = 'Ch.' + ch + '-S' + m[2];
+}
+
+function initSectionAwareFloatNav() {
+  var sections = document.querySelectorAll('section[id^="ch"]');
+  if (!sections.length) return;
+  updateFloatNavLinks(sections[0].id);
+  if (sections.length === 1) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) updateFloatNavLinks(entry.target.id);
+    });
+  }, { rootMargin: '-35% 0px -50% 0px' });
+  sections.forEach(function(sec) { observer.observe(sec); });
+}
+
+document.addEventListener('click', function(e) {
+  var wrap = document.querySelector('.float-nav-wrap');
+  if (wrap && !wrap.contains(e.target)) {
+    var menu = document.getElementById('floatNavMenu');
+    if (menu) menu.classList.remove('open');
+  }
+});
+
+window.addEventListener('load', function() {
+  document.querySelectorAll('.status-btns[data-sid]').forEach(function(wrap) {
+    var v = loadStatus('s_' + wrap.dataset.sid);
+    if (v) {
+      var b = wrap.querySelector('[data-val="' + v + '"]');
+      if (b) b.classList.add('active');
+    }
+  });
+  initRetakeBtns();
+  initThemeControls();
+  initSectionAwareFloatNav();
+});
+</script>
+<script>
+(function() {
+  var ret = null;
+  try { ret = sessionStorage.getItem('auth_return'); } catch(e) {}
+  if (ret) { try { sessionStorage.removeItem('auth_return'); } catch(e) {} }
+})();
+</script>
+</body>
+</html>
