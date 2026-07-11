@@ -389,6 +389,46 @@ body {
   opacity: .6; border-radius: 6px;
 }
 .toc-mini:active { opacity: 1; background: var(--surface2); }
+
+/* ── ④ 模擬試験 ─────────────────────────── */
+.mex-intro-card {
+  background: var(--surface); border-radius: 12px; padding: 22px 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08); text-align: center; margin-bottom: 12px;
+}
+.mex-intro-icon { font-size: 40px; margin-bottom: 10px; }
+.mex-intro-title { font-size: calc(var(--font-size) + 2px); font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.mex-intro-desc { font-size: calc(var(--font-size) - 2px); color: var(--text2); line-height: 1.7; margin-bottom: 18px; }
+.mex-last-score {
+  background: var(--surface2); border-radius: 10px; padding: 10px 14px;
+  font-size: calc(var(--font-size) - 3px); color: var(--text2); margin-bottom: 16px;
+}
+.mex-start-btn {
+  display: block; width: 100%; padding: 14px; border: none; border-radius: 10px;
+  background: #2d6a9f; color: white; font-size: calc(var(--font-size) - 1px); font-weight: 700;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.mex-progress-wrap {
+  background: var(--surface); border-radius: 10px; padding: 10px 14px;
+  margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.mex-progress-label { font-size: calc(var(--font-size) - 4px); color: var(--text3); margin-bottom: 6px; display: flex; justify-content: space-between; }
+.mex-progress-bar { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+.mex-progress-fill { height: 100%; background: #2d6a9f; transition: width .2s; }
+.mex-result-score {
+  text-align: center; padding: 20px; background: linear-gradient(135deg, #2d6a9f, #1e3a5f);
+  color: white; border-radius: 12px; margin-bottom: 14px;
+}
+.mex-result-score .big { font-size: 36px; font-weight: 700; }
+.mex-result-table { width: 100%; border-collapse: collapse; font-size: calc(var(--font-size) - 3px); }
+.mex-result-table th, .mex-result-table td { padding: 7px 8px; text-align: left; border-bottom: 1px solid var(--border); color: var(--text); }
+.mex-result-table th { color: var(--text3); font-weight: 600; }
+.mex-result-bar-wrap { display: inline-block; width: 60px; height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; vertical-align: middle; margin-right: 6px; }
+.mex-result-bar { height: 100%; background: #34a853; }
+.mex-retry-btn {
+  display: block; width: 100%; padding: 13px; border: none; border-radius: 10px;
+  background: var(--surface2); color: var(--text); font-size: calc(var(--font-size) - 2px); font-weight: 700;
+  cursor: pointer; margin-top: 14px; -webkit-tap-highlight-color: transparent;
+}
 </style>
 </head>
 <body>
@@ -1073,6 +1113,7 @@ body {
   </div>
   <div style="padding:8px 14px;border-bottom:1px solid var(--border);">
     <a href="index.html" style="display:block;color:var(--text2);font-size:13px;text-decoration:none;padding:6px 0;">🏠 学習マップ（全体トップ）</a>
+    <a href="mock_exam.html" style="display:block;color:var(--text2);font-size:13px;text-decoration:none;padding:6px 0;">🎯 ④ 模擬試験</a>
   </div>
   
     <div class="toc-ch">

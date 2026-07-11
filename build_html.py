@@ -8,6 +8,7 @@ from common_ui import (
     COMMON_CSS, COMMON_JS, AUTH_HASH, AUTH_EXPIRE_MS,
     auth_guard_script, float_nav_html, theme_toolbar_html,
     build_toc_tree_html, toc_drawer_html,
+    MOCK_EXAM_JS, build_mock_exam_page_body,
 )
 
 OUT_DIR = r"C:\Users\mikli\Downloads\AICX学習"
@@ -574,6 +575,47 @@ def build_chapter_quiz_page(ch_num, secs, all_sections):
     return _page_shell(f'Ch.{ch_num:02d} 問題集 | {ch_title}', ''.join(body_parts), all_sections, current_sid)
 
 
+# ─── ④模擬試験ページ ───────────────────────────────────────────────────
+def build_mock_exam_page(all_sections, mock_data):
+    """④模擬試験ページ。出題データは<script type="application/json">に埋め込み、
+    出題選択・進行・採点は全てクライアント側JS(MOCK_EXAM_JS)で行う。"""
+    tree_html   = build_toc_tree_html(all_sections, CHAPTER_TITLES, CH_COLORS, root_prefix='')
+    drawer_html = toc_drawer_html(tree_html)
+    body_html   = build_mock_exam_page_body()
+    mock_json   = json.dumps(mock_data, ensure_ascii=False)
+
+    return f'''<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>{auth_guard_script('index.html')}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>④ 模擬試験 | AICX学習</title>
+  <style>{COMMON_CSS}</style>
+</head>
+<body>
+{theme_toolbar_html()}
+<div class="page-header" style="background:linear-gradient(135deg,#1e3a5f,#2d6a9f);">
+  <div class="breadcrumb">AICX学習</div>
+  <div class="page-title">🎯 ④ 模擬試験</div>
+</div>
+{body_html}
+{float_nav_html()}
+{drawer_html}
+<script type="application/json" id="mock-exam-data">{mock_json}</script>
+<script>{COMMON_JS}</script>
+<script>{MOCK_EXAM_JS}</script>
+<script>
+(function() {{
+  var ret = null;
+  try {{ ret = sessionStorage.getItem('auth_return'); }} catch(e) {{}}
+  if (ret) {{ try {{ sessionStorage.removeItem('auth_return'); }} catch(e) {{}} }}
+}})();
+</script>
+</body>
+</html>'''
+
+
 # ─── 索引ページ ───────────────────────────────────────────────────────
 def build_index(all_sections):
     by_ch = {}
@@ -650,8 +692,11 @@ window.addEventListener('load', function() {
 </div>
 {theme_toolbar_html()}
 {cards}
-<a href="reader/index.html" style="display:block;margin:16px 0;padding:14px 18px;background:linear-gradient(135deg,#1e3a5f,#2d6a9f);color:white;border-radius:12px;text-decoration:none;text-align:center;font-size:15px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.12);">
+<a href="reader/index.html" style="display:block;margin:16px 0 10px;padding:14px 18px;background:linear-gradient(135deg,#1e3a5f,#2d6a9f);color:white;border-radius:12px;text-decoration:none;text-align:center;font-size:15px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.12);">
   📖 精読ビューアを開く
+</a>
+<a href="mock_exam.html" style="display:block;margin:0 0 16px;padding:14px 18px;background:linear-gradient(135deg,#7a1f1f,#c4453a);color:white;border-radius:12px;text-decoration:none;text-align:center;font-size:15px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.12);">
+  🎯 模擬試験を始める
 </a>
 <div style="text-align:center;padding:12px 0 4px;font-size:12px;color:#999;">
   セクション名をタップして概要へ、📝アイコンで問題集へ
@@ -760,6 +805,18 @@ def main():
             f.write(qz_html)
 
         print(f'Written: ch{ch_num:02d}_overview.html, ch{ch_num:02d}_quiz.html ({len(secs)} sections)')
+
+    mock_json_path = os.path.join(OUT_DIR, 'mock_exam_data.json')
+    if os.path.exists(mock_json_path):
+        with open(mock_json_path, encoding='utf-8') as f:
+            mock_data = json.load(f)
+        mex_html = build_mock_exam_page(all_sections, mock_data)
+        with open(os.path.join(OUT_DIR, 'mock_exam.html'), 'w', encoding='utf-8') as f:
+            f.write(mex_html)
+        total_q = sum(len(s['quizzes']) for s in mock_data)
+        print(f'Written: mock_exam.html ({len(mock_data)} sections, {total_q} questions)')
+    else:
+        print('Skipped: mock_exam.html (mock_exam_data.json not found)')
 
     idx_html = build_index(all_sections)
     with open(os.path.join(OUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:

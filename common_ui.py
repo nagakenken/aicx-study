@@ -403,6 +403,46 @@ body {
   opacity: .6; border-radius: 6px;
 }
 .toc-mini:active { opacity: 1; background: var(--surface2); }
+
+/* ── ④ 模擬試験 ─────────────────────────── */
+.mex-intro-card {
+  background: var(--surface); border-radius: 12px; padding: 22px 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08); text-align: center; margin-bottom: 12px;
+}
+.mex-intro-icon { font-size: 40px; margin-bottom: 10px; }
+.mex-intro-title { font-size: calc(var(--font-size) + 2px); font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.mex-intro-desc { font-size: calc(var(--font-size) - 2px); color: var(--text2); line-height: 1.7; margin-bottom: 18px; }
+.mex-last-score {
+  background: var(--surface2); border-radius: 10px; padding: 10px 14px;
+  font-size: calc(var(--font-size) - 3px); color: var(--text2); margin-bottom: 16px;
+}
+.mex-start-btn {
+  display: block; width: 100%; padding: 14px; border: none; border-radius: 10px;
+  background: #2d6a9f; color: white; font-size: calc(var(--font-size) - 1px); font-weight: 700;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.mex-progress-wrap {
+  background: var(--surface); border-radius: 10px; padding: 10px 14px;
+  margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.mex-progress-label { font-size: calc(var(--font-size) - 4px); color: var(--text3); margin-bottom: 6px; display: flex; justify-content: space-between; }
+.mex-progress-bar { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+.mex-progress-fill { height: 100%; background: #2d6a9f; transition: width .2s; }
+.mex-result-score {
+  text-align: center; padding: 20px; background: linear-gradient(135deg, #2d6a9f, #1e3a5f);
+  color: white; border-radius: 12px; margin-bottom: 14px;
+}
+.mex-result-score .big { font-size: 36px; font-weight: 700; }
+.mex-result-table { width: 100%; border-collapse: collapse; font-size: calc(var(--font-size) - 3px); }
+.mex-result-table th, .mex-result-table td { padding: 7px 8px; text-align: left; border-bottom: 1px solid var(--border); color: var(--text); }
+.mex-result-table th { color: var(--text3); font-weight: 600; }
+.mex-result-bar-wrap { display: inline-block; width: 60px; height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; vertical-align: middle; margin-right: 6px; }
+.mex-result-bar { height: 100%; background: #34a853; }
+.mex-retry-btn {
+  display: block; width: 100%; padding: 13px; border: none; border-radius: 10px;
+  background: var(--surface2); color: var(--text); font-size: calc(var(--font-size) - 2px); font-weight: 700;
+  cursor: pointer; margin-top: 14px; -webkit-tap-highlight-color: transparent;
+}
 """
 
 # ─── JavaScript ──────────────────────────────────────────────────────
@@ -715,7 +755,7 @@ def build_toc_tree_html(all_sections, chapter_titles, ch_colors, root_prefix='',
     return chapters_html
 
 
-def toc_drawer_html(tree_html, index_href='index.html'):
+def toc_drawer_html(tree_html, index_href='index.html', mock_exam_href='mock_exam.html'):
     return f'''
 <div class="toc-overlay" id="tocOverlay" onclick="closeTocDrawer()"></div>
 <nav class="toc-drawer" id="tocDrawer">
@@ -725,6 +765,7 @@ def toc_drawer_html(tree_html, index_href='index.html'):
   </div>
   <div style="padding:8px 14px;border-bottom:1px solid var(--border);">
     <a href="{index_href}" style="display:block;color:var(--text2);font-size:13px;text-decoration:none;padding:6px 0;">🏠 学習マップ（全体トップ）</a>
+    <a href="{mock_exam_href}" style="display:block;color:var(--text2);font-size:13px;text-decoration:none;padding:6px 0;">🎯 ④ 模擬試験</a>
   </div>
   {tree_html}
 </nav>'''
@@ -742,3 +783,199 @@ def theme_toolbar_html():
   <input type="range" class="ui-font-slider" id="ui-font-slider" min="13" max="22" step="1" value="16">
   <button class="ui-dark-btn" id="ui-dark-btn">🌙</button>
 </div>'''
+
+
+# ─── ④ 模擬試験 ────────────────────────────────────────────────────────
+# 章別出題数（README_mock_exam.md の配分提案。合計50問）
+MOCK_EXAM_QUOTA = {1: 12, 2: 5, 3: 11, 4: 6, 5: 8, 6: 8}
+
+MOCK_EXAM_JS = """
+var MEX_QUOTA = """ + str(MOCK_EXAM_QUOTA) + """;
+var MEX_DATA = null;
+var MEX_SESSION = null;
+
+function mexLoadData() {
+  if (MEX_DATA) return MEX_DATA;
+  var raw = JSON.parse(document.getElementById('mock-exam-data').textContent);
+  var flat = [];
+  raw.forEach(function(sec) {
+    sec.quizzes.forEach(function(q, idx) {
+      var qq = {};
+      for (var k in q) qq[k] = q[k];
+      qq.meid = 'm_ch' + sec.ch + '_s' + sec.s + '_' + idx;
+      qq.ch = sec.ch; qq.s = sec.s; qq.secTitle = sec.title;
+      flat.push(qq);
+    });
+  });
+  MEX_DATA = flat;
+  return flat;
+}
+
+function mexGetResult(meid) { return localStorage.getItem('mex_result_' + meid); }
+
+function mexShuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+/* 弱点演習モードの拡張ポイント: filterFn(q)->bool を渡せば章配分の代わりに
+   q_type/ch 等での絞り込み出題に流用できる（未実装、後日対応）。 */
+function mexSelectQuestions() {
+  var all = mexLoadData();
+  var selected = [];
+  Object.keys(MEX_QUOTA).forEach(function(chStr) {
+    var ch = parseInt(chStr, 10);
+    var quota = MEX_QUOTA[ch];
+    var pool = all.filter(function(q) { return q.ch === ch; });
+    var unseen  = mexShuffle(pool.filter(function(q) { return mexGetResult(q.meid) === null; }));
+    var wrong   = mexShuffle(pool.filter(function(q) { return mexGetResult(q.meid) === 'wrong'; }));
+    var correct = mexShuffle(pool.filter(function(q) { return mexGetResult(q.meid) === 'correct'; }));
+    var picked = unseen.concat(wrong).concat(correct).slice(0, quota);
+    selected = selected.concat(picked);
+  });
+  return mexShuffle(selected);
+}
+
+function mexEsc(str) {
+  var d = document.createElement('div');
+  d.textContent = str == null ? '' : str;
+  return d.innerHTML;
+}
+
+function mexExplBody(expl) {
+  return (expl || '').replace(/^\\u6b63\\u89e3[\\uff1a:]\\s*[ABCD][|\\uff5c]?\\s*/, '');
+}
+
+function mexTodayStr() {
+  var d = new Date();
+  return d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + d.getDate();
+}
+
+function mexRenderIntro() {
+  var app = document.getElementById('mexApp');
+  if (!app) return;
+  var lastRaw = localStorage.getItem('mex_last_score');
+  var lastHtml = '';
+  if (lastRaw) {
+    try {
+      var last = JSON.parse(lastRaw);
+      lastHtml = '<div class="mex-last-score">前回スコア：' + last.correct + ' / ' + last.total + '（' + last.date + '）</div>';
+    } catch (e) {}
+  }
+  app.innerHTML =
+    '<div class="mex-intro-card">' +
+      '<div class="mex-intro-icon">\\ud83c\\udfaf</div>' +
+      '<div class="mex-intro-title">模擬試験</div>' +
+      '<div class="mex-intro-desc">全128問の中から章別配分で50問を出題します。<br>未回答・誤答だった問題を優先的に出題します。</div>' +
+      lastHtml +
+      '<button class="mex-start-btn" onclick="mexStart()">模擬試験を始める</button>' +
+    '</div>';
+}
+
+function mexStart() {
+  MEX_SESSION = { questions: mexSelectQuestions(), idx: 0, correctCount: 0, answers: [] };
+  mexRenderQuestion();
+}
+
+function mexRenderQuestion() {
+  var s = MEX_SESSION;
+  var q = s.questions[s.idx];
+  var letters = ['A', 'B', 'C', 'D'].filter(function(l) { return q.choices[l]; });
+  var correctIdx = letters.indexOf(q.correct_letter);
+  var choicesHtml = letters.map(function(lt, li) {
+    return '<button class="choice-btn" onclick="mexAnswer(' + li + ')">' + lt + '\\u3000' + mexEsc(q.choices[lt]) + '</button>';
+  }).join('');
+  var pct = Math.round((s.idx / s.questions.length) * 100);
+
+  document.getElementById('mexApp').innerHTML =
+    '<div class="mex-progress-wrap">' +
+      '<div class="mex-progress-label"><span>問 ' + (s.idx + 1) + ' ／ ' + s.questions.length + '</span><span>Ch.' + q.ch + '</span></div>' +
+      '<div class="mex-progress-bar"><div class="mex-progress-fill" style="width:' + pct + '%;"></div></div>' +
+    '</div>' +
+    '<div class="quiz-block" id="mexQBlock">' +
+      '<div class="quiz-question">' + mexEsc(q.question) + '</div>' +
+      '<div class="choices">' + choicesHtml + '</div>' +
+      '<div class="explanation" id="mexExpl"><div class="ans-label">✅ 正解：' + q.correct_letter + '</div>' + mexEsc(mexExplBody(q.explanation)) + '</div>' +
+      '<div class="action-btns"><button class="next-btn" id="mexNextBtn" onclick="mexNext()">' + ((s.idx + 1 === s.questions.length) ? '結果を見る' : '次の問題へ') + ' →</button></div>' +
+    '</div>';
+
+  window.__mexCorrectIdx = correctIdx;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function mexAnswer(ci) {
+  var s = MEX_SESSION;
+  var q = s.questions[s.idx];
+  var correctIdx = window.__mexCorrectIdx;
+  var btns = document.querySelectorAll('#mexQBlock .choice-btn');
+  btns.forEach(function(b, i) {
+    b.style.pointerEvents = 'none';
+    if (i === ci) b.classList.add(i === correctIdx ? 'correct' : 'wrong');
+    else if (i !== correctIdx) b.classList.add('dimmed');
+  });
+  var ok = (ci === correctIdx);
+  var expl = document.getElementById('mexExpl');
+  expl.classList.add('show');
+  if (!ok) expl.classList.add('hint');
+  localStorage.setItem('mex_result_' + q.meid, ok ? 'correct' : 'wrong');
+  s.answers.push({ meid: q.meid, ch: q.ch, q_type: q.q_type, ok: ok });
+  if (ok) s.correctCount++;
+  document.getElementById('mexNextBtn').classList.add('show');
+}
+
+function mexNext() {
+  var s = MEX_SESSION;
+  s.idx++;
+  if (s.idx < s.questions.length) {
+    mexRenderQuestion();
+  } else {
+    mexShowResults();
+  }
+}
+
+function mexShowResults() {
+  var s = MEX_SESSION;
+  var byCh = {}, byType = {};
+  s.answers.forEach(function(a) {
+    byCh[a.ch] = byCh[a.ch] || { ok: 0, total: 0 };
+    byCh[a.ch].total++; if (a.ok) byCh[a.ch].ok++;
+    var t = a.q_type || '(未分類)';
+    byType[t] = byType[t] || { ok: 0, total: 0 };
+    byType[t].total++; if (a.ok) byType[t].ok++;
+  });
+
+  var chRows = Object.keys(byCh).sort(function(a, b) { return a - b; }).map(function(ch) {
+    var d = byCh[ch]; var pct = Math.round(d.ok / d.total * 100);
+    return '<tr><td>Ch.' + ch + '</td><td><span class="mex-result-bar-wrap"><span class="mex-result-bar" style="width:' + pct + '%;"></span></span>' + d.ok + '/' + d.total + '</td></tr>';
+  }).join('');
+
+  var typeRows = Object.keys(byType).map(function(t) {
+    var d = byType[t]; var pct = Math.round(d.ok / d.total * 100);
+    return '<tr><td>' + mexEsc(t) + '</td><td><span class="mex-result-bar-wrap"><span class="mex-result-bar" style="width:' + pct + '%;"></span></span>' + d.ok + '/' + d.total + '</td></tr>';
+  }).join('');
+
+  var total = s.questions.length;
+  var scorePct = Math.round(s.correctCount / total * 100);
+
+  localStorage.setItem('mex_last_score', JSON.stringify({ correct: s.correctCount, total: total, date: mexTodayStr() }));
+
+  document.getElementById('mexApp').innerHTML =
+    '<div class="mex-result-score"><div class="big">' + s.correctCount + ' / ' + total + '</div><div>正答率 ' + scorePct + '%</div></div>' +
+    '<div class="card"><div class="card-title">章別正答率</div><table class="mex-result-table">' + chRows + '</table></div>' +
+    '<div class="card"><div class="card-title">出題タイプ別正答率</div><table class="mex-result-table">' + typeRows + '</table></div>' +
+    '<button class="mex-retry-btn" onclick="mexRenderIntro()">もう一度挑戦する</button>';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.addEventListener('load', function() {
+  if (document.getElementById('mexApp')) mexRenderIntro();
+});
+"""
+
+
+def build_mock_exam_page_body():
+    return '<div class="card" id="mexApp"></div>'
