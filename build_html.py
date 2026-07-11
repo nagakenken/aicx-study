@@ -7,6 +7,7 @@ import json, re, os, html as htmllib
 from common_ui import (
     COMMON_CSS, COMMON_JS, AUTH_HASH, AUTH_EXPIRE_MS,
     auth_guard_script, float_nav_html, theme_toolbar_html,
+    build_toc_tree_html, toc_drawer_html,
 )
 
 OUT_DIR = r"C:\Users\mikli\Downloads\AICX学習"
@@ -527,9 +528,11 @@ def build_quiz_section_html(sec, all_sections):
 
 
 # ─── ページシェル ─────────────────────────────────────────────────────
-def _page_shell(title, body_html, current_page):
-    """認証ガード・文字サイズ/ダークモードツールバー・フローティングナビを
+def _page_shell(title, body_html, all_sections, current_sid=None):
+    """認証ガード・文字サイズ/ダークモードツールバー・目次ドロワーを
     含む共通ページテンプレート。"""
+    tree_html   = build_toc_tree_html(all_sections, CHAPTER_TITLES, CH_COLORS, root_prefix='', current_sid=current_sid)
+    drawer_html = toc_drawer_html(tree_html)
     return f'''<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -542,7 +545,8 @@ def _page_shell(title, body_html, current_page):
 <body>
 {theme_toolbar_html()}
 {body_html}
-{float_nav_html(current_page)}
+{float_nav_html()}
+{drawer_html}
 <script>{COMMON_JS}</script>
 <script>
 (function() {{
@@ -559,13 +563,15 @@ def _page_shell(title, body_html, current_page):
 def build_chapter_overview_page(ch_num, secs, all_sections):
     ch_title = CHAPTER_TITLES.get(ch_num, '')
     body_parts = [build_overview_section_html(sec, all_sections) for sec in secs]
-    return _page_shell(f'Ch.{ch_num:02d} 概要 | {ch_title}', ''.join(body_parts), 'overview')
+    current_sid = f'ch{ch_num:02d}_s{secs[0]["s"]:02d}' if secs else None
+    return _page_shell(f'Ch.{ch_num:02d} 概要 | {ch_title}', ''.join(body_parts), all_sections, current_sid)
 
 
 def build_chapter_quiz_page(ch_num, secs, all_sections):
     ch_title = CHAPTER_TITLES.get(ch_num, '')
     body_parts = [build_quiz_section_html(sec, all_sections) for sec in secs]
-    return _page_shell(f'Ch.{ch_num:02d} 問題集 | {ch_title}', ''.join(body_parts), 'quiz')
+    current_sid = f'ch{ch_num:02d}_s{secs[0]["s"]:02d}' if secs else None
+    return _page_shell(f'Ch.{ch_num:02d} 問題集 | {ch_title}', ''.join(body_parts), all_sections, current_sid)
 
 
 # ─── 索引ページ ───────────────────────────────────────────────────────
@@ -709,6 +715,9 @@ window.addEventListener('load', function() {{
 }});
 '''
 
+    tree_html   = build_toc_tree_html(all_sections, CHAPTER_TITLES, CH_COLORS, root_prefix='')
+    drawer_html = toc_drawer_html(tree_html)
+
     return f'''<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -720,6 +729,9 @@ window.addEventListener('load', function() {{
 <body>
 {auth_html}
 {content_html}
+{float_nav_html()}
+{drawer_html}
+<script>{COMMON_JS}</script>
 <script>{dot_js}</script>
 <script>{auth_js}</script>
 </body>

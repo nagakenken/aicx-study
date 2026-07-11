@@ -352,28 +352,57 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* ── フローティングナビメニュー ─────────────── */
-.float-nav-wrap { position: fixed; bottom: 22px; right: 14px; z-index: 500; }
+/* ── フローティングボタン（目次ドロワー起動） ──── */
 .float-home {
+  position: fixed; bottom: 22px; right: 14px; z-index: 500;
   background: rgba(26,26,26,.88); color: white !important;
   padding: 9px 16px; border-radius: 22px;
   font-size: 13px; font-weight: 700; border: none; cursor: pointer;
   box-shadow: 0 2px 10px rgba(0,0,0,.25); -webkit-tap-highlight-color: transparent;
 }
-.float-nav-menu {
-  display: none; position: absolute; bottom: 46px; right: 0;
-  background: var(--surface); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.25);
-  padding: 8px; min-width: 210px;
+
+/* ── 目次ドロワー（全章ツリー、①②③直接遷移） ──── */
+.toc-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 600;
 }
-.float-nav-menu.open { display: block; }
-.fnav-sec-label { font-size: 11px; color: var(--text3); padding: 6px 14px 2px; }
-.fnav-item {
-  display: block; padding: 10px 14px; font-size: 14px; color: var(--text);
-  text-decoration: none; border-radius: 8px;
+.toc-overlay.open { display: block; }
+.toc-drawer {
+  position: fixed; left: -300px; top: 0; bottom: 0; width: 280px;
+  background: var(--surface); z-index: 601; overflow-y: auto;
+  transition: left .22s ease; box-shadow: 2px 0 16px rgba(0,0,0,.25);
 }
-.fnav-item:active { background: var(--surface2); }
-.fnav-item.current { color: #2d6a9f; font-weight: 700; }
-.fnav-divider { border-top: 1px solid var(--border); margin: 6px 4px; }
+.toc-drawer.open { left: 0; }
+.toc-drawer-header {
+  background: #2d6a9f; color: white; padding: 14px 16px;
+  font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: space-between;
+}
+.toc-drawer-close { background: none; border: none; color: white; font-size: 18px; cursor: pointer; padding: 2px 6px; }
+.toc-ch { border-bottom: 1px solid var(--border); }
+.toc-ch-btn {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 11px 14px; background: none; border: none;
+  color: var(--text); font-size: 13px; font-weight: 700; cursor: pointer; text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+.toc-ch-btn:active { background: var(--surface2); }
+.toc-ch-arrow { font-size: 11px; color: var(--text3); transition: transform .2s; flex-shrink: 0; margin-left: 6px; }
+.toc-ch-btn.open .toc-ch-arrow { transform: rotate(90deg); }
+.toc-ch-list { display: none; padding: 2px 0 8px; }
+.toc-ch-list.open { display: block; }
+.toc-sec-row { display: flex; align-items: center; gap: 4px; padding: 0 8px 0 14px; }
+.toc-sec-title {
+  flex: 1; display: block; padding: 8px 6px 8px 12px; min-width: 0;
+  color: var(--text2); font-size: 12.5px; text-decoration: none;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  -webkit-tap-highlight-color: transparent;
+}
+.toc-sec-title:active { color: #2d6a9f; }
+.toc-sec-title.current { color: #2d6a9f; font-weight: 700; }
+.toc-mini {
+  flex-shrink: 0; padding: 6px; font-size: 13px; text-decoration: none;
+  opacity: .6; border-radius: 6px;
+}
+.toc-mini:active { opacity: 1; background: var(--surface2); }
 """
 
 # ─── JavaScript ──────────────────────────────────────────────────────
@@ -609,46 +638,25 @@ function initThemeControls() {
   }
 }
 
-/* ── フローティングナビメニュー ─────────────────────────────── */
-function toggleFloatNav() {
-  var menu = document.getElementById('floatNavMenu');
-  if (menu) menu.classList.toggle('open');
+/* ── 目次ドロワー（フローティングボタンから起動） ───────────── */
+function toggleTocDrawer() {
+  var d = document.getElementById('tocDrawer');
+  var o = document.getElementById('tocOverlay');
+  if (d) d.classList.toggle('open');
+  if (o) o.classList.toggle('open');
 }
 
-function updateFloatNavLinks(sid) {
-  var m = sid.match(/^ch(\\d+)_s(\\d+)$/);
-  if (!m) return;
-  var ch = m[1], s = parseInt(m[2], 10);
-  var overviewEl = document.getElementById('fnavOverview');
-  var readerEl   = document.getElementById('fnavReader');
-  var quizEl     = document.getElementById('fnavQuiz');
-  var labelEl    = document.getElementById('fnavSecLabel');
-  if (overviewEl) overviewEl.href = 'ch' + ch + '_overview.html#' + sid;
-  if (readerEl)   readerEl.href   = 'reader/ch' + parseInt(ch, 10) + '.html#sec-' + s;
-  if (quizEl)     quizEl.href     = 'ch' + ch + '_quiz.html#' + sid;
-  if (labelEl)    labelEl.textContent = 'Ch.' + ch + '-S' + m[2];
+function closeTocDrawer() {
+  var d = document.getElementById('tocDrawer');
+  var o = document.getElementById('tocOverlay');
+  if (d) d.classList.remove('open');
+  if (o) o.classList.remove('open');
 }
 
-function initSectionAwareFloatNav() {
-  var sections = document.querySelectorAll('section[id^="ch"]');
-  if (!sections.length) return;
-  updateFloatNavLinks(sections[0].id);
-  if (sections.length === 1) return;
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) updateFloatNavLinks(entry.target.id);
-    });
-  }, { rootMargin: '-35% 0px -50% 0px' });
-  sections.forEach(function(sec) { observer.observe(sec); });
+function toggleTocCh(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
 }
-
-document.addEventListener('click', function(e) {
-  var wrap = document.querySelector('.float-nav-wrap');
-  if (wrap && !wrap.contains(e.target)) {
-    var menu = document.getElementById('floatNavMenu');
-    if (menu) menu.classList.remove('open');
-  }
-});
 
 window.addEventListener('load', function() {
   document.querySelectorAll('.status-btns[data-sid]').forEach(function(wrap) {
@@ -660,26 +668,71 @@ window.addEventListener('load', function() {
   });
   initRetakeBtns();
   initThemeControls();
-  initSectionAwareFloatNav();
 });
 """
 
 
-def float_nav_html(current_page='overview'):
-    """3ページ間ジャンプ用フローティングメニュー。current_pageは 'overview'|'quiz'。
-    現在地はJS側(updateFloatNavLinks)でスクロール位置に応じて更新される。"""
+def build_toc_tree_html(all_sections, chapter_titles, ch_colors, root_prefix='', current_sid=None):
+    """全章・全セクションのツリーHTML（章アコーディオン＋各セクションから①②③へのミニリンク）。
+    root_prefix: サイトルート直下のページ('' = overview/quiz/index)からの相対パス。
+    reader/chN.html から呼ぶ場合は '../' を渡す（②リンクだけは同ディレクトリ相対で別途組む）。
+    current_sid: 現在表示中のセクションID。該当章を自動展開しハイライトする。"""
+    import html as _htmllib
+    e = _htmllib.escape
+    by_ch = {}
+    for s in all_sections:
+        by_ch.setdefault(s['ch'], []).append(s)
+
+    current_ch = int(current_sid.split('_')[0][2:]) if current_sid else None
+
+    chapters_html = ''
+    for ch_num in sorted(by_ch):
+        color = ch_colors.get(ch_num, ch_colors[1])
+        title = chapter_titles.get(ch_num, '')
+        is_open = (ch_num == current_ch)
+
+        secs_html = ''
+        for sec in by_ch[ch_num]:
+            sid = f'ch{sec["ch"]:02d}_s{sec["s"]:02d}'
+            is_current = (sid == current_sid)
+            reader_href = f'{root_prefix}reader/ch{ch_num}.html#sec-{sec["s"]}'
+            secs_html += f'''
+        <div class="toc-sec-row">
+          <a class="toc-sec-title{' current' if is_current else ''}" href="{root_prefix}ch{ch_num:02d}_overview.html#{sid}">S{sec["s"]:02d}｜{e(sec["title"])}</a>
+          <a class="toc-mini" href="{reader_href}" title="精読ビューア">📖</a>
+          <a class="toc-mini" href="{root_prefix}ch{ch_num:02d}_quiz.html#{sid}" title="理解度チェック">📝</a>
+        </div>'''
+
+        chapters_html += f'''
+    <div class="toc-ch">
+      <button class="toc-ch-btn{' open' if is_open else ''}" style="border-left:4px solid {color['accent']};" onclick="toggleTocCh(this)">
+        <span>Ch.{ch_num:02d}｜{e(title)}</span><span class="toc-ch-arrow">▸</span>
+      </button>
+      <div class="toc-ch-list{' open' if is_open else ''}">{secs_html}
+      </div>
+    </div>'''
+
+    return chapters_html
+
+
+def toc_drawer_html(tree_html, index_href='index.html'):
     return f'''
-<div class="float-nav-wrap">
-  <button class="float-home" onclick="toggleFloatNav()">📚 目次 ▾</button>
-  <div class="float-nav-menu" id="floatNavMenu">
-    <div class="fnav-sec-label" id="fnavSecLabel"></div>
-    <a class="fnav-item{' current' if current_page == 'overview' else ''}" id="fnavOverview" href="#">① 概要解説</a>
-    <a class="fnav-item" id="fnavReader" href="#">② 精読ビューア</a>
-    <a class="fnav-item{' current' if current_page == 'quiz' else ''}" id="fnavQuiz" href="#">③ 理解度チェック</a>
-    <div class="fnav-divider"></div>
-    <a class="fnav-item" href="index.html">📚 学習マップ（全章目次）</a>
+<div class="toc-overlay" id="tocOverlay" onclick="closeTocDrawer()"></div>
+<nav class="toc-drawer" id="tocDrawer">
+  <div class="toc-drawer-header">
+    <span>📚 目次</span>
+    <button class="toc-drawer-close" onclick="closeTocDrawer()">✕</button>
   </div>
-</div>'''
+  <div style="padding:8px 14px;border-bottom:1px solid var(--border);">
+    <a href="{index_href}" style="display:block;color:var(--text2);font-size:13px;text-decoration:none;padding:6px 0;">🏠 学習マップ（全体トップ）</a>
+  </div>
+  {tree_html}
+</nav>'''
+
+
+def float_nav_html():
+    """目次ドロワーを開くフローティングボタン。"""
+    return '<button class="float-home" onclick="toggleTocDrawer()">☰ 目次</button>'
 
 
 def theme_toolbar_html():
