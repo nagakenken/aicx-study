@@ -576,13 +576,51 @@ def build_chapter_quiz_page(ch_num, secs, all_sections):
 
 
 # ─── ④模擬試験ページ ───────────────────────────────────────────────────
+def _build_mock_exam_pool(all_sections, mock_data):
+    """④模擬試験（128問, source='mock'）＋③問題集（97問, source='section'）を
+    フラットな出題プールに統合する。弱点演習モードはこの225問全体を対象にし、
+    通常の④本編（章別クォータ出題）はJS側でsource==='mock'のみに絞って使う。"""
+    qtype_path = os.path.join(OUT_DIR, 'sections_quiz_qtype.json')
+    qtype_map = {}
+    if os.path.exists(qtype_path):
+        with open(qtype_path, encoding='utf-8') as f:
+            qtype_map = json.load(f)
+
+    pool = []
+    for sec in mock_data:
+        for idx, q in enumerate(sec['quizzes']):
+            pool.append({
+                'meid': f"m_ch{sec['ch']}_s{sec['s']}_{idx}",
+                'ch': sec['ch'], 's': sec['s'], 'secTitle': sec['title'],
+                'question': q['question'], 'choices': q['choices'],
+                'correct_letter': q['correct_letter'], 'explanation': q.get('explanation', ''),
+                'q_type': q.get('q_type'), 'difficulty': q.get('difficulty'),
+                'source': 'mock',
+            })
+
+    for sec in all_sections:
+        sid = f"ch{sec['ch']:02d}_s{sec['s']:02d}"
+        for idx, q in enumerate(sec.get('quizzes', [])):
+            pool.append({
+                'meid': f"sec_{sid}_{idx}",
+                'ch': sec['ch'], 's': sec['s'], 'secTitle': sec['title'],
+                'question': q['question'], 'choices': q['choices'],
+                'correct_letter': q['correct_letter'], 'explanation': q.get('explanation', ''),
+                'q_type': qtype_map.get(f'{sid}_{idx}'), 'difficulty': None,
+                'source': 'section',
+            })
+
+    return pool
+
+
 def build_mock_exam_page(all_sections, mock_data):
     """④模擬試験ページ。出題データは<script type="application/json">に埋め込み、
     出題選択・進行・採点は全てクライアント側JS(MOCK_EXAM_JS)で行う。"""
     tree_html   = build_toc_tree_html(all_sections, CHAPTER_TITLES, CH_COLORS, root_prefix='')
     drawer_html = toc_drawer_html(tree_html)
     body_html   = build_mock_exam_page_body()
-    mock_json   = json.dumps(mock_data, ensure_ascii=False)
+    pool        = _build_mock_exam_pool(all_sections, mock_data)
+    mock_json   = json.dumps(pool, ensure_ascii=False)
 
     return f'''<!DOCTYPE html>
 <html lang="ja">
