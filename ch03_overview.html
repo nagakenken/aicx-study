@@ -407,6 +407,7 @@ body {
   background: #2d6a9f; color: white; font-size: calc(var(--font-size) - 1px); font-weight: 700;
   cursor: pointer; -webkit-tap-highlight-color: transparent;
 }
+.mex-start-btn:disabled { opacity: .4; cursor: not-allowed; }
 .mex-progress-wrap {
   background: var(--surface); border-radius: 10px; padding: 10px 14px;
   margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
@@ -429,6 +430,26 @@ body {
   background: var(--surface2); color: var(--text); font-size: calc(var(--font-size) - 2px); font-weight: 700;
   cursor: pointer; margin-top: 14px; -webkit-tap-highlight-color: transparent;
 }
+.mex-weak-btn {
+  display: block; width: 100%; padding: 12px; margin-top: 10px; border: 2px solid #2d6a9f; border-radius: 10px;
+  background: none; color: #2d6a9f; font-size: calc(var(--font-size) - 2px); font-weight: 700;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.mex-filter-section { text-align: left; margin: 14px 0; }
+.mex-filter-label { font-size: calc(var(--font-size) - 3px); font-weight: 700; color: var(--text2); margin-bottom: 6px; }
+.mex-chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+.mex-chip {
+  padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text2); font-size: calc(var(--font-size) - 4px);
+  cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent;
+}
+.mex-chip.active { background: #2d6a9f; color: white; border-color: #2d6a9f; }
+.mex-filter-toggle {
+  display: flex; align-items: center; gap: 8px; font-size: calc(var(--font-size) - 3px);
+  color: var(--text2); margin-top: 10px; cursor: pointer;
+}
+.mex-filter-count { font-size: calc(var(--font-size) - 3px); color: var(--text3); margin: 12px 0 4px; text-align: center; }
+.mex-filter-count.zero { color: #d32f2f; }
 </style>
 </head>
 <body>

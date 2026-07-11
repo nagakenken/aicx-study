@@ -421,6 +421,7 @@ body {
   background: #2d6a9f; color: white; font-size: calc(var(--font-size) - 1px); font-weight: 700;
   cursor: pointer; -webkit-tap-highlight-color: transparent;
 }
+.mex-start-btn:disabled { opacity: .4; cursor: not-allowed; }
 .mex-progress-wrap {
   background: var(--surface); border-radius: 10px; padding: 10px 14px;
   margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08);
@@ -443,6 +444,26 @@ body {
   background: var(--surface2); color: var(--text); font-size: calc(var(--font-size) - 2px); font-weight: 700;
   cursor: pointer; margin-top: 14px; -webkit-tap-highlight-color: transparent;
 }
+.mex-weak-btn {
+  display: block; width: 100%; padding: 12px; margin-top: 10px; border: 2px solid #2d6a9f; border-radius: 10px;
+  background: none; color: #2d6a9f; font-size: calc(var(--font-size) - 2px); font-weight: 700;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.mex-filter-section { text-align: left; margin: 14px 0; }
+.mex-filter-label { font-size: calc(var(--font-size) - 3px); font-weight: 700; color: var(--text2); margin-bottom: 6px; }
+.mex-chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+.mex-chip {
+  padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text2); font-size: calc(var(--font-size) - 4px);
+  cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent;
+}
+.mex-chip.active { background: #2d6a9f; color: white; border-color: #2d6a9f; }
+.mex-filter-toggle {
+  display: flex; align-items: center; gap: 8px; font-size: calc(var(--font-size) - 3px);
+  color: var(--text2); margin-top: 10px; cursor: pointer;
+}
+.mex-filter-count { font-size: calc(var(--font-size) - 3px); color: var(--text3); margin: 12px 0 4px; text-align: center; }
+.mex-filter-count.zero { color: #d32f2f; }
 """
 
 # ─── JavaScript ──────────────────────────────────────────────────────
@@ -794,21 +815,12 @@ var MEX_QUOTA = """ + str(MOCK_EXAM_QUOTA) + """;
 var MEX_DATA = null;
 var MEX_SESSION = null;
 
+/* データは既にPython側(_build_mock_exam_pool)でフラット化済み。
+   source: 'mock'(模擬試験128問) | 'section'(③問題集97問、q_typeは後付け分類)。 */
 function mexLoadData() {
   if (MEX_DATA) return MEX_DATA;
-  var raw = JSON.parse(document.getElementById('mock-exam-data').textContent);
-  var flat = [];
-  raw.forEach(function(sec) {
-    sec.quizzes.forEach(function(q, idx) {
-      var qq = {};
-      for (var k in q) qq[k] = q[k];
-      qq.meid = 'm_ch' + sec.ch + '_s' + sec.s + '_' + idx;
-      qq.ch = sec.ch; qq.s = sec.s; qq.secTitle = sec.title;
-      flat.push(qq);
-    });
-  });
-  MEX_DATA = flat;
-  return flat;
+  MEX_DATA = JSON.parse(document.getElementById('mock-exam-data').textContent);
+  return MEX_DATA;
 }
 
 function mexGetResult(meid) { return localStorage.getItem('mex_result_' + meid); }
@@ -822,22 +834,39 @@ function mexShuffle(arr) {
   return a;
 }
 
-/* 弱点演習モードの拡張ポイント: filterFn(q)->bool を渡せば章配分の代わりに
-   q_type/ch 等での絞り込み出題に流用できる（未実装、後日対応）。 */
+function mexPrioritize(pool) {
+  var unseen  = mexShuffle(pool.filter(function(q) { return mexGetResult(q.meid) === null; }));
+  var wrong   = mexShuffle(pool.filter(function(q) { return mexGetResult(q.meid) === 'wrong'; }));
+  var correct = mexShuffle(pool.filter(function(q) { return mexGetResult(q.meid) === 'correct'; }));
+  return unseen.concat(wrong).concat(correct);
+}
+
+/* 通常の④本編: 模擬試験128問のみを対象に、章別クォータで出題する。 */
 function mexSelectQuestions() {
-  var all = mexLoadData();
+  var all = mexLoadData().filter(function(q) { return q.source === 'mock'; });
   var selected = [];
   Object.keys(MEX_QUOTA).forEach(function(chStr) {
     var ch = parseInt(chStr, 10);
     var quota = MEX_QUOTA[ch];
     var pool = all.filter(function(q) { return q.ch === ch; });
-    var unseen  = mexShuffle(pool.filter(function(q) { return mexGetResult(q.meid) === null; }));
-    var wrong   = mexShuffle(pool.filter(function(q) { return mexGetResult(q.meid) === 'wrong'; }));
-    var correct = mexShuffle(pool.filter(function(q) { return mexGetResult(q.meid) === 'correct'; }));
-    var picked = unseen.concat(wrong).concat(correct).slice(0, quota);
+    var picked = mexPrioritize(pool).slice(0, quota);
     selected = selected.concat(picked);
   });
   return mexShuffle(selected);
+}
+
+/* 弱点演習モード: 模擬試験128問＋③問題集97問=225問全体を対象に、
+   章・出題タイプ・誤答のみをAND条件で絞り込んで出題する。
+   filters = { chapters: [1,3,...]|null, qTypes: ['...']|null, wrongOnly: bool } */
+function mexSelectFiltered(filters) {
+  var all = mexLoadData();
+  var pool = all.filter(function(q) {
+    if (filters.chapters && filters.chapters.length && filters.chapters.indexOf(q.ch) === -1) return false;
+    if (filters.qTypes && filters.qTypes.length && filters.qTypes.indexOf(q.q_type) === -1) return false;
+    if (filters.wrongOnly && mexGetResult(q.meid) !== 'wrong') return false;
+    return true;
+  });
+  return mexPrioritize(pool);
 }
 
 function mexEsc(str) {
@@ -873,11 +902,81 @@ function mexRenderIntro() {
       '<div class="mex-intro-desc">全128問の中から章別配分で50問を出題します。<br>未回答・誤答だった問題を優先的に出題します。</div>' +
       lastHtml +
       '<button class="mex-start-btn" onclick="mexStart()">模擬試験を始める</button>' +
+      '<button class="mex-weak-btn" onclick="mexShowFilterPanel()">🎯 弱点演習モード</button>' +
     '</div>';
 }
 
 function mexStart() {
   MEX_SESSION = { questions: mexSelectQuestions(), idx: 0, correctCount: 0, answers: [] };
+  mexRenderQuestion();
+}
+
+/* ── 弱点演習モード（章・出題タイプ・誤答のみをAND条件で絞り込み） ─── */
+var MEX_QTYPES = ['定義・構成要素の理解', '業務シナリオ適用判断', '前提整理', 'ワークフロー設計妥当性', '組織導入・チェンジマネジメント判断', '5Dモデル進め方判断'];
+var MEX_FILTER_STATE = { chapters: [], qTypes: [], wrongOnly: false };
+
+function mexShowFilterPanel() {
+  MEX_FILTER_STATE = { chapters: [], qTypes: [], wrongOnly: false };
+  var app = document.getElementById('mexApp');
+  var chChips = [1, 2, 3, 4, 5, 6].map(function(ch) {
+    return '<button class="mex-chip" onclick="mexToggleChapterChip(this,' + ch + ')">Ch.' + ch + '</button>';
+  }).join('');
+  var typeChips = MEX_QTYPES.map(function(t, i) {
+    return '<button class="mex-chip" onclick="mexToggleTypeChip(this,' + i + ')">' + mexEsc(t) + '</button>';
+  }).join('');
+  app.innerHTML =
+    '<div class="mex-intro-card">' +
+      '<div class="mex-intro-icon">\\ud83c\\udfaf</div>' +
+      '<div class="mex-intro-title">弱点演習モード</div>' +
+      '<div class="mex-intro-desc">模擬試験128問＋問題集97問＝225問が対象です。<br>条件を指定して絞り込んでください。</div>' +
+      '<div class="mex-filter-section">' +
+        '<div class="mex-filter-label">章（未選択＝全章）</div>' +
+        '<div class="mex-chip-row">' + chChips + '</div>' +
+        '<div class="mex-filter-label">出題タイプ（未選択＝全タイプ）</div>' +
+        '<div class="mex-chip-row">' + typeChips + '</div>' +
+        '<label class="mex-filter-toggle"><input type="checkbox" id="mexWrongOnly" onchange="mexUpdateFilterCount()"> 誤答のみ出題</label>' +
+      '</div>' +
+      '<div class="mex-filter-count" id="mexFilterCount"></div>' +
+      '<button class="mex-start-btn" id="mexFilterStartBtn" onclick="mexStartFiltered()">この条件で開始</button>' +
+      '<button class="mex-retry-btn" onclick="mexRenderIntro()">戻る</button>' +
+    '</div>';
+  mexUpdateFilterCount();
+}
+
+function mexToggleChapterChip(btn, ch) {
+  var arr = MEX_FILTER_STATE.chapters;
+  var i = arr.indexOf(ch);
+  if (i === -1) { arr.push(ch); btn.classList.add('active'); }
+  else { arr.splice(i, 1); btn.classList.remove('active'); }
+  mexUpdateFilterCount();
+}
+
+function mexToggleTypeChip(btn, typeIdx) {
+  var t = MEX_QTYPES[typeIdx];
+  var arr = MEX_FILTER_STATE.qTypes;
+  var i = arr.indexOf(t);
+  if (i === -1) { arr.push(t); btn.classList.add('active'); }
+  else { arr.splice(i, 1); btn.classList.remove('active'); }
+  mexUpdateFilterCount();
+}
+
+function mexUpdateFilterCount() {
+  var wrongOnlyEl = document.getElementById('mexWrongOnly');
+  MEX_FILTER_STATE.wrongOnly = wrongOnlyEl ? wrongOnlyEl.checked : false;
+  var matched = mexSelectFiltered(MEX_FILTER_STATE);
+  var countEl = document.getElementById('mexFilterCount');
+  var btn = document.getElementById('mexFilterStartBtn');
+  if (countEl) {
+    countEl.textContent = matched.length + '問が該当します';
+    countEl.classList.toggle('zero', matched.length === 0);
+  }
+  if (btn) btn.disabled = matched.length === 0;
+}
+
+function mexStartFiltered() {
+  var questions = mexSelectFiltered(MEX_FILTER_STATE);
+  if (!questions.length) return;
+  MEX_SESSION = { questions: mexShuffle(questions), idx: 0, correctCount: 0, answers: [] };
   mexRenderQuestion();
 }
 
