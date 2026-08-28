@@ -483,7 +483,7 @@ body {
     <span class="index-menu-icon">📖</span>
     <span class="index-menu-text"><span class="index-menu-label">① 公式テキストViewer</span><span class="index-menu-desc">公式テキストをじっくり読む</span></span>
   </a>
-  <a href="#quiz-chapter-list" class="index-menu-card" style="background:linear-gradient(135deg,#1a5c38,#2d8a57);">
+  <a href="#" onclick="toggleTocDrawer();return false;" class="index-menu-card" style="background:linear-gradient(135deg,#1a5c38,#2d8a57);">
     <span class="index-menu-icon">📝</span>
     <span class="index-menu-text"><span class="index-menu-label">② 理解度チェック</span><span class="index-menu-desc">セクションごとの問題を解く</span></span>
   </a>
@@ -491,200 +491,6 @@ body {
     <span class="index-menu-icon">🎯</span>
     <span class="index-menu-text"><span class="index-menu-label">③ 模擬試験</span><span class="index-menu-desc">50問の模擬試験・弱点演習</span></span>
   </a>
-</div>
-<div id="quiz-chapter-list" style="scroll-margin-top:12px;">
-  <div style="font-size:13px;font-weight:700;color:#555;margin:4px 0 8px;">② 理解度チェックする章を選ぶ</div>
-  
-  <div class="chapter-card">
-    <div class="chapter-card-header" style="background:linear-gradient(135deg,#1e3a5f,#2d6a9f);">
-      <span>Ch.01</span><span>生成AIとAIエージェントの基礎</span>
-    </div>
-      <a class="section-link" href="ch01_quiz.html#ch01_s01">
-        <span class="sec-num" style="color:#2d6a9f;">S01</span>
-        <span>生成AIの基礎</span>
-        <span class="fail-badge" id="fail_ch01_s01"></span>
-      </a>
-      <a class="section-link" href="ch01_quiz.html#ch01_s02">
-        <span class="sec-num" style="color:#2d6a9f;">S02</span>
-        <span>AIエージェントの定義と構成要素</span>
-        <span class="fail-badge" id="fail_ch01_s02"></span>
-      </a>
-      <a class="section-link" href="ch01_quiz.html#ch01_s03">
-        <span class="sec-num" style="color:#2d6a9f;">S03</span>
-        <span>AIエージェントの起動タイプ</span>
-        <span class="fail-badge" id="fail_ch01_s03"></span>
-      </a>
-      <a class="section-link" href="ch01_quiz.html#ch01_s04">
-        <span class="sec-num" style="color:#2d6a9f;">S04</span>
-        <span>RPAとAIエージェントの違い</span>
-        <span class="fail-badge" id="fail_ch01_s04"></span>
-      </a>
-      <a class="section-link" href="ch01_quiz.html#ch01_s05">
-        <span class="sec-num" style="color:#2d6a9f;">S05</span>
-        <span>エージェントの接続標準 MCP</span>
-        <span class="fail-badge" id="fail_ch01_s05"></span>
-      </a>
-      <a class="section-link" href="ch01_quiz.html#ch01_s06">
-        <span class="sec-num" style="color:#2d6a9f;">S06</span>
-        <span>AIエージェント導入の価値</span>
-        <span class="fail-badge" id="fail_ch01_s06"></span>
-      </a>
-      <a class="section-link" href="ch01_quiz.html#ch01_s07">
-        <span class="sec-num" style="color:#2d6a9f;">S07</span>
-        <span>AIエージェントのリスクと対策</span>
-        <span class="fail-badge" id="fail_ch01_s07"></span>
-      </a>
-      <a class="section-link" href="ch01_quiz.html#ch01_s08">
-        <span class="sec-num" style="color:#2d6a9f;">S08</span>
-        <span>生成AIの発展トレンド</span>
-        <span class="fail-badge" id="fail_ch01_s08"></span>
-      </a>
-  </div>
-  <div class="chapter-card">
-    <div class="chapter-card-header" style="background:linear-gradient(135deg,#4a3070,#6b4fa8);">
-      <span>Ch.02</span><span>業務の基礎</span>
-    </div>
-      <a class="section-link" href="ch02_quiz.html#ch02_s01">
-        <span class="sec-num" style="color:#6b4fa8;">S01</span>
-        <span>業務の構造的理解</span>
-        <span class="fail-badge" id="fail_ch02_s01"></span>
-      </a>
-      <a class="section-link" href="ch02_quiz.html#ch02_s02">
-        <span class="sec-num" style="color:#6b4fa8;">S02</span>
-        <span>BPR（業務改革）の基礎</span>
-        <span class="fail-badge" id="fail_ch02_s02"></span>
-      </a>
-      <a class="section-link" href="ch02_quiz.html#ch02_s03">
-        <span class="sec-num" style="color:#6b4fa8;">S03</span>
-        <span>業務可視化の手法</span>
-        <span class="fail-badge" id="fail_ch02_s03"></span>
-      </a>
-  </div>
-  <div class="chapter-card">
-    <div class="chapter-card-header" style="background:linear-gradient(135deg,#1a5e52,#2a8a7a);">
-      <span>Ch.03</span><span>AIデータリテラシーとマネジメント</span>
-    </div>
-      <a class="section-link" href="ch03_quiz.html#ch03_s01">
-        <span class="sec-num" style="color:#2a8a7a;">S01</span>
-        <span>ナレッジマネジメントの基礎</span>
-        <span class="fail-badge" id="fail_ch03_s01"></span>
-      </a>
-      <a class="section-link" href="ch03_quiz.html#ch03_s02">
-        <span class="sec-num" style="color:#2a8a7a;">S02</span>
-        <span>データの種類と特性</span>
-        <span class="fail-badge" id="fail_ch03_s02"></span>
-      </a>
-      <a class="section-link" href="ch03_quiz.html#ch03_s03">
-        <span class="sec-num" style="color:#2a8a7a;">S03</span>
-        <span>RAGの仕組み</span>
-        <span class="fail-badge" id="fail_ch03_s03"></span>
-      </a>
-      <a class="section-link" href="ch03_quiz.html#ch03_s04">
-        <span class="sec-num" style="color:#2a8a7a;">S04</span>
-        <span>AIガバナンスと法務</span>
-        <span class="fail-badge" id="fail_ch03_s04"></span>
-      </a>
-      <a class="section-link" href="ch03_quiz.html#ch03_s05">
-        <span class="sec-num" style="color:#2a8a7a;">S05</span>
-        <span>AIエージェントが読みやすいデータを作る</span>
-        <span class="fail-badge" id="fail_ch03_s05"></span>
-      </a>
-      <a class="section-link" href="ch03_quiz.html#ch03_s06">
-        <span class="sec-num" style="color:#2a8a7a;">S06</span>
-        <span>AIプロジェクトの進め方</span>
-        <span class="fail-badge" id="fail_ch03_s06"></span>
-      </a>
-      <a class="section-link" href="ch03_quiz.html#ch03_s07">
-        <span class="sec-num" style="color:#2a8a7a;">S07</span>
-        <span>AIプロジェクトの成功の定義：3層フレームワーク</span>
-        <span class="fail-badge" id="fail_ch03_s07"></span>
-      </a>
-  </div>
-  <div class="chapter-card">
-    <div class="chapter-card-header" style="background:linear-gradient(135deg,#8a3e06,#c45a0a);">
-      <span>Ch.04</span><span>自動化レベルとワークフロー設計</span>
-    </div>
-      <a class="section-link" href="ch04_quiz.html#ch04_s01">
-        <span class="sec-num" style="color:#c45a0a;">S01</span>
-        <span>自動化レベルの進化論と実務における最適解</span>
-        <span class="fail-badge" id="fail_ch04_s01"></span>
-      </a>
-      <a class="section-link" href="ch04_quiz.html#ch04_s02">
-        <span class="sec-num" style="color:#c45a0a;">S02</span>
-        <span>ワークフロー設計 トリガーとアクション</span>
-        <span class="fail-badge" id="fail_ch04_s02"></span>
-      </a>
-      <a class="section-link" href="ch04_quiz.html#ch04_s03">
-        <span class="sec-num" style="color:#c45a0a;">S03</span>
-        <span>ワークフロー設計 変数と条件分岐</span>
-        <span class="fail-badge" id="fail_ch04_s03"></span>
-      </a>
-      <a class="section-link" href="ch04_quiz.html#ch04_s04">
-        <span class="sec-num" style="color:#c45a0a;">S04</span>
-        <span>コンテキストエンジニアリング概論</span>
-        <span class="fail-badge" id="fail_ch04_s04"></span>
-      </a>
-  </div>
-  <div class="chapter-card">
-    <div class="chapter-card-header" style="background:linear-gradient(135deg,#701035,#a01850);">
-      <span>Ch.05</span><span>人と組織から考えるAI時代の組織設計</span>
-    </div>
-      <a class="section-link" href="ch05_quiz.html#ch05_s01">
-        <span class="sec-num" style="color:#a01850;">S01</span>
-        <span>AIエージェント導入と組織文化の変革</span>
-        <span class="fail-badge" id="fail_ch05_s01"></span>
-      </a>
-      <a class="section-link" href="ch05_quiz.html#ch05_s02">
-        <span class="sec-num" style="color:#a01850;">S02</span>
-        <span>AIエージェント推進の組織類型</span>
-        <span class="fail-badge" id="fail_ch05_s02"></span>
-      </a>
-      <a class="section-link" href="ch05_quiz.html#ch05_s03">
-        <span class="sec-num" style="color:#a01850;">S03</span>
-        <span>人材評価と指標の再設計</span>
-        <span class="fail-badge" id="fail_ch05_s03"></span>
-      </a>
-      <a class="section-link" href="ch05_quiz.html#ch05_s04">
-        <span class="sec-num" style="color:#a01850;">S04</span>
-        <span>チェンジマネジメント</span>
-        <span class="fail-badge" id="fail_ch05_s04"></span>
-      </a>
-      <a class="section-link" href="ch05_quiz.html#ch05_s05">
-        <span class="sec-num" style="color:#a01850;">S05</span>
-        <span>AIエージェント推進者が現場で直面する5つの問いと答え方</span>
-        <span class="fail-badge" id="fail_ch05_s05"></span>
-      </a>
-  </div>
-  <div class="chapter-card">
-    <div class="chapter-card-header" style="background:linear-gradient(135deg,#1a4a26,#2a6e3a);">
-      <span>Ch.06</span><span>AIエージェントを実装する5Dモデル</span>
-    </div>
-      <a class="section-link" href="ch06_quiz.html#ch06_s01">
-        <span class="sec-num" style="color:#2a6e3a;">S01</span>
-        <span>5DモデルStep1 Discovery — 発見・選定</span>
-        <span class="fail-badge" id="fail_ch06_s01"></span>
-      </a>
-      <a class="section-link" href="ch06_quiz.html#ch06_s02">
-        <span class="sec-num" style="color:#2a6e3a;">S02</span>
-        <span>5DモデルStep2 Definition — 定義・構造化</span>
-        <span class="fail-badge" id="fail_ch06_s02"></span>
-      </a>
-      <a class="section-link" href="ch06_quiz.html#ch06_s03">
-        <span class="sec-num" style="color:#2a6e3a;">S03</span>
-        <span>5DモデルStep3 Design — 設計・プロンプト</span>
-        <span class="fail-badge" id="fail_ch06_s03"></span>
-      </a>
-      <a class="section-link" href="ch06_quiz.html#ch06_s04">
-        <span class="sec-num" style="color:#2a6e3a;">S04</span>
-        <span>5DモデルStep4 Development &amp; PoC — 開発・検証</span>
-        <span class="fail-badge" id="fail_ch06_s04"></span>
-      </a>
-      <a class="section-link" href="ch06_quiz.html#ch06_s05">
-        <span class="sec-num" style="color:#2a6e3a;">S05</span>
-        <span>5DモデルStep5 Deployment &amp; Scale — 展開・定着</span>
-        <span class="fail-badge" id="fail_ch06_s05"></span>
-      </a>
-  </div>
 </div>
 <button class="logout-btn" onclick="doLogout()" style="display:block;margin:16px auto 0;background:none;border:none;color:#bbb;font-size:12px;cursor:pointer;padding:4px 12px;">ログアウト</button>
 </div>
@@ -698,7 +504,6 @@ body {
   </div>
   <div class="toc-main-menu">
     <a href="reader/index.html" class="toc-main-item">📖 ① 公式テキストViewer</a>
-    <a href="index.html#quiz-chapter-list" class="toc-main-item">📝 ② 理解度チェック</a>
     <a href="mock_exam.html" class="toc-main-item">🎯 ③ 模擬試験</a>
   </div>
   <div style="padding:4px 14px 8px;border-bottom:1px solid var(--border);">
@@ -1138,28 +943,6 @@ window.addEventListener('load', function() {
   });
   initRetakeBtns();
   initThemeControls();
-});
-</script>
-<script>
-window.addEventListener('load', function() {
-  // 誤答バッジ: qwrong_ch01_s01_1 形式のキーを集計（一度でも誤答した問題を永続追跡）
-  var failCounts = {};
-  for (var i = 0; i < localStorage.length; i++) {
-    var key = localStorage.key(i);
-    if (!key || !key.startsWith('qwrong_')) continue;
-    var parts = key.replace('qwrong_', '').split('_');
-    var sid = parts[0] + '_' + parts[1];
-    failCounts[sid] = (failCounts[sid] || 0) + 1;
-  }
-  Object.keys(failCounts).forEach(function(sid) {
-    var badge = document.getElementById('fail_' + sid);
-    var link  = badge && badge.closest('.section-link');
-    if (badge) {
-      badge.textContent = '\u2717 ' + failCounts[sid];
-      badge.classList.add('has-fail');
-    }
-    if (link) link.classList.add('has-fail');
-  });
 });
 </script>
 <script>
